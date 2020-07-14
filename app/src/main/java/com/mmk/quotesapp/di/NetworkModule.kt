@@ -20,59 +20,61 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
-object NetworkModule {
+class NetworkModule {
 
-    @Provides
-    @Singleton
-    fun provideLogging():HttpLoggingInterceptor{
-        return HttpLoggingInterceptor().apply {
-            level =HttpLoggingInterceptor.Level.BODY
+    companion object {
+        @Provides
+        @Singleton
+        fun provideLogging(): HttpLoggingInterceptor {
+            return HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            }
         }
-    }
 
-    @Provides
-    @Singleton
-    fun provideOkHttpClient(interceptor:HttpLoggingInterceptor):OkHttpClient{
-        val builder=OkHttpClient.Builder()
-        if(BuildConfig.DEBUG) builder.addInterceptor(interceptor)
+        @Provides
+        @Singleton
+        fun provideOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient {
+            val builder = OkHttpClient.Builder()
+            if (BuildConfig.DEBUG) builder.addInterceptor(interceptor)
 
-        return builder.build()
-    }
+            return builder.build()
+        }
 
-    @Provides
-    @Singleton
-    fun provideCoroutineCallAdapter():CoroutineCallAdapterFactory{
-        return CoroutineCallAdapterFactory()
-    }
-
+        @Provides
+        @Singleton
+        fun provideCoroutineCallAdapter(): CoroutineCallAdapterFactory {
+            return CoroutineCallAdapterFactory()
+        }
 
 
-    @Provides
-    @Singleton
-    fun provideMoshiConvertor():MoshiConverterFactory{
-        val moshi=Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
-        return MoshiConverterFactory.create(moshi)
-    }
+        @Provides
+        @Singleton
+        fun provideMoshiConvertor(): MoshiConverterFactory {
+            val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+            return MoshiConverterFactory.create(moshi)
+        }
 
 
+        @Provides
+        @Singleton
+        fun provideRetrofit(
+            converterFactory: MoshiConverterFactory,
+            adapterFactory: CoroutineCallAdapterFactory,
+            client: OkHttpClient
+        ): Retrofit {
+            return Retrofit.Builder()
+                .addConverterFactory(converterFactory)
+                .addCallAdapterFactory(adapterFactory)
+                .client(client)
+                .baseUrl(BASE_URL)
+                .build()
+        }
 
-    @Provides
-    @Singleton
-    fun provideRetrofit(converterFactory: MoshiConverterFactory,
-                        adapterFactory:CoroutineCallAdapterFactory,
-                        client: OkHttpClient):Retrofit{
-        return Retrofit.Builder()
-            .addConverterFactory(converterFactory)
-            .addCallAdapterFactory(adapterFactory)
-            .client(client)
-            .baseUrl(BASE_URL)
-            .build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideQuoteService(retrofit: Retrofit):QuotesService{
-        return retrofit.create(QuotesService::class.java)
+        @Provides
+        @Singleton
+        fun provideQuoteService(retrofit: Retrofit): QuotesService {
+            return retrofit.create(QuotesService::class.java)
+        }
     }
 
 }
