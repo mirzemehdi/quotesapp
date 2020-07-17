@@ -2,7 +2,7 @@ package com.mmk.quotesapp.di
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.mmk.quotesapp.BuildConfig
-import com.mmk.quotesapp.network.QuotesService
+import com.mmk.quotesapp.network.PhotoService
 import com.mmk.quotesapp.utils.BASE_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -12,7 +12,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.CallAdapter
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -72,8 +71,8 @@ class NetworkModule {
 
         @Provides
         @Singleton
-        fun provideQuoteService(retrofit: Retrofit): QuotesService {
-            return retrofit.create(QuotesService::class.java)
+        fun provideQuoteService(retrofit: Retrofit): PhotoService {
+            return retrofit.create(PhotoService::class.java)
         }
     }
 

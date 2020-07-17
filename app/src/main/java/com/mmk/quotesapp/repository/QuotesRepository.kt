@@ -2,11 +2,11 @@ package com.mmk.quotesapp.repository
 
 import com.mmk.quotesapp.data.ResponseQuote
 import com.mmk.quotesapp.network.NetworkResource
-import com.mmk.quotesapp.network.QuotesService
+import com.mmk.quotesapp.network.PhotoService
 import java.io.IOException
 import javax.inject.Inject
 
-class QuotesRepository @Inject constructor(private val apiService: QuotesService) {
+class QuotesRepository @Inject constructor(private val apiService: PhotoService) {
 
     suspend fun getRandomQuote():NetworkResource<ResponseQuote>{
         return try {
