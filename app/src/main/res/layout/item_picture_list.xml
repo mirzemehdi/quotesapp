@@ -6,23 +6,24 @@
     <data>
         <variable
             name="item"
-            type="com.mmk.quotesapp.data.QuoteData" />
+            type="com.mmk.quotesapp.data.PictureData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/textViewQuoteText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            tools:text="1) Quote Text"
-            android:text='@{item.id+")"+item.text}'
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:layout_margin="16dp"
+            app:layout_constraintDimensionRatio="w,1:1"
+            imageUrl="@{item.regularUrl}"
+            tools:background="@color/colorPlaceHolder"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

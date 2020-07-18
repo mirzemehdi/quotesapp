@@ -33,9 +33,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    dataBinding {
-        enabled = true
+    
+    buildFeatures{
+        dataBinding true
     }
 
 
@@ -86,6 +86,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_kotlin_coroutines"
 
 
+
+
     // Moshi
     implementation "com.squareup.moshi:moshi:$version_moshi"
     implementation "com.squareup.moshi:moshi-kotlin:$version_moshi"
@@ -103,9 +105,13 @@ dependencies {
     //Timber
     implementation "com.jakewharton.timber:timber:$version_timber"
 
+    //Picasso
+    implementation "com.squareup.picasso:picasso:$version_picasso"
 
 
-    //Extensions
+
+
+    //Extensions-KTX
 
     // Use viewModelScope from lifecycle-viewmodel-ktx
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version_lifecycle_extensions"

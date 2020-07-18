@@ -1,11 +1,10 @@
 package com.mmk.quotesapp.di
 
 import android.app.Application
-import android.content.Context
 import androidx.room.Room
-import com.mmk.quotesapp.db.QuotesDB
-import com.mmk.quotesapp.db.QuotesDao
-import com.mmk.quotesapp.utils.DB_NAME_QUOTES
+import com.mmk.quotesapp.db.PicturesDB
+import com.mmk.quotesapp.db.PicturesDao
+import com.mmk.quotesapp.utils.DB_NAME_PICTURES
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,17 +19,17 @@ class DatabaseModule {
 
         @Provides
         @Singleton
-        fun provideQuotesDB(application: Application): QuotesDB {
+        fun providePicturesDB(application: Application): PicturesDB {
             return Room
-                .databaseBuilder(application, QuotesDB::class.java, DB_NAME_QUOTES)
+                .databaseBuilder(application, PicturesDB::class.java, DB_NAME_PICTURES)
                 .fallbackToDestructiveMigration()
                 .build()
         }
 
         @Provides
         @Singleton
-        fun provideQuotesDao(quotesDB: QuotesDB): QuotesDao {
-            return quotesDB.quotesDao()
+        fun providePicturesDao(picturesDB: PicturesDB): PicturesDao {
+            return picturesDB.picturesDao()
         }
     }
 }

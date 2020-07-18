@@ -12,7 +12,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -71,7 +70,7 @@ class NetworkModule {
 
         @Provides
         @Singleton
-        fun provideQuoteService(retrofit: Retrofit): PhotoService {
+        fun providePicturesService(retrofit: Retrofit): PhotoService {
             return retrofit.create(PhotoService::class.java)
         }
     }
