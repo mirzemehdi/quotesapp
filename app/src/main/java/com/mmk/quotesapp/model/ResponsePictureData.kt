@@ -1,4 +1,4 @@
-package com.mmk.quotesapp.data
+package com.mmk.quotesapp.model
 
 import com.squareup.moshi.Json
 

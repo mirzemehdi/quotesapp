@@ -13,9 +13,9 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
-class DatabaseModule {
+object DatabaseModule {
 
-    companion object {
+
 
         @Provides
         @Singleton
@@ -31,5 +31,5 @@ class DatabaseModule {
         fun providePicturesDao(picturesDB: PicturesDB): PicturesDao {
             return picturesDB.picturesDao()
         }
-    }
+
 }

@@ -1,9 +1,8 @@
 package com.mmk.quotesapp.ui.fragments.main
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.mmk.quotesapp.data.PictureData
+import com.mmk.quotesapp.model.PictureData
 import com.mmk.quotesapp.databinding.ItemPictureListBinding
 import com.mmk.quotesapp.utils.layoutInflater
 

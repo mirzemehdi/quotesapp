@@ -1,6 +1,4 @@
-package com.mmk.quotesapp.data
-
-import androidx.room.PrimaryKey
+package com.mmk.quotesapp.model
 
 
 data class PictureData(

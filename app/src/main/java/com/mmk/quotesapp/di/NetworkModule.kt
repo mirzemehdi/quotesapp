@@ -18,9 +18,9 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
-class NetworkModule {
+object NetworkModule {
 
-    companion object {
+
         @Provides
         @Singleton
         fun provideLogging(): HttpLoggingInterceptor {
@@ -73,6 +73,6 @@ class NetworkModule {
         fun providePicturesService(retrofit: Retrofit): PhotoService {
             return retrofit.create(PhotoService::class.java)
         }
-    }
+
 
 }

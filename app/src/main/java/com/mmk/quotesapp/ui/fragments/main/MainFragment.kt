@@ -8,25 +8,28 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.mmk.quotesapp.databinding.FragmentMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainFragment : Fragment() {
-    val viewModel:MainViewHolder by viewModels()
-    @Inject lateinit var adapter:PicturesAdapter
+    val viewModel: MainViewHolder by viewModels()
+    @Inject
+    lateinit var adapter: PicturesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding=FragmentMainBinding.inflate(inflater,container,false)
-        context?: return binding.root
-        binding.lifecycleOwner=this
+        val binding = FragmentMainBinding.inflate(inflater, container, false)
+        context ?: return binding.root
+        binding.lifecycleOwner = this
         return binding.root
     }
 
@@ -37,17 +40,14 @@ class MainFragment : Fragment() {
     }
 
     private fun initView() {
-        quotesList.adapter=adapter
+        quotesList.adapter = adapter
     }
 
 
-
     private fun observeValues() {
-        viewModel.getPictureList()
-        viewModel.pictureListResponse?.observe(viewLifecycleOwner, Observer {
-            Timber.e(it.toString())
-            Timber.e("${it.size}")
-            adapter.submitList(it)
+        viewModel.getPictureList().observe(viewLifecycleOwner, Observer {
+            adapter.submitData(lifecycle, it)
         })
+        
     }
 }

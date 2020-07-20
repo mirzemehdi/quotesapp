@@ -1,12 +1,12 @@
 package com.mmk.quotesapp.ui.fragments.main
 
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
-import com.mmk.quotesapp.data.PictureData
+import com.mmk.quotesapp.model.PictureData
 import javax.inject.Inject
 
-class PicturesAdapter @Inject constructor() : ListAdapter<PictureData, PictureViewHolder>(PictureDiffCallBack()) {
+class PicturesAdapter @Inject constructor() : PagingDataAdapter<PictureData, PictureViewHolder>(PictureDiffCallBack()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PictureViewHolder {
        return PictureViewHolder.from(parent)
     }

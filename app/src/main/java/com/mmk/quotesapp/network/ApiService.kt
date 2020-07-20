@@ -1,6 +1,6 @@
 package com.mmk.quotesapp.network
 
-import com.mmk.quotesapp.data.ResponsePictureResult
+import com.mmk.quotesapp.model.ResponsePictureResult
 import com.mmk.quotesapp.utils.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET

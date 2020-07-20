@@ -3,8 +3,8 @@ package com.mmk.quotesapp.utils
 
 import android.content.Context
 import android.view.LayoutInflater
-import com.mmk.quotesapp.data.PictureData
-import com.mmk.quotesapp.data.ResponsePictureResult
+import com.mmk.quotesapp.model.PictureData
+import com.mmk.quotesapp.model.ResponsePictureResult
 
 
 val Context.layoutInflater:LayoutInflater

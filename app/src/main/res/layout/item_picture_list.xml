@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="com.mmk.quotesapp.data.PictureData" />
+            type="com.mmk.quotesapp.model.PictureData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
