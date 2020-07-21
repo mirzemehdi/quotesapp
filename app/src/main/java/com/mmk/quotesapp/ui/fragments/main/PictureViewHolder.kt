@@ -6,7 +6,8 @@ import com.mmk.quotesapp.model.PictureData
 import com.mmk.quotesapp.databinding.ItemPictureListBinding
 import com.mmk.quotesapp.utils.layoutInflater
 
-class PictureViewHolder(private val binding: ItemPictureListBinding):RecyclerView.ViewHolder(binding.root) {
+class PictureViewHolder private constructor(private val binding: ItemPictureListBinding)
+    :RecyclerView.ViewHolder(binding.root) {
 
     fun bind(pictureData: PictureData){
         binding.apply {

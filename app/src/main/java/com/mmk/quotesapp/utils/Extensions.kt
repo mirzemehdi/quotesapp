@@ -10,6 +10,9 @@ import com.mmk.quotesapp.model.ResponsePictureResult
 val Context.layoutInflater:LayoutInflater
     get()=LayoutInflater.from(this)
 
+
+
+
 fun List<ResponsePictureResult>.toPictureDataList(): List<PictureData> {
     return this.map {
         with(it) {

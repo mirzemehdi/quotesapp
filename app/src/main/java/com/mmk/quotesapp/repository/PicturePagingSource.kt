@@ -23,9 +23,9 @@ class PicturePagingSource @Inject constructor(private val apiService: PhotoServi
                 nextKey = if (pictureResultList.isEmpty()) null else pageIndex + 1
             )
         } catch (exception: IOException) {
-            return LoadResult.Error(exception)
+            LoadResult.Error(exception)
         } catch (exception: HttpException) {
-            return LoadResult.Error(exception)
+            LoadResult.Error(exception)
         }
     }
 }
