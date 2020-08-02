@@ -16,6 +16,7 @@ buildscript {
         version_okhttp_logging="4.2.1"
         version_paging = "3.0.0-alpha01"
         version_picasso="2.5.2"
+        version_circle_image_view="3.1.0"
 
 
 

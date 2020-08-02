@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.mmk.quotesapp"
-        minSdkVersion 16
+        minSdkVersion 17
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -107,6 +107,9 @@ dependencies {
 
     //Picasso
     implementation "com.squareup.picasso:picasso:$version_picasso"
+
+    //Circle ImageView
+    implementation "de.hdodenhof:circleimageview:$version_circle_image_view"
 
 
 

@@ -2,4 +2,7 @@
     <string name="app_name">Quotes App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sample_quote">We spend so much of our lives not saying the things we wanna say, the things we should say.</string>
+    <string name="sample_author">Michael Schofield</string>
+    <string name="title_quotes">Quotes</string>
 </resources>

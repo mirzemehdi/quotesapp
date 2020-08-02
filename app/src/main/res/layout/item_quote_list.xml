@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardBackgroundColor="@color/colorQuoteCardViewBg"
+    android:layout_margin="@dimen/marginQuoteCardView"
+    app:cardCornerRadius="@dimen/card_quote_corner_radius_"
+    app:cardElevation="@dimen/card_quote_elevation"
+    android:layout_height="wrap_content">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/quoteIconImageView"
+            android:layout_width="@dimen/size_ic_quote_image_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_quote"
+            android:layout_height="@dimen/size_ic_quote_image_view"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/quoteAuthorImageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            android:layout_width="@dimen/size_quote_author_image_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:src="@drawable/ic_person"
+            android:layout_margin="20dp"
+            android:scaleType="centerCrop"
+            android:layout_height="@dimen/size_quote_author_image_view"/>
+
+        <TextView
+            android:id="@+id/quoteText"
+            android:layout_width="0dp"
+            tools:text="@string/sample_quote"
+            app:layout_constraintTop_toBottomOf="@id/quoteIconImageView"
+            app:layout_constraintStart_toEndOf="@id/quoteIconImageView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0"
+            android:layout_marginTop="@dimen/margin_top_quote_text"
+            android:fontFamily="@font/tthoves_medium"
+            android:layout_marginEnd="@dimen/margin_end_quote_text"
+            android:textSize="@dimen/text_size_quote"
+            android:layout_marginStart="@dimen/margin_start_quote_text"
+            android:textColor="#262626"
+            app:layout_constraintEnd_toStartOf="@id/quoteAuthorImageView"
+            android:layout_height="wrap_content"/>
+
+        <View
+            android:id="@+id/line_quote_author"
+            android:layout_width="@dimen/width_line_author"
+            android:background="@color/colorBlack"
+            app:layout_constraintStart_toStartOf="@id/quoteText"
+            app:layout_constraintTop_toTopOf="@id/quoteAuthor"
+            app:layout_constraintBottom_toBottomOf="@id/quoteAuthor"
+            android:layout_height="@dimen/height_line_author"/>
+
+        <TextView
+            android:id="@+id/quoteAuthor"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/quoteText"
+            tools:text="@string/sample_author"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintEnd_toStartOf="@id/quoteAuthorImageView"
+            android:textColor="@color/colorSilver"
+            android:fontFamily="@font/tthoves_regular"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0"
+            android:textSize="@dimen/text_size_author"
+            android:layout_marginBottom="@dimen/margin_bottom_quote_author"
+            android:layout_marginTop="@dimen/margin_top_quote_author"
+            android:layout_marginStart="@dimen/margin_start_quote_author"
+            app:layout_constraintStart_toEndOf="@id/line_quote_author"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/quoteShareImageView"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_share"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:tint="@color/colorBlack"
+            app:layout_constraintTop_toBottomOf="@id/quoteAuthorImageView"
+            app:layout_constraintVertical_bias="1"
+            android:layout_marginTop="@dimen/margin_top_quote_share_icon"
+            android:layout_marginEnd="@dimen/margin_end_quote_share_icon"
+            android:layout_marginBottom="@dimen/margin_bottom_quote_share_icon"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:id="@+id/quoteLikeImageView"
+            android:layout_width="wrap_content"
+            android:src="@drawable/ic_heart_unfilled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/quoteShareImageView"
+            android:tint="@color/colorPrimary"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintTop_toBottomOf="@id/quoteAuthorImageView"
+            android:layout_marginEnd="@dimen/margin_end_quote_share_icon"
+            android:layout_marginTop="@dimen/margin_top_quote_share_icon"
+            android:layout_marginBottom="@dimen/margin_bottom_quote_share_icon"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</com.google.android.material.card.MaterialCardView>

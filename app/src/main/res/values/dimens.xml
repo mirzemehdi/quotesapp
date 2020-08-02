@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="height_quote_card_view">250dp</dimen>
+    <dimen name="marginQuoteCardView">16dp</dimen>
+    <dimen name="card_quote_corner_radius_">16dp</dimen>
+    <dimen name="card_quote_elevation">10dp</dimen>
+    <dimen name="size_ic_quote_image_view">36dp</dimen>
+    <dimen name="size_quote_author_image_view">80dp</dimen>
+    <dimen name="margin_end_quote_text">24dp</dimen>
+    <dimen name="margin_top_quote_text">24dp</dimen>
+    <dimen name="margin_start_quote_text">8dp</dimen>
+    <dimen name="margin_end_quote_share_icon">16dp</dimen>
+    <dimen name="margin_bottom_quote_share_icon">20dp</dimen>
+    <dimen name="width_line_author">16dp</dimen>
+    <dimen name="height_line_author">1dp</dimen>
+    <dimen name="margin_top_quote_author">20dp</dimen>
+    <dimen name="margin_start_quote_author">8dp</dimen>
+    <dimen name="text_size_author">14sp</dimen>
+    <dimen name="text_size_quote">16sp</dimen>
+    <dimen name="margin_bottom_quote_author">20dp</dimen>
+    <dimen name="margin_top_quote_share_icon">20dp</dimen>
+    <dimen name="text_size_title_quote">28sp</dimen>
+    <dimen name="margin_title_quote">16dp</dimen>
+    <dimen name="margin_quotes_list">16dp</dimen>
+
+</resources>
