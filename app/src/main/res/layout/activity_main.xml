@@ -11,11 +11,52 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:defaultNavHost="true"
         app:navGraph="@navigation/nav_graph" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addQuoteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/margin_bottom_add_quote"
+        android:scaleType="center"
+        android:src="@drawable/ic_add"
+
+        android:tint="#fff"
+        app:elevation="@dimen/size_elevation_add_quote"
+        app:fabCustomSize="@dimen/size_add_quote_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:rippleColor="@color/colorPrimary"
+        app:useCompatPadding="false">
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_menu_bg"
+        app:itemHorizontalTranslationEnabled="false"
+        app:itemIconSize="@dimen/size_icon_item_bottom"
+        app:itemIconTint="@color/bottom_state"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:menu="@menu/bottom_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

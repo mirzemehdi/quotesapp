@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <dimen name="height_quote_card_view">250dp</dimen>
     <dimen name="marginQuoteCardView">16dp</dimen>
     <dimen name="card_quote_corner_radius_">16dp</dimen>
@@ -22,5 +22,10 @@
     <dimen name="text_size_title_quote">28sp</dimen>
     <dimen name="margin_title_quote">16dp</dimen>
     <dimen name="margin_quotes_list">16dp</dimen>
+    <dimen name="size_icon_item_bottom">24dp</dimen>
+    <dimen name="size_add_quote_button">74dp</dimen>
+    <dimen name="margin_bottom_add_quote">39dp</dimen>
+    <dimen name="size_elevation_add_quote">8dp</dimen>
+    <dimen name="design_fab_image_size" tools:override="true">36dp</dimen>
 
 </resources>

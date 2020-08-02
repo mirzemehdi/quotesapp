@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/quotes_menu"
+        android:icon="@drawable/ic_quote"
+        android:title="@string/menu_title_quotes"/>
+
+    <item android:id="@+id/empty_menu"
+        android:title="@string/menu_title_empty"/>
+
+    <item android:id="@+id/profile_menu"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/menu_title_profile"/>
+
+</menu>
