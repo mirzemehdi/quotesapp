@@ -28,7 +28,8 @@
         android:layout_marginBottom="@dimen/margin_bottom_add_quote"
         android:scaleType="center"
         android:src="@drawable/ic_add"
-
+        android:clickable="true"
+        android:focusable="true"
         android:tint="#fff"
         app:elevation="@dimen/size_elevation_add_quote"
         app:fabCustomSize="@dimen/size_add_quote_button"

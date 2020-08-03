@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "409979891202",
+    "firebase_url": "https://quotes-app-2b598.firebaseio.com",
+    "project_id": "quotes-app-2b598",
+    "storage_bucket": "quotes-app-2b598.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409979891202:android:342a29417d6d90456d011b",
+        "android_client_info": {
+          "package_name": "com.mmk.quotesapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "409979891202-pd3k596fe3ae76t0juguct34ajgql6kv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mmk.quotesapp",
+            "certificate_hash": "0d9b9853ca973a27c9c2b4aefe042e8b43b9d19d"
+          }
+        },
+        {
+          "client_id": "409979891202-dinkkibbe5h15ovoco3089gfl8spv8p1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVW8C0CLD7lfVX_pqaXfDERbZ5EFoHCp0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "409979891202-dinkkibbe5h15ovoco3089gfl8spv8p1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -17,6 +17,10 @@ buildscript {
         version_paging = "3.0.0-alpha01"
         version_picasso="2.5.2"
         version_circle_image_view="3.1.0"
+        version_google_services="4.3.3"
+        version_firebase_analytics="17.4.4"
+        version_firebase_crashlytics="17.1.1"
+        version_firabase_crashlytics_gradle="2.2.0"
 
 
 
@@ -31,8 +35,10 @@ buildscript {
         classpath 'com.android.tools.build:gradle:4.0.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$version_hilt"
+        classpath "com.google.gms:google-services:$version_google_services"
 
-
+        // Add the Crashlytics Gradle plugin.
+        classpath "com.google.firebase:firebase-crashlytics-gradle:$version_firabase_crashlytics_gradle"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

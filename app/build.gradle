@@ -4,6 +4,11 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 
+
+apply plugin: 'com.google.gms.google-services'
+// Apply the Crashlytics Gradle plugin
+apply plugin: 'com.google.firebase.crashlytics'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -14,7 +19,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -55,6 +60,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //MultiDex
+    implementation 'com.android.support:multidex:1.0.3'
+
+
 
     //Hilt Dependency Injection
     implementation "com.google.dagger:hilt-android:$version_hilt"
@@ -111,12 +121,6 @@ dependencies {
     //Circle ImageView
     implementation "de.hdodenhof:circleimageview:$version_circle_image_view"
 
-
-
-
-
-
-
     //Extensions-KTX
 
     // Use viewModelScope from lifecycle-viewmodel-ktx
@@ -125,6 +129,12 @@ dependencies {
     // Live Data Scope KTX
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$version_lifecycle_extensions"
 
+
+    //Firebase Google Analytics
+    implementation "com.google.firebase:firebase-analytics-ktx:$version_firebase_analytics"
+
+    // Firebase Crashlytics SDK.
+    implementation "com.google.firebase:firebase-crashlytics:$version_firebase_crashlytics"
 
 
 }
