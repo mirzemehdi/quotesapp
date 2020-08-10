@@ -136,6 +136,12 @@ dependencies {
     // Firebase Crashlytics SDK.
     implementation "com.google.firebase:firebase-crashlytics:$version_firebase_crashlytics"
 
+    //Firebase FireStore
+    implementation "com.google.firebase:firebase-firestore-ktx:$version_firebase_firestore"
+
+    // coroutines support for firebase operations
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$version_coroutine_support_firebase"
+
 
 }
 kapt {

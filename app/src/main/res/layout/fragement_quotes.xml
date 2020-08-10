@@ -13,7 +13,7 @@
         android:layout_marginTop="@dimen/margin_title_quote"
         android:fontFamily="@font/tthoves_bold"
         android:text="@string/title_quotes"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/colorDarkBlack"
         android:textSize="@dimen/text_size_title_quote"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

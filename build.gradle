@@ -21,6 +21,9 @@ buildscript {
         version_firebase_analytics="17.4.4"
         version_firebase_crashlytics="17.1.1"
         version_firabase_crashlytics_gradle="2.2.0"
+        version_firebase_firestore="21.5.0"
+        version_coroutine_support_firebase="1.1.1"
+       
 
 
 

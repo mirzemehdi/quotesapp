@@ -2,6 +2,9 @@ package com.mmk.quotesapp.di
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.mmk.quotesapp.model.PictureData
 import com.mmk.quotesapp.network.PhotoService
 import com.mmk.quotesapp.repository.PicturePagingSource
@@ -41,6 +44,12 @@ object PicturePager {
         pagingSourceFactory: () -> PicturePagingSource
     ): Pager<Int, PictureData> {
         return Pager(config = pageConfig, pagingSourceFactory = pagingSourceFactory)
+    }
+
+    @Singleton
+    @Provides
+    fun provideFirebaseFirestore():FirebaseFirestore{
+        return Firebase.firestore
     }
 
 

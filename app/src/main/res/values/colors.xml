@@ -4,9 +4,10 @@
     <color name="colorPrimaryDark">#b38b00</color>
     <color name="colorAccent">#00b3a2</color>
     <color name="colorQuoteCardViewBg">#F8F8F8</color>
-    <color name="colorBlack">#262626</color>
+    <color name="colorDarkBlack">#262626</color>
     <color name="colorSilver">#909090</color>
 
+    <color name="colorBlack">#3d3d3d</color>
 
 
     <color name="colorPlaceHolder">#A6A6A6</color>

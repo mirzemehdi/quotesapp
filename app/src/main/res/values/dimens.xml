@@ -27,5 +27,12 @@
     <dimen name="margin_bottom_add_quote">39dp</dimen>
     <dimen name="size_elevation_add_quote">8dp</dimen>
     <dimen name="design_fab_image_size" tools:override="true">36dp</dimen>
+    <dimen name="margin_add_quote_layout">16dp</dimen>
+    <dimen name="new_quote_text_size">14sp</dimen>
+    <dimen name="max_height_new_quote">150dp</dimen>
+    <dimen name="margin_top_add_quote_layout">24dp</dimen>
+    <dimen name="margin_add_new_quote_button">24dp</dimen>
+    <dimen name="add_quote_button_corner_radius">4dp</dimen>
+    <dimen name="padding_add_new_quote_button">16dp</dimen>
 
 </resources>
