@@ -54,6 +54,8 @@
                     android:scrollbars="vertical"
                     android:textColorHint="@color/colorSilver"
                     app:boxBackgroundMode="outline"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+
                     app:boxStrokeColor="@color/colorAccent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -63,11 +65,13 @@
                         android:id="@+id/newQuoteEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textCapSentences"
+                        android:inputType="textCapSentences|textMultiLine"
+
                         android:text="@={viewModel.quoteText}"
                         android:maxHeight="@dimen/max_height_new_quote"
                         android:fontFamily="@font/tthoves_regular"
                         android:gravity="start"
+
                         android:hint="@string/hint_write_your_quote"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/new_quote_text_size" />
