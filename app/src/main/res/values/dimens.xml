@@ -15,8 +15,8 @@
     <dimen name="height_line_author">1dp</dimen>
     <dimen name="margin_top_quote_author">20dp</dimen>
     <dimen name="margin_start_quote_author">8dp</dimen>
-    <dimen name="text_size_author">14sp</dimen>
-    <dimen name="text_size_quote">16sp</dimen>
+    <dimen name="text_size_author">16sp</dimen>
+    <dimen name="text_size_quote">20sp</dimen>
     <dimen name="margin_bottom_quote_author">20dp</dimen>
     <dimen name="margin_top_quote_share_icon">20dp</dimen>
     <dimen name="text_size_title_quote">28sp</dimen>

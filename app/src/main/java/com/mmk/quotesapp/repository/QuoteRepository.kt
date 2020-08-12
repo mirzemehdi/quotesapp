@@ -18,8 +18,10 @@ class QuoteRepository @Inject constructor(private val db: FirebaseFirestore) {
 
     suspend fun addNewQuote(quote: Quote): NetworkResource<String> {
         return try {
-            val documentReference = quotesCollection.add(quote).await()
-            NetworkResource.Success(documentReference.id)
+            val referenceId = quotesCollection.document().id
+            quote.id=referenceId
+            quotesCollection.document(referenceId).set(quote).await()
+            NetworkResource.Success(referenceId)
 
         } catch (e: Exception) {
             NetworkResource.Error(e.message)

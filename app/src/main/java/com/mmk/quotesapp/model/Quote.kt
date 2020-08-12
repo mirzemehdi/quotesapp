@@ -7,6 +7,6 @@ import java.util.*
 
 data class Quote (var author:String="",var text:String=""):GenericRecyclerViewItemModel{
     @ServerTimestamp var createdDate:Date?=null
-
+    var id:String?=null
 
 }

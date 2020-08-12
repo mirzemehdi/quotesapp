@@ -13,7 +13,7 @@ class QuotesAdapter :GenericRecyclerViewAdapter<Quote>(R.layout.item_quote_list,
 
     internal class QuoteItemDiffCallBack:DiffUtil.ItemCallback<Quote>(){
         override fun areItemsTheSame(oldItem: Quote, newItem: Quote): Boolean {
-            return oldItem.author==newItem.author
+            return oldItem.id==newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Quote, newItem: Quote): Boolean {
