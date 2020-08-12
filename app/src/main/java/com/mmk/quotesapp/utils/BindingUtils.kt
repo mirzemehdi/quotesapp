@@ -2,13 +2,13 @@ package com.mmk.quotesapp.utils
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import androidx.databinding.BindingAdapter
 import com.mmk.quotesapp.R
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
 object BindingUtils {
-
 
     @BindingAdapter("imageUrl")
     @JvmStatic
@@ -25,4 +25,12 @@ object BindingUtils {
 @BindingAdapter("visibility")
 fun View.setVisibility(isVisible: Boolean) {
     this.visibility = if (isVisible) View.VISIBLE else View.GONE
+}
+
+@BindingAdapter("loadingState")
+fun ProgressBar.loadingState(uiState: UiState){
+    this.visibility=when(uiState){
+        UiState.Loading ->View.VISIBLE
+        else -> View.GONE
+    }
 }

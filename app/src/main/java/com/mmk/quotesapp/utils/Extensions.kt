@@ -19,6 +19,8 @@ fun Context.toast(text: String?, duration: Int = Toast.LENGTH_SHORT) {
 }
 
 
+
+
 fun List<ResponsePictureResult>.toPictureDataList(): List<PictureData> {
     return this.map {
         with(it) {

@@ -1,36 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    tools:context=".ui.fragments.quoteslist.QuotesFragment"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/quoteTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_title_quote"
-        android:fontFamily="@font/tthoves_bold"
-        android:text="@string/title_quotes"
-        android:textColor="@color/colorDarkBlack"
-        android:textSize="@dimen/text_size_title_quote"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <variable
+            name="viewModel"
+            type="com.mmk.quotesapp.ui.fragments.quoteslist.QuotesViewModel" />
+    </data>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/quotesRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/margin_quotes_list"
-        android:clipToPadding="false"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        tools:context=".ui.fragments.quoteslist.QuotesFragment"
+        android:layout_height="match_parent">
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/quoteTitle"
-        tools:listitem="@layout/item_quote_list" />
+        <TextView
+            android:id="@+id/quoteTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_title_quote"
+            android:fontFamily="@font/tthoves_bold"
+            android:text="@string/title_quotes"
+            android:textColor="@color/colorDarkBlack"
+            android:textSize="@dimen/text_size_title_quote"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/quotesRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_quotes_list"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/quoteTitle"
+            tools:listitem="@layout/item_quote_list" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/quotesRecyclerView"
+            app:layout_constraintBottom_toBottomOf="@id/quotesRecyclerView"
+            app:layout_constraintStart_toStartOf="@id/quotesRecyclerView"
+            app:layout_constraintEnd_toEndOf="@id/quotesRecyclerView"
+            loadingState="@{viewModel.uiState}"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

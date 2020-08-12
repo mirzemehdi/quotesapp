@@ -1,6 +1,7 @@
 package com.mmk.quotesapp.ui.fragments.main
 
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mmk.quotesapp.model.PictureData
 import com.mmk.quotesapp.databinding.ItemPictureListBinding
@@ -11,7 +12,7 @@ class PictureViewHolder private constructor(private val binding: ItemPictureList
 
     fun bind(pictureData: PictureData){
         binding.apply {
-            item=pictureData
+            listItem=pictureData
             executePendingBindings()
         }
     }

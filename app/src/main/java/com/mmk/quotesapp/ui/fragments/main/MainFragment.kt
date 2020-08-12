@@ -41,14 +41,14 @@ class MainFragment : Fragment() {
     }
 
     private fun initView() {
-        quotesList.adapter = adapter
+        quotesRecyclerView.adapter = adapter
             .withLoadStateHeaderAndFooter(
                 header = PictureLoadStateAdapter { adapter.retry() },
                 footer = PictureLoadStateAdapter { adapter.retry() }
             )
         adapter.addLoadStateListener { loadState ->
             with(loadState.source.refresh) {
-                quotesList.isVisible = this is LoadState.NotLoading
+                quotesRecyclerView.isVisible = this is LoadState.NotLoading
                 progressBarMain.isVisible = this is LoadState.Loading
             }
 

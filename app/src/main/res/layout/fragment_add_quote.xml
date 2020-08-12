@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="viewHolder"
+            name="viewModel"
             type="com.mmk.quotesapp.ui.fragments.addquote.AddNewQuoteViewModel" />
     </data>
 
@@ -63,7 +63,7 @@
                         android:id="@+id/newQuoteEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={viewHolder.quoteText}"
+                        android:text="@={viewModel.quoteText}"
                         android:maxHeight="@dimen/max_height_new_quote"
                         android:fontFamily="@font/tthoves_regular"
                         android:gravity="start"
@@ -93,7 +93,7 @@
                         android:layout_height="match_parent"
                         android:fontFamily="@font/tthoves_regular"
                         android:gravity="start"
-                        android:text="@={viewHolder.quoteAuthor}"
+                        android:text="@={viewModel.quoteAuthor}"
 
                         android:hint="@string/hint_new_quote_author"
                         android:textColor="@color/colorBlack"
@@ -107,7 +107,7 @@
                     android:id="@+id/addNewQuoteButton"
                     style="@style/Widget.AppCompat.Button.Borderless.Colored"
                     android:layout_width="0dp"
-                    android:onClick="@{() -> viewHolder.addQuote()}"
+                    android:onClick="@{() -> viewModel.addQuote()}"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_add_new_quote_button"
                     android:fontFamily="@font/tthoves_medium"
@@ -124,6 +124,15 @@
                     app:rippleColor="@color/colorPrimary">
 
                 </com.google.android.material.button.MaterialButton>
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    loadingState="@{viewModel.uiState}"
+                    app:layout_constraintStart_toStartOf="@id/addNewQuoteButton"
+                    app:layout_constraintEnd_toEndOf="@id/addNewQuoteButton"
+                    app:layout_constraintTop_toTopOf="@id/addNewQuoteButton"
+                    app:layout_constraintBottom_toBottomOf="@id/addNewQuoteButton"
+                    android:layout_height="wrap_content"/>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
