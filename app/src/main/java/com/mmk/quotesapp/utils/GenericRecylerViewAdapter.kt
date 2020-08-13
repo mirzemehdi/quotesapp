@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -47,7 +48,7 @@ open class GenericRecyclerViewAdapter<T : GenericRecyclerViewItemModel>(
     @LayoutRes val layoutId: Int,
     diffCallback: DiffUtil.ItemCallback<T>
 ) :
-    ListAdapter<T, GenericRecyclerViewHolder<T>>(diffCallback) {
+    PagingDataAdapter<T, GenericRecyclerViewHolder<T>>(diffCallback) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

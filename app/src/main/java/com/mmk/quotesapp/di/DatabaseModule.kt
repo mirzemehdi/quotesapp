@@ -16,7 +16,6 @@ import javax.inject.Singleton
 object DatabaseModule {
 
 
-
         @Provides
         @Singleton
         fun providePicturesDB(application: Application): PicturesDB {

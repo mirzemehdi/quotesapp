@@ -4,15 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.paging.LoadState
 import com.mmk.quotesapp.R
 import com.mmk.quotesapp.databinding.FragementQuotesBinding
-import com.mmk.quotesapp.databinding.FragmentAddQuoteBinding
-import com.mmk.quotesapp.ui.fragments.addquote.AddNewQuoteViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragement_quotes.*
+import kotlinx.android.synthetic.main.fragment_main.quotesRecyclerView
 
 @AndroidEntryPoint
 class QuotesFragment: Fragment(R.layout.fragement_quotes) {
@@ -40,11 +41,21 @@ class QuotesFragment: Fragment(R.layout.fragement_quotes) {
 
     private fun initView() {
         quotesRecyclerView.adapter=quotesAdapter
+            .withLoadStateHeaderAndFooter(
+                header = ItemLoadStateAdapter { quotesAdapter.retry() },
+                footer = ItemLoadStateAdapter { quotesAdapter.retry() }
+            )
+        quotesAdapter.addLoadStateListener { loadState ->
+            with(loadState.source.refresh) {
+                quotesRecyclerView.isVisible = this is LoadState.NotLoading
+                progressBarQuotes.isVisible = this is LoadState.Loading
+            }
+        }
     }
 
     private fun observeValues() {
         viewModel.quotesList?.observe(viewLifecycleOwner, Observer {
-            quotesAdapter.submitList(it)
+            quotesAdapter.submitData(lifecycle,it)
         })
     }
 

@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.liveData
+import androidx.paging.PagingData
 import com.mmk.quotesapp.model.Quote
 import com.mmk.quotesapp.network.NetworkResource
 import com.mmk.quotesapp.repository.QuoteRepository
@@ -26,7 +27,7 @@ class QuotesViewModel @ViewModelInject constructor(
 
     private val applicationContext = application.applicationContext
     val uiState=MutableLiveData<UiState>(UiState.NotLoading)
-    var quotesList: LiveData<List<Quote>>? =null
+    var quotesList: LiveData<PagingData<Quote>>? =null
 
     init {
         getQuotes()
@@ -34,24 +35,25 @@ class QuotesViewModel @ViewModelInject constructor(
     }
 
 
-     fun getQuotes() {
-        uiState.value=UiState.Loading
-        quotesList= liveData(IO){
-            val response=quotesRepository.getQuotes()
-            withContext(Main) {
-                uiState.value = UiState.NotLoading
-                when (response) {
+     private fun getQuotes() {
 
-                    is NetworkResource.Success -> emit(response.data)
-                    is NetworkResource.Error -> {
-                        applicationContext.toast(response.message)
-                        Timber.e(response.message)
-                    }
-
-                    is NetworkResource.NetworkException -> Unit
-                }
-            }
-        }
+         quotesList=quotesRepository.getQuotes()
+//        quotesList= liveData(IO){
+//            val response=quotesRepository.getQuotes()
+//            withContext(Main) {
+//                uiState.value = UiState.NotLoading
+//                when (response) {
+//
+//                    is NetworkResource.Success -> emit(response.data)
+//                    is NetworkResource.Error -> {
+//                        applicationContext.toast(response.message)
+//                        Timber.e(response.message)
+//                    }
+//
+//                    is NetworkResource.NetworkException -> Unit
+//                }
+//            }
+//        }
     }
 
 }

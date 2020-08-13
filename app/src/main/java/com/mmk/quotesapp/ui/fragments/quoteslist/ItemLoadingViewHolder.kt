@@ -1,17 +1,14 @@
-package com.mmk.quotesapp.ui.fragments.main
+package com.mmk.quotesapp.ui.fragments.quoteslist
 
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
 import com.mmk.quotesapp.databinding.ItemLoadStateBinding
-import com.mmk.quotesapp.databinding.ItemPictureListBinding
-import com.mmk.quotesapp.model.PictureData
 import com.mmk.quotesapp.utils.layoutInflater
 
 
-class PictureLoadingViewHolder private constructor(private val binding: ItemLoadStateBinding,
-                                                   private val retry:()->Unit) :
+class ItemLoadingViewHolder private constructor(private val binding: ItemLoadStateBinding,
+                                                private val retry:()->Unit) :
     RecyclerView.ViewHolder(binding.root) {
 
 
@@ -20,8 +17,6 @@ class PictureLoadingViewHolder private constructor(private val binding: ItemLoad
         binding.apply {
             isLoading= loadState is LoadState.Loading
             buttonRetry.setOnClickListener { retry.invoke() }
-
-
             executePendingBindings()
 
         }
@@ -29,10 +24,13 @@ class PictureLoadingViewHolder private constructor(private val binding: ItemLoad
 
 
     companion object {
-        fun from(parent: ViewGroup,retry:()->Unit): PictureLoadingViewHolder {
+        fun from(parent: ViewGroup,retry:()->Unit): ItemLoadingViewHolder {
             val inflater = parent.context.layoutInflater
             val binding = ItemLoadStateBinding.inflate(inflater, parent, false)
-            return PictureLoadingViewHolder(binding,retry)
+            return ItemLoadingViewHolder(
+                binding,
+                retry
+            )
         }
     }
 }
