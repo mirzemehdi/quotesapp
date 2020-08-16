@@ -34,5 +34,9 @@
     <dimen name="margin_add_new_quote_button">24dp</dimen>
     <dimen name="add_quote_button_corner_radius">4dp</dimen>
     <dimen name="padding_add_new_quote_button">16dp</dimen>
+    <dimen name="size_profile_image">100dp</dimen>
+    <dimen name="margin_top_profile_image">24dp</dimen>
+    <dimen name="margin_profile_name">16dp</dimen>
+    <dimen name="margin_profile_recyclerView">8dp</dimen>
 
 </resources>

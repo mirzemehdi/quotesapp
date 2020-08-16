@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -50,6 +51,9 @@ class QuotesFragment: Fragment(R.layout.fragement_quotes) {
                 quotesRecyclerView.isVisible = this is LoadState.NotLoading
                 progressBarQuotes.isVisible = this is LoadState.Loading
             }
+        }
+        quotesAdapter.onClickItem={
+            Toast.makeText(context, it.text, Toast.LENGTH_SHORT).show()
         }
     }
 

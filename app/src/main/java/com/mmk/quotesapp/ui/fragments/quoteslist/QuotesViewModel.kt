@@ -2,11 +2,9 @@ package com.mmk.quotesapp.ui.fragments.quoteslist
 
 import android.app.Application
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.mmk.quotesapp.model.Quote
 import com.mmk.quotesapp.network.NetworkResource
 import com.mmk.quotesapp.repository.QuoteRepository
@@ -35,9 +33,13 @@ class QuotesViewModel @ViewModelInject constructor(
     }
 
 
+
+
+
+
      private fun getQuotes() {
 
-         quotesList=quotesRepository.getQuotes()
+         quotesList=quotesRepository.getQuotes().cachedIn(viewModelScope)
 //        quotesList= liveData(IO){
 //            val response=quotesRepository.getQuotes()
 //            withContext(Main) {

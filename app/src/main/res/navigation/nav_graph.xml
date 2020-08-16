@@ -14,4 +14,9 @@
         android:name="com.mmk.quotesapp.ui.fragments.addquote.AddNewQuoteFragment"
         android:label="fragment_add_quote"
         tools:layout="@layout/fragment_add_quote" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.mmk.quotesapp.ui.fragments.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

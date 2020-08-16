@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         app:cardBackgroundColor="@color/colorQuoteCardViewBg"
         android:layout_margin="@dimen/marginQuoteCardView"
+
         app:cardCornerRadius="@dimen/card_quote_corner_radius_"
 
         app:cardElevation="@dimen/card_quote_elevation"

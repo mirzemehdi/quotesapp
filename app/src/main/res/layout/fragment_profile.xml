@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.profile.ProfileFragment">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="@dimen/size_profile_image"
+            android:layout_marginTop="@dimen/margin_top_profile_image"
+            android:src="@drawable/ic_person"
+            android:layout_height="@dimen/size_profile_image">
+
+
+
+        </de.hdodenhof.circleimageview.CircleImageView>
+
+
+
+        <TextView
+            android:id="@+id/profileDisplayName"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            tools:text="Mirzamehdi Karimov"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="@dimen/margin_profile_name"
+            app:layout_constraintTop_toBottomOf="@id/profileImageView"
+            android:fontFamily="@font/tthoves_bold"
+            android:textColor="@color/colorDarkBlack"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/profileQuotesNumberCardView"
+        app:layout_constraintTop_toBottomOf="@id/profileDisplayName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="4dp"
+        app:cardBackgroundColor="@color/colorOrangeLight"
+        app:strokeWidth="1dp"
+        app:strokeColor="@color/colorOrangeDark"
+        android:layout_height="68dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/profileQuoteNumber"
+            tools:text="1000"
+            android:layout_margin="1dp"
+            android:textSize="24sp"
+            android:fontFamily="@font/tthoves_bold"
+            android:textColor="@color/colorBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <TextView
+            android:text="@string/text_quotes"
+            android:textSize="12sp"
+            android:textColor="@color/colorBlack"
+            android:fontFamily="@font/tthoves_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        </LinearLayout>
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/profileQuotesRecyclerView"
+        app:layout_constraintTop_toBottomOf="@id/profileQuotesNumberCardView"
+        android:layout_width="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_marginTop="@dimen/margin_profile_recyclerView"
+        android:layout_marginStart="@dimen/margin_profile_recyclerView"
+        tools:listitem="@layout/item_quote_list"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="@dimen/margin_profile_recyclerView"
+        android:layout_height="0dp"/>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

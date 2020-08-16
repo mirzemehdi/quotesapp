@@ -8,7 +8,7 @@
     <item android:id="@+id/addNewQuoteFragment"
         android:title="@string/menu_title_empty"/>
 
-    <item android:id="@+id/profile_menu"
+    <item android:id="@+id/profileFragment"
         android:icon="@drawable/ic_profile"
         android:title="@string/menu_title_profile"/>
 

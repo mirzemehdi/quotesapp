@@ -11,6 +11,8 @@ import javax.inject.Inject
  */
 class QuotesAdapter :GenericRecyclerViewAdapter<Quote>(R.layout.item_quote_list,QuoteItemDiffCallBack()) {
 
+
+
     internal class QuoteItemDiffCallBack:DiffUtil.ItemCallback<Quote>(){
         override fun areItemsTheSame(oldItem: Quote, newItem: Quote): Boolean {
             return oldItem.id==newItem.id

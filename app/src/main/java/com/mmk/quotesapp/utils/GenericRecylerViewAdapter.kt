@@ -6,10 +6,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mmk.quotesapp.BR
-import com.mmk.quotesapp.R
 
 /**
  * Created by mirzemehdi on 8/11/20
@@ -17,7 +15,10 @@ import com.mmk.quotesapp.R
 
 interface GenericRecyclerViewItemModel
 
-class GenericRecyclerViewHolder<T : GenericRecyclerViewItemModel> private constructor(private val binding: ViewDataBinding) :
+class GenericRecyclerViewHolder<T : GenericRecyclerViewItemModel> private constructor(
+    private val binding: ViewDataBinding,
+    private val onClickItem: ((item: T) -> Unit)?
+) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: T) {
@@ -25,17 +26,19 @@ class GenericRecyclerViewHolder<T : GenericRecyclerViewItemModel> private constr
             setVariable(BR.listItem, item)
             executePendingBindings()
         }
+        itemView.setOnClickListener { onClickItem?.invoke(item) }
     }
 
     companion object {
         fun <T : GenericRecyclerViewItemModel> from(
             parent: ViewGroup,
-            @LayoutRes layoutId: Int
+            @LayoutRes layoutId: Int,
+            onClickItem: ((item: T) -> Unit)?
         ): GenericRecyclerViewHolder<T> {
             val inflater = parent.context.layoutInflater
             val binding =
                 DataBindingUtil.inflate<ViewDataBinding>(inflater, layoutId, parent, false)
-            return GenericRecyclerViewHolder(binding)
+            return GenericRecyclerViewHolder(binding,onClickItem)
         }
     }
 }
@@ -49,18 +52,22 @@ open class GenericRecyclerViewAdapter<T : GenericRecyclerViewItemModel>(
     diffCallback: DiffUtil.ItemCallback<T>
 ) :
     PagingDataAdapter<T, GenericRecyclerViewHolder<T>>(diffCallback) {
+
+    open var onClickItem:((item:T)->Unit )?=null
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): GenericRecyclerViewHolder<T> {
 
-        return GenericRecyclerViewHolder.from(parent, layoutId)
+        return GenericRecyclerViewHolder.from(parent, layoutId,onClickItem)
 
     }
 
     override fun onBindViewHolder(holder: GenericRecyclerViewHolder<T>, position: Int) {
         val item = getItem(position)
         item?.let { holder.bind(it) }
+
 
     }
 

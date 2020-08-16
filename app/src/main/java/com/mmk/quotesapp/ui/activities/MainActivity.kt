@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         }
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            bottomNavigation.isVisible=destination.id in arrayOf(R.id.quotesFragment)
+            bottomNavigation.isVisible=destination.id in arrayOf(R.id.quotesFragment,R.id.profileFragment)
             addQuoteButton.isVisible=bottomNavigation.isVisible
         }
     }
