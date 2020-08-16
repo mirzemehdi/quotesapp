@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.paging.LoadState
 import com.mmk.quotesapp.R
 import com.mmk.quotesapp.databinding.FragementQuotesBinding
+import com.mmk.quotesapp.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragement_quotes.*
 import kotlinx.android.synthetic.main.fragment_main.quotesRecyclerView
@@ -54,6 +55,9 @@ class QuotesFragment: Fragment(R.layout.fragement_quotes) {
         }
         quotesAdapter.onClickItem={
             Toast.makeText(context, it.text, Toast.LENGTH_SHORT).show()
+        }
+        quotesAdapter.onLikeButtonClicked={
+            context?.toast("On Like Button Clicked")
         }
     }
 
