@@ -9,6 +9,9 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mmk.quotesapp.BR
+import com.mmk.quotesapp.R
+import com.mmk.quotesapp.databinding.ItemQuoteListBinding
+import com.mmk.quotesapp.model.Quote
 
 /**
  * Created by mirzemehdi on 8/11/20
@@ -77,6 +80,8 @@ open class GenericRecyclerViewAdapter<T:Any>(
 
 
 }
+
+
 
 
 

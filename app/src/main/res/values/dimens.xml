@@ -38,5 +38,15 @@
     <dimen name="margin_top_profile_image">24dp</dimen>
     <dimen name="margin_profile_name">16dp</dimen>
     <dimen name="margin_profile_recyclerView">8dp</dimen>
+    <dimen name="margin_top_welcome_text">48dp</dimen>
+    <dimen name="text_size_welcome_text">16sp</dimen>
+    <dimen name="margin_top_login_text">8dp</dimen>
+    <dimen name="text_size_login_text">12sp</dimen>
+    <dimen name="height_login_input">48dp</dimen>
+    <dimen name="margin_top_email_login">32dp</dimen>
+    <dimen name="margin_start_email_login">16dp</dimen>
+    <dimen name="text_size_login_input">12sp</dimen>
+    <dimen name="padding_drawable_login_input">12dp</dimen>
+    <dimen name="margin_top_password_login">8dp</dimen>
 
 </resources>

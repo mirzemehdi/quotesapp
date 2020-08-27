@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.mmk.quotesapp.R
 
 
-class ProfileFragment : Fragment(R.layout.fragment_profile) {
+class ProfileFragment : Fragment(R.layout.fragment_login) {
 
 
 

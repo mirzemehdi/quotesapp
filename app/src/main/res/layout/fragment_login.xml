@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/welcomeTextLogin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/margin_top_welcome_text"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/text_size_welcome_text"
+            android:textColor="@color/colorDarkBlue"
+            android:fontFamily="@font/tthoves_bold"
+            android:text="@string/text_welcome_login"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/loginText"
+            app:layout_constraintTop_toBottomOf="@id/welcomeTextLogin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/margin_top_login_text"
+            android:layout_width="wrap_content"
+            android:textSize="@dimen/text_size_login_text"
+            android:textColor="@color/colorBrown"
+            android:fontFamily="@font/tthoves_regular"
+            android:text="@string/text_login"
+            android:layout_height="wrap_content"/>
+
+
+
+        <!--            Email       -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailLoginInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_login_input"
+
+            android:layout_marginStart="@dimen/margin_start_email_login"
+            android:layout_marginTop="@dimen/margin_top_email_login"
+            android:layout_marginEnd="@dimen/margin_start_email_login"
+
+
+            android:textColorHint="@color/colorSilver"
+            app:boxBackgroundMode="outline"
+
+            app:boxStrokeColor="@color/colorBorder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/loginText">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailLoginEditText"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="@dimen/padding_drawable_login_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:fontFamily="@font/tthoves_regular"
+                android:hint="@string/hint_email"
+                android:textColor="@color/colorBrown"
+                android:textSize="@dimen/text_size_login_input" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--            Password       -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordLoginInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_login_input"
+
+
+            android:layout_marginTop="@dimen/margin_top_password_login"
+
+
+
+            android:textColorHint="@color/colorSilver"
+            app:boxBackgroundMode="outline"
+
+            app:boxStrokeColor="@color/colorBorder"
+            app:layout_constraintEnd_toEndOf="@id/emailLoginInputLayout"
+            app:layout_constraintStart_toStartOf="@id/emailLoginInputLayout"
+            app:layout_constraintTop_toBottomOf="@id/emailLoginInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordLoginEditText"
+                android:drawableStart="@drawable/ic_password"
+                android:drawablePadding="@dimen/padding_drawable_login_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:fontFamily="@font/tthoves_regular"
+                android:hint="@string/hint_password"
+                android:textColor="@color/colorBrown"
+                android:textSize="@dimen/text_size_login_input" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

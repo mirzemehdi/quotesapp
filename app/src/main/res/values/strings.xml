@@ -15,4 +15,8 @@
     <string name="hint_new_quote_author">Author</string>
     <string name="text_add_new_quote_btn">Add</string>
     <string name="text_quotes">QUOTES</string>
+    <string name="text_welcome_login">Welcome to Quotick</string>
+    <string name="text_login">Sign in to continue</string>
+    <string name="hint_email">Your Email</string>
+    <string name="hint_password">Password</string>
 </resources>

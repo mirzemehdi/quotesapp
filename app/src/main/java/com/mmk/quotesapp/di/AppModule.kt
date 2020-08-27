@@ -19,7 +19,6 @@ import javax.inject.Singleton
 object AppModule {
 
 
-
     @Singleton
     @Provides
     fun provideFirebaseFirestore():FirebaseFirestore{

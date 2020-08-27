@@ -38,8 +38,11 @@ class QuotesFragment: Fragment(R.layout.fragement_quotes) {
         super.onViewCreated(view, savedInstanceState)
 
         initView()
+        setClicks()
         observeValues()
     }
+
+
 
     private fun initView() {
         quotesRecyclerView.adapter=quotesAdapter
@@ -53,6 +56,10 @@ class QuotesFragment: Fragment(R.layout.fragement_quotes) {
                 progressBarQuotes.isVisible = this is LoadState.Loading
             }
         }
+
+    }
+
+    private fun setClicks() {
         quotesAdapter.onClickItem={
             Toast.makeText(context, it.text, Toast.LENGTH_SHORT).show()
         }
