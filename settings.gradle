@@ -1,2 +1,3 @@
+include ':domain'
 rootProject.name='Quotes App'
 include ':app'
