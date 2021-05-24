@@ -1,0 +1,21 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+
+
+}
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    implementation project(':domain')
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    // Koin AndroidX Scope features
+    implementation "org.koin:koin-androidx-scope:$version_koin"
+}

@@ -1,5 +1,7 @@
 package com.mmk.domain.model
 
+import kotlinx.coroutines.Dispatchers
+
 sealed class Result<out T> {
 
     data class Success<T>(val data: T) : Result<T>()
