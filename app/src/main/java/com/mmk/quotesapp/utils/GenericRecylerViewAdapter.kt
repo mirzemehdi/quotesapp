@@ -1,3 +1,4 @@
+
 package com.mmk.quotesapp.utils
 
 import android.view.LayoutInflater
@@ -5,24 +6,23 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.paging.LoadStateAdapter
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mmk.quotesapp.BR
-import com.mmk.quotesapp.R
-import com.mmk.quotesapp.databinding.ItemQuoteListBinding
-import com.mmk.quotesapp.model.Quote
+
 
 /**
  * Created by mirzemehdi on 8/11/20
  */
 
-interface GenericRecyclerViewItemModel
 
-class GenericRecyclerViewHolder<T> private constructor(
+open class GenericRecyclerViewHolder<T> constructor(
     private val binding: ViewDataBinding,
-    private val onClickItem: ((item: T) -> Unit)?,
-    private val onBinding: ((item: T,binding:ViewDataBinding) -> Unit)?
+    private val onClickItem: ((item: T) -> Unit)?=null,
+    private val onBinding: ((item: T,binding:ViewDataBinding) -> Unit)?=null
 ) :
     RecyclerView.ViewHolder(binding.root) {
 
@@ -31,8 +31,8 @@ class GenericRecyclerViewHolder<T> private constructor(
             setVariable(BR.listItem, item)
             onBinding?.invoke(item,binding)
             executePendingBindings()
-        }
 
+        }
         itemView.setOnClickListener { onClickItem?.invoke(item) }
     }
 
@@ -53,8 +53,6 @@ class GenericRecyclerViewHolder<T> private constructor(
 
 
 
-
-
 open class GenericRecyclerViewAdapter<T:Any>(
     @LayoutRes val layoutId: Int,
     diffCallback: DiffUtil.ItemCallback<T>
@@ -62,6 +60,8 @@ open class GenericRecyclerViewAdapter<T:Any>(
     PagingDataAdapter<T, GenericRecyclerViewHolder<T>>(diffCallback) {
 
     open var onClickItem:((item:T)->Unit )?=null
+
+    //Only class which is child will see this method
     protected open fun onBinding (item: T,binding:ViewDataBinding)=Unit
 
     override fun onCreateViewHolder(
@@ -69,7 +69,7 @@ open class GenericRecyclerViewAdapter<T:Any>(
         viewType: Int
     ): GenericRecyclerViewHolder<T> {
 
-        return GenericRecyclerViewHolder.from(parent, layoutId,onClickItem,::onBinding)
+        return GenericRecyclerViewHolder.from(parent, layoutId, onClickItem, ::onBinding)
 
     }
 
@@ -77,6 +77,8 @@ open class GenericRecyclerViewAdapter<T:Any>(
         val item = getItem(position)
         item?.let { holder.bind(it) }
     }
+
+
 
 
 }

@@ -7,15 +7,16 @@ import com.mmk.quotesapp.databinding.ItemLoadStateBinding
 import com.mmk.quotesapp.utils.layoutInflater
 
 
-class ItemLoadingViewHolder private constructor(private val binding: ItemLoadStateBinding,
-                                                private val retry:()->Unit) :
+class ItemLoadingViewHolder private constructor(
+    private val binding: ItemLoadStateBinding,
+    private val retry: () -> Unit
+) :
     RecyclerView.ViewHolder(binding.root) {
-
 
 
     fun bind(loadState: LoadState) {
         binding.apply {
-            isLoading= loadState is LoadState.Loading
+            isLoading = loadState is LoadState.Loading
             buttonRetry.setOnClickListener { retry.invoke() }
             executePendingBindings()
 
@@ -23,14 +24,12 @@ class ItemLoadingViewHolder private constructor(private val binding: ItemLoadSta
     }
 
 
+
     companion object {
-        fun from(parent: ViewGroup,retry:()->Unit): ItemLoadingViewHolder {
+        fun from(parent: ViewGroup, retry: () -> Unit): ItemLoadingViewHolder {
             val inflater = parent.context.layoutInflater
             val binding = ItemLoadStateBinding.inflate(inflater, parent, false)
-            return ItemLoadingViewHolder(
-                binding,
-                retry
-            )
+            return ItemLoadingViewHolder(binding, retry)
         }
     }
 }

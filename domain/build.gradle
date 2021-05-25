@@ -19,6 +19,10 @@ dependencies {
     // Koin AndroidX Scope features
     implementation "org.koin:koin-androidx-scope:$version_koin"
 
+    //Pagination
+    implementation "androidx.paging:paging-common:$version_paging"
+
+
 
 }
 

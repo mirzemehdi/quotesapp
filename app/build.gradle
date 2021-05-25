@@ -41,6 +41,7 @@ android {
     
     buildFeatures{
         dataBinding true
+        viewBinding true
     }
 
 
@@ -144,6 +145,14 @@ dependencies {
 
     // coroutines support for firebase operations
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$version_coroutine_support_firebase"
+
+
+    // Koin AndroidX Scope features
+    implementation "org.koin:koin-androidx-scope:$version_koin"
+    // Koin AndroidX ViewModel features
+    implementation "org.koin:koin-androidx-viewmodel:$version_koin"
+    // Koin AndroidX Fragment features
+    implementation "org.koin:koin-androidx-fragment:$version_koin"
 
 
 }

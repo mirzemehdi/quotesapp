@@ -11,5 +11,5 @@ data class QuoteResponse(
     var createdDate: Date? = null
 ) : DomainMapper<Quote> {
 
-    override fun mapToDomainModel() = Quote(author = author, text = text)
+    override fun mapToDomainModel() = Quote(id = id, author = author, text = text)
 }

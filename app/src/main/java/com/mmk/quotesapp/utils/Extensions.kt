@@ -5,7 +5,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.mmk.quotesapp.model.PictureData
 import com.mmk.quotesapp.model.ResponsePictureResult
 
 

@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import com.mmk.quotesapp.model.Quote
 import com.mmk.quotesapp.network.NetworkResource
 import com.mmk.quotesapp.repository.QuoteRepository
-import com.mmk.quotesapp.utils.UiState
+import com.mmk.quotesapp.ui.base.UiState
 import com.mmk.quotesapp.utils.toast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
@@ -24,7 +24,8 @@ class AddNewQuoteViewModel @ViewModelInject constructor(
     private val applicationContext = application.applicationContext
     val quoteAuthor = MutableLiveData<String>()
     val quoteText = MutableLiveData<String>()
-    private val _uiState=MutableLiveData<UiState>(UiState.NotLoading)
+    private val _uiState=MutableLiveData<UiState>(
+        UiState.NotLoading)
     val uiState:LiveData<UiState> = _uiState
     private val _onQuoteAdded=MutableLiveData(false)
     val onQuoteAdded=_onQuoteAdded
@@ -32,12 +33,12 @@ class AddNewQuoteViewModel @ViewModelInject constructor(
 
 
     fun addQuote() {
-        _uiState.value=UiState.Loading
+        _uiState.value= UiState.Loading
         val quote = Quote(quoteAuthor.value!!, quoteText.value!!)
         CoroutineScope(IO).launch {
             val response = quotesRepository.addNewQuote(quote)
             withContext(Main) {
-                _uiState.value=UiState.NotLoading
+                _uiState.value= UiState.NotLoading
                 when (response) {
 
                     is NetworkResource.Success -> {

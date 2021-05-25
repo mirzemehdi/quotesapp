@@ -5,8 +5,8 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.databinding.BindingAdapter
 import com.mmk.quotesapp.R
+import com.mmk.quotesapp.ui.base.UiState
 import com.squareup.picasso.Picasso
-import javax.inject.Inject
 
 object BindingUtils {
 
