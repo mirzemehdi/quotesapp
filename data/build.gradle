@@ -48,5 +48,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx'
     // coroutines support for firebase operations
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$version_coroutine_support_firebase"
+    //Timber
+    implementation "com.jakewharton.timber:timber:$version_timber"
 
 }

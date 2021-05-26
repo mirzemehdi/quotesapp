@@ -13,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 
 class QuotesRepositoryImpl(private val quotesCollection: CollectionReference) : QuotesRepository {
@@ -23,11 +24,19 @@ class QuotesRepositoryImpl(private val quotesCollection: CollectionReference) : 
         withContext(Dispatchers.IO) {
             val config =
                 PagingConfig(pageSize = 10, initialLoadSize = 15, enablePlaceholders = false)
+
+
             val quoteResponseListFlow =
-                Pager(config = config) { QuotesPagingSource(quotesCollection) }.flow
+                Pager(
+                    config = config,
+                    pagingSourceFactory = { QuotesPagingSource(quotesCollection) }).flow
+
+
             quoteFlowList = quoteResponseListFlow.map { quoteResponsePagedData ->
                 quoteResponsePagedData.map { it.mapToDomainModel() }
             }
+
+
         }
 
         return Result.Success(quoteFlowList)

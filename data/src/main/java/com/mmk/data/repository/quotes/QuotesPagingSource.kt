@@ -1,5 +1,6 @@
 package com.mmk.data.repository.quotes
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.google.firebase.firestore.CollectionReference
@@ -7,6 +8,7 @@ import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.mmk.data.network.model.response.QuoteResponse
 import kotlinx.coroutines.tasks.await
+import timber.log.Timber
 import java.io.IOException
 
 class QuotesPagingSource(private val quotesCollection: CollectionReference) :
@@ -24,6 +26,7 @@ class QuotesPagingSource(private val quotesCollection: CollectionReference) :
 
     override suspend fun load(params: LoadParams<String>): LoadResult<String, QuoteResponse> {
         val orderedCollection = quotesCollection.orderBy(FieldPath.documentId())
+        Timber.e("Called load")
         return try {
 
             val query =
@@ -33,6 +36,7 @@ class QuotesPagingSource(private val quotesCollection: CollectionReference) :
                 .limit(params.loadSize.toLong())
                 .get().await()
             val quotesList = response.toObjects(QuoteResponse::class.java)
+            Timber.e("Called response")
 
             LoadResult.Page(
                 data = quotesList,
@@ -41,10 +45,17 @@ class QuotesPagingSource(private val quotesCollection: CollectionReference) :
             )
 
 
+
         } catch (exception: IOException) {
+            Timber.e(exception)
+
             LoadResult.Error(exception)
+
         } catch (exception: Exception) {
+            Timber.e(exception)
+
             LoadResult.Error(exception)
+
         }
     }
 }

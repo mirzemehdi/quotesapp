@@ -8,6 +8,7 @@ import com.mmk.domain.model.Quote
 import com.mmk.domain.model.onSuccess
 import com.mmk.quotesapp.ui.base.BaseViewModel
 import com.mmk.quotesapp.ui.base.UiState
+import timber.log.Timber
 
 /**
  * Created by mirzemehdi on 8/12/20
