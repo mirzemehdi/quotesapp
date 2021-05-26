@@ -7,22 +7,20 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.mmk.quotesapp.R
-import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
+import com.mmk.quotesapp.databinding.ActivityMainBinding
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private val navController:NavController by lazy { findNavController(R.id.nav_host_fragment) }
+    private lateinit var  navController: NavController
+    private lateinit var binding:ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        //throw RuntimeException("Test Crash") // Force a crash
-
-
+        binding= ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         initView()
 
@@ -32,21 +30,25 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
         //setupBottomNavigation
-        bottomNavigation.setupWithNavController(navController)
-
-        //TODO fix this issue disable selecting index 1 item
-        bottomNavigation.menu.findItem(R.id.addNewQuoteFragment).isCheckable=false
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+        with(binding) {
+            bottomNavigation.setupWithNavController(navController)
+            bottomNavigation.menu.findItem(R.id.addNewQuoteFragment).isCheckable = false
+        }
     }
 
     private fun onDestinationChanged() {
 
-        addQuoteButton.setOnClickListener {
-            bottomNavigation.selectedItemId=R.id.addNewQuoteFragment
+        binding.addQuoteButton.setOnClickListener {
+            binding.bottomNavigation.selectedItemId = R.id.addNewQuoteFragment
 
         }
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            bottomNavigation.isVisible=destination.id in arrayOf(R.id.quotesFragment,R.id.profileFragment)
-            addQuoteButton.isVisible=bottomNavigation.isVisible
+            binding.bottomNavigation.isVisible =
+                destination.id in arrayOf(R.id.quotesFragment, R.id.profileFragment)
+            binding.addQuoteButton.isVisible = binding.bottomNavigation.isVisible
         }
     }
 

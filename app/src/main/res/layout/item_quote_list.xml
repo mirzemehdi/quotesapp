@@ -6,7 +6,7 @@
     <data>
         <variable
             name="listItem"
-            type="com.mmk.quotesapp.model.Quote" />
+            type="com.mmk.domain.model.Quote" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

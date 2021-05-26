@@ -5,7 +5,6 @@ import com.mmk.data.di.networkModule
 import com.mmk.data.di.repositoryModule
 import com.mmk.domain.di.interactionModule
 import com.mmk.quotesapp.di.viewModelModule
-import dagger.hilt.android.HiltAndroidApp
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
