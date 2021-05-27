@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "409979891202-mv6g15miije4mknfhivet0c0cl60sfo2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mmk.quotesapp",
+            "certificate_hash": "f873e41f3e0e7446bde460c11c8e47189b073afb"
+          }
+        },
+        {
           "client_id": "409979891202-pd3k596fe3ae76t0juguct34ajgql6kv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

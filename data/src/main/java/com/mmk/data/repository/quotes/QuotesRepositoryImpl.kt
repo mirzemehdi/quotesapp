@@ -20,16 +20,20 @@ class QuotesRepositoryImpl(private val quotesCollection: CollectionReference) : 
 
     override suspend fun getQuotesByPagination(): Result<Flow<PagingData<Quote>>> {
 
+
         val quoteFlowList: Flow<PagingData<Quote>>
         withContext(Dispatchers.IO) {
             val config =
                 PagingConfig(pageSize = 10, initialLoadSize = 15, enablePlaceholders = false)
 
-
+            Timber.e("Called first")
             val quoteResponseListFlow =
                 Pager(
                     config = config,
                     pagingSourceFactory = { QuotesPagingSource(quotesCollection) }).flow
+
+
+            Timber.e("Called second")
 
 
             quoteFlowList = quoteResponseListFlow.map { quoteResponsePagedData ->
@@ -37,7 +41,12 @@ class QuotesRepositoryImpl(private val quotesCollection: CollectionReference) : 
             }
 
 
+            Timber.e("Called third")
+
+
         }
+
+
 
         return Result.Success(quoteFlowList)
 

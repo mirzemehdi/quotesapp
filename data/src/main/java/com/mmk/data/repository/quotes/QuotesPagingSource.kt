@@ -20,13 +20,16 @@ class QuotesPagingSource(private val quotesCollection: CollectionReference) :
 //
 //        }
 
+        Timber.e("Called getRefresh")
+
         //TODO This method can be optimized
         return null
     }
 
     override suspend fun load(params: LoadParams<String>): LoadResult<String, QuoteResponse> {
-        val orderedCollection = quotesCollection.orderBy(FieldPath.documentId())
         Timber.e("Called load")
+
+        val orderedCollection = quotesCollection.orderBy(FieldPath.documentId())
         return try {
 
             val query =
