@@ -20,14 +20,12 @@ class QuotesPagingSource(private val quotesCollection: CollectionReference) :
 //
 //        }
 
-        Timber.e("Called getRefresh")
 
         //TODO This method can be optimized
         return null
     }
 
     override suspend fun load(params: LoadParams<String>): LoadResult<String, QuoteResponse> {
-        Timber.e("Called load")
 
         val orderedCollection = quotesCollection.orderBy(FieldPath.documentId())
         return try {
@@ -39,7 +37,6 @@ class QuotesPagingSource(private val quotesCollection: CollectionReference) :
                 .limit(params.loadSize.toLong())
                 .get().await()
             val quotesList = response.toObjects(QuoteResponse::class.java)
-            Timber.e("Called response")
 
             LoadResult.Page(
                 data = quotesList,
@@ -50,12 +47,10 @@ class QuotesPagingSource(private val quotesCollection: CollectionReference) :
 
 
         } catch (exception: IOException) {
-            Timber.e(exception)
 
             LoadResult.Error(exception)
 
         } catch (exception: Exception) {
-            Timber.e(exception)
 
             LoadResult.Error(exception)
 

@@ -10,6 +10,7 @@ import com.mmk.domain.model.Quote
 import com.mmk.domain.model.Result
 import com.mmk.domain.repository.QuotesRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
@@ -21,34 +22,23 @@ class QuotesRepositoryImpl(private val quotesCollection: CollectionReference) : 
     override suspend fun getQuotesByPagination(): Result<Flow<PagingData<Quote>>> {
 
 
-        val quoteFlowList: Flow<PagingData<Quote>>
-        withContext(Dispatchers.IO) {
-            val config =
-                PagingConfig(pageSize = 10, initialLoadSize = 15, enablePlaceholders = false)
-
-            Timber.e("Called first")
-            val quoteResponseListFlow =
-                Pager(
-                    config = config,
-                    pagingSourceFactory = { QuotesPagingSource(quotesCollection) }).flow
+        val config =
+            PagingConfig(pageSize = 10, initialLoadSize = 15, enablePlaceholders = false)
+        val quoteResponseListFlow =
+            Pager(
+                config = config,
+                pagingSourceFactory = { QuotesPagingSource(quotesCollection) }).flow
 
 
-            Timber.e("Called second")
-
-
-            quoteFlowList = quoteResponseListFlow.map { quoteResponsePagedData ->
-                quoteResponsePagedData.map { it.mapToDomainModel() }
+        val quoteFlowList = quoteResponseListFlow.map { quoteResponsePagedData ->
+            quoteResponsePagedData.map {
+                it.mapToDomainModel()
             }
-
-
-            Timber.e("Called third")
-
-
         }
 
 
-
         return Result.Success(quoteFlowList)
+
 
     }
 

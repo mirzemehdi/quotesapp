@@ -71,6 +71,7 @@ class QuotesFragment : Fragment() {
 
     private fun observeValues() {
         viewModel.quotesList.observe(viewLifecycleOwner, Observer {
+            Timber.e("Called observe")
             quotesAdapter.submitData(lifecycle, it)
         })
     }

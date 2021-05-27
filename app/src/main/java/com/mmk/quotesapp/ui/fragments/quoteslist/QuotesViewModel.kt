@@ -8,6 +8,8 @@ import com.mmk.domain.model.Quote
 import com.mmk.domain.model.onSuccess
 import com.mmk.quotesapp.ui.base.BaseViewModel
 import com.mmk.quotesapp.ui.base.UiState
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 
 /**
@@ -16,7 +18,7 @@ import timber.log.Timber
 class QuotesViewModel constructor(
     private val quotesByPaginationUseCase: GetQuotesByPaginationUseCase
 
-    ) : BaseViewModel() {
+) : BaseViewModel() {
 
     var quotesList: LiveData<PagingData<Quote>> = MutableLiveData()
 
@@ -28,7 +30,7 @@ class QuotesViewModel constructor(
     private fun getQuotes() {
         executeUseCase {
             quotesByPaginationUseCase().onSuccess {
-                quotesList=it.cachedIn(viewModelScope).asLiveData()
+                quotesList = it.cachedIn(viewModelScope).asLiveData()
                 _uiState.value = UiState.HasData
             }
         }
