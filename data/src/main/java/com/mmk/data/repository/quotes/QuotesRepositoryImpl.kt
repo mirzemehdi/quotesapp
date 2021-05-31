@@ -20,8 +20,6 @@ import timber.log.Timber
 class QuotesRepositoryImpl(private val quotesCollection: CollectionReference) : QuotesRepository {
 
     override suspend fun getQuotesByPagination(): Result<Flow<PagingData<Quote>>> {
-
-
         val config =
             PagingConfig(pageSize = 10, initialLoadSize = 15, enablePlaceholders = false)
         val quoteResponseListFlow =
@@ -36,11 +34,8 @@ class QuotesRepositoryImpl(private val quotesCollection: CollectionReference) : 
             }
         }
 
-
         return Result.Success(quoteFlowList)
 
-
     }
-
 
 }

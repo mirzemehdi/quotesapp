@@ -61,7 +61,7 @@ open class GenericRecyclerViewAdapter<T:Any>(
 
     open var onClickItem:((item:T)->Unit )?=null
 
-    //Only class which is child will see this method
+    //Only child class will see this method
     protected open fun onBinding (item: T,binding:ViewDataBinding)=Unit
 
     override fun onCreateViewHolder(

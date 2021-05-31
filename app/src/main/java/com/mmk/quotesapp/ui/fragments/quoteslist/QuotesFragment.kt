@@ -51,12 +51,15 @@ class QuotesFragment : Fragment() {
                 header = ItemLoadStateAdapter { quotesAdapter.retry() },
                 footer = ItemLoadStateAdapter { quotesAdapter.retry() }
             )
+
+
         quotesAdapter.addLoadStateListener { loadState ->
             with(loadState.source.refresh) {
                 binding.quotesRecyclerView.isVisible = this is LoadState.NotLoading
                 binding.progressBarQuotes.isVisible = this is LoadState.Loading
             }
         }
+
 
     }
 
@@ -71,7 +74,6 @@ class QuotesFragment : Fragment() {
 
     private fun observeValues() {
         viewModel.quotesList.observe(viewLifecycleOwner, Observer {
-            Timber.e("Called observe")
             quotesAdapter.submitData(lifecycle, it)
         })
     }

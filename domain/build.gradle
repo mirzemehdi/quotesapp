@@ -14,16 +14,12 @@ java {
 
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
-    // Koin AndroidX Scope features
-    implementation "org.koin:koin-androidx-scope:$version_koin"
-
+    //Koin Dependency Injection
+    implementation libs.koinCore
+    //Timber
+    implementation libs.timber
     //Pagination
     implementation "androidx.paging:paging-common:$version_paging"
-
-
-
 }
 
 kapt {

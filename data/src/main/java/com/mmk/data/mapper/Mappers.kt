@@ -1,11 +1,11 @@
 package com.mmk.data.mapper
 
-//This is for presentation
+//This is for presentation layer
 interface DomainMapper<T : Any> {
     fun mapToDomainModel(): T
 }
 
-//This is for saving to Database
+//This is for saving data to Database
 interface EntityMapper<out T : Any> {
     fun mapToEntity(): T
 }

@@ -17,8 +17,8 @@ fun Context.toast(text: String?, duration: Int = Toast.LENGTH_SHORT) {
 
 }
 
-fun Fragment.toast(text: String?, duration: Int = Toast.LENGTH_SHORT){
-    context?.toast(text,duration)
+fun Fragment.toast(text: String?, duration: Int = Toast.LENGTH_SHORT) {
+    context?.toast(text, duration)
 }
 
 

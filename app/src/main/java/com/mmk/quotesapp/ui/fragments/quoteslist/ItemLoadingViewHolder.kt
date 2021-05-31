@@ -24,7 +24,6 @@ class ItemLoadingViewHolder private constructor(
     }
 
 
-
     companion object {
         fun from(parent: ViewGroup, retry: () -> Unit): ItemLoadingViewHolder {
             val inflater = parent.context.layoutInflater

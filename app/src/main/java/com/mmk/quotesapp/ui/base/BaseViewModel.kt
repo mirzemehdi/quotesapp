@@ -12,6 +12,7 @@ abstract class BaseViewModel : ViewModel() {
     protected val _uiState = MutableLiveData<UiState>()
     val uiState: LiveData<UiState> = _uiState
 
+    //This message object can be used to show error message in UI
     private val _message = MutableLiveData<SingleEvent<ErrorState>>()
     val message: LiveData<SingleEvent<ErrorState>> = _message
 

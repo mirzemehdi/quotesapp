@@ -30,6 +30,7 @@ class QuotesViewModel constructor(
     private fun getQuotes() {
         executeUseCase {
             quotesByPaginationUseCase().onSuccess {
+
                 quotesList = it.cachedIn(viewModelScope).asLiveData()
                 _uiState.value = UiState.HasData
             }

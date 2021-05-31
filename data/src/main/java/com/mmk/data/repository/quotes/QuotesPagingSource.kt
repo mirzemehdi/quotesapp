@@ -19,41 +19,32 @@ class QuotesPagingSource(private val quotesCollection: CollectionReference) :
 //            state.closestPageToPosition(it)?.data?.first()?.id
 //
 //        }
-
-
         //TODO This method can be optimized
         return null
     }
 
     override suspend fun load(params: LoadParams<String>): LoadResult<String, QuoteResponse> {
-
         val orderedCollection = quotesCollection.orderBy(FieldPath.documentId())
         return try {
-
             val query =
                 if (params.key == null) orderedCollection else orderedCollection.startAfter(params.key)
-
             val response = query
                 .limit(params.loadSize.toLong())
                 .get().await()
             val quotesList = response.toObjects(QuoteResponse::class.java)
-
             LoadResult.Page(
                 data = quotesList,
                 prevKey = null,
                 nextKey = if (quotesList.isNullOrEmpty()) null else quotesList.last().id
             )
 
-
-
         } catch (exception: IOException) {
-
+            Timber.e(exception)
             LoadResult.Error(exception)
 
         } catch (exception: Exception) {
-
+            Timber.e(exception)
             LoadResult.Error(exception)
-
         }
     }
 }

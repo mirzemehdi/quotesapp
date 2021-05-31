@@ -38,9 +38,8 @@ java {
 dependencies {
     implementation project(':domain')
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    // Koin AndroidX Scope features
-    implementation "org.koin:koin-androidx-scope:$version_koin"
+    //Koin Dependency Injection
+    implementation libs.koinCore
     implementation "androidx.paging:paging-common-ktx:$version_paging"
 
 
@@ -49,7 +48,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx'
     // coroutines support for firebase operations
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$version_coroutine_support_firebase"
+
     //Timber
-    implementation "com.jakewharton.timber:timber:$version_timber"
+    implementation libs.timber
 
 }
