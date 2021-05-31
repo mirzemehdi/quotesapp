@@ -38,4 +38,8 @@ class QuotesRepositoryImpl(private val quotesCollection: CollectionReference) : 
 
     }
 
+
+    override suspend fun addNewQuote(quote: Quote): Result<Unit> {
+        TODO("Not yet implemented")
+    }
 }

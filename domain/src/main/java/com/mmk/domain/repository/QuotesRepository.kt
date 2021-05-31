@@ -7,4 +7,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface QuotesRepository {
     suspend fun getQuotesByPagination(): Result<Flow<PagingData<Quote>>>
+    suspend fun addNewQuote(quote: Quote): Result<Unit>
 }
