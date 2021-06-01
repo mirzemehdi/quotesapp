@@ -60,7 +60,7 @@ dependencies {
     implementation project(":data")
 
     implementation 'com.android.support:multidex:1.0.3'
-
+    implementation "com.google.android.material:material:$version_material"
     implementation "androidx.appcompat:appcompat:$version_androidx_appcompat"
     implementation "androidx.core:core-ktx:$version_androidx_core"
     implementation "androidx.constraintlayout:constraintlayout:$version_constraintlayout"

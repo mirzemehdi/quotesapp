@@ -72,7 +72,7 @@
                         android:maxHeight="@dimen/max_height_new_quote"
 
                         android:text="@={viewModel.quoteText}"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/new_quote_text_size" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,7 +101,7 @@
                         android:inputType="textCapSentences"
 
                         android:text="@={viewModel.quoteAuthor}"
-                        android:textColor="@color/colorBlack"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/new_quote_text_size" />
                 </com.google.android.material.textfield.TextInputLayout>
 
