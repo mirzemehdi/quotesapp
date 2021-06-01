@@ -10,7 +10,7 @@ sealed class UiState {
     object HasData : UiState()
     object Loading : UiState()
     object NoData : UiState()
-    data class Error(val errorState: ErrorState?) : UiState()
+    data class Error(val errorState: ErrorState? = null) : UiState()
 }
 
 sealed class ErrorState() {

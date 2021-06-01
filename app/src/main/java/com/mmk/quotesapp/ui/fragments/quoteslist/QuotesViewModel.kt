@@ -9,6 +9,7 @@ import com.mmk.domain.model.onSuccess
 import com.mmk.quotesapp.ui.base.BaseViewModel
 import com.mmk.quotesapp.ui.base.UiState
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
@@ -22,12 +23,13 @@ class QuotesViewModel constructor(
 
     var quotesList: LiveData<PagingData<Quote>> = MutableLiveData()
 
-    init {
-        getQuotes()
+
+    fun setUiState(uiState: UiState) {
+        _uiState.value = uiState
     }
 
+    fun getQuotes() {
 
-    private fun getQuotes() {
         executeUseCase {
             quotesByPaginationUseCase().onSuccess {
 

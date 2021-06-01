@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.mmk.quotesapp.ui.fragments.quoteslist.QuotesViewModel" />
@@ -11,8 +12,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        tools:context=".ui.fragments.quoteslist.QuotesFragment"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".ui.fragments.quoteslist.QuotesFragment">
 
         <TextView
             android:id="@+id/quoteTitle"
@@ -29,6 +30,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/quotesRecyclerView"
+            showOnHasData="@{viewModel.uiState}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/margin_quotes_list"
@@ -36,20 +38,30 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/quoteTitle"
             tools:listitem="@layout/item_quote_list" />
 
         <ProgressBar
             android:id="@+id/progressBarQuotes"
+            showOnLoading="@{viewModel.uiState}"
             android:layout_width="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/quotesRecyclerView"
+            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@id/quotesRecyclerView"
-            app:layout_constraintStart_toStartOf="@id/quotesRecyclerView"
             app:layout_constraintEnd_toEndOf="@id/quotesRecyclerView"
-            loadingState="@{viewModel.uiState}"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintStart_toStartOf="@id/quotesRecyclerView"
+            app:layout_constraintTop_toTopOf="@id/quotesRecyclerView" />
+
+        <ImageView
+            showOnNoData="@{viewModel.uiState}"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:src="@drawable/ic_empty_quotes"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

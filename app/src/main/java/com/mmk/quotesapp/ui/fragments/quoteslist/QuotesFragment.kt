@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.paging.LoadState
 import com.mmk.quotesapp.R
 import com.mmk.quotesapp.databinding.FragementQuotesBinding
+import com.mmk.quotesapp.ui.base.UiState
 import com.mmk.quotesapp.utils.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -28,8 +29,8 @@ class QuotesFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding= FragementQuotesBinding.inflate(inflater,container,false)
+    ): View {
+        binding = FragementQuotesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -45,18 +46,20 @@ class QuotesFragment : Fragment() {
 
 
     private fun initView() {
-
+        viewModel.getQuotes()
         binding.quotesRecyclerView.adapter = quotesAdapter
-            .withLoadStateHeaderAndFooter(
-                header = ItemLoadStateAdapter { quotesAdapter.retry() },
+            .withLoadStateFooter(
                 footer = ItemLoadStateAdapter { quotesAdapter.retry() }
             )
 
-
         quotesAdapter.addLoadStateListener { loadState ->
             with(loadState.source.refresh) {
-                binding.quotesRecyclerView.isVisible = this is LoadState.NotLoading
-                binding.progressBarQuotes.isVisible = this is LoadState.Loading
+                val uiState = when (this) {
+                    is LoadState.NotLoading -> if (quotesAdapter.itemCount < 1) UiState.NoData else UiState.HasData
+                    LoadState.Loading -> UiState.Loading
+                    is LoadState.Error -> UiState.Error()
+                }
+                viewModel.setUiState(uiState)
             }
         }
 
@@ -73,9 +76,10 @@ class QuotesFragment : Fragment() {
     }
 
     private fun observeValues() {
-        viewModel.quotesList.observe(viewLifecycleOwner, Observer {
+        viewModel.quotesList.observe(viewLifecycleOwner) {
             quotesAdapter.submitData(lifecycle, it)
-        })
+
+        }
     }
 
 }

@@ -15,11 +15,6 @@ class QuotesPagingSource(private val quotesCollection: CollectionReference) :
     PagingSource<String, QuoteResponse>() {
 
     override fun getRefreshKey(state: PagingState<String, QuoteResponse>): String? {
-//        return state.anchorPosition?.let {
-//            state.closestPageToPosition(it)?.data?.first()?.id
-//
-//        }
-        //TODO This method can be optimized
         return null
     }
 

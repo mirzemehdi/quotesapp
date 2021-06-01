@@ -13,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 
@@ -32,6 +33,8 @@ class QuotesRepositoryImpl(private val quotesCollection: CollectionReference) : 
             quoteResponsePagedData.map {
                 it.mapToDomainModel()
             }
+
+
         }
 
         return Result.Success(quoteFlowList)
@@ -40,6 +43,15 @@ class QuotesRepositoryImpl(private val quotesCollection: CollectionReference) : 
 
 
     override suspend fun addNewQuote(quote: Quote): Result<Unit> {
-        TODO("Not yet implemented")
+        return try {
+
+            val referenceId = quotesCollection.document().id
+            quote.id = referenceId
+            quotesCollection.document(referenceId).set(quote).await()
+            Result.Success(Unit)
+
+        } catch (e: Exception) {
+            Result.Error(e.message)
+        }
     }
 }

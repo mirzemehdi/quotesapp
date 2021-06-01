@@ -4,50 +4,47 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.mmk.domain.interaction.quote.addquote.AddNewQuoteUseCase
+import com.mmk.domain.model.Quote
+import com.mmk.domain.model.onError
+import com.mmk.domain.model.onSuccess
+import com.mmk.quotesapp.ui.base.BaseViewModel
 
 import com.mmk.quotesapp.ui.base.UiState
+import com.mmk.quotesapp.utils.SingleEvent
 import com.mmk.quotesapp.utils.toast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
-//class AddNewQuoteViewModel constructor(
-//    private val quotesRepository: QuoteRepository,
-//    application: Application
-//) : AndroidViewModel(application) {
-//
-//    private val applicationContext = application.applicationContext
-//    val quoteAuthor = MutableLiveData<String>()
-//    val quoteText = MutableLiveData<String>()
-//    private val _uiState=MutableLiveData<UiState>(
-//        UiState.NotLoading)
-//    val uiState:LiveData<UiState> = _uiState
-//    private val _onQuoteAdded=MutableLiveData(false)
-//    val onQuoteAdded=_onQuoteAdded
-//
-//
-//
-//    fun addQuote() {
-//        _uiState.value= UiState.Loading
-//        val quote = Quote(quoteAuthor.value!!, quoteText.value!!)
-//        CoroutineScope(IO).launch {
-//            val response = quotesRepository.addNewQuote(quote)
-//            withContext(Main) {
-//                _uiState.value= UiState.NotLoading
-//                when (response) {
-//
-//                    is NetworkResource.Success -> {
-//                        applicationContext.toast("AddedQuote ID: ${response.data}")
-//                        _onQuoteAdded.value=true
-//                    }
-//                    is NetworkResource.Error -> applicationContext.toast(response.message)
-//                    is NetworkResource.NetworkException -> Unit
-//                }
-//            }
-//        }
-//
-//    }
-//
-//}
+class AddNewQuoteViewModel constructor(
+    private val addNewQuoteUseCase: AddNewQuoteUseCase
+
+) : BaseViewModel() {
+
+    val quoteAuthor = MutableLiveData("")
+    val quoteText = MutableLiveData("")
+
+    private val _onQuoteAdded = MutableLiveData<SingleEvent<Boolean>>()
+    val onQuoteAdded: LiveData<SingleEvent<Boolean>> = _onQuoteAdded
+
+
+    fun addQuote() {
+        executeUseCase {
+            val quote = Quote(author = quoteAuthor.value ?: "", text = quoteText.value ?: "")
+            addNewQuoteUseCase(quote).onSuccess {
+                _onQuoteAdded.value = SingleEvent(true)
+                _uiState.value = UiState.HasData
+            }.onError { message, errorCode ->
+                Timber.e(message)
+            }
+
+        }
+
+
+    }
+
+}

@@ -1,7 +1,7 @@
 package com.mmk.domain.model
 
 data class Quote(
-    val id: String,
+    var id: String?=null,
     val author: String = "",
     val text: String = "",
     val isLiked: Boolean = false

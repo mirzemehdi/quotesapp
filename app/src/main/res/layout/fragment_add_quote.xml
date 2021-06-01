@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.mmk.domain.model.Quote" />
+            type="com.mmk.quotesapp.ui.fragments.addquote.AddNewQuoteViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,15 +46,15 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:maxHeight="@dimen/max_height_new_quote"
                     android:layout_marginStart="@dimen/margin_add_quote_layout"
                     android:layout_marginTop="@dimen/margin_top_add_quote_layout"
                     android:layout_marginEnd="@dimen/margin_add_quote_layout"
                     android:layout_marginBottom="@dimen/margin_add_quote_layout"
+                    android:maxHeight="@dimen/max_height_new_quote"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
                     android:scrollbars="vertical"
                     android:textColorHint="@color/colorSilver"
                     app:boxBackgroundMode="outline"
-                    android:scrollbarAlwaysDrawVerticalTrack="true"
 
                     app:boxStrokeColor="@color/colorAccent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -65,13 +65,13 @@
                         android:id="@+id/newQuoteEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textCapSentences|textMultiLine"
-
-                        android:maxHeight="@dimen/max_height_new_quote"
                         android:fontFamily="@font/tthoves_regular"
                         android:gravity="start"
-
                         android:hint="@string/hint_write_your_quote"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxHeight="@dimen/max_height_new_quote"
+
+                        android:text="@={viewModel.quoteText}"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/new_quote_text_size" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -97,9 +97,10 @@
                         android:layout_height="match_parent"
                         android:fontFamily="@font/tthoves_regular"
                         android:gravity="start"
+                        android:hint="@string/hint_new_quote_author"
                         android:inputType="textCapSentences"
 
-                        android:hint="@string/hint_new_quote_author"
+                        android:text="@={viewModel.quoteAuthor}"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/new_quote_text_size" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -107,13 +108,16 @@
 
                 <!--Add Quote Button-->
 
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/addNewQuoteButton"
                     style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    hideOnLoading="@{viewModel.uiState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_add_new_quote_button"
                     android:fontFamily="@font/tthoves_medium"
+                    android:onClick="@{()->viewModel.addQuote()}"
                     android:padding="@dimen/padding_add_new_quote_button"
                     android:text="@string/text_add_new_quote_btn"
                     android:textAllCaps="false"
@@ -129,13 +133,13 @@
                 </com.google.android.material.button.MaterialButton>
 
                 <ProgressBar
+                    showOnLoading="@{viewModel.uiState}"
                     android:layout_width="wrap_content"
-                    android:visibility="gone"
-                    app:layout_constraintStart_toStartOf="@id/addNewQuoteButton"
-                    app:layout_constraintEnd_toEndOf="@id/addNewQuoteButton"
-                    app:layout_constraintTop_toTopOf="@id/addNewQuoteButton"
-                    app:layout_constraintBottom_toBottomOf="@id/addNewQuoteButton"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/newQuoteAuthorInputLayout" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
