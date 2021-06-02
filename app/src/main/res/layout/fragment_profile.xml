@@ -34,7 +34,7 @@
             android:layout_margin="@dimen/margin_profile_name"
             app:layout_constraintTop_toBottomOf="@id/profileImageView"
             android:fontFamily="@font/tthoves_bold"
-            android:textColor="@color/colorDarkBlack"
+            android:textColor="@color/darkBlack"
             android:layout_height="wrap_content">
 
         </TextView>

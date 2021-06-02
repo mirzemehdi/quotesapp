@@ -22,7 +22,7 @@
             android:layout_marginTop="@dimen/margin_title_quote"
             android:fontFamily="@font/tthoves_bold"
             android:text="@string/title_add_quote"
-            android:textColor="@color/colorDarkBlack"
+            android:textColor="?attr/colorOnBackground"
             android:textSize="@dimen/text_size_title_quote"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,10 +53,10 @@
                     android:maxHeight="@dimen/max_height_new_quote"
                     android:scrollbarAlwaysDrawVerticalTrack="true"
                     android:scrollbars="vertical"
-                    android:textColorHint="@color/colorSilver"
-                    app:boxBackgroundMode="outline"
 
-                    app:boxStrokeColor="@color/colorAccent"
+                    app:boxBackgroundMode="outline"
+                    android:textColorHint="?attr/colorInactive"
+                    app:boxStrokeColor="?attr/colorSecondary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -84,9 +84,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_add_quote_layout"
-                    android:textColorHint="@color/colorSilver"
                     app:boxBackgroundMode="outline"
-                    app:boxStrokeColor="@color/colorAccent"
+                    android:textColorHint="?attr/colorInactive"
+                    app:boxStrokeColor="?attr/colorSecondary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/newQuoteInputLayout">
@@ -111,9 +111,10 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/addNewQuoteButton"
-                    style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    style="@style/Widget.MaterialComponents.Button"
                     hideOnLoading="@{viewModel.uiState}"
                     android:layout_width="0dp"
+                    android:backgroundTint="?attr/colorSecondary"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_add_new_quote_button"
                     android:fontFamily="@font/tthoves_medium"
@@ -121,14 +122,13 @@
                     android:padding="@dimen/padding_add_new_quote_button"
                     android:text="@string/text_add_new_quote_btn"
                     android:textAllCaps="false"
-                    android:textColor="#fff"
+                    android:textColor="?attr/colorOnSecondary"
                     android:textSize="@dimen/new_quote_text_size"
-                    app:backgroundTint="@color/colorAccent"
                     app:cornerRadius="@dimen/add_quote_button_corner_radius"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/newQuoteAuthorInputLayout"
-                    app:rippleColor="@color/colorPrimary">
+                    >
 
                 </com.google.android.material.button.MaterialButton>
 

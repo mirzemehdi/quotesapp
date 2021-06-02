@@ -47,7 +47,7 @@
             android:layout_marginEnd="@dimen/margin_start_email_login"
 
 
-            android:textColorHint="@color/colorSilver"
+            android:textColorHint="@color/silver"
             app:boxBackgroundMode="outline"
 
             app:boxStrokeColor="@color/colorBorder"
@@ -80,7 +80,7 @@
 
 
 
-            android:textColorHint="@color/colorSilver"
+            android:textColorHint="@color/silver"
             app:boxBackgroundMode="outline"
 
             app:boxStrokeColor="@color/colorBorder"

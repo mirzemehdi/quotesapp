@@ -43,15 +43,16 @@ class QuotesRepositoryImpl(private val quotesCollection: CollectionReference) : 
 
 
     override suspend fun addNewQuote(quote: Quote): Result<Unit> {
-        return try {
+        return withContext(Dispatchers.IO) {
+            try {
+                val referenceId = quotesCollection.document().id
+                quote.id = referenceId
+                quotesCollection.document(referenceId).set(quote).await()
+                Result.Success(Unit)
 
-            val referenceId = quotesCollection.document().id
-            quote.id = referenceId
-            quotesCollection.document(referenceId).set(quote).await()
-            Result.Success(Unit)
-
-        } catch (e: Exception) {
-            Result.Error(e.message)
+            } catch (e: Exception) {
+                Result.Error(e.message)
+            }
         }
     }
 }
