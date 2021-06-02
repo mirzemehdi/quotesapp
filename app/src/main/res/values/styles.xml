@@ -12,6 +12,7 @@
         <item name="android:colorBackground">@color/white</item>
         <item name="colorOnBackground">@color/darkBlack</item>
         <item name="colorInactive">@color/silver</item>
+        <item name="android:navigationBarColor">@color/black</item>
 
     </style>
 

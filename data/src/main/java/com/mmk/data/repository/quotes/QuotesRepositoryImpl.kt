@@ -1,6 +1,5 @@
 package com.mmk.data.repository.quotes
 
-import android.util.Log
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
@@ -10,12 +9,10 @@ import com.mmk.domain.model.Quote
 import com.mmk.domain.model.Result
 import com.mmk.domain.repository.QuotesRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import timber.log.Timber
 
 
 class QuotesRepositoryImpl(private val quotesCollection: CollectionReference) : QuotesRepository {
