@@ -26,6 +26,7 @@ android {
         }
     }
 
+
 }
 
 
@@ -54,7 +55,11 @@ dependencies {
 
     //Local Unit testing libraries
     testImplementation "junit:junit:$version_junit" //JUnit 4 framework
-    testImplementation "org.mockito:mockito-core:$version_mock" //Mockito framework
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$version_mock" //Mockito framework
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version_kotlin_coroutines"
+
+
+
     testImplementation "com.google.truth:truth:$version_truth" //Truth lib for assertion
 
 }
