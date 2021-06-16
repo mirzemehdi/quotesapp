@@ -1,12 +1,10 @@
-package com.mmk.data.repository.quotes
+package com.mmk.data.remote
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FieldPath
-import com.google.firebase.firestore.FirebaseFirestore
-import com.mmk.data.network.model.response.QuoteResponse
+import com.mmk.data.remote.model.response.QuoteResponse
 import kotlinx.coroutines.tasks.await
 import timber.log.Timber
 import java.io.IOException

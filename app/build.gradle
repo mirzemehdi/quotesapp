@@ -1,5 +1,4 @@
-
-plugins{
+plugins {
 
     id 'com.android.application'
     id 'kotlin-android'
@@ -21,9 +20,28 @@ android {
         targetSdkVersion Integer.parseInt(ANDROID_TARGET_SDK_VERSION)
         versionCode Integer.parseInt(VERSION_CODE)
         versionName VERSION_NAME
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.mmk.quotesapp.base.KoinTestRunner"
         multiDexEnabled true
 
+    }
+
+    //Animations are disabled for testing purposes
+    testOptions {
+        animationsDisabled = true
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/AL2.0'
+        exclude("META-INF/*.kotlin_module")
     }
 
     buildTypes {
@@ -42,14 +60,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    buildFeatures{
+    buildFeatures {
         dataBinding true
         viewBinding true
     }
-
-
-
-
 
 
 }
@@ -65,9 +79,6 @@ dependencies {
     implementation "androidx.core:core-ktx:$version_androidx_core"
     implementation "androidx.constraintlayout:constraintlayout:$version_constraintlayout"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation "junit:junit:$version_junit"
-    androidTestImplementation "androidx.test.ext:junit:$version_androidx_junit"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$version_androidx_expresso"
 
 
     //Navigation
@@ -111,6 +122,21 @@ dependencies {
     //Timber
     implementation libs.timber
 
+    //Testing Libraries
+
+    //Local Unit testing libraries
+    testImplementation "junit:junit:$version_junit" //JUnit 4 framework
+    testImplementation "org.mockito:mockito-core:$version_mock" //Mockito framework
+    testImplementation "com.google.truth:truth:$version_truth" //Truth lib for assertion
+
+
+    //Integration(UI) testing libraries
+    androidTestImplementation "androidx.test:core:$version_androidXTestCore" //Robolectric
+    androidTestImplementation "androidx.test.ext:junit:$version_androidx_junit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$version_androidx_expresso"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version_kotlin_coroutine_test"
+    debugImplementation "androidx.fragment:fragment-testing:$version_fragment"
+    androidTestImplementation "org.koin:koin-test:$version_koin" // Koin testing tools
 
 
 }

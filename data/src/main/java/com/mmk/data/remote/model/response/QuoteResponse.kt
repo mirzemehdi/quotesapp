@@ -1,4 +1,4 @@
-package com.mmk.data.network.model.response
+package com.mmk.data.remote.model.response
 
 import com.mmk.data.mapper.DomainMapper
 import com.mmk.domain.model.Quote

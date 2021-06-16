@@ -51,4 +51,10 @@ dependencies {
     //Timber
     implementation libs.timber
 
+
+    //Local Unit testing libraries
+    testImplementation "junit:junit:$version_junit" //JUnit 4 framework
+    testImplementation "org.mockito:mockito-core:$version_mock" //Mockito framework
+    testImplementation "com.google.truth:truth:$version_truth" //Truth lib for assertion
+
 }
