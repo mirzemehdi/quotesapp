@@ -1,27 +1,32 @@
 package com.mmk.data.remote
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FieldPath
 import com.mmk.data.remote.model.response.QuoteResponse
 import com.mmk.domain.model.Quote
 import com.mmk.domain.model.Result
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.tasks.await
+import timber.log.Timber
 
 class RemoteDataSourceImpl(private val quotesCollection: CollectionReference) : RemoteDataSource {
 
-    override suspend fun getQuotesByPagination(): Result<Flow<PagingData<QuoteResponse>>> {
-        val config =
-            PagingConfig(pageSize = 10, initialLoadSize = 15, enablePlaceholders = false)
-        val quoteResponseListFlow =
-            Pager(
-                config = config,
-                pagingSourceFactory = { QuotesPagingSource(quotesCollection) }).flow
+    override suspend fun getQuotesByPagination(
+        pageIndex: String?,
+        pageLimit: Int
+    ): Result<List<QuoteResponse>> {
 
-        return Result.Success(quoteResponseListFlow)
+        return try {
+            val orderedCollection = quotesCollection.orderBy(FieldPath.documentId())
+            val query =
+                if (pageIndex == null) orderedCollection else orderedCollection.startAfter(pageIndex)
+            val response = query.limit(pageLimit.toLong()).get().await()
+            val quotesList = response.toObjects(QuoteResponse::class.java)
+            Result.Success(quotesList)
 
+        } catch (exception: Exception) {
+            Timber.e(exception)
+            Result.Error("Unknown error occurred while getting list")
+        }
     }
 
     override suspend fun addNewQuote(quote: Quote): Result<Unit> {

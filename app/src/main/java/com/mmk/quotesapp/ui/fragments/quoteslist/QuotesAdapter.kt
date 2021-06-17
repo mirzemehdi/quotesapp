@@ -13,12 +13,12 @@ import com.mmk.quotesapp.utils.GenericRecyclerViewAdapter
 class QuotesAdapter :
     GenericRecyclerViewAdapter<Quote>(R.layout.item_quote_list, QuoteItemDiffCallBack()) {
 
-    var onLikeButtonClicked: (() -> Unit) = {}
+    var onLikeButtonClicked: ((quote: Quote) -> Unit) = {}
 
     override fun onBinding(item: Quote, binding: ViewDataBinding) {
         binding as ItemQuoteListBinding
         binding.quoteLikeImageView.setOnClickListener {
-            onLikeButtonClicked.invoke()
+            onLikeButtonClicked.invoke(item)
         }
         super.onBinding(item, binding)
     }

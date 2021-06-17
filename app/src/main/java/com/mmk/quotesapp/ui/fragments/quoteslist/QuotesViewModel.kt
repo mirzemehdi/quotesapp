@@ -1,17 +1,15 @@
 package com.mmk.quotesapp.ui.fragments.quoteslist
 
-import androidx.lifecycle.*
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import androidx.paging.*
+import com.mmk.data.repository.quotes.QuotesPagingSource
 import com.mmk.domain.interaction.quote.allquotes.GetQuotesByPaginationUseCase
 import com.mmk.domain.model.Quote
-import com.mmk.domain.model.onSuccess
 import com.mmk.quotesapp.ui.base.BaseViewModel
 import com.mmk.quotesapp.ui.base.UiState
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
-import timber.log.Timber
 
 /**
  * Created by mirzemehdi on 8/12/20
@@ -21,21 +19,38 @@ class QuotesViewModel constructor(
 
 ) : BaseViewModel() {
 
-    var quotesList: LiveData<PagingData<Quote>> = MutableLiveData()
+    private var _quotesListPagedData: MutableLiveData<PagingData<Quote>> = getQuotesPagingData()
+    var quotesListPagedData: LiveData<PagingData<Quote>> = _quotesListPagedData
 
 
     fun setUiState(uiState: UiState) {
         _uiState.value = uiState
     }
 
-    fun getQuotes() {
-        executeUseCase {
-            quotesByPaginationUseCase().onSuccess {
-                quotesList = it.cachedIn(viewModelScope).asLiveData()
-                _uiState.value = UiState.HasData
-            }
-        }
 
+    private fun getQuotesPagingData(): MutableLiveData<PagingData<Quote>> {
+        val config =
+            PagingConfig(pageSize = 10, initialLoadSize = 15, enablePlaceholders = false)
+        return Pager(
+            config = config,
+            pagingSourceFactory = { QuotesPagingSource(quotesByPaginationUseCase) })
+            .flow.cachedIn(viewModelScope).asLiveData()
+            .let { it as MutableLiveData<PagingData<Quote>> }
+    }
+
+
+    fun deleteQuote(quote: Quote) {
+        _quotesListPagedData.value?.filter { it.id != quote.id }
+            .let { _quotesListPagedData.value = it }
+    }
+
+    fun editQuote(quote: Quote) {
+        _quotesListPagedData.value?.map {
+            if (it.id == quote.id) return@map it.copy(author = "Deyisilmis", text = "Yehuuuuuuu")
+            else it
+
+        }
+            .let { _quotesListPagedData.value = it }
     }
 
 }

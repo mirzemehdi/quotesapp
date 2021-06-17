@@ -1,38 +1,25 @@
 package com.mmk.quotesapp.ui.fragments.quoteslist
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.paging.LoadState
-import com.mmk.quotesapp.R
 import com.mmk.quotesapp.databinding.FragementQuotesBinding
+import com.mmk.quotesapp.ui.base.BaseFragment
 import com.mmk.quotesapp.ui.base.UiState
+import com.mmk.quotesapp.utils.binding.viewbinding.viewBinding
 import com.mmk.quotesapp.utils.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 
-class QuotesFragment : Fragment() {
+class QuotesFragment : BaseFragment() {
 
     private val viewModel: QuotesViewModel by viewModel()
     private val quotesAdapter by lazy { QuotesAdapter() }
-    private lateinit var binding: FragementQuotesBinding
+//    private lateinit var binding: FragementQuotesBinding
 
+    override val binding by viewBinding(FragementQuotesBinding::inflate)
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragementQuotesBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,7 +33,6 @@ class QuotesFragment : Fragment() {
 
 
     private fun initView() {
-        viewModel.getQuotes()
         binding.quotesRecyclerView.adapter = quotesAdapter
             .withLoadStateFooter(
                 footer = ItemLoadStateAdapter { quotesAdapter.retry() }
@@ -69,14 +55,16 @@ class QuotesFragment : Fragment() {
     private fun setClicks() {
         quotesAdapter.onClickItem = {
             Toast.makeText(context, it.text, Toast.LENGTH_SHORT).show()
+            viewModel.editQuote(it)
         }
         quotesAdapter.onLikeButtonClicked = {
             context?.toast("On Like Button Clicked")
+            viewModel.deleteQuote(it)
         }
     }
 
     private fun observeValues() {
-        viewModel.quotesList.observe(viewLifecycleOwner) {
+        viewModel.quotesListPagedData.observe(viewLifecycleOwner) {
             quotesAdapter.submitData(lifecycle, it)
 
         }
