@@ -6,18 +6,22 @@ import com.mmk.domain.model.Quote
 import com.mmk.domain.model.Result
 import com.mmk.domain.model.onSuccess
 import com.mmk.domain.repository.QuotesRepository
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 
-class QuotesRepositoryImpl(private val remoteDataSource: RemoteDataSource) : QuotesRepository {
+class QuotesRepositoryImpl(
+    private val remoteDataSource: RemoteDataSource,
+    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
+) : QuotesRepository {
 
     override suspend fun getQuotesByPagination(
         pageIndex: String?,
         pageLimit: Int
     ): Result<List<Quote>> {
         val quoteListResponse: Result<List<QuoteResponse>>
-        withContext(Dispatchers.IO) {
+        withContext(ioDispatcher) {
             quoteListResponse = remoteDataSource.getQuotesByPagination(pageIndex, pageLimit)
         }
         quoteListResponse.onSuccess { list ->
@@ -28,7 +32,7 @@ class QuotesRepositoryImpl(private val remoteDataSource: RemoteDataSource) : Quo
 
 
     override suspend fun addNewQuote(quote: Quote): Result<Unit> {
-        return withContext(Dispatchers.IO) {
+        return withContext(ioDispatcher) {
             remoteDataSource.addNewQuote(quote)
         }
     }

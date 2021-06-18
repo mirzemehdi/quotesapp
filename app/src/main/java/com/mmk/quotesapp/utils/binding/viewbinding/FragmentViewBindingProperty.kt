@@ -11,7 +11,7 @@ import kotlin.reflect.KProperty
 
 fun <T : ViewBinding> viewBinding(
     bindingInitializer: (LayoutInflater) -> T
-): FragmentViewBindingProperty<T> = FragmentViewBindingProperty(bindingInitializer)
+) = FragmentViewBindingProperty(bindingInitializer)
 
 class FragmentViewBindingProperty<T : ViewBinding>(
     private val bindingInitializer: (LayoutInflater) -> T

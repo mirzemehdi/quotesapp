@@ -9,4 +9,5 @@ class ProfileFragment : BaseFragment() {
     override val binding: FragmentLoginBinding by viewBinding(FragmentLoginBinding::inflate)
 
 
+
 }

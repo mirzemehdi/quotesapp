@@ -1,4 +1,4 @@
-package com.mmk.data.repository.quotes
+package com.mmk.data.remote.model.response
 
 import androidx.paging.PagingData
 import com.mmk.data.remote.RemoteDataSource
@@ -13,9 +13,12 @@ class FakeRemoteDataSource : RemoteDataSource {
 
     private var mList: MutableList<QuoteResponse>? = mutableListOf()
 
-    override suspend fun getQuotesByPagination(): Result<Flow<PagingData<QuoteResponse>>> {
+    override suspend fun getQuotesByPagination(
+        pageIndex: String?,
+        pageLimit: Int
+    ): Result<List<QuoteResponse>> {
         return if (mList == null) Result.Error(message = "List is null")
-        else return Result.Success(flowOf(PagingData.from(mList!!)))
+        else return Result.Success(mList!!)
     }
 
     override suspend fun addNewQuote(quote: Quote): Result<Unit> {
