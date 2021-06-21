@@ -27,7 +27,7 @@ class QuotesPagingSource(private val getQuotesByPaginationUseCase: GetQuotesByPa
                     nextKey = if (it.isNullOrEmpty()) null else it.last().id
                 )
             }
-            LoadResult.Error(Throwable((quotesListResponse as Result.Error).message))
+            LoadResult.Error(Throwable((quotesListResponse as? Result.Error)?.message))
 
         } catch (exception: IOException) {
             Timber.e(exception)

@@ -1,4 +1,4 @@
-package com.mmk.data.remote.model.response
+package com.mmk.data.remote
 
 import androidx.paging.PagingData
 import com.mmk.data.remote.RemoteDataSource

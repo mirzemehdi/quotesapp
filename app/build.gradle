@@ -128,13 +128,17 @@ dependencies {
     testImplementation "junit:junit:$version_junit" //JUnit 4 framework
     testImplementation "org.mockito.kotlin:mockito-kotlin:$version_mock" //Mockito framework
     testImplementation "com.google.truth:truth:$version_truth" //Truth lib for assertion
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+
+
 
 
     //Integration(UI) testing libraries
     androidTestImplementation "androidx.test:core:$version_androidXTestCore" //Robolectric
+
     androidTestImplementation "androidx.test.ext:junit:$version_androidx_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$version_androidx_expresso"
-    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version_kotlin_coroutines"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version_kotlin_coroutines"
     debugImplementation "androidx.fragment:fragment-testing:$version_fragment"
     androidTestImplementation "org.koin:koin-test:$version_koin" // Koin testing tools
 

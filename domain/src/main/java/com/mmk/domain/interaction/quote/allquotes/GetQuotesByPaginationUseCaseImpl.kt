@@ -12,5 +12,7 @@ class GetQuotesByPaginationUseCaseImpl constructor(private val repository: Quote
         return repository.getQuotesByPagination(pageIndex, pageLimit)
 
     }
+
+
 }
 

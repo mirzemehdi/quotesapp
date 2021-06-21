@@ -58,6 +58,7 @@ dependencies {
     testImplementation "org.mockito.kotlin:mockito-kotlin:$version_mock" //Mockito framework
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version_kotlin_coroutines"
 
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
 
 
     testImplementation "com.google.truth:truth:$version_truth" //Truth lib for assertion

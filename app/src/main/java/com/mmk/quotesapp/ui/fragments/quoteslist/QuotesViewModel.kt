@@ -34,7 +34,7 @@ class QuotesViewModel constructor(
         return Pager(
             config = config,
             pagingSourceFactory = { QuotesPagingSource(quotesByPaginationUseCase) })
-            .flow.cachedIn(viewModelScope).asLiveData()
+            .flow.asLiveData().cachedIn(viewModelScope)
             .let { it as MutableLiveData<PagingData<Quote>> }
     }
 

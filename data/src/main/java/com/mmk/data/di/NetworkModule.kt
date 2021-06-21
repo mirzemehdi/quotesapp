@@ -12,6 +12,7 @@ import org.koin.dsl.module
 const val QUALIFIER_QUOTES = "quotes"
 
 val networkModule = module {
+
     single { Firebase.firestore }
 
     fun provideQuotesReference(db: FirebaseFirestore) =

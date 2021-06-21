@@ -1,7 +1,7 @@
 package com.mmk.data.repository.quotes
 
 import com.google.common.truth.Truth.assertThat
-import com.mmk.data.remote.model.response.FakeRemoteDataSource
+import com.mmk.data.remote.FakeRemoteDataSource
 import com.mmk.data.util.MainCoroutineRule
 import com.mmk.data.remote.model.response.QuoteResponse
 import com.mmk.domain.model.Quote
@@ -37,7 +37,6 @@ class QuotesRepositoryTest {
         remoteDataSource.setList(null)
         val response = quotesRepository.getQuotesByPagination(null, 15)
         assertThat(response).isInstanceOf(Result.Error::class.java)
-
 
     }
 
