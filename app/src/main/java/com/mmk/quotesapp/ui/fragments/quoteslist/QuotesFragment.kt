@@ -3,11 +3,10 @@ package com.mmk.quotesapp.ui.fragments.quoteslist
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.paging.LoadState
 import com.mmk.quotesapp.databinding.FragementQuotesBinding
 import com.mmk.quotesapp.ui.base.BaseFragment
-import com.mmk.quotesapp.ui.base.UiState
 import com.mmk.quotesapp.utils.binding.viewbinding.viewBinding
+import com.mmk.quotesapp.utils.onLoadingStateChanged
 import com.mmk.quotesapp.utils.toast
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -38,16 +37,8 @@ class QuotesFragment : BaseFragment() {
                 footer = ItemLoadStateAdapter { quotesAdapter.retry() }
             )
 
-        quotesAdapter.addLoadStateListener { loadState ->
-            with(loadState.source.refresh) {
-                val uiState = when (this) {
-                    is LoadState.NotLoading -> if (quotesAdapter.itemCount < 1) UiState.NoData else UiState.HasData
-                    LoadState.Loading -> UiState.Loading
-                    is LoadState.Error -> UiState.Error()
-                }
-                viewModel.setUiState(uiState)
-            }
-        }
+
+        quotesAdapter.onLoadingStateChanged { viewModel.setUiState(it) }
 
 
     }

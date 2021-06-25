@@ -16,6 +16,9 @@ abstract class BaseViewModel : ViewModel() {
     private val _message = MutableLiveData<SingleEvent<ErrorState>>()
     val message: LiveData<SingleEvent<ErrorState>> = _message
 
+    fun setUiState(uiState: UiState) {
+        _uiState.value = uiState
+    }
 
     protected fun executeUseCase(action: suspend () -> Unit) {
         _uiState.value = UiState.Loading

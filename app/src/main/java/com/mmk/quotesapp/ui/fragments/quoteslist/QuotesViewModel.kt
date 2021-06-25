@@ -23,19 +23,20 @@ class QuotesViewModel constructor(
     var quotesListPagedData: LiveData<PagingData<Quote>> = _quotesListPagedData
 
 
-    fun setUiState(uiState: UiState) {
-        _uiState.value = uiState
-    }
-
-
     private fun getQuotesPagingData(): MutableLiveData<PagingData<Quote>> {
+        _uiState.value = UiState.Loading
         val config =
             PagingConfig(pageSize = 10, initialLoadSize = 15, enablePlaceholders = false)
-        return Pager(
+
+        val pagingData = Pager(
             config = config,
             pagingSourceFactory = { QuotesPagingSource(quotesByPaginationUseCase) })
             .flow.asLiveData().cachedIn(viewModelScope)
             .let { it as MutableLiveData<PagingData<Quote>> }
+
+
+        return pagingData
+
     }
 
 
