@@ -1,7 +1,7 @@
 package com.mmk.data.repository.quotes
 
-import com.mmk.data.remote.RemoteDataSource
-import com.mmk.data.remote.model.response.QuoteResponse
+import com.mmk.data.remote.quotes.QuotesRemoteDataSource
+import com.mmk.data.remote.quotes.model.response.QuoteResponse
 import com.mmk.domain.model.Quote
 import com.mmk.domain.model.Result
 import com.mmk.domain.model.onSuccess
@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 
 
 class QuotesRepositoryImpl(
-    private val remoteDataSource: RemoteDataSource,
+    private val remoteDataSource: QuotesRemoteDataSource,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : QuotesRepository {
 

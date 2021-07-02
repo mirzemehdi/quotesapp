@@ -1,10 +1,10 @@
-package com.mmk.data.remote
+package com.mmk.data.remote.quotes
 
-import com.mmk.data.remote.model.response.QuoteResponse
+import com.mmk.data.remote.quotes.model.response.QuoteResponse
 import com.mmk.domain.model.Quote
 import com.mmk.domain.model.Result
 
-interface RemoteDataSource {
+interface QuotesRemoteDataSource {
 
     suspend fun getQuotesByPagination(
         pageIndex: String?,

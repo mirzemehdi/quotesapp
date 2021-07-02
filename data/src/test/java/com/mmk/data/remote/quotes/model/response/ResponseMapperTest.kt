@@ -1,4 +1,4 @@
-package com.mmk.data.remote.model.response
+package com.mmk.data.remote.quotes.model.response
 
 import com.google.common.truth.Truth.assertThat
 import com.mmk.domain.model.Quote

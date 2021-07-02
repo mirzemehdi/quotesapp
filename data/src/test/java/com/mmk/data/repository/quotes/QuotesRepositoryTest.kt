@@ -1,9 +1,9 @@
 package com.mmk.data.repository.quotes
 
 import com.google.common.truth.Truth.assertThat
-import com.mmk.data.remote.FakeRemoteDataSource
+import com.mmk.data.remote.FakeQuotesRemoteDataSource
 import com.mmk.data.util.MainCoroutineRule
-import com.mmk.data.remote.model.response.QuoteResponse
+import com.mmk.data.remote.quotes.model.response.QuoteResponse
 import com.mmk.domain.model.Quote
 import com.mmk.domain.model.Result
 import com.mmk.domain.repository.QuotesRepository
@@ -19,7 +19,7 @@ import java.util.*
 class QuotesRepositoryTest {
 
     private lateinit var quotesRepository: QuotesRepository
-    private lateinit var remoteDataSource: FakeRemoteDataSource
+    private lateinit var remoteDataSource: FakeQuotesRemoteDataSource
 
     @get:Rule
     var mainCoroutineRule = MainCoroutineRule()
@@ -27,7 +27,7 @@ class QuotesRepositoryTest {
     @Before
     fun init() {
 
-        remoteDataSource = FakeRemoteDataSource()
+        remoteDataSource = FakeQuotesRemoteDataSource()
         quotesRepository = QuotesRepositoryImpl(remoteDataSource, mainCoroutineRule.dispatcher)
     }
 

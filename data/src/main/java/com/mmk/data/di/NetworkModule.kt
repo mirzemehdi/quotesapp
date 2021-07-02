@@ -4,8 +4,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.mmk.data.remote.NetworkConstants
-import com.mmk.data.remote.RemoteDataSource
-import com.mmk.data.remote.RemoteDataSourceImpl
+import com.mmk.data.remote.quotes.QuotesRemoteDataSource
+import com.mmk.data.remote.quotes.QuotesRemoteDataSourceImpl
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -20,5 +20,5 @@ val networkModule = module {
 
     single(named(QUALIFIER_QUOTES)) { provideQuotesReference(get()) }
 
-    factory<RemoteDataSource> { RemoteDataSourceImpl(get(named(QUALIFIER_QUOTES))) }
+    factory<QuotesRemoteDataSource> { QuotesRemoteDataSourceImpl(get(named(QUALIFIER_QUOTES))) }
 }

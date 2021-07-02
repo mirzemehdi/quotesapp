@@ -1,14 +1,15 @@
-package com.mmk.data.remote
+package com.mmk.data.remote.quotes
 
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FieldPath
-import com.mmk.data.remote.model.response.QuoteResponse
+import com.mmk.data.remote.quotes.model.response.QuoteResponse
 import com.mmk.domain.model.Quote
 import com.mmk.domain.model.Result
 import kotlinx.coroutines.tasks.await
 import timber.log.Timber
 
-class RemoteDataSourceImpl(private val quotesCollection: CollectionReference) : RemoteDataSource {
+class QuotesRemoteDataSourceImpl(private val quotesCollection: CollectionReference) :
+    QuotesRemoteDataSource {
 
     override suspend fun getQuotesByPagination(
         pageIndex: String?,
