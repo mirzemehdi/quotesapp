@@ -64,6 +64,13 @@ android {
         dataBinding true
         viewBinding true
     }
+    sourceSets {
+        main {
+            res {
+                srcDirs 'src\\main\\res', 'src\\androidTest\\res'
+            }
+        }
+    }
 
 
 }
@@ -136,12 +143,17 @@ dependencies {
     //Integration(UI) testing libraries
     androidTestImplementation "androidx.test:core:$version_androidXTestCore" //Robolectric
     androidTestImplementation "org.mockito.kotlin:mockito-kotlin:$version_mock" //Mockito framework
+    androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito-inline:2.28.1" //Mockito solving can't mock final class
+
+
 
     androidTestImplementation "androidx.test.ext:junit:$version_androidx_junit"
     androidTestImplementation "androidx.test.espresso:espresso-core:$version_androidx_expresso"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version_kotlin_coroutines"
     debugImplementation "androidx.fragment:fragment-testing:$version_fragment"
     androidTestImplementation "org.koin:koin-test:$version_koin" // Koin testing tools
+    testImplementation "org.koin:koin-test:$version_koin" // Koin testing tools
+
 
 
 }
