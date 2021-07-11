@@ -6,9 +6,15 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.paging.PagingData
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
 import androidx.test.platform.app.InstrumentationRegistry
+import com.mmk.domain.model.Quote
 import com.mmk.quotesapp.R
 import com.mmk.quotesapp.base.BaseTestApp
 import kotlinx.coroutines.Dispatchers
@@ -52,9 +58,9 @@ class QuotesFragmentTest : KoinTest {
 
     @Test
     fun emptyView_isShownInUi_whenThereIsNoQuote() {
-
-        Thread.sleep(5000)
+        onView(withId(R.id.emptyView)).check(matches(isDisplayed()))
     }
+
 
     @After
     fun cleanUp() {

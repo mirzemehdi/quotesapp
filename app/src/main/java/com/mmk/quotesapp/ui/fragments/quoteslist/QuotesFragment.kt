@@ -47,6 +47,7 @@ class QuotesFragment : BaseFragment() {
         quotesAdapter.onClickItem = {
             Toast.makeText(context, it.text, Toast.LENGTH_SHORT).show()
             viewModel.editQuote(it)
+
         }
         quotesAdapter.onLikeButtonClicked = {
             context?.toast("On Like Button Clicked")
