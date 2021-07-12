@@ -144,6 +144,7 @@ dependencies {
     androidTestImplementation "androidx.test:core:$version_androidXTestCore" //Robolectric
     androidTestImplementation "org.mockito.kotlin:mockito-kotlin:$version_mock" //Mockito framework
     androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito-inline:2.28.1" //Mockito solving can't mock final class
+    implementation "androidx.test.espresso:espresso-idling-resource:$version_androidx_expresso"
 
 
 
