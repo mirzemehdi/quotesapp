@@ -18,7 +18,7 @@ class BaseApplication : Application() {
             Timber.plant(Timber.DebugTree())
 
         startKoin {
-            androidLogger()
+//            androidLogger()
             androidContext(this@BaseApplication)
             modules(domainModules + dataModules + appModules)
         }

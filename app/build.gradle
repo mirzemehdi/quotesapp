@@ -117,7 +117,7 @@ dependencies {
     //Firebase Google Analytics
     implementation "com.google.firebase:firebase-analytics-ktx"
     // Firebase Crashlytics SDK.
-    implementation "com.google.firebase:firebase-crashlytics"
+//    implementation "com.google.firebase:firebase-crashlytics"
 
     implementation libs.koinCore
     // Koin AndroidX Scope features

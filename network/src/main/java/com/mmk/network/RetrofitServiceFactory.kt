@@ -7,21 +7,36 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.time.Duration
 import java.util.concurrent.TimeUnit
 
-class ApiServiceFactory(baseUrl: String) {
+object RetrofitServiceFactory {
 
-    val retrofit: Retrofit by lazy {
-        Retrofit.Builder().client(provideOkHttpClient(provideHttpLogging()))
+    private val retrofits: MutableMap<String, Retrofit> = mutableMapOf()
+
+
+    fun getInstance(
+        baseUrl: String,
+        readWriteTimeOutInSeconds: Long = 10L,
+        isLoggingEnabled: Boolean = BuildConfig.DEBUG
+    ) = synchronized(this) {
+        retrofits[baseUrl] ?: Retrofit.Builder()
+            .client(
+                provideOkHttpClient(
+                    interceptor = provideHttpLogging(),
+                    readWriteTimeOutInSeconds = readWriteTimeOutInSeconds,
+                    isLoggingEnabled = isLoggingEnabled
+                )
+            )
             .baseUrl(baseUrl)
             .addConverterFactory(provideConverterFactory())
-            .build()
+            .build().also {
+                retrofits[baseUrl] = it
+            }
     }
 
 
-    
-
-    inline fun <reified T> createApiService(): T = retrofit.create(T::class.java)
+    inline fun <reified T> Retrofit.createApiService(): T = this.create(T::class.java)
 
     private fun provideHttpLogging(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().apply {
@@ -29,13 +44,16 @@ class ApiServiceFactory(baseUrl: String) {
         }
     }
 
-    private fun provideOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient {
-        val builder =
-            OkHttpClient.Builder()
-                .writeTimeout(10, TimeUnit.SECONDS)
-                .readTimeout(10, TimeUnit.SECONDS)
+    private fun provideOkHttpClient(
+        interceptor: HttpLoggingInterceptor,
+        readWriteTimeOutInSeconds: Long,
+        isLoggingEnabled: Boolean
+    ): OkHttpClient {
 
-        val isLoggingEnabled = true
+        val builder = OkHttpClient.Builder()
+            .writeTimeout(readWriteTimeOutInSeconds, TimeUnit.SECONDS)
+            .readTimeout(readWriteTimeOutInSeconds, TimeUnit.SECONDS)
+
         if (isLoggingEnabled) builder.addInterceptor(interceptor)
         return builder.build()
     }
@@ -44,9 +62,8 @@ class ApiServiceFactory(baseUrl: String) {
         val moshi = Moshi.Builder()
             .addLast(KotlinJsonAdapterFactory())
             .build()
-
         return MoshiConverterFactory.create(moshi)
     }
-
-
 }
+
+
