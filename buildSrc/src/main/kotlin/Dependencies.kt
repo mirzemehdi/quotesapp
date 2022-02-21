@@ -8,14 +8,11 @@ object Libs {
     val okHttpLogger by lazy { "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpLogging}" }
 }
 
-object ClassPathDeps {
-    val junit5 by lazy { "de.mannodermaus.gradle.plugins:android-junit5:${Versions.jUnit5GradlePlugin}" }
-    val jacoco by lazy { "org.jacoco:org.jacoco.core:${Versions.jacoco}" }
-}
 
 object Plugins {
     val junit5 by lazy { "de.mannodermaus.android-junit5" }
-    val jacoco_android by lazy { "plugins.jacoco-android" }
+    val jacocoAndroid by lazy { "plugins.jacoco-android" }
+    val commonAndroidLibrary by lazy { "common.android-library" }
 }
 
 object TestingLibs {

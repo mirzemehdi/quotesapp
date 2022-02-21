@@ -50,11 +50,6 @@ buildscript {
 
     }
     dependencies {
-        classpath(ClassPathDeps.INSTANCE.junit5)
-        classpath(ClassPathDeps.INSTANCE.jacoco)
-
-        classpath 'com.android.tools.build:gradle:7.0.3'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
         classpath "com.google.gms:google-services:$version_google_services"
 
         // Add the Crashlytics Gradle plugin.

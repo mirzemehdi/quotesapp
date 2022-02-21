@@ -56,11 +56,11 @@ fun JacocoReport.createNewTestTask(
     description: String,
     vararg dependOnTasks: Any
 ) {
-    group = "verification"
+    group = "reporting"
     this.description = description
     dependsOn(dependOnTasks)
     reports {
-        html.isEnabled = true
+        html.required.set(true)
     }
     sourceDirectories.setFrom(sourceDirectoriesTree)
     classDirectories.setFrom(classDirectoriesTree)
