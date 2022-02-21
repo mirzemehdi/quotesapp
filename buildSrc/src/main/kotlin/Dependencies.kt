@@ -10,10 +10,12 @@ object Libs {
 
 object ClassPathDeps {
     val junit5 by lazy { "de.mannodermaus.gradle.plugins:android-junit5:${Versions.jUnit5GradlePlugin}" }
+    val jacoco by lazy { "org.jacoco:org.jacoco.core:${Versions.jacoco}" }
 }
 
 object Plugins {
     val junit5 by lazy { "de.mannodermaus.android-junit5" }
+    val jacoco_android by lazy { "plugins.jacoco-android" }
 }
 
 object TestingLibs {

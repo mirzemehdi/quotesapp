@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     id("kotlin-android")
     id(Plugins.junit5)
+    id(Plugins.jacoco_android)
 }
 
 android {
@@ -14,6 +15,35 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFile("consumer-rules.pro")
+    }
+
+    packagingOptions {
+        with(resources.excludes) {
+            add("META-INF/DEPENDENCIES")
+            add("META-INF/LICENSE")
+            add("META-INF/LICENSE.txt")
+            add("META-INF/license.txt")
+            add("META-INF/NOTICE")
+            add("META-INF/notice.txt")
+            add("META-INF/NOTICE")
+            add("META-INF/NOTICE.txt")
+            add("META-INF/LGPL2.1")
+            add("META-INF/ASL2.0")
+            add("META-INF/AL2.0")
+            add("META-INF/*.kotlin_module")
+        }
+    }
+
+    testOptions {
+        animationsDisabled = true  // Animations are disabled for testing purposes
+        unitTests.isIncludeAndroidResources = true
+        unitTests.isReturnDefaultValues = true
+    }
+
+    buildTypes {
+        debug {
+            isTestCoverageEnabled = true
+        }
     }
 
     compileOptions {

@@ -5,11 +5,14 @@ object Versions {
 
     //ClassDeps - Gradle Plugin versions
     const val jUnit5GradlePlugin="1.8.2.0"
+    const val jacoco="0.8.7" // Testing Coverage report
 
 
     //Testing Libraries Versions
     const val jUnit="4.12"
     const val jUnit5="5.8.2"
     const val truth="1.1.3"
+
+
 
 }
