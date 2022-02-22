@@ -7,13 +7,11 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import java.time.Duration
 import java.util.concurrent.TimeUnit
 
 object RetrofitServiceFactory {
 
     private val retrofits: MutableMap<String, Retrofit> = mutableMapOf()
-
 
     fun getInstance(
         baseUrl: String,
@@ -34,7 +32,6 @@ object RetrofitServiceFactory {
                 retrofits[baseUrl] = it
             }
     }
-
 
     inline fun <reified T> Retrofit.createApiService(): T = this.create(T::class.java)
 
@@ -65,5 +62,3 @@ object RetrofitServiceFactory {
         return MoshiConverterFactory.create(moshi)
     }
 }
-
-

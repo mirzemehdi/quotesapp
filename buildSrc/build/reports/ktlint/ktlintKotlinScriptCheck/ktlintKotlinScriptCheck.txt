@@ -1,0 +1,3 @@
+[90m/home/mirzamehdi/AndroidStudioProjects/quotesapp/buildSrc/[0mbuild.gradle.kts[90m:[0m1[90m:1:[0m File must end with a newline (\n)
+[90m/home/mirzamehdi/AndroidStudioProjects/quotesapp/buildSrc/[0mbuild.gradle.kts[90m:[0m21[90m:1:[0m Unexpected blank line(s) before "}"
+[90m/home/mirzamehdi/AndroidStudioProjects/quotesapp/buildSrc/[0mbuild.gradle.kts[90m:[0m31[90m:1:[0m Unexpected blank line(s) before "}"

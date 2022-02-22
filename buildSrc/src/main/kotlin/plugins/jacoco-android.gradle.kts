@@ -61,6 +61,9 @@ fun JacocoReport.createNewTestTask(
     dependsOn(dependOnTasks)
     reports {
         html.required.set(true)
+        xml.required.set(true)
+        xml.outputLocation.set(file("${buildDir}/reports/jacoco/report.xml"))
+
     }
     sourceDirectories.setFrom(sourceDirectoriesTree)
     classDirectories.setFrom(classDirectoriesTree)

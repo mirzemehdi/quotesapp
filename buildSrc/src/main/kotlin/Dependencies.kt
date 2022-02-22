@@ -11,7 +11,6 @@ object Libs {
 
 object Plugins {
     val junit5 by lazy { "de.mannodermaus.android-junit5" }
-    val jacocoAndroid by lazy { "plugins.jacoco-android" }
     val commonAndroidLibrary by lazy { "common.android-library" }
 }
 

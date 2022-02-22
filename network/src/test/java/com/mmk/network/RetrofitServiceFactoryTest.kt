@@ -2,9 +2,8 @@ package com.mmk.network
 
 import com.google.common.truth.Truth.assertThat
 import com.mmk.network.RetrofitServiceFactory.createApiService
-import org.junit.jupiter.api.Assertions.*
-
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
@@ -56,15 +55,15 @@ internal class RetrofitServiceFactoryTest {
                     doOnFirstThread = {
                         retrofit1 = RetrofitServiceFactory.getInstance(baseUrl)
                     }, doOnEachThread = {
-                        retrofit2 = RetrofitServiceFactory.getInstance(baseUrl)
-                    })
+                    retrofit2 = RetrofitServiceFactory.getInstance(baseUrl)
+                }
+                )
                 assertThat(retrofit1.hashCode()).isEqualTo(retrofit2.hashCode())
                 assertThat(retrofit1).isEqualTo(retrofit2)
                 assertThat(retrofit1 === retrofit2).isTrue()
             }
 
-
-            //Creates 1000 thread to attempt race condition in function
+            // Creates 1000 thread to attempt race condition in function
             private fun callFunctionInMultiThread(
                 doOnFirstThread: () -> Unit,
                 doOnEachThread: () -> Unit
@@ -80,11 +79,8 @@ internal class RetrofitServiceFactoryTest {
                     }
                 }
                 countDownLatch.await()
-
             }
-
         }
-
     }
 
     @DisplayName("Given wrong formatted URL")
@@ -99,8 +95,6 @@ internal class RetrofitServiceFactoryTest {
                 RetrofitServiceFactory.getInstance(baseUrl)
             }
         }
-
-
     }
 
     @DisplayName("Given different base url")
@@ -108,7 +102,6 @@ internal class RetrofitServiceFactoryTest {
     inner class DifferentBaseUrl {
         private val baseUrl1 = "https://test1.com"
         private val baseUrl2 = "https://test2.com"
-
 
         private val retrofit1 = RetrofitServiceFactory.getInstance(baseUrl1)
         private val retrofit2 = RetrofitServiceFactory.getInstance(baseUrl2)
@@ -120,15 +113,12 @@ internal class RetrofitServiceFactoryTest {
             assertThat(retrofit1.hashCode()).isNotEqualTo(retrofit2.hashCode())
             assertThat(retrofit1 === retrofit2).isFalse()
         }
-
-
     }
 
     @DisplayName("Given retrofit object")
     @Nested
     inner class CreatedRetrofitObject {
         val retrofit = RetrofitServiceFactory.getInstance("https://test.com")
-
 
         @DisplayName("When create new API service, then it is not null")
         @Test
@@ -137,8 +127,6 @@ internal class RetrofitServiceFactoryTest {
             assertThat(newApiService).isNotNull()
             assertThat(newApiService).isInstanceOf(TestInterface::class.java)
         }
-
-
     }
 
     internal interface TestInterface {
