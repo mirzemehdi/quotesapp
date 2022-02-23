@@ -6,6 +6,7 @@ plugins {
     id("de.mannodermaus.android-junit5")
     id("plugins.jacoco-android")
     id("plugins.ktlint")
+    id("plugins.detekt")
 }
 
 android {
