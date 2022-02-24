@@ -20,6 +20,7 @@ object TestingLibs {
     val junit5JupiterApi by lazy { "org.junit.jupiter:junit-jupiter-api:${Versions.jUnit5}" }
     val junit5JupiterEngine by lazy { "org.junit.jupiter:junit-jupiter-engine:${Versions.jUnit5}" }
     val junit5VintageEngine by lazy { "org.junit.vintage:junit-vintage-engine:${Versions.jUnit5}" }
-
+    val mockk by lazy { "io.mockk:mockk:${Versions.mockk}" }
+    val mockkAndroid by lazy { "io.mockk:mockk-android:${Versions.mockk}" }
 
 }

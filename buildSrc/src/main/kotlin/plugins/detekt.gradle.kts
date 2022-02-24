@@ -9,7 +9,7 @@ plugins {
 detekt {
     config = files("$rootDir/config/detekt/detekt.yml")
     parallel = true
-    input = objects.fileCollection()
+    source = objects.fileCollection()
         .from(
             DetektExtension.DEFAULT_SRC_DIR_JAVA,
             DetektExtension.DEFAULT_SRC_DIR_KOTLIN

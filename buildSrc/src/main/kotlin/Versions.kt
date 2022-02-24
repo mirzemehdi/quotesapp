@@ -7,6 +7,8 @@ object Versions {
     const val jUnit="4.12"
     const val jUnit5="5.8.2"
     const val truth="1.1.3"
+    const val mockk="1.12.0"
+
 
 
     //TODO create common jacoco version in one place

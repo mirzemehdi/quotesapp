@@ -2,6 +2,11 @@ package com.mmk.network
 
 import com.google.common.truth.Truth.assertThat
 import com.mmk.network.RetrofitServiceFactory.createApiService
+import io.mockk.mockk
+import io.mockk.mockkConstructor
+import io.mockk.verify
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.BeforeEach
@@ -15,24 +20,17 @@ import java.util.concurrent.Executors
 
 internal class RetrofitServiceFactoryTest {
 
-    @BeforeEach
-    fun setUp() {
-    }
-
-    @AfterEach
-    fun tearDown() {
-    }
-
     @DisplayName("Given the same base url")
     @Nested
     inner class SameBaseUrl {
-        val baseUrl = "https://test.com"
 
         @DisplayName("When Getting instance in Single Thread")
         @Nested
         inner class SameThread {
-            private val retrofit1 = RetrofitServiceFactory.getInstance(baseUrl)
-            private val retrofit2 = RetrofitServiceFactory.getInstance(baseUrl)
+            private val dummyBaseUrl = "http://testsamethread.com"
+
+            private val retrofit1 = RetrofitServiceFactory.getInstance(dummyBaseUrl)
+            private val retrofit2 = RetrofitServiceFactory.getInstance(dummyBaseUrl)
 
             @Test
             @DisplayName("Then same instance is returned")
@@ -46,6 +44,8 @@ internal class RetrofitServiceFactoryTest {
         @DisplayName("When Getting instance in Multi Thread")
         @Nested
         inner class MultiThread {
+            private val dummyBaseUrl = "http://testmultithread.com"
+
             @Test
             @DisplayName("Then same instance is returned")
             fun verifyAreTheSameInstances() {
@@ -53,10 +53,10 @@ internal class RetrofitServiceFactoryTest {
                 var retrofit2: Retrofit? = null
                 callFunctionInMultiThread(
                     doOnFirstThread = {
-                        retrofit1 = RetrofitServiceFactory.getInstance(baseUrl)
+                        retrofit1 = RetrofitServiceFactory.getInstance(dummyBaseUrl)
                     }, doOnEachThread = {
-                    retrofit2 = RetrofitServiceFactory.getInstance(baseUrl)
-                }
+                        retrofit2 = RetrofitServiceFactory.getInstance(dummyBaseUrl)
+                    }
                 )
                 assertThat(retrofit1.hashCode()).isEqualTo(retrofit2.hashCode())
                 assertThat(retrofit1).isEqualTo(retrofit2)
@@ -86,7 +86,7 @@ internal class RetrofitServiceFactoryTest {
     @DisplayName("Given wrong formatted URL")
     @Nested
     inner class WrongFormattedUrl {
-        private val baseUrl = "testUrl"
+        private val baseUrl = "wrongFormattedUrl"
 
         @DisplayName("When getting instance, Then throws IllegalArgument exception")
         @Test
@@ -100,8 +100,8 @@ internal class RetrofitServiceFactoryTest {
     @DisplayName("Given different base url")
     @Nested
     inner class DifferentBaseUrl {
-        private val baseUrl1 = "https://test1.com"
-        private val baseUrl2 = "https://test2.com"
+        private val baseUrl1 = "https://testdifferentbase1.com"
+        private val baseUrl2 = "https://testdifferentbase2.com"
 
         private val retrofit1 = RetrofitServiceFactory.getInstance(baseUrl1)
         private val retrofit2 = RetrofitServiceFactory.getInstance(baseUrl2)
@@ -118,7 +118,9 @@ internal class RetrofitServiceFactoryTest {
     @DisplayName("Given retrofit object")
     @Nested
     inner class CreatedRetrofitObject {
-        val retrofit = RetrofitServiceFactory.getInstance("https://test.com")
+        private val dummyBaseUrl = "http://testcreatedretrofit.com"
+
+        val retrofit = RetrofitServiceFactory.getInstance(dummyBaseUrl)
 
         @DisplayName("When create new API service, then it is not null")
         @Test
@@ -127,6 +129,60 @@ internal class RetrofitServiceFactoryTest {
             assertThat(newApiService).isNotNull()
             assertThat(newApiService).isInstanceOf(TestInterface::class.java)
         }
+    }
+
+
+    @DisplayName("Given logging parameter")
+    @Nested
+    inner class GivenLoggingParameter {
+        private var okHttpBuilder: OkHttpClient.Builder
+
+
+        init {
+            mockkConstructor(OkHttpClient.Builder::class)
+            okHttpBuilder = OkHttpClient.Builder()
+        }
+
+        @DisplayName("When logging is enabled")
+        @Nested
+        inner class LoggingEnabled {
+            private val dummyBaseUrl = "http://testloggingenabled.com"
+            private val isLoggingEnabled = true
+
+            val retrofit = RetrofitServiceFactory.getInstance(
+                dummyBaseUrl, isLoggingEnabled = isLoggingEnabled
+            )
+
+            @DisplayName("Then LoggingInterceptor is added to Retrofit")
+            @Test
+            fun verifyLoggingInterceptorAdded() {
+                verify {
+                    okHttpBuilder.addInterceptor(any() as HttpLoggingInterceptor)
+                }
+            }
+
+        }
+
+        @DisplayName("When logging is disabled")
+        @Nested
+        inner class LoggingDisabled {
+            private val dummyBaseUrl = "http://testloggingdisabled.com"
+            private val isLoggingEnabled = false
+            val retrofit = RetrofitServiceFactory.getInstance(
+                dummyBaseUrl, isLoggingEnabled = isLoggingEnabled
+            )
+
+            @DisplayName("Then LoggingInterceptor is added to Retrofit")
+            @Test
+            fun verifyLoggingInterceptorIsNotAdded() {
+                verify(exactly = 0) {
+                    okHttpBuilder.addInterceptor(any() as HttpLoggingInterceptor)
+                }
+            }
+
+        }
+
+
     }
 
     internal interface TestInterface {

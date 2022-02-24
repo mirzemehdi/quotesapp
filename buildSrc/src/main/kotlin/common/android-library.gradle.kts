@@ -68,5 +68,9 @@ dependencies {
     testImplementation(TestingLibs.junit5JupiterApi)
     testRuntimeOnly(TestingLibs.junit5JupiterEngine)
     testRuntimeOnly(TestingLibs.junit5VintageEngine)
+    testImplementation(TestingLibs.mockk)
+
+    androidTestImplementation(TestingLibs.mockkAndroid)
+
 
 }
