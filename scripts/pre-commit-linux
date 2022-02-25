@@ -14,7 +14,7 @@ status=$?
 CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 if [ "$status" = 0 ]; then
-  prettyPrint "OK. Static analysis did not found any problems.\n"
+  prettyPrint "OK. Static analysis did not found any problems."
   exit 0
 else
   echo "*********************************************************"
