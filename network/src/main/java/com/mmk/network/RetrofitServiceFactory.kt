@@ -28,8 +28,8 @@ object RetrofitServiceFactory {
                     isLoggingEnabled = isLoggingEnabled
                 )
             )
-                    .baseUrl(baseUrl)
-                                .addConverterFactory(provideConverterFactory())
+            .baseUrl(baseUrl)
+            .addConverterFactory(provideConverterFactory())
             .build().also {
                 retrofits[baseUrl] = it
             }

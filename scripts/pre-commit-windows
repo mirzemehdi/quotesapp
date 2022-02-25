@@ -8,7 +8,7 @@ function prettyPrint() {
 
 prettyPrint "Running git pre_commit_lint hook. Running Static analysis... "
 
-./gradlew ktlintFormat detekt --daemon
+./gradlew ktlintCheck detekt --daemon
 
 status=$?
 CYAN='\033[0;36m'
