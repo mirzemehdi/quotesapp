@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/C:/Program\ Files/Git/usr/bin/sh.exe
 
 function prettyPrint() {
   echo "*********************************************************"
@@ -8,7 +8,7 @@ function prettyPrint() {
 
 prettyPrint "Running git pre_commit_lint hook. Running Static analysis... "
 
-./gradlew ktlintCheck detekt
+./gradlew ktlintFormat detekt --daemon
 
 status=$?
 CYAN='\033[0;36m'
