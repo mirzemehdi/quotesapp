@@ -20,12 +20,19 @@ object RetrofitServiceFactory {
     ): Retrofit = synchronized(this) {
         retrofits[baseUrl] ?: Retrofit.Builder()
             .client(
+
+
+
                 provideOkHttpClient(
+
+
                     interceptor = provideHttpLogging(),
-                    readWriteTimeOutInSeconds = readWriteTimeOutInSeconds,
+                                readWriteTimeOutInSeconds = readWriteTimeOutInSeconds,
                     isLoggingEnabled = isLoggingEnabled
                 )
             )
+
+
             .baseUrl(baseUrl)
             .addConverterFactory(provideConverterFactory())
             .build().also {
