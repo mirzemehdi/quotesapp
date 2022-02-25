@@ -13,7 +13,6 @@ object RetrofitServiceFactory {
 
     private val retrofits: MutableMap<String, Retrofit> = mutableMapOf()
 
-
     fun getInstance(
         baseUrl: String,
         readWriteTimeOutInSeconds: Long = 10L,
@@ -36,13 +35,11 @@ object RetrofitServiceFactory {
 
     inline fun <reified T> Retrofit.createApiService(): T = this.create(T::class.java)
 
-
     private fun provideHttpLogging(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
     }
-
 
     private fun provideOkHttpClient(
         interceptor: HttpLoggingInterceptor,

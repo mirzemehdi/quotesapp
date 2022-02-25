@@ -2,14 +2,11 @@ package com.mmk.network
 
 import com.google.common.truth.Truth.assertThat
 import com.mmk.network.RetrofitServiceFactory.createApiService
-import io.mockk.mockk
 import io.mockk.mockkConstructor
 import io.mockk.verify
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertThrows
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -55,8 +52,8 @@ internal class RetrofitServiceFactoryTest {
                     doOnFirstThread = {
                         retrofit1 = RetrofitServiceFactory.getInstance(dummyBaseUrl)
                     }, doOnEachThread = {
-                        retrofit2 = RetrofitServiceFactory.getInstance(dummyBaseUrl)
-                    }
+                    retrofit2 = RetrofitServiceFactory.getInstance(dummyBaseUrl)
+                }
                 )
                 assertThat(retrofit1.hashCode()).isEqualTo(retrofit2.hashCode())
                 assertThat(retrofit1).isEqualTo(retrofit2)
@@ -131,12 +128,10 @@ internal class RetrofitServiceFactoryTest {
         }
     }
 
-
     @DisplayName("Given logging parameter")
     @Nested
     inner class GivenLoggingParameter {
         private var okHttpBuilder: OkHttpClient.Builder
-
 
         init {
             mockkConstructor(OkHttpClient.Builder::class)
@@ -160,7 +155,6 @@ internal class RetrofitServiceFactoryTest {
                     okHttpBuilder.addInterceptor(any() as HttpLoggingInterceptor)
                 }
             }
-
         }
 
         @DisplayName("When logging is disabled")
@@ -179,10 +173,7 @@ internal class RetrofitServiceFactoryTest {
                     okHttpBuilder.addInterceptor(any() as HttpLoggingInterceptor)
                 }
             }
-
         }
-
-
     }
 
     internal interface TestInterface {

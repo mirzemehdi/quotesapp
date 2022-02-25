@@ -1,0 +1,27 @@
+#!/bin/bash
+
+function prettyPrint() {
+  echo "*********************************************************"
+  echo "$1"
+  echo "*********************************************************"
+}
+
+prettyPrint "Running git pre_commit_lint hook. Running Static analysis... "
+
+./gradlew ktlintCheck detekt
+
+status=$?
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+if [ "$status" = 0 ]; then
+  prettyPrint "OK. Static analysis did not found any problems.\n"
+  exit 0
+else
+  echo "*********************************************************"
+  echo "       ********************************************      "
+  echo 1>&2 "Static analysis found violations that could not fix."
+  echo -e "${CYAN}Help: Run ./gradlew ktlintFormat to fix code style formatting related issues...${NC}"
+  echo "       ********************************************      "
+  echo "*********************************************************"
+  exit 1
+fi
