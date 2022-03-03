@@ -1,4 +1,4 @@
-name: Building Debug app
+name: Unit Testing
 
 on:
   push:
@@ -9,8 +9,7 @@ on:
       - '**'
 
 jobs:
-  build_app:
-    name: Building app
+  unit_testing:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,11 +24,11 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build Debug app with Gradle
-        run: ./gradlew assembleDebug
+      - name: Unit Testing
+        run: ./gradlew test
 
-      - name: Upload APK
+      - name: Upload Test Reports
         uses: actions/upload-artifact@v2
         with:
-            name: debug-apk
-            path: app/build/outputs/apk/debug/**.apk
+            name: unit-test-reports
+            path: ./**/build/reports/tests/

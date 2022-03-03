@@ -19,41 +19,40 @@ import org.mockito.kotlin.whenever
 
 
 @ExperimentalCoroutinesApi
-@RunWith(MockitoJUnitRunner::class)
 class QuotesViewModelTest {
 
 
-    private lateinit var quotesViewModel: QuotesViewModel
-
-    @Mock
-    private lateinit var getAllQuotesByPaginationUseCase: GetQuotesByPaginationUseCase
-
-    // Set the main coroutines dispatcher for unit testing.
-    @get:Rule
-    var mainCoroutineRule = MainCoroutineRule()
-
-    // Executes each task synchronously using Architecture Components.
-    @get:Rule
-    var instantExecutorRule = InstantTaskExecutorRule()
-
-
-    @Before
-    fun init() {
-        quotesViewModel = QuotesViewModel(getAllQuotesByPaginationUseCase)
-    }
-
-    @Test
-    fun getAllQuotesLoadingTest() = mainCoroutineRule.runBlockingTest {
-
-        whenever(
-            getAllQuotesByPaginationUseCase(null, 5)
-        ).thenReturn(Result.Success(emptyList()))
-
-        mainCoroutineRule.pauseDispatcher()
-        assertThat(quotesViewModel.uiState.getOrAwaitValue()).isEqualTo(UiState.Loading)
-        mainCoroutineRule.resumeDispatcher()
-
-    }
+//    private lateinit var quotesViewModel: QuotesViewModel
+//
+//    @Mock
+//    private lateinit var getAllQuotesByPaginationUseCase: GetQuotesByPaginationUseCase
+//
+//    // Set the main coroutines dispatcher for unit testing.
+//    @get:Rule
+//    var mainCoroutineRule = MainCoroutineRule()
+//
+//    // Executes each task synchronously using Architecture Components.
+//    @get:Rule
+//    var instantExecutorRule = InstantTaskExecutorRule()
+//
+//
+//    @Before
+//    fun init() {
+//        quotesViewModel = QuotesViewModel(getAllQuotesByPaginationUseCase)
+//    }
+//
+//    @Test
+//    fun getAllQuotesLoadingTest() = mainCoroutineRule.runBlockingTest {
+//
+//        whenever(
+//            getAllQuotesByPaginationUseCase(null, 5)
+//        ).thenReturn(Result.Success(emptyList()))
+//
+//        mainCoroutineRule.pauseDispatcher()
+//        assertThat(quotesViewModel.uiState.getOrAwaitValue()).isEqualTo(UiState.Loading)
+//        mainCoroutineRule.resumeDispatcher()
+//
+//    }
 
 
 }
