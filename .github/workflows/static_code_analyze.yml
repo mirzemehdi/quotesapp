@@ -1,0 +1,44 @@
+name: Static Code Analyzing
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  static_code_analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Ktlint check
+        run: ./gradlew ktlintCheck
+
+      - name: Upload Ktlint Reports
+        uses: actions/upload-artifact@v2
+        with:
+          name: ktlint-report
+          path: ./**/build/reports/ktlint/
+
+      - name: Detekt check
+        run: ./gradlew detekt
+
+      - name: Upload Detekt Reports
+        uses: actions/upload-artifact@v2
+        with:
+          name: detekt-report
+          path: ./**/build/reports/detekt/detekt.*
+
