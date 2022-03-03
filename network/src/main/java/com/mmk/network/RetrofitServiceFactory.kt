@@ -20,9 +20,7 @@ object RetrofitServiceFactory {
     ): Retrofit = synchronized(this) {
         retrofits[baseUrl] ?: Retrofit.Builder()
             .client(
-
                 provideOkHttpClient(
-
                     interceptor = provideHttpLogging(),
                     readWriteTimeOutInSeconds = readWriteTimeOutInSeconds,
                     isLoggingEnabled = isLoggingEnabled

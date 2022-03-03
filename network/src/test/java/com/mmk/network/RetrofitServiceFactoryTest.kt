@@ -166,7 +166,7 @@ internal class RetrofitServiceFactoryTest {
                 dummyBaseUrl, isLoggingEnabled = isLoggingEnabled
             )
 
-            @DisplayName("Then LoggingInterceptor is added to Retrofit")
+            @DisplayName("Then LoggingInterceptor is not added to Retrofit")
             @Test
             fun verifyLoggingInterceptorIsNotAdded() {
                 verify(exactly = 0) {
