@@ -6,6 +6,10 @@ object Libs {
     val retrofit2 by lazy { "com.squareup.retrofit2:retrofit:${Versions.retrofit2}" }
     val retrofit2Converter by lazy { "com.squareup.retrofit2:converter-moshi:${Versions.retrofit2}" }
     val okHttpLogger by lazy { "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpLogging}" }
+
+    //Detekt - Static code analyzing
+    val detektCustomApi by lazy {"io.gitlab.arturbosch.detekt:detekt-api:${Versions.detekt}"}
+    val detektCli by lazy {"io.gitlab.arturbosch.detekt:detekt-cli:${Versions.detekt}"}
 }
 
 
@@ -21,5 +25,10 @@ object TestingLibs {
     val junit5VintageEngine by lazy { "org.junit.vintage:junit-vintage-engine:${Versions.jUnit5}" }
     val mockk by lazy { "io.mockk:mockk:${Versions.mockk}" }
     val mockkAndroid by lazy { "io.mockk:mockk-android:${Versions.mockk}" }
+
+    val detekt by lazy { "io.gitlab.arturbosch.detekt:detekt-test:${Versions.detekt}" }
+
+    //Needed for testing detekt custom rules
+    val assertj by lazy { "org.assertj:assertj-core:${Versions.assertj}" }
 
 }

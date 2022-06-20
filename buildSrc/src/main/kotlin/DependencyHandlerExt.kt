@@ -1,3 +1,5 @@
+import gradle.kotlin.dsl.accessors._1a0c13a14d2120203e3455a82d50f656.testImplementation
+import gradle.kotlin.dsl.accessors._1a0c13a14d2120203e3455a82d50f656.testRuntimeOnly
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
 
@@ -15,4 +17,10 @@ fun DependencyHandler.implementNetworkingLibraries() {
     implement(Libs.retrofit2)
     implement(Libs.okHttpLogger)
     implement(Libs.retrofit2Converter)
+}
+
+fun DependencyHandler.testImplementJunit5() {
+    testImplementation(TestingLibs.junit5JupiterApi)
+    testRuntimeOnly(TestingLibs.junit5JupiterEngine)
+    testRuntimeOnly(TestingLibs.junit5VintageEngine)
 }

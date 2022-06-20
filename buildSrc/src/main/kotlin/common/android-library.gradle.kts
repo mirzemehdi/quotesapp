@@ -62,6 +62,7 @@ android {
 }
 
 dependencies {
+    detekt(project(Modules.customDetektRules))
 
     testImplementation(TestingLibs.junit4)
     testImplementation(TestingLibs.truth)
