@@ -6,3 +6,4 @@ include ':network'
 
 include ':features:quotes'
 include ':customdetektrules'
+include ':core'
