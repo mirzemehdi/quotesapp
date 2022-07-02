@@ -7,6 +7,9 @@ object Libs {
     val retrofit2Converter by lazy { "com.squareup.retrofit2:converter-moshi:${Versions.retrofit2}" }
     val okHttpLogger by lazy { "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpLogging}" }
 
+    //Koin - Dependency Injection
+    val koinAndroid by lazy { "io.insert-koin:koin-android:${Versions.koin}" }
+
     //Detekt - Static code analyzing
     val detektCustomApi by lazy {"io.gitlab.arturbosch.detekt:detekt-api:${Versions.detekt}"}
     val detektCli by lazy {"io.gitlab.arturbosch.detekt:detekt-cli:${Versions.detekt}"}

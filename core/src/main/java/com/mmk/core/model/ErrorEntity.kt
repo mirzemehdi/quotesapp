@@ -35,3 +35,5 @@ sealed class ErrorEntity {
      */
     abstract class FeatureError : ErrorEntity()
 }
+
+

@@ -63,6 +63,9 @@ android {
 
 dependencies {
     detekt(project(Modules.customDetektRules))
+    implementation(project(Modules.core))
+    implementation(Libs.koinAndroid)
+
 
     testImplementation(TestingLibs.junit4)
     testImplementation(TestingLibs.truth)
