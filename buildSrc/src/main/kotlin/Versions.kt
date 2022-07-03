@@ -9,6 +9,7 @@ object Versions {
     const val jUnit5="5.8.2"
     const val truth="1.1.3"
     const val mockk="1.12.0"
+    const val coroutine="1.6.3"
 
     const val detekt = "1.19.0" // Detekt - Static Code analyzer
     const val assertj="3.15.0" //Needed for testing detekt custom rules

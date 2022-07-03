@@ -10,6 +10,11 @@ object Libs {
     //Koin - Dependency Injection
     val koinAndroid by lazy { "io.insert-koin:koin-android:${Versions.koin}" }
 
+
+    //Coroutine - For background threading
+    val coroutineCore by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}" }
+    val coroutineAndroid by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}" }
+
     //Detekt - Static code analyzing
     val detektCustomApi by lazy {"io.gitlab.arturbosch.detekt:detekt-api:${Versions.detekt}"}
     val detektCli by lazy {"io.gitlab.arturbosch.detekt:detekt-cli:${Versions.detekt}"}
@@ -28,7 +33,7 @@ object TestingLibs {
     val junit5VintageEngine by lazy { "org.junit.vintage:junit-vintage-engine:${Versions.jUnit5}" }
     val mockk by lazy { "io.mockk:mockk:${Versions.mockk}" }
     val mockkAndroid by lazy { "io.mockk:mockk-android:${Versions.mockk}" }
-
+    val coroutine by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutine}" }
     val detekt by lazy { "io.gitlab.arturbosch.detekt:detekt-test:${Versions.detekt}" }
 
     //Needed for testing detekt custom rules
