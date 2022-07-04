@@ -1,6 +1,5 @@
 package com.mmk.core.model
 
-
 /**
  * A sealed class that can be either successful result containing a data of type [T]
  * or an error result containing an errorEntity of type [ErrorEntity]

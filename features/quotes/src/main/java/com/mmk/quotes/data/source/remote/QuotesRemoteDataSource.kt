@@ -1,5 +1,6 @@
 package com.mmk.quotes.data.source.remote
 
+import com.mmk.core.model.Result
 import com.mmk.quotes.data.source.remote.model.request.NewQuoteRequest
 import com.mmk.quotes.data.source.remote.model.response.QuoteResponse
 

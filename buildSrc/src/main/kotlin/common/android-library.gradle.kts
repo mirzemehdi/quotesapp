@@ -63,7 +63,6 @@ android {
 
 dependencies {
     detekt(project(Modules.customDetektRules))
-    implementation(project(Modules.core))
     implementation(Libs.koinAndroid)
 
 

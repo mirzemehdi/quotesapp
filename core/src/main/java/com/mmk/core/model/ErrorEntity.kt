@@ -11,7 +11,6 @@ sealed class ErrorEntity {
      */
     object NetworkConnection : ErrorEntity()
 
-
     /**
      * A class that represents error happened because of some api result.
      * @property errorMessage errorMessage that is returned from the server
@@ -35,5 +34,3 @@ sealed class ErrorEntity {
      */
     abstract class FeatureError : ErrorEntity()
 }
-
-
