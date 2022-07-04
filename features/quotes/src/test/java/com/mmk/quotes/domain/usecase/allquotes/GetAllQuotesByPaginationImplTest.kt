@@ -70,7 +70,6 @@ internal class GetAllQuotesByPaginationImplTest {
     @Test
     @DisplayName("When page limit is less than zero, Error result with IllegalArgumentException is returned")
     fun whenPageLimitIsLessThanZero_ErrorResultWithItsCauseIsReturned() = runTest {
-        val errorEntity = ErrorEntity.Unexpected(IllegalArgumentException())
         val result = getAllQuotesByPagination.invoke(pageLimit = -1)
         assertThat(result).isInstanceOf(Result.Error::class.java)
         result as Result.Error
