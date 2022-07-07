@@ -73,8 +73,22 @@ dependencies {
     testRuntimeOnly(TestingLibs.junit5VintageEngine)
     testImplementation(TestingLibs.mockk)
     testImplementation(TestingLibs.coroutine)
+    testImplementation(TestingLibs.robolectric)
+    testImplementation(TestingLibs.androidXCore)
+    testImplementation(TestingLibs.androidXCoreKtx)
+    testImplementation(TestingLibs.androidXRunner)
+    testImplementation(TestingLibs.androidXJunit)
+    testImplementation(TestingLibs.androidXJunitKtx)
+
 
     androidTestImplementation(TestingLibs.mockkAndroid)
+    androidTestImplementation(TestingLibs.androidXRunner)
+    androidTestImplementation(TestingLibs.androidXCore)
+    androidTestImplementation(TestingLibs.androidXCoreKtx)
+    androidTestImplementation(TestingLibs.androidXJunit)
+    androidTestImplementation(TestingLibs.androidXJunitKtx)
+    androidTestImplementation(TestingLibs.truth)
+
 
 
 }

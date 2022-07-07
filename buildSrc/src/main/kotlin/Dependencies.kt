@@ -32,11 +32,21 @@ object TestingLibs {
     val junit5JupiterEngine by lazy { "org.junit.jupiter:junit-jupiter-engine:${Versions.jUnit5}" }
     val junit5VintageEngine by lazy { "org.junit.vintage:junit-vintage-engine:${Versions.jUnit5}" }
     val mockk by lazy { "io.mockk:mockk:${Versions.mockk}" }
-    val mockkAndroid by lazy { "io.mockk:mockk-android:${Versions.mockk}" }
     val coroutine by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutine}" }
     val detekt by lazy { "io.gitlab.arturbosch.detekt:detekt-test:${Versions.detekt}" }
+    val robolectric by lazy { "org.robolectric:robolectric:${Versions.robolectric}" }
 
     //Needed for testing detekt custom rules
     val assertj by lazy { "org.assertj:assertj-core:${Versions.assertj}" }
+
+
+    // Instrumented test libraries androidTestImplementation(...)
+    val androidXCore by lazy { "androidx.test:core:${Versions.androidXCore}" }
+    val androidXCoreKtx by lazy { "androidx.test:core-ktx:${Versions.androidXCore}" }
+    val androidXRunner by lazy { "androidx.test:runner:${Versions.androidXCore}" }
+    val androidXJunit by lazy { "androidx.test.ext:junit:${Versions.androidXJunit}" }
+    val androidXJunitKtx by lazy { "androidx.test.ext:junit-ktx:${Versions.androidXJunit}" }
+    val mockkAndroid by lazy { "io.mockk:mockk-android:${Versions.mockk}" }
+
 
 }
