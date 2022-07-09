@@ -30,6 +30,9 @@ sealed class Result<out T> {
          * success result from a function but without any data.
          */
         val EMPTY = Success(Unit)
+
+        fun <T> success(data: T): Result<T> = Success(data)
+        fun error(errorEntity: ErrorEntity? = null): Result.Error = Error(errorEntity)
     }
 }
 

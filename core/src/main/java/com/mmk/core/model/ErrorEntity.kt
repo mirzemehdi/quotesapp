@@ -6,6 +6,17 @@ package com.mmk.core.model
  */
 sealed class ErrorEntity {
 
+    companion object {
+        fun networkConnection() = ErrorEntity.NetworkConnection
+        fun apiError(
+            errorMessage: String? = "",
+            responseCode: Int? = null,
+            exception: Exception? = null
+        ) = ErrorEntity.ApiError(errorMessage, responseCode, exception)
+
+        fun unexpected(exception: Exception) = Unexpected(exception)
+    }
+
     /**
      * An object that represents error happened because of internet connection.
      */

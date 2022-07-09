@@ -15,7 +15,7 @@ val networkModule = module {
 
     single { Firebase.firestore }
 
-    fun provideQuotesReference(db: FirebaseFirestore) =
+   fun provideQuotesReference(db: FirebaseFirestore) =
         db.collection(NetworkConstants.QUOTES_COLLECTION_NAME)
 
     single(named(QUALIFIER_QUOTES)) { provideQuotesReference(get()) }

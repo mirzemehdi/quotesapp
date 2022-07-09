@@ -16,8 +16,18 @@ object Libs {
     val coroutineAndroid by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}" }
 
     //Detekt - Static code analyzing
-    val detektCustomApi by lazy {"io.gitlab.arturbosch.detekt:detekt-api:${Versions.detekt}"}
-    val detektCli by lazy {"io.gitlab.arturbosch.detekt:detekt-cli:${Versions.detekt}"}
+    val detektCustomApi by lazy { "io.gitlab.arturbosch.detekt:detekt-api:${Versions.detekt}" }
+    val detektCli by lazy { "io.gitlab.arturbosch.detekt:detekt-cli:${Versions.detekt}" }
+
+    //Firebase
+    val firebasePlatform by lazy { "com.google.firebase:firebase-bom:${Versions.firebase}" }
+    val firebaseFireStore by lazy { "com.google.firebase:firebase-firestore" }
+    val firebaseFireStoreKtx by lazy { "com.google.firebase:firebase-firestore-ktx" }
+
+    // coroutines support for firebase operations
+    val firebaseCoroutineSupport by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:${Versions.coroutine}" }
+
+
 }
 
 
