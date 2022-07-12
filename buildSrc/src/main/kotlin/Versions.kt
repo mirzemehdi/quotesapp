@@ -4,6 +4,7 @@ object Versions {
     const val okHttpLogging="4.2.1"
     const val koin="3.2.0"
     const val firebase="30.2.0"
+    const val timber="5.0.1"
 
     //Testing Libraries Versions
     const val jUnit="4.12"

@@ -59,4 +59,6 @@ class FakeQuotesRemoteDataSource(private val networkHandler: NetworkHandler) :
             Result.error(ErrorEntity.apiError(exception = e))
         }
     }
+
+    fun contains(id: String) = quotesList.contains(id)
 }

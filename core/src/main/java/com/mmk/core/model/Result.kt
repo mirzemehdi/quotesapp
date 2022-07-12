@@ -66,3 +66,10 @@ inline fun <T : Any?> Result<T>.onError(action: (errorEntity: ErrorEntity?) -> U
     if (this is Result.Error) action(errorEntity)
     return this
 }
+
+inline fun <T : Any?, R> Result<T>.mapDataOnSuccess(transform: (T) -> R): Result<R> {
+    return when (this) {
+        is Result.Error -> this
+        is Result.Success -> Result.success(transform(data))
+    }
+}

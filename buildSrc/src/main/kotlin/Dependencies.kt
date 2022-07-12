@@ -27,6 +27,9 @@ object Libs {
     // coroutines support for firebase operations
     val firebaseCoroutineSupport by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:${Versions.coroutine}" }
 
+    //For logging
+    val timber by lazy { "com.jakewharton.timber:timber:${Versions.timber}" }
+
 
 }
 

@@ -15,6 +15,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import java.util.UUID
 
 @ExperimentalCoroutinesApi
 
@@ -30,7 +31,7 @@ internal class QuotesRepositoryImplTest {
         quoteMapper = QuoteMapper()
         networkHandler = mockk()
         quotesRemoteDataSource = FakeQuotesRemoteDataSource(networkHandler)
-        quotesRepositoryImpl = QuotesRepositoryImpl(quotesRemoteDataSource)
+        quotesRepositoryImpl = QuotesRepositoryImpl(quotesRemoteDataSource, quoteMapper)
     }
 
     @DisplayName("Given No Internet Case")
@@ -50,6 +51,21 @@ internal class QuotesRepositoryImplTest {
             @Test
             fun noNetworkConnectionErrorIsReturned() = runTest {
                 val result = quotesRepositoryImpl.getQuotesByPagination(null, 10)
+                Truth.assertThat(result).isInstanceOf(Result.Error::class.java)
+                result as Result.Error
+                Truth.assertThat(result.errorEntity)
+                    .isInstanceOf(ErrorEntity.networkConnection().javaClass)
+            }
+        }
+
+        @DisplayName("When adding new quote")
+        @Nested
+        inner class AddNewQuote {
+
+            @DisplayName("NoNetworkConnection Error is returned")
+            @Test
+            fun noNetworkConnectionErrorIsReturned() = runTest {
+                val result = quotesRepositoryImpl.addNewQuote(Quote(id = "1"))
                 Truth.assertThat(result).isInstanceOf(Result.Error::class.java)
                 result as Result.Error
                 Truth.assertThat(result.errorEntity)
@@ -105,6 +121,7 @@ internal class QuotesRepositoryImplTest {
                 result as Result.Success
                 Truth.assertThat(result.data).isEqualTo(quoteList)
             }
+
             @DisplayName("Verify pagination limit is correct")
             @Test
             fun verifyPaginationLimitIsCorrect() = runTest {
@@ -132,6 +149,39 @@ internal class QuotesRepositoryImplTest {
                 result as Result.Success
                 Truth.assertThat(result.data).hasSize(1)
                 Truth.assertThat(result.data).isEqualTo(quoteList.subList(2, 3))
+            }
+        }
+
+        @DisplayName("When Adding new quote")
+        @Nested
+        inner class AddNewQuote {
+
+            @DisplayName(
+                "ApiError with exception is returned, " +
+                    "if some problem happens in network side"
+            )
+            @Test
+            fun apiErrorWithExceptionIsReturned() = runTest {
+                quotesRemoteDataSource.shouldThrowException = true
+                val result = quotesRepositoryImpl.addNewQuote(Quote(id = "1"))
+                Truth.assertThat(result).isInstanceOf(Result.Error::class.java)
+                result as Result.Error
+                Truth.assertThat(result.errorEntity)
+                    .isInstanceOf(ErrorEntity.apiError().javaClass)
+            }
+
+            @DisplayName("Success Result with Empty Data is returned, if added successfully")
+            @Test
+            fun successResultWithEmptyDataIsReturnedIfAddedSuccessfully() = runTest {
+                val randomId = UUID.randomUUID().toString()
+                val quote = Quote(id = randomId)
+                val result =
+                    quotesRemoteDataSource.addNewQuote(quoteMapper.mapToNetworkRequest(quote))
+
+                Truth.assertThat(result).isInstanceOf(Result.Success::class.java)
+                result as Result.Success
+                Truth.assertThat(result.data).isEqualTo(Unit)
+                Truth.assertThat(quotesRemoteDataSource.contains(randomId)).isTrue()
             }
         }
     }

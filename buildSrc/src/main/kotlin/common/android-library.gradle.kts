@@ -64,6 +64,7 @@ android {
 dependencies {
     detekt(project(Modules.customDetektRules))
     implementation(Libs.koinAndroid)
+    implementation(Libs.timber)
 
 
     testImplementation(TestingLibs.junit4)
