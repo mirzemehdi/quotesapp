@@ -49,6 +49,7 @@ object TestingLibs {
     val detekt by lazy { "io.gitlab.arturbosch.detekt:detekt-test:${Versions.detekt}" }
     val robolectric by lazy { "org.robolectric:robolectric:${Versions.robolectric}" }
 
+
     //Needed for testing detekt custom rules
     val assertj by lazy { "org.assertj:assertj-core:${Versions.assertj}" }
 

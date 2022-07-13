@@ -5,6 +5,8 @@ plugins {
 
 dependencies {
     implementation(project(Modules.core))
+    implementation(project(Modules.commonUi))
+
     implementation(platform(Libs.firebasePlatform))
     implementation(Libs.firebaseFireStore)
     implementation(Libs.firebaseFireStoreKtx)
