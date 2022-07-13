@@ -66,7 +66,7 @@ dependencies {
     implementation(Libs.koinAndroid)
     implementation(Libs.timber)
 
-
+    testImplementation(project(Modules.testUtils))
     testImplementation(TestingLibs.junit4)
     testImplementation(TestingLibs.truth)
     testImplementation(TestingLibs.junit5JupiterApi)
