@@ -1,10 +1,12 @@
-package com.mmk.quotesapp.utils
+package com.mmk.common.ui
 
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 
 /**
  * Used as a wrapper for data that is exposed via a LiveData that represents an event.
  */
-open class SingleEvent<out T>(private val content: T) {
+class SingleEvent<out T>(private val content: T) {
 
     var hasBeenHandled = false
         private set // Allow external read but not write
@@ -27,4 +29,11 @@ open class SingleEvent<out T>(private val content: T) {
     fun peekContent(): T = content
 }
 
-
+inline fun <T> LiveData<SingleEvent<T>>.observeEvent(
+    owner: LifecycleOwner,
+    crossinline onEventUnhandledContent: (T) -> Unit
+) {
+    observe(owner) {
+        it?.getContentIfNotHandled()?.let(onEventUnhandledContent)
+    }
+}
