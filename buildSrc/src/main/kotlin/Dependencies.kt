@@ -30,6 +30,9 @@ object Libs {
     //For logging
     val timber by lazy { "com.jakewharton.timber:timber:${Versions.timber}" }
 
+    //Pagination
+    val paging by lazy { "androidx.paging:paging-runtime:${Versions.paging}" }
+
 
 }
 

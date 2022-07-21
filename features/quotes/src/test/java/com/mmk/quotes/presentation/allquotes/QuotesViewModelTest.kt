@@ -1,6 +1,7 @@
 package com.mmk.quotes.presentation.allquotes
 
 import com.google.common.truth.Truth
+import com.mmk.common.ui.ErrorMessage
 import com.mmk.common.ui.UiState
 import com.mmk.core.model.ErrorEntity
 import com.mmk.core.model.Result
@@ -15,6 +16,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 
@@ -45,11 +47,11 @@ internal class QuotesViewModelTest {
 
     @Test
     fun `verify quotesList is empty when there are no quotes`() = runTest {
-        val quoteList = emptyList<Quote>()
-        coEvery { getAllQuotesByPagination(any(), any()) } returns Result.success(quoteList)
+        val expectedQuoteList = emptyList<Quote>()
+        coEvery { getAllQuotesByPagination(any(), any()) } returns Result.success(expectedQuoteList)
         advanceUntilIdle()
-        val actualList = quotesViewModel.quotesList.getOrAwaitValue()
-        Truth.assertThat(actualList).isEmpty()
+        val actualQuoteListPagingData = quotesViewModel.quotesList.getOrAwaitValue()
+        Truth.assertThat(actualQuoteListPagingData).isEqualTo(expectedQuoteList)
     }
 
     @Test
@@ -59,6 +61,17 @@ internal class QuotesViewModelTest {
         advanceUntilIdle()
         val actualList = quotesViewModel.quotesList.getOrAwaitValue()
         Truth.assertThat(actualList).isEqualTo(quoteList)
+    }
+
+    @Disabled("Pagination is not implemented yet")
+    @Test
+    fun `verify quotesList is paginated correctly`() = runTest {
+        val quoteList = listOf(Quote("1"), Quote(id = "2"), Quote(id = "3"))
+        val paginatedQuoteList = quoteList.take(2)
+        coEvery { getAllQuotesByPagination(any(), 2) } returns Result.success(paginatedQuoteList)
+        advanceUntilIdle()
+        val actualList = quotesViewModel.quotesList.getOrAwaitValue()
+        Truth.assertThat(actualList).isEqualTo(paginatedQuoteList)
     }
 
     @Test
@@ -94,6 +107,20 @@ internal class QuotesViewModelTest {
     }
 
     @Test
+    fun `given no network when getting quotes then errorMessage is null`() = runTest {
+        coEvery {
+            getAllQuotesByPagination(
+                any(),
+                any()
+            )
+        } returns Result.Error(ErrorEntity.networkConnection())
+        advanceUntilIdle()
+        val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
+        Truth.assertThat(uiState).isInstanceOf(UiState.Error::class.java)
+        Truth.assertThat((uiState as UiState.Error).errorMessage).isNull()
+    }
+
+    @Test
     fun `given some error when getting quotes then uiState is Error`() = runTest {
         coEvery {
             getAllQuotesByPagination(
@@ -105,4 +132,21 @@ internal class QuotesViewModelTest {
         val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
         Truth.assertThat(uiState).isInstanceOf(UiState.Error::class.java)
     }
+
+    @Test
+    fun `given some error when getting quotes then uiState is Error, and errorMessage is not empty`() =
+        runTest {
+            coEvery {
+                getAllQuotesByPagination(
+                    any(),
+                    any()
+                )
+            } returns Result.Error()
+            advanceUntilIdle()
+            val errorMessage =
+                ErrorMessage.ResourceId(com.mmk.common.ui.R.string.msg_unknown_error_occurred)
+            val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
+            Truth.assertThat(uiState).isInstanceOf(UiState.Error::class.java)
+            Truth.assertThat((uiState as UiState.Error).errorMessage).isEqualTo(errorMessage)
+        }
 }

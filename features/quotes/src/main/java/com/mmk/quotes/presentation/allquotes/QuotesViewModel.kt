@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mmk.common.ui.ErrorMessage
 import com.mmk.common.ui.SingleEvent
 import com.mmk.common.ui.UiState
 import com.mmk.core.model.ErrorEntity
@@ -19,7 +20,7 @@ class QuotesViewModel(private val getAllQuotesByPagination: GetAllQuotesByPagina
     private val _getQuotesUiState: MutableLiveData<UiState> = MutableLiveData(UiState.Loading)
     val getQuotesUiState: LiveData<UiState> = _getQuotesUiState
 
-    private val _quotesList: MutableLiveData<List<Quote>> = MutableLiveData(emptyList())
+    private var _quotesList: MutableLiveData<List<Quote>> = MutableLiveData(emptyList())
     val quotesList: LiveData<List<Quote>> = _quotesList
 
     private val _noNetworkConnectionEvent: MutableLiveData<SingleEvent<Unit>> = MutableLiveData()
@@ -38,15 +39,20 @@ class QuotesViewModel(private val getAllQuotesByPagination: GetAllQuotesByPagina
                 else _getQuotesUiState.value = UiState.HasData
             }
             .onError { errorEntity ->
-                _getQuotesUiState.value = UiState.Error()
+                val errorMessage: ErrorMessage?
                 when (errorEntity) {
-                    is ErrorEntity.ApiError -> TODO()
-                    is ErrorEntity.FeatureError -> TODO()
-                    ErrorEntity.NetworkConnection ->
+                    ErrorEntity.NetworkConnection -> {
                         _noNetworkConnectionEvent.value = SingleEvent(Unit)
-                    is ErrorEntity.Unexpected -> TODO()
-                    null -> TODO()
+                        errorMessage = null
+                    }
+                    is ErrorEntity.ApiError,
+                    is ErrorEntity.FeatureError,
+                    is ErrorEntity.Unexpected,
+                    null
+                    -> errorMessage =
+                        ErrorMessage.ResourceId(com.mmk.common.ui.R.string.msg_unknown_error_occurred)
                 }
+                _getQuotesUiState.value = UiState.Error(errorMessage)
             }
     }
 }

@@ -11,4 +11,5 @@ dependencies {
     implementation(Libs.firebaseFireStore)
     implementation(Libs.firebaseFireStoreKtx)
     implementation(Libs.firebaseCoroutineSupport)
+    implementation(Libs.paging)
 }

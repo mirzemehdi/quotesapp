@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="msg_unknown_error_occurred">Unknown error occurred</string>
+</resources>
