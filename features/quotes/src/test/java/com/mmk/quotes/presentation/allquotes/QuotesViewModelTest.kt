@@ -16,7 +16,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 
@@ -63,12 +62,16 @@ internal class QuotesViewModelTest {
         Truth.assertThat(actualList).isEqualTo(quoteList)
     }
 
-    @Disabled("Pagination is not implemented yet")
     @Test
     fun `verify quotesList is paginated correctly`() = runTest {
-        val quoteList = listOf(Quote("1"), Quote(id = "2"), Quote(id = "3"))
-        val paginatedQuoteList = quoteList.take(2)
-        coEvery { getAllQuotesByPagination(any(), 2) } returns Result.success(paginatedQuoteList)
+        val quoteList = mutableListOf<Quote>()
+        for (i in 1..20)
+            quoteList.add(Quote("ID_$i"))
+        val quotesLimitPerPage = Constants.NB_QUOTES_LIMIT_PER_PAGE
+        val paginatedQuoteList = quoteList.take(quotesLimitPerPage)
+        coEvery { getAllQuotesByPagination(any(), quotesLimitPerPage) } returns Result.success(
+            paginatedQuoteList
+        )
         advanceUntilIdle()
         val actualList = quotesViewModel.quotesList.getOrAwaitValue()
         Truth.assertThat(actualList).isEqualTo(paginatedQuoteList)

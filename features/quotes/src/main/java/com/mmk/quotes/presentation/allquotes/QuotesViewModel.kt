@@ -30,9 +30,8 @@ class QuotesViewModel(private val getAllQuotesByPagination: GetAllQuotesByPagina
         getQuotesByPagination()
     }
 
-    @Suppress("MagicNumber")
     private fun getQuotesByPagination() = viewModelScope.launch {
-        getAllQuotesByPagination.invoke(null, 10)
+        getAllQuotesByPagination.invoke(null, Constants.NB_QUOTES_LIMIT_PER_PAGE)
             .onSuccess { list ->
                 _quotesList.value = list
                 if (list.isEmpty()) _getQuotesUiState.value = UiState.NoData
