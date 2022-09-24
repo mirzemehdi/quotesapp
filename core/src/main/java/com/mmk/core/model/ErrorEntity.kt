@@ -14,7 +14,7 @@ sealed class ErrorEntity {
             exception: Exception? = null
         ) = ErrorEntity.ApiError(errorMessage, responseCode, exception)
 
-        fun unexpected(exception: Exception) = Unexpected(exception)
+        fun unexpected(exception: Throwable) = Unexpected(exception)
     }
 
     /**
@@ -35,10 +35,10 @@ sealed class ErrorEntity {
     ) : ErrorEntity()
 
     /**
-     * A class that represents Unexpected error type containing [e] of type [Exception].
+     * A class that represents Unexpected error type containing [e] of type [Throwable].
      * @property e the exception that caused the error
      */
-    data class Unexpected(val e: Exception) : ErrorEntity()
+    data class Unexpected(val e: Throwable) : ErrorEntity()
 
     /**
      * In each feature module this should be extended

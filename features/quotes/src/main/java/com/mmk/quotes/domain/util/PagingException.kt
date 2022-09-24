@@ -1,4 +1,4 @@
-package com.mmk.quotes.data.util
+package com.mmk.quotes.domain.util
 
 import com.mmk.core.model.ErrorEntity
 

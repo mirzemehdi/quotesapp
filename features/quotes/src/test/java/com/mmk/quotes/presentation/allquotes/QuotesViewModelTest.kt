@@ -1,21 +1,21 @@
 package com.mmk.quotes.presentation.allquotes
 
+import androidx.paging.LoadState
 import com.google.common.truth.Truth
 import com.mmk.common.ui.ErrorMessage
 import com.mmk.common.ui.UiState
 import com.mmk.core.model.ErrorEntity
-import com.mmk.core.model.Result
-import com.mmk.quotes.domain.model.Quote
+import com.mmk.quotes.data.repository.QuotesPagingSource
 import com.mmk.quotes.domain.usecase.allquotes.GetAllQuotesByPagination
+import com.mmk.quotes.domain.util.PagingException
 import com.mmk.testutils.coroutine.CoroutinesTestExtension
 import com.mmk.testutils.lifecycle.InstantTaskExecutorExtension
 import com.mmk.testutils.lifecycle.getOrAwaitValue
-import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 
@@ -25,131 +25,89 @@ internal class QuotesViewModelTest {
 
     private lateinit var quotesViewModel: QuotesViewModel
     private lateinit var getAllQuotesByPagination: GetAllQuotesByPagination
+    private lateinit var quotesPagingSourceFactory: () -> QuotesPagingSource
 
     @BeforeEach
     internal fun setUp() {
         getAllQuotesByPagination = mockk()
-        quotesViewModel = QuotesViewModel(getAllQuotesByPagination)
+        quotesPagingSourceFactory = { QuotesPagingSource(getAllQuotesByPagination) }
+        quotesViewModel = QuotesViewModel(quotesPagingSourceFactory)
     }
 
     @Test
-    fun `verify getQuotes UI state is Loading when first time viewModel is created`() {
+    fun `getQuotes UI state is Loading when first time viewModel is created`() {
         val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
         Truth.assertThat(uiState).isEqualTo(UiState.Loading)
     }
 
     @Test
-    fun `verify quotesList is Empty when first time viewModel is created`() = runTest {
-        val actualList = quotesViewModel.quotesList.getOrAwaitValue()
-        Truth.assertThat(actualList).isEmpty()
-    }
-
-    @Test
-    fun `verify quotesList is empty when there are no quotes`() = runTest {
-        val expectedQuoteList = emptyList<Quote>()
-        coEvery { getAllQuotesByPagination(any(), any()) } returns Result.success(expectedQuoteList)
-        advanceUntilIdle()
-        val actualQuoteListPagingData = quotesViewModel.quotesList.getOrAwaitValue()
-        Truth.assertThat(actualQuoteListPagingData).isEqualTo(expectedQuoteList)
-    }
-
-    @Test
-    fun `verify quotesList is not empty when there are quotes`() = runTest {
-        val quoteList = listOf(Quote("1"), Quote(id = "2"))
-        coEvery { getAllQuotesByPagination(any(), any()) } returns Result.success(quoteList)
-        advanceUntilIdle()
-        val actualList = quotesViewModel.quotesList.getOrAwaitValue()
-        Truth.assertThat(actualList).isEqualTo(quoteList)
-    }
-
-    @Test
-    fun `verify quotesList is paginated correctly`() = runTest {
-        val quoteList = mutableListOf<Quote>()
-        for (i in 1..20)
-            quoteList.add(Quote("ID_$i"))
-        val quotesLimitPerPage = Constants.NB_QUOTES_LIMIT_PER_PAGE
-        val paginatedQuoteList = quoteList.take(quotesLimitPerPage)
-        coEvery { getAllQuotesByPagination(any(), quotesLimitPerPage) } returns Result.success(
-            paginatedQuoteList
+    fun `getQuotes uiState is HasData when there are quotes`() = runTest {
+        quotesViewModel.onPageAdapterLoadingStateChanged(
+            LoadState.NotLoading(false), 4
         )
-        advanceUntilIdle()
-        val actualList = quotesViewModel.quotesList.getOrAwaitValue()
-        Truth.assertThat(actualList).isEqualTo(paginatedQuoteList)
-    }
-
-    @Test
-    fun `verify getQuotes uiState is HasData when there are quotes`() = runTest {
-        val quoteList = listOf(Quote("1"), Quote(id = "2"))
-        coEvery { getAllQuotesByPagination(any(), any()) } returns Result.success(quoteList)
-        advanceUntilIdle()
         val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
         Truth.assertThat(uiState).isEqualTo(UiState.HasData)
     }
 
     @Test
-    fun `verify getQuotes uiState is NoData when there are no quotes`() = runTest {
-        val quoteList = emptyList<Quote>()
-        coEvery { getAllQuotesByPagination(any(), any()) } returns Result.success(quoteList)
-        advanceUntilIdle()
+    fun `getQuotes uiState is NoData when there are no quotes`() = runTest {
+        quotesViewModel.onPageAdapterLoadingStateChanged(LoadState.NotLoading(false), 0)
         val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
         Truth.assertThat(uiState).isEqualTo(UiState.NoData)
     }
 
-    @Test
-    fun `given no network when getting quotes then noNetworkConnection is true`() = runTest {
-        coEvery {
-            getAllQuotesByPagination(
-                any(),
-                any()
+    @Nested
+    internal inner class GivenErrorOnPageAdapterLoadingStateChanged {
+        @Test
+        fun `uiState is Error`() = runTest {
+            quotesViewModel.onPageAdapterLoadingStateChanged(
+                LoadState.Error(PagingException(ErrorEntity.networkConnection()))
             )
-        } returns Result.Error(ErrorEntity.networkConnection())
-        advanceUntilIdle()
-        val noNetworkConnectionEvent = quotesViewModel.noNetworkConnectionEvent.getOrAwaitValue()
-
-        Truth.assertThat(noNetworkConnectionEvent).isNotNull()
-    }
-
-    @Test
-    fun `given no network when getting quotes then errorMessage is null`() = runTest {
-        coEvery {
-            getAllQuotesByPagination(
-                any(),
-                any()
-            )
-        } returns Result.Error(ErrorEntity.networkConnection())
-        advanceUntilIdle()
-        val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
-        Truth.assertThat(uiState).isInstanceOf(UiState.Error::class.java)
-        Truth.assertThat((uiState as UiState.Error).errorMessage).isNull()
-    }
-
-    @Test
-    fun `given some error when getting quotes then uiState is Error`() = runTest {
-        coEvery {
-            getAllQuotesByPagination(
-                any(),
-                any()
-            )
-        } returns Result.Error()
-        advanceUntilIdle()
-        val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
-        Truth.assertThat(uiState).isInstanceOf(UiState.Error::class.java)
-    }
-
-    @Test
-    fun `given some error when getting quotes then uiState is Error, and errorMessage is not empty`() =
-        runTest {
-            coEvery {
-                getAllQuotesByPagination(
-                    any(),
-                    any()
-                )
-            } returns Result.Error()
-            advanceUntilIdle()
-            val errorMessage =
-                ErrorMessage.ResourceId(com.mmk.common.ui.R.string.msg_unknown_error_occurred)
             val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
             Truth.assertThat(uiState).isInstanceOf(UiState.Error::class.java)
-            Truth.assertThat((uiState as UiState.Error).errorMessage).isEqualTo(errorMessage)
         }
+
+        @Test
+        fun `errorMessage is not empty if errorType is not NoNetworkConnection`() =
+            runTest {
+                quotesViewModel.onPageAdapterLoadingStateChanged(
+                    LoadState.Error(PagingException(ErrorEntity.apiError()))
+                )
+                val errorMessage =
+                    ErrorMessage.ResourceId(com.mmk.common.ui.R.string.msg_unknown_error_occurred)
+                val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
+                Truth.assertThat(uiState).isInstanceOf(UiState.Error::class.java)
+                Truth.assertThat((uiState as UiState.Error).errorMessage).isEqualTo(errorMessage)
+            }
+
+        @Test
+        fun ` then error type is Unexpected if not PagingException`() =
+            runTest {
+                quotesViewModel.onPageAdapterLoadingStateChanged(
+                    LoadState.Error(Exception("Some error occurred, and not covered with PagingException"))
+                )
+                val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
+                Truth.assertThat(uiState).isInstanceOf(UiState.Error::class.java)
+            }
+
+        @Test
+        fun `given no network then noNetworkConnection is true`() = runTest {
+            quotesViewModel.onPageAdapterLoadingStateChanged(
+                LoadState.Error(PagingException(ErrorEntity.networkConnection()))
+            )
+            val noNetworkConnectionEvent = quotesViewModel.noNetworkConnectionEvent.getOrAwaitValue()
+
+            Truth.assertThat(noNetworkConnectionEvent).isNotNull()
+        }
+
+        @Test
+        fun `given no network then errorMessage is null`() = runTest {
+            quotesViewModel.onPageAdapterLoadingStateChanged(
+                LoadState.Error(PagingException(ErrorEntity.networkConnection()))
+            )
+            val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
+            Truth.assertThat(uiState).isInstanceOf(UiState.Error::class.java)
+            Truth.assertThat((uiState as UiState.Error).errorMessage).isNull()
+        }
+    }
 }

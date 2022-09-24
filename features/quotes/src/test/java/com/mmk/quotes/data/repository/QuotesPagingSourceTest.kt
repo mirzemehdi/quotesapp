@@ -4,9 +4,9 @@ import androidx.paging.PagingSource
 import com.google.common.truth.Truth
 import com.mmk.core.model.ErrorEntity
 import com.mmk.core.model.Result
-import com.mmk.quotes.data.util.PagingException
 import com.mmk.quotes.domain.model.Quote
 import com.mmk.quotes.domain.usecase.allquotes.GetAllQuotesByPagination
+import com.mmk.quotes.domain.util.PagingException
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi

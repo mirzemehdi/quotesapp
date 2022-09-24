@@ -3,9 +3,9 @@ package com.mmk.quotes.data.repository
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.mmk.core.model.Result
-import com.mmk.quotes.data.util.PagingException
 import com.mmk.quotes.domain.model.Quote
 import com.mmk.quotes.domain.usecase.allquotes.GetAllQuotesByPagination
+import com.mmk.quotes.domain.util.PagingException
 
 data class QuotesPagingSource(private val getAllQuotesByPagination: GetAllQuotesByPagination) :
     PagingSource<String, Quote>() {
