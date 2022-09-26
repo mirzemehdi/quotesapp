@@ -1,4 +1,3 @@
-
 plugins {
     id(Plugins.commonAndroidLibrary)
 }
@@ -12,4 +11,11 @@ dependencies {
     implementation(Libs.firebaseFireStoreKtx)
     implementation(Libs.firebaseCoroutineSupport)
     implementation(Libs.paging)
+    implementation(Libs.circleImageView)
+}
+
+android {
+    buildFeatures {
+        viewBinding = true
+    }
 }

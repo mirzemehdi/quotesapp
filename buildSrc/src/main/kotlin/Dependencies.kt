@@ -33,6 +33,13 @@ object Libs {
     //Pagination
     val paging by lazy { "androidx.paging:paging-runtime:${Versions.paging}" }
 
+    //MaterialLibrary
+    val material by lazy { "com.google.android.material:material:${Versions.material}" }
+    val androidxAppcompat by lazy { "androidx.appcompat:appcompat:${Versions.androidxAppcompat}" }
+    val constraintLayout by lazy { "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}" }
+    val circleImageView by lazy { "de.hdodenhof:circleimageview:${Versions.circleImageView}" }
+
+
 
 }
 

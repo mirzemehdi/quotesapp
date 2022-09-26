@@ -6,6 +6,10 @@ object Versions {
     const val firebase="30.2.0"
     const val timber="5.0.1"
     const val paging="3.1.1"
+    const val material="1.6.1"
+    const val androidxAppcompat="1.5.1"
+    const val constraintLayout="2.1.4"
+    const val circleImageView="3.1.0"
 
     //Testing Libraries Versions
     const val jUnit="4.12"
