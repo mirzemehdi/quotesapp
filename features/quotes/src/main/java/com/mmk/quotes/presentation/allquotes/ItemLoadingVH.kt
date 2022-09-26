@@ -7,7 +7,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
 import com.mmk.quotes.databinding.ItemQuoteLoadStateBinding
 
-class ItemLoadingViewHolder private constructor(
+class ItemLoadingVH private constructor(
     private val binding: ItemQuoteLoadStateBinding,
     private val retry: () -> Unit
 ) : RecyclerView.ViewHolder(binding.root) {
@@ -22,10 +22,10 @@ class ItemLoadingViewHolder private constructor(
     }
 
     companion object {
-        fun from(parent: ViewGroup, retry: () -> Unit): ItemLoadingViewHolder {
+        fun from(parent: ViewGroup, retry: () -> Unit): ItemLoadingVH {
             val inflater = LayoutInflater.from(parent.context)
             val binding = ItemQuoteLoadStateBinding.inflate(inflater, parent, false)
-            return ItemLoadingViewHolder(binding, retry)
+            return ItemLoadingVH(binding, retry)
         }
     }
 }
