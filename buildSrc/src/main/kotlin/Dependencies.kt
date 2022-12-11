@@ -39,6 +39,10 @@ object Libs {
     val constraintLayout by lazy { "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}" }
     val circleImageView by lazy { "de.hdodenhof:circleimageview:${Versions.circleImageView}" }
 
+    val navigationFragment by lazy { "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}" }
+    val navigationUi by lazy { "androidx.navigation:navigation-ui-ktx:${Versions.navigation}" }
+
+
 
 
 }
@@ -71,6 +75,9 @@ object TestingLibs {
     val androidXJunit by lazy { "androidx.test.ext:junit:${Versions.androidXJunit}" }
     val androidXJunitKtx by lazy { "androidx.test.ext:junit-ktx:${Versions.androidXJunit}" }
     val mockkAndroid by lazy { "io.mockk:mockk-android:${Versions.mockk}" }
+    val fragmentTesting by lazy { "androidx.fragment:fragment-testing:${Versions.fragmentTesting}" }
+    val espresso by lazy { "androidx.test.espresso:espresso-core:${Versions.espresso}" }
+
 
 
 }

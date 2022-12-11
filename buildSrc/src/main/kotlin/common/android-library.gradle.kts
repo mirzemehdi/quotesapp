@@ -65,6 +65,8 @@ dependencies {
     detekt(project(Modules.customDetektRules))
     implementation(Libs.koinAndroid)
     implementation(Libs.timber)
+    implementation(Libs.navigationUi)
+    implementation(Libs.navigationFragment)
 
     testImplementation(project(Modules.testUtils))
     testImplementation(TestingLibs.junit4)
@@ -81,7 +83,7 @@ dependencies {
     testImplementation(TestingLibs.androidXJunit)
     testImplementation(TestingLibs.androidXJunitKtx)
 
-
+    androidTestImplementation(project(Modules.testUtils))
     androidTestImplementation(TestingLibs.mockkAndroid)
     androidTestImplementation(TestingLibs.androidXRunner)
     androidTestImplementation(TestingLibs.androidXCore)
@@ -89,6 +91,9 @@ dependencies {
     androidTestImplementation(TestingLibs.androidXJunit)
     androidTestImplementation(TestingLibs.androidXJunitKtx)
     androidTestImplementation(TestingLibs.truth)
+    androidTestImplementation(TestingLibs.espresso)
+    add("debugImplementation", TestingLibs.fragmentTesting)
+
 
 
 

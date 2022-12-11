@@ -20,7 +20,7 @@ class FragmentViewBindingProperty<T : ViewBinding>(private val bindingInitialize
 
     override fun getValue(thisRef: Fragment, property: KProperty<*>): T {
         val lifecycle = thisRef.viewLifecycleOwner.lifecycle
-        if (isLifecycleStateBetweenCreatedAndDestroyedState(lifecycle.currentState).not())
+        if (isLifecycleInDestroyedState(lifecycle.currentState))
             throw IllegalStateException(
                 "Binding property is null.\n" +
                     "Binding property can be referenced only between " +
@@ -39,7 +39,7 @@ class FragmentViewBindingProperty<T : ViewBinding>(private val bindingInitialize
         binding = null
     }
 
-    private fun isLifecycleStateBetweenCreatedAndDestroyedState(state: Lifecycle.State): Boolean {
-        return state != Lifecycle.State.DESTROYED && state.isAtLeast(Lifecycle.State.CREATED)
+    private fun isLifecycleInDestroyedState(state: Lifecycle.State): Boolean {
+        return state == Lifecycle.State.DESTROYED
     }
 }

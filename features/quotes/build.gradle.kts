@@ -18,4 +18,8 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    defaultConfig {
+        testInstrumentationRunner ="com.mmk.testutils.koin.KoinTestRunner"
+    }
 }

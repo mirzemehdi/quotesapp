@@ -28,7 +28,7 @@ class QuotesVH(
             onClickLikeButton: (quote: Quote) -> Unit
         ): QuotesVH {
             val inflater = LayoutInflater.from(parent.context)
-            return QuotesVH(ItemQuoteListBinding.inflate(inflater), onClickItem, onClickLikeButton)
+            return QuotesVH(ItemQuoteListBinding.inflate(inflater,parent,false), onClickItem, onClickLikeButton)
         }
     }
 }

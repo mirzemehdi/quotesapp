@@ -17,6 +17,8 @@ import com.mmk.common.ui.UiState
 import com.mmk.core.model.ErrorEntity
 import com.mmk.quotes.domain.model.Quote
 import com.mmk.quotes.domain.util.PagingException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class QuotesViewModel(private val quotesPagingSourceFactory: () -> PagingSource<String, Quote>) :
     ViewModel() {
@@ -33,20 +35,21 @@ class QuotesViewModel(private val quotesPagingSourceFactory: () -> PagingSource<
         quotesList = getQuotesByPagination()
     }
 
-    fun onPageAdapterLoadingStateChanged(loadState: LoadState, totalItemCount: Int = 0) {
-        when (loadState) {
-            is LoadState.NotLoading ->
-                _getQuotesUiState.value =
-                    if (totalItemCount < 1) UiState.NoData else UiState.HasData
-            LoadState.Loading -> _getQuotesUiState.value = UiState.Loading
-            is LoadState.Error -> {
-                if (loadState.error is PagingException)
-                    onErrorOccurred((loadState.error as PagingException).errorEntity)
-                else
-                    onErrorOccurred(ErrorEntity.unexpected(loadState.error))
+    fun onPageAdapterLoadingStateChanged(loadState: LoadState, totalItemCount: Int = 0) =
+        viewModelScope.launch {
+            when (loadState) {
+                is LoadState.NotLoading ->
+                    _getQuotesUiState.value =
+                        if (totalItemCount < 1) UiState.NoData else UiState.HasData
+                LoadState.Loading -> _getQuotesUiState.value = UiState.Loading
+                is LoadState.Error -> {
+                    if (loadState.error is PagingException)
+                        onErrorOccurred((loadState.error as PagingException).errorEntity)
+                    else
+                        onErrorOccurred(ErrorEntity.unexpected(loadState.error))
+                }
             }
         }
-    }
 
     private fun onErrorOccurred(errorEntity: ErrorEntity?) {
         val errorMessage: ErrorMessage?

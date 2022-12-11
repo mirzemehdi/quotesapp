@@ -13,6 +13,7 @@ import com.mmk.testutils.lifecycle.InstantTaskExecutorExtension
 import com.mmk.testutils.lifecycle.getOrAwaitValue
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
@@ -45,6 +46,8 @@ internal class QuotesViewModelTest {
         quotesViewModel.onPageAdapterLoadingStateChanged(
             LoadState.NotLoading(false), 4
         )
+        advanceUntilIdle()
+
         val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
         Truth.assertThat(uiState).isEqualTo(UiState.HasData)
     }
@@ -52,6 +55,7 @@ internal class QuotesViewModelTest {
     @Test
     fun `getQuotes uiState is NoData when there are no quotes`() = runTest {
         quotesViewModel.onPageAdapterLoadingStateChanged(LoadState.NotLoading(false), 0)
+        advanceUntilIdle()
         val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
         Truth.assertThat(uiState).isEqualTo(UiState.NoData)
     }
@@ -63,6 +67,8 @@ internal class QuotesViewModelTest {
             quotesViewModel.onPageAdapterLoadingStateChanged(
                 LoadState.Error(PagingException(ErrorEntity.networkConnection()))
             )
+            advanceUntilIdle()
+
             val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
             Truth.assertThat(uiState).isInstanceOf(UiState.Error::class.java)
         }
@@ -73,6 +79,8 @@ internal class QuotesViewModelTest {
                 quotesViewModel.onPageAdapterLoadingStateChanged(
                     LoadState.Error(PagingException(ErrorEntity.apiError()))
                 )
+                advanceUntilIdle()
+
                 val errorMessage =
                     ErrorMessage.ResourceId(com.mmk.common.ui.R.string.msg_unknown_error_occurred)
                 val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
@@ -86,6 +94,8 @@ internal class QuotesViewModelTest {
                 quotesViewModel.onPageAdapterLoadingStateChanged(
                     LoadState.Error(Exception("Some error occurred, and not covered with PagingException"))
                 )
+                advanceUntilIdle()
+
                 val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
                 Truth.assertThat(uiState).isInstanceOf(UiState.Error::class.java)
             }
@@ -95,6 +105,8 @@ internal class QuotesViewModelTest {
             quotesViewModel.onPageAdapterLoadingStateChanged(
                 LoadState.Error(PagingException(ErrorEntity.networkConnection()))
             )
+            advanceUntilIdle()
+
             val noNetworkConnectionEvent = quotesViewModel.noNetworkConnectionEvent.getOrAwaitValue()
 
             Truth.assertThat(noNetworkConnectionEvent).isNotNull()
@@ -105,6 +117,8 @@ internal class QuotesViewModelTest {
             quotesViewModel.onPageAdapterLoadingStateChanged(
                 LoadState.Error(PagingException(ErrorEntity.networkConnection()))
             )
+            advanceUntilIdle()
+
             val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
             Truth.assertThat(uiState).isInstanceOf(UiState.Error::class.java)
             Truth.assertThat((uiState as UiState.Error).errorMessage).isNull()

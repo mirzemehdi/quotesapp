@@ -7,7 +7,9 @@ import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.jupiter.api.extension.AfterEachCallback
+import org.junit.jupiter.api.extension.AfterTestExecutionCallback
 import org.junit.jupiter.api.extension.BeforeEachCallback
+import org.junit.jupiter.api.extension.BeforeTestExecutionCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 
 @ExperimentalCoroutinesApi
@@ -18,7 +20,11 @@ class CoroutinesTestExtension(val testDispatcher: TestDispatcher = StandardTestD
         Dispatchers.setMain(testDispatcher)
     }
 
+
+
     override fun afterEach(context: ExtensionContext?) {
         Dispatchers.resetMain()
     }
+
+
 }

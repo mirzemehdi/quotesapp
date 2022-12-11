@@ -10,6 +10,7 @@ object Versions {
     const val androidxAppcompat="1.5.1"
     const val constraintLayout="2.1.4"
     const val circleImageView="3.1.0"
+    const val navigation="2.5.3"
 
     //Testing Libraries Versions
     const val jUnit="4.12"
@@ -24,6 +25,10 @@ object Versions {
 
     const val androidXCore="1.4.0"
     const val androidXJunit="1.1.3"
+    const val fragmentTesting="1.5.4"
+    const val espresso="3.3.0"
+    const val androidXMonitor="1.4.0"
+
 
 
 
