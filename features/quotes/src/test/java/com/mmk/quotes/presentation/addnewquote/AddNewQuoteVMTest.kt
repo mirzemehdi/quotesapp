@@ -10,7 +10,6 @@ import com.mmk.testutils.coroutine.CoroutinesTestExtension
 import com.mmk.testutils.lifecycle.InstantTaskExecutorExtension
 import com.mmk.testutils.lifecycle.getOrAwaitValue
 import io.mockk.coEvery
-import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
@@ -23,15 +22,15 @@ import org.junit.jupiter.api.extension.ExtendWith
 
 @ExperimentalCoroutinesApi
 @ExtendWith(InstantTaskExecutorExtension::class, CoroutinesTestExtension::class)
-internal class AddNewQuoteVMTest{
+internal class AddNewQuoteVMTest {
 
     private lateinit var viewModel: AddNewQuoteVM
-    private lateinit var addNewQuoteUseCase:AddNewQuote
+    private lateinit var addNewQuoteUseCase: AddNewQuote
 
     @BeforeEach
     internal fun setUp() {
-        addNewQuoteUseCase= mockk()
-        viewModel=AddNewQuoteVM(addNewQuoteUseCase)
+        addNewQuoteUseCase = mockk()
+        viewModel = AddNewQuoteVM(addNewQuoteUseCase)
     }
 
     @Test
@@ -89,5 +88,4 @@ internal class AddNewQuoteVMTest{
         val noNetworkConnection = viewModel.noNetworkConnectionEvent.getOrAwaitValue()
         Truth.assertThat(noNetworkConnection).isEqualTo(SingleEvent(Unit))
     }
-
 }

@@ -4,18 +4,14 @@ import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingData
 import androidx.paging.PagingSource
-import androidx.recyclerview.widget.ConcatAdapter
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
-import com.google.common.truth.Truth
 import com.mmk.common.ui.UiState
 import com.mmk.quotes.R
 import com.mmk.quotes.domain.model.Quote
@@ -37,7 +33,6 @@ class QuotesFragmentTest {
     private lateinit var quotesPagingSource: PagingSource<String, Quote>
     private lateinit var quotesViewModel: QuotesViewModel
 
-
     @Before
     fun setUp() {
         application = ApplicationProvider.getApplicationContext()
@@ -51,7 +46,6 @@ class QuotesFragmentTest {
         every { quotesViewModel.quotesList } returns MutableLiveData(PagingData.empty())
         launchFragmentInContainer<QuotesFragment>(themeResId = R.style.AppTheme)
         onView(withId(R.id.quoteTitle)).check(matches(withText(R.string.title_quotes)))
-
     }
 
     @Test
@@ -60,7 +54,7 @@ class QuotesFragmentTest {
         every { quotesViewModel.quotesList } returns MutableLiveData(PagingData.empty())
         launchFragmentInContainer<QuotesFragment>(themeResId = R.style.AppTheme)
         onView(withId(R.id.progressBarQuotes))
-            .check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
+            .check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
     }
 
     @Test
@@ -87,19 +81,17 @@ class QuotesFragmentTest {
     @Test
     fun quoteListIsShown_whenThereAreQuotes() {
         every { quotesViewModel.getQuotesUiState } returns MutableLiveData(UiState.HasData)
-        val quoteList= listOf(
-            Quote("1","TestAuthor","Test"),
-            Quote("2","TestAuthor2","Test2",true),
+        val quoteList = listOf(
+            Quote("1", "TestAuthor", "Test"),
+            Quote("2", "TestAuthor2", "Test2", true),
         )
         every { quotesViewModel.quotesList } returns MutableLiveData(PagingData.from(quoteList))
 
         launchFragmentInContainer<QuotesFragment>(themeResId = R.style.AppTheme)
-        onView(withId(R.id.quotesRecyclerView)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
-        onView(withId(R.id.quotesRecyclerView)).check{ view, _ ->
+        onView(withId(R.id.quotesRecyclerView)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
+        onView(withId(R.id.quotesRecyclerView)).check { view, _ ->
             view as RecyclerView
             assert(view.adapter?.itemCount == quoteList.size)
         }
-
     }
-
 }

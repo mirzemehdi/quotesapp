@@ -44,8 +44,6 @@ class SingleEvent<out T>(private val content: T) {
         result = 31 * result + hasBeenHandled.hashCode()
         return result
     }
-
-
 }
 
 inline fun <T> LiveData<SingleEvent<T>>.observeEvent(

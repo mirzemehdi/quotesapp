@@ -8,6 +8,4 @@ import com.mmk.quotesapp.utils.binding.viewbinding.viewBinding
 class ProfileFragment : BaseFragment() {
     override val binding: FragmentLoginBinding by viewBinding(FragmentLoginBinding::inflate)
 
-
-
 }

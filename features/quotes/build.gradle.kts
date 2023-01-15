@@ -15,11 +15,8 @@ dependencies {
 }
 
 android {
-    buildFeatures {
-        viewBinding = true
-    }
 
     defaultConfig {
-        testInstrumentationRunner ="com.mmk.testutils.koin.KoinTestRunner"
+        testInstrumentationRunner = "com.mmk.testutils.koin.KoinTestRunner"
     }
 }

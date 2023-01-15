@@ -5,7 +5,7 @@
     app:cardBackgroundColor="?attr/colorSurface"
     app:cardCornerRadius="16dp"
     app:cardElevation="10dp"
-    android:theme="@style/AppTheme"
+    android:theme="@style/AppTheme.Base"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp">

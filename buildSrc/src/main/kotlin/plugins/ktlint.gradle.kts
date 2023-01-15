@@ -14,7 +14,7 @@ ktlint {
     outputToConsole.set(true)
     outputColorName.set("RED")
     ignoreFailures.set(false)
-//    disabledRules.set(listOf("no-wildcard-imports"))
+    disabledRules.set(listOf("no-wildcard-imports"))
     reporters {
         reporter(ReporterType.PLAIN)
         reporter(ReporterType.CHECKSTYLE)

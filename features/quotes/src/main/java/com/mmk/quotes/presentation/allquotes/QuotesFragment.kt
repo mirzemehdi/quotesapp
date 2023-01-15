@@ -2,7 +2,6 @@ package com.mmk.quotes.presentation.allquotes
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -13,7 +12,7 @@ import com.mmk.common.ui.fragmentdelegations.viewBinding
 import com.mmk.quotes.databinding.FragmentQuotesBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class QuotesFragment : Fragment(), IFragmentMainMethods  {
+class QuotesFragment : Fragment(), IFragmentMainMethods {
     private val binding by viewBinding(FragmentQuotesBinding::inflate)
     private val viewModel: QuotesViewModel by viewModel()
     private val quotesAdapter by lazy { QuotesAdapter() }
@@ -27,9 +26,6 @@ class QuotesFragment : Fragment(), IFragmentMainMethods  {
         observeValues()
         setClicks()
     }
-
-
-
 
     override fun initView() {
         binding.quotesRecyclerView.adapter = quotesAdapter.withLoadStateFooter(

@@ -3,20 +3,18 @@ package com.mmk.quotes.presentation.addnewquote
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.mmk.common.ui.SingleEvent
-import com.mmk.common.ui.UiState
-import com.mmk.quotes.domain.model.Quote
-import com.mmk.quotes.domain.usecase.addquote.AddNewQuote
-import timber.log.Timber
 import androidx.lifecycle.viewModelScope
 import com.mmk.common.ui.ErrorMessage
+import com.mmk.common.ui.SingleEvent
+import com.mmk.common.ui.UiState
 import com.mmk.core.model.ErrorEntity
 import com.mmk.core.model.onError
 import com.mmk.core.model.onSuccess
+import com.mmk.quotes.domain.model.Quote
+import com.mmk.quotes.domain.usecase.addquote.AddNewQuote
 import kotlinx.coroutines.launch
 
-
-class AddNewQuoteVM constructor(private val addNewQuoteUseCase: AddNewQuote):ViewModel()  {
+class AddNewQuoteVM constructor(private val addNewQuoteUseCase: AddNewQuote) : ViewModel() {
 
     val quoteAuthor = MutableLiveData("")
     val quoteText = MutableLiveData("")
@@ -30,17 +28,16 @@ class AddNewQuoteVM constructor(private val addNewQuoteUseCase: AddNewQuote):Vie
     private val _noNetworkConnectionEvent: MutableLiveData<SingleEvent<Unit>> = MutableLiveData()
     val noNetworkConnectionEvent: LiveData<SingleEvent<Unit>> = _noNetworkConnectionEvent
 
-
     fun addQuote() = viewModelScope.launch {
         val quote = Quote(author = quoteAuthor.value ?: "", text = quoteText.value ?: "")
-        _uiState.value=UiState.Loading
+        _uiState.value = UiState.Loading
         addNewQuoteUseCase(quote).onSuccess {
             _onQuoteAdded.value = SingleEvent(Unit)
             _uiState.value = UiState.HasData
         }
-            .onError {onErrorOccurred(it)
-        }
-
+            .onError {
+                onErrorOccurred(it)
+            }
     }
 
     private fun onErrorOccurred(errorEntity: ErrorEntity?) {
@@ -59,6 +56,4 @@ class AddNewQuoteVM constructor(private val addNewQuoteUseCase: AddNewQuote):Vie
         }
         _uiState.value = UiState.Error(errorMessage)
     }
-
-
 }
