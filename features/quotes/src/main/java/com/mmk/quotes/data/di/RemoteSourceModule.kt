@@ -11,7 +11,7 @@ import com.mmk.quotes.data.source.remote.apiservice.QuotesApiServiceImpl
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
-val remoteSourceModule = module {
+internal val remoteSourceModule = module {
 
     single { Firebase.firestore }
 

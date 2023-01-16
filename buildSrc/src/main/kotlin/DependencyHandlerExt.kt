@@ -19,6 +19,15 @@ fun DependencyHandler.implementNetworkingLibraries() {
     implement(Libs.retrofit2Converter)
 }
 
+fun DependencyHandler.implementFirebase() {
+    implement(platform(Libs.firebasePlatform))
+    implement(Libs.firebaseFireStore)
+    implement(Libs.firebaseFireStoreKtx)
+    implement(Libs.firebaseCoroutineSupport)
+    implement(Libs.firebaseAnalytics)
+    implement(Libs.firebaseCrashlytics)
+}
+
 fun DependencyHandler.testImplementJunit5() {
     testImplementation(TestingLibs.junit5JupiterApi)
     testRuntimeOnly(TestingLibs.junit5JupiterEngine)

@@ -1,6 +1,5 @@
 plugins {
     id(Plugins.commonAndroidLibrary)
-    id("org.jetbrains.kotlin.android")
 }
 
 dependencies {

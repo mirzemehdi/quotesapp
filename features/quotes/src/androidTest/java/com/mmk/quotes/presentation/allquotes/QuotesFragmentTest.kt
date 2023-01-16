@@ -44,7 +44,7 @@ class QuotesFragmentTest {
     @Test
     fun test_screen_works() {
         every { quotesViewModel.quotesList } returns MutableLiveData(PagingData.empty())
-        launchFragmentInContainer<QuotesFragment>(themeResId = R.style.AppTheme)
+        launchFragmentInContainer<QuotesFragment>(themeResId = R.style.AppTheme_Base)
         onView(withId(R.id.quoteTitle)).check(matches(withText(R.string.title_quotes)))
     }
 
@@ -52,7 +52,7 @@ class QuotesFragmentTest {
     fun progressBarIsShown_whenUiIsInLoadingState() {
         every { quotesViewModel.getQuotesUiState } returns MutableLiveData(UiState.Loading)
         every { quotesViewModel.quotesList } returns MutableLiveData(PagingData.empty())
-        launchFragmentInContainer<QuotesFragment>(themeResId = R.style.AppTheme)
+        launchFragmentInContainer<QuotesFragment>(themeResId = R.style.AppTheme_Base)
         onView(withId(R.id.progressBarQuotes))
             .check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
     }
@@ -62,7 +62,7 @@ class QuotesFragmentTest {
         every { quotesViewModel.getQuotesUiState } returns MutableLiveData(UiState.HasData)
         every { quotesViewModel.quotesList } returns MutableLiveData(PagingData.empty())
 
-        launchFragmentInContainer<QuotesFragment>(themeResId = R.style.AppTheme)
+        launchFragmentInContainer<QuotesFragment>(themeResId = R.style.AppTheme_Base)
         onView(withId(R.id.progressBarQuotes)).check(matches(withEffectiveVisibility(Visibility.GONE)))
         onView(withId(R.id.quotesRecyclerView)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
     }
@@ -72,7 +72,7 @@ class QuotesFragmentTest {
         every { quotesViewModel.getQuotesUiState } returns MutableLiveData(UiState.NoData)
         every { quotesViewModel.quotesList } returns MutableLiveData(PagingData.empty())
 
-        launchFragmentInContainer<QuotesFragment>(themeResId = R.style.AppTheme)
+        launchFragmentInContainer<QuotesFragment>(themeResId = R.style.AppTheme_Base)
         onView(withId(R.id.progressBarQuotes)).check(matches(withEffectiveVisibility(Visibility.GONE)))
         onView(withId(R.id.quotesRecyclerView)).check(matches(withEffectiveVisibility(Visibility.GONE)))
         onView(withId(R.id.emptyView)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
@@ -87,7 +87,7 @@ class QuotesFragmentTest {
         )
         every { quotesViewModel.quotesList } returns MutableLiveData(PagingData.from(quoteList))
 
-        launchFragmentInContainer<QuotesFragment>(themeResId = R.style.AppTheme)
+        launchFragmentInContainer<QuotesFragment>(themeResId = R.style.AppTheme_Base)
         onView(withId(R.id.quotesRecyclerView)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
         onView(withId(R.id.quotesRecyclerView)).check { view, _ ->
             view as RecyclerView

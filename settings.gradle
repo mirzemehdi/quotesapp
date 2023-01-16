@@ -1,13 +1,20 @@
-include ':data'
-include ':domain'
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+    }
+}
+
 rootProject.name='Quotes App'
 include ':app'
 include ':network'
-
-include ':features:quotes'
 include ':customdetektrules'
 include ':core'
 include ':test-utils'
 include ':common'
 include ':common:ui'
 include ':features:profile'
+include ':features:quotes'
+

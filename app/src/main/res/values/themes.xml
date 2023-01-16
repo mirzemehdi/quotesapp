@@ -1,19 +1,7 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppTheme" parent="AppTheme.Base">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/black</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorPrimaryDark">@color/black</item>
-        <item name="colorSecondary">@color/gold</item>
-        <item name="colorOnSecondary">@color/white</item>
-        <item name="colorSurface">@color/ecruWhite</item>
-        <item name="colorOnSurface">@color/darkBlack</item>
-        <item name="android:colorBackground">@color/white</item>
-        <item name="colorOnBackground">@color/darkBlack</item>
-        <item name="colorInactive">@color/silver</item>
-        <item name="android:navigationBarColor">@color/black</item>
-
     </style>
 
 </resources>

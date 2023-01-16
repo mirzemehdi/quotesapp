@@ -23,6 +23,8 @@ object Libs {
     val firebasePlatform by lazy { "com.google.firebase:firebase-bom:${Versions.firebase}" }
     val firebaseFireStore by lazy { "com.google.firebase:firebase-firestore" }
     val firebaseFireStoreKtx by lazy { "com.google.firebase:firebase-firestore-ktx" }
+    val firebaseAnalytics by lazy { "com.google.firebase:firebase-analytics-ktx" }
+    val firebaseCrashlytics by lazy { "com.google.firebase:firebase-crashlytics" }
 
     // coroutines support for firebase operations
     val firebaseCoroutineSupport by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:${Versions.coroutine}" }
@@ -50,6 +52,8 @@ object Libs {
 
 object Plugins {
     val commonAndroidLibrary by lazy { "common.android-library" }
+    val googleServices by lazy { "com.google.gms.google-services" }
+    val firebaseCrashlytics by lazy { "com.google.firebase.crashlytics" }
 }
 
 object TestingLibs {

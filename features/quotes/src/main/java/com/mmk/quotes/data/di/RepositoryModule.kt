@@ -10,7 +10,7 @@ import org.koin.dsl.module
 
 private typealias QuotesPagingSourceFactory = () -> PagingSource<String, Quote>
 
-val repositoryModule = module {
+internal val repositoryModule = module {
     factory { QuoteMapper() }
     factory<QuotesRepository> { QuotesRepositoryImpl(get(), get()) }
     factory<PagingSource<String, Quote>> { QuotesPagingSource(get()) }
