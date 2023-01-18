@@ -5,12 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.paging.LoadState
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.PagingSource
-import androidx.paging.cachedIn
+import androidx.paging.*
 import com.mmk.common.ui.ErrorMessage
 import com.mmk.common.ui.SingleEvent
 import com.mmk.common.ui.UiState
@@ -26,13 +21,10 @@ class QuotesViewModel(private val quotesPagingSourceFactory: () -> PagingSource<
     val getQuotesUiState: LiveData<UiState> = _getQuotesUiState
 
     val quotesList: LiveData<PagingData<Quote>>
+        get() = getQuotesByPagination()
 
     private val _noNetworkConnectionEvent: MutableLiveData<SingleEvent<Unit>> = MutableLiveData()
     val noNetworkConnectionEvent: LiveData<SingleEvent<Unit>> = _noNetworkConnectionEvent
-
-    init {
-        quotesList = getQuotesByPagination()
-    }
 
     fun onPageAdapterLoadingStateChanged(loadState: LoadState, totalItemCount: Int = 0) =
         viewModelScope.launch {
@@ -40,7 +32,8 @@ class QuotesViewModel(private val quotesPagingSourceFactory: () -> PagingSource<
                 is LoadState.NotLoading ->
                     _getQuotesUiState.value =
                         if (totalItemCount < 1) UiState.NoData else UiState.HasData
-                LoadState.Loading -> _getQuotesUiState.value = UiState.Loading
+                LoadState.Loading -> Unit
+
                 is LoadState.Error -> {
                     if (loadState.error is PagingException)
                         onErrorOccurred((loadState.error as PagingException).errorEntity)

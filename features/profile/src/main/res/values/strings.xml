@@ -1,6 +1,5 @@
 <resources>
-    <string name="text_login">Sign in to continue</string>
-    <string name="hint_email">Your Email</string>
     <string name="text_welcome_login">Welcome to Quotick</string>
-    <string name="hint_password">Password</string>
+    <string name="profile_name">Mirzamehdi Karimov</string>
+    <string name="profile_bio">Android Developer</string>
 </resources>

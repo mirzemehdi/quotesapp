@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.cfg.pseudocode.and
+
 
 plugins {
     id("com.android.application")
@@ -7,21 +7,20 @@ plugins {
     id(Plugins.firebaseCrashlytics)
     id("plugins.jacoco-android")
     id("plugins.ktlint")
-    id("plugins.detekt")
-
-
 }
 
 android {
     compileSdk = ConfigData.compileSdkVersion
-    defaultConfig(Action {
-        applicationId = ConfigData.appId
-        minSdk = ConfigData.minSdkVersion
-        targetSdk = ConfigData.targetSdkVersion
-        versionCode = ConfigData.versionCode
-        versionName = ConfigData.versionName
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    })
+    defaultConfig(
+        Action {
+            applicationId = ConfigData.appId
+            minSdk = ConfigData.minSdkVersion
+            targetSdk = ConfigData.targetSdkVersion
+            versionCode = ConfigData.versionCode
+            versionName = ConfigData.versionName
+            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        }
+    )
 
     buildTypes {
         release {
@@ -42,7 +41,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     buildFeatures {
-        viewBinding =true
+        viewBinding = true
     }
 }
 
@@ -60,7 +59,4 @@ dependencies {
     implementation(Libs.koinAndroid)
     implementation(Libs.timber)
     implementFirebase()
-
 }
-
-

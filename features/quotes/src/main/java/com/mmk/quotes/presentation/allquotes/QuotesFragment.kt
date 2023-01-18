@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.mmk.common.ui.UiState
 import com.mmk.common.ui.fragmentdelegations.IFragmentMainMethods
 import com.mmk.common.ui.fragmentdelegations.viewBinding
@@ -37,6 +38,12 @@ class QuotesFragment : Fragment(), IFragmentMainMethods {
                 quotesAdapter.itemCount
             )
         }
+        quotesAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                super.onItemRangeInserted(positionStart, itemCount)
+                binding.quotesRecyclerView.smoothScrollToPosition(positionStart)
+            }
+        })
     }
 
     override fun setClicks() {

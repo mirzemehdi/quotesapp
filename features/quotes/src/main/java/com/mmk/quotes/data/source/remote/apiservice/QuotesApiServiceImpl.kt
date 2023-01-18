@@ -14,7 +14,7 @@ class QuotesApiServiceImpl(private val quotesCollection: CollectionReference) : 
         pageIndex: String?,
         pageLimit: Int
     ): List<QuoteResponse> {
-        val orderedCollection = quotesCollection.orderBy(FieldPath.documentId())
+        val orderedCollection = quotesCollection.orderBy(FieldPath.of("timeStamp"))
         val query = pageIndex?.let { orderedCollection.startAfter(it) } ?: orderedCollection
         val response = query.limit(pageLimit.toLong()).get().await()
         return response.toObjects(QuoteResponse::class.java)
