@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.mmk.common.ui.UiState
 import com.mmk.common.ui.fragmentdelegations.IFragmentMainMethods
 import com.mmk.common.ui.fragmentdelegations.viewBinding
+import com.mmk.common.ui.observeEvent
 import com.mmk.quotes.databinding.FragmentQuotesBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -60,6 +61,10 @@ class QuotesFragment : Fragment(), IFragmentMainMethods {
 //        super.observeValues()
         viewModel.quotesList.observe(viewLifecycleOwner) {
             quotesAdapter.submitData(lifecycle, it)
+        }
+
+        viewModel.noNetworkConnectionEvent.observeEvent(viewLifecycleOwner){
+            Toast.makeText(requireContext(), "No internet connection", Toast.LENGTH_SHORT).show()
         }
 
         viewModel.getQuotesUiState.observe(viewLifecycleOwner) {
