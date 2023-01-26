@@ -63,7 +63,7 @@ class QuotesFragment : Fragment(), IFragmentMainMethods {
             quotesAdapter.submitData(lifecycle, it)
         }
 
-        viewModel.noNetworkConnectionEvent.observeEvent(viewLifecycleOwner){
+        viewModel.noNetworkConnectionEvent.observeEvent(viewLifecycleOwner) {
             Toast.makeText(requireContext(), "No internet connection", Toast.LENGTH_SHORT).show()
         }
 

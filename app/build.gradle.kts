@@ -48,6 +48,7 @@ android {
 dependencies {
     implementation(project(Modules.profile))
     implementation(project(Modules.quotes))
+    implementation(project(Modules.core))
 
     implementation(Libs.constraintLayout)
     implementation(Libs.androidxAppcompat)
