@@ -5,7 +5,8 @@
 [![Testing](https://github.com/mirzemehdi/quotesapp/actions/workflows/unit_testing.yml/badge.svg)](https://github.com/mirzemehdi/quotesapp/actions/workflows/unit_testing.yml)
 
 This app shows quotes and is developed using **App Modularization**, **Clean Architecture** and **Jetpack Components**. 
-Project is developed in **TDD (Test Driven Development) style** by writing Unit and UI tests.
+Project is developed in **TDD (Test Driven Development) style** by writing Unit and UI tests.  
+Medium article of this project: https://medium.com/p/ef6cdcb409a
 
 ## Overview of Architecture
 
