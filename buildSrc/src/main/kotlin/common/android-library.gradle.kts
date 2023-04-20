@@ -1,8 +1,11 @@
 package common
 
+import TestingLibs
+
 plugins {
     id("com.android.library")
-    kotlin("android")
+    id("kotlin-android")
+
     id("de.mannodermaus.android-junit5")
     id("plugins.jacoco-android")
     id("plugins.ktlint")
@@ -62,7 +65,6 @@ android {
         viewBinding = true
     }
 
-
 }
 
 dependencies {
@@ -96,7 +98,7 @@ dependencies {
     androidTestImplementation(TestingLibs.androidXJunitKtx)
     androidTestImplementation(TestingLibs.truth)
     androidTestImplementation(TestingLibs.espresso)
-    add("debugImplementation", TestingLibs.fragmentTesting)
+    debugImplementation(TestingLibs.fragmentTesting)
 
 
 

@@ -18,7 +18,7 @@ object Versions {
     const val truth="1.1.3"
     const val mockk="1.12.0"
     const val coroutine="1.6.3"
-    const val robolectric="4.8"
+    const val robolectric="4.10"
 
     const val detekt = "1.19.0" // Detekt - Static Code analyzer
     const val assertj="3.15.0" //Needed for testing detekt custom rules
@@ -28,6 +28,11 @@ object Versions {
     const val fragmentTesting="1.5.4"
     const val espresso="3.3.0"
     const val androidXMonitor="1.4.0"
+
+    const val composeBom="2023.03.00"
+    const val androidXLifecycle = "2.6.0-alpha05"
+    const val androidXActivity = "1.6.1"
+
 
 
 
