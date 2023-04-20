@@ -58,5 +58,4 @@ dependencies {
     implementation(Libs.koinAndroid)
     implementation(Libs.timber)
     implementFirebase()
-
 }
