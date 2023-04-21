@@ -445,6 +445,7 @@ naming:
     minimumFunctionNameLength: 3
   FunctionNaming:
     active: true
+    ignoreAnnotated: ['Composable']
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
     functionPattern: '([a-z][a-zA-Z0-9]*)|(`.*`)'
     excludeClassPattern: '$^'
@@ -769,6 +770,7 @@ style:
     active: true
   UnusedPrivateMember:
     active: true
+    ignoreAnnotated: ['Composable']
     allowedNames: '(_|ignored|expected|serialVersionUID)'
   UseAnyOrNoneInsteadOfFind:
     active: false
