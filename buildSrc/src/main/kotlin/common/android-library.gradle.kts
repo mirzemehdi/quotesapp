@@ -75,6 +75,7 @@ android {
 dependencies {
     detekt(project(Modules.customDetektRules))
     implementation(Libs.koinAndroid)
+    implementation(Libs.koinCompose)
     implementation(Libs.timber)
     implementation(Libs.navigationUi)
     implementation(Libs.navigationFragment)

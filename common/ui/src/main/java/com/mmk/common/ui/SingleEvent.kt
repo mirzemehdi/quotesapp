@@ -1,5 +1,10 @@
 package com.mmk.common.ui
 
+import android.annotation.SuppressLint
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 
@@ -52,5 +57,16 @@ inline fun <T> LiveData<SingleEvent<T>>.observeEvent(
 ) {
     observe(owner) {
         it?.getContentIfNotHandled()?.let(onEventUnhandledContent)
+    }
+}
+@SuppressLint("ComposableNaming")
+@Composable
+inline fun <T> LiveData<SingleEvent<T>>.observeEvent(
+    crossinline onEventUnhandledContent: (T) -> Unit
+) {
+
+    val singleEventValue by this.observeAsState()
+    LaunchedEffect(key1 = singleEventValue) {
+        singleEventValue?.getContentIfNotHandled()?.let(onEventUnhandledContent)
     }
 }

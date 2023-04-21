@@ -9,6 +9,8 @@ object Libs {
 
     //Koin - Dependency Injection
     val koinAndroid by lazy { "io.insert-koin:koin-android:${Versions.koin}" }
+    val koinCompose by lazy { "io.insert-koin:koin-androidx-compose:${Versions.koinCompose}" }
+
 
 
     //Coroutine - For background threading
