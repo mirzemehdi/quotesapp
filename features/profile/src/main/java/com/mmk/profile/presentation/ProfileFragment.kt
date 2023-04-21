@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.Fragment
 import com.mmk.common.ui.fragmentdelegations.viewBinding
+import com.mmk.common.ui.theme.MyApplicationTheme
 import com.mmk.profile.R
 import com.mmk.profile.databinding.FragmentProfileBinding
 
@@ -76,7 +76,7 @@ class ProfileFragment : Fragment() {
     @Preview(showBackground = true)
     @Composable
     private fun ProfileScreenPreview() {
-        MaterialTheme {
+        MyApplicationTheme {
             ProfileScreen()
         }
     }
