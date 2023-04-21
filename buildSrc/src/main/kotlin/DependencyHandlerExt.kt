@@ -45,14 +45,14 @@ fun DependencyHandler.testImplementJunit5() {
 fun DependencyHandlerScope.implementJetpackComposeUi() {
 
     implement(platform(Libs.composeBom))
-    api(Libs.composeMaterial3)
-    api(Libs.composeMaterial2)
-    api(Libs.composeFoundation)
-    api(Libs.composeUi)
-    api(Libs.composeToolingPreview)
+    implement(Libs.composeMaterial3)
+    implement(Libs.composeMaterial2)
+    implement(Libs.composeFoundation)
+    implement(Libs.composeUi)
+    implement(Libs.composeToolingPreview)
     debugImplementation(Libs.composeUiTooling)
-    api(Libs.composeLiveData)
-    api(Libs.composeLifeCycleRuntime)
-    api(Libs.composeLifeCycleViewModel)
+    implement(Libs.composeLiveData)
+    implement(Libs.composeLifeCycleRuntime)
+    implement(Libs.composeLifeCycleViewModel)
 
 }

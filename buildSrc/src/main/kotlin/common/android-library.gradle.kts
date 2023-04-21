@@ -1,6 +1,7 @@
 package common
 
 import TestingLibs
+import implementJetpackComposeUi
 
 plugins {
     id("com.android.library")
@@ -63,6 +64,10 @@ android {
 
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.4"
     }
 
 }
@@ -73,6 +78,8 @@ dependencies {
     implementation(Libs.timber)
     implementation(Libs.navigationUi)
     implementation(Libs.navigationFragment)
+    implementJetpackComposeUi()
+
 
     testImplementation(project(Modules.testUtils))
     testImplementation(TestingLibs.junit4)
