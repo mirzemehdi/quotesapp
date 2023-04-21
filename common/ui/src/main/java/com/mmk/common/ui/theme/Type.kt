@@ -17,9 +17,23 @@ private val tthovesFontFamily = FontFamily(
 )
 
 val Typography = Typography(
-    bodySmall = TextStyle(
+
+    headlineLarge = TextStyle(
         fontFamily = tthovesFontFamily,
-        fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
+        fontWeight = FontWeight.Bold,
+        fontSize = 28.sp
     ),
+
+    titleLarge = TextStyle(
+        fontFamily = tthovesFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = 20.sp
+    ),
+
+    titleMedium = TextStyle(
+        fontFamily = tthovesFontFamily,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 16.sp
+    ),
+
 )
