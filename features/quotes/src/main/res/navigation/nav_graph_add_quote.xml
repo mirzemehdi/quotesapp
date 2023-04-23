@@ -9,5 +9,5 @@
         android:id="@+id/addNewQuoteFragment"
         android:name="com.mmk.quotes.presentation.addnewquote.AddNewQuoteFragment"
         android:label="fragment_add_quote"
-        tools:layout="@layout/fragment_add_quote" />
+         />
 </navigation>

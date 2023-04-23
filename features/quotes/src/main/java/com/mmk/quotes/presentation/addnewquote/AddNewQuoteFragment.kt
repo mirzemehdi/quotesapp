@@ -5,13 +5,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,26 +25,26 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mmk.common.ui.UiState
+import com.mmk.common.ui.components.MyOutlinedTextField
 import com.mmk.common.ui.observeEvent
 import com.mmk.common.ui.theme.MyApplicationTheme
 import com.mmk.common.ui.util.TextFieldState
 import com.mmk.quotes.R
+import org.koin.androidx.compose.koinViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddNewQuoteFragment : Fragment() {
-    private val viewModel: AddNewQuoteVM by viewModel()
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ) = ComposeView(requireContext()).apply {
         setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
-        setContent { AddNewQuoteScreen(viewModel) }
+        setContent { AddNewQuoteScreen() }
     }
 
     @Composable
-    fun AddNewQuoteScreen(viewModel: AddNewQuoteVM) {
+    fun AddNewQuoteScreen(viewModel: AddNewQuoteVM = koinViewModel()) {
         val uiState by viewModel.uiState.observeAsState()
         val isLoading = uiState is UiState.Loading
         viewModel.onQuoteAdded.observeEvent {
@@ -78,6 +80,7 @@ class AddNewQuoteFragment : Fragment() {
             Column(
                 Modifier
                     .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
                     .background(MyApplicationTheme.colors.background)
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -87,22 +90,24 @@ class AddNewQuoteFragment : Fragment() {
                     style = MaterialTheme.typography.headlineLarge,
                     color = MyApplicationTheme.colors.onBackground
                 )
-                OutlinedTextField(
-                    value = newQuoteTextFieldState.value,
-                    onValueChange = { newQuoteTextFieldState.onValueChanged(it) },
-                    label = { Text(text = stringResource(id = R.string.hint_write_your_quote)) },
+                MyOutlinedTextField(
+                    textFieldState = newQuoteTextFieldState,
+                    label = stringResource(id = R.string.hint_write_your_quote),
+                    maxLines = 5,
                     modifier = Modifier
                         .padding(top = 24.dp)
                         .fillMaxWidth()
                 )
-                OutlinedTextField(
-                    value = quoteAuthorTextFieldState.value,
-                    onValueChange = { quoteAuthorTextFieldState.onValueChanged(it) },
-                    label = { Text(text = stringResource(id = R.string.hint_new_quote_author)) },
+
+                MyOutlinedTextField(
+                    textFieldState = quoteAuthorTextFieldState,
+                    label = stringResource(id = R.string.hint_new_quote_author),
+                    maxLines = 2,
                     modifier = Modifier
                         .padding(top = 16.dp)
                         .fillMaxWidth()
                 )
+
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -111,12 +116,27 @@ class AddNewQuoteFragment : Fragment() {
                 ) {
 
                     androidx.compose.animation.AnimatedVisibility(isLoading.not()) {
-                        Button(onClick = { onClickAdd() }, modifier = Modifier.fillMaxWidth()) {
-                            Text(text = stringResource(id = R.string.text_add_new_quote_btn))
+                        Button(
+                            onClick = { onClickAdd() },
+                            colors = ButtonDefaults.buttonColors(
+                                backgroundColor =
+                                MyApplicationTheme.colors.secondary,
+                                contentColor =
+                                MyApplicationTheme.colors.onSecondary
+                            ),
+                            contentPadding = PaddingValues(16.dp),
+                            shape = RoundedCornerShape(4.dp),
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            Text(
+                                text = stringResource(id = R.string.text_add_new_quote_btn),
+                                style = MaterialTheme.typography.bodyMedium
+                            )
                         }
                     }
+
                     androidx.compose.animation.AnimatedVisibility(visible = isLoading) {
-                        CircularProgressIndicator()
+                        CircularProgressIndicator(color = MyApplicationTheme.colors.secondary)
                     }
                 }
             }
