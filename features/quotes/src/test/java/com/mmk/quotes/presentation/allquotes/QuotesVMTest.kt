@@ -22,9 +22,9 @@ import org.junit.jupiter.api.extension.ExtendWith
 
 @ExperimentalCoroutinesApi
 @ExtendWith(InstantTaskExecutorExtension::class, CoroutinesTestExtension::class)
-internal class QuotesViewModelTest {
+internal class QuotesVMTest {
 
-    private lateinit var quotesViewModel: QuotesViewModel
+    private lateinit var quotesViewModel: QuotesVM
     private lateinit var getAllQuotesByPagination: GetAllQuotesByPagination
     private lateinit var quotesPagingSourceFactory: () -> QuotesPagingSource
 
@@ -32,7 +32,7 @@ internal class QuotesViewModelTest {
     internal fun setUp() {
         getAllQuotesByPagination = mockk()
         quotesPagingSourceFactory = { QuotesPagingSource(getAllQuotesByPagination) }
-        quotesViewModel = QuotesViewModel(quotesPagingSourceFactory)
+        quotesViewModel = QuotesVM(quotesPagingSourceFactory)
     }
 
     @Test

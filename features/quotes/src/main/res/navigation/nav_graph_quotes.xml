@@ -8,5 +8,5 @@
         android:id="@+id/quotesFragment"
         android:name="com.mmk.quotes.presentation.allquotes.QuotesFragment"
         android:label="fragement_quotes"
-        tools:layout="@layout/fragment_quotes" />
+         />
 </navigation>

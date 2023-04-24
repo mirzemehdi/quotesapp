@@ -15,7 +15,7 @@ import com.mmk.quotes.domain.util.PagingException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-class QuotesViewModel(private val quotesPagingSourceFactory: () -> PagingSource<String, Quote>) :
+class QuotesVM(private val quotesPagingSourceFactory: () -> PagingSource<String, Quote>) :
     ViewModel() {
 
     private val config =
