@@ -36,6 +36,7 @@ object Libs {
 
     //Pagination
     val paging by lazy { "androidx.paging:paging-runtime:${Versions.paging}" }
+    val pagingCompose by lazy { "androidx.paging:paging-compose:${Versions.pagingCompose}" }
 
     //MaterialLibrary
     val material by lazy { "com.google.android.material:material:${Versions.material}" }

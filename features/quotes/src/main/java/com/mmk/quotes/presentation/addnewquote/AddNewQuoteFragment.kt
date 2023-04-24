@@ -10,7 +10,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
@@ -25,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mmk.common.ui.UiState
+import com.mmk.common.ui.components.MyCircularProgressBar
 import com.mmk.common.ui.components.MyOutlinedTextField
 import com.mmk.common.ui.observeEvent
 import com.mmk.common.ui.theme.MyApplicationTheme
@@ -136,7 +136,7 @@ class AddNewQuoteFragment : Fragment() {
                     }
 
                     androidx.compose.animation.AnimatedVisibility(visible = isLoading) {
-                        CircularProgressIndicator(color = MyApplicationTheme.colors.secondary)
+                        MyCircularProgressBar()
                     }
                 }
             }
