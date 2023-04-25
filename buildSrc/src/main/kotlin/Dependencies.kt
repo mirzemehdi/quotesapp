@@ -48,6 +48,7 @@ object Libs {
     val navigationUi by lazy { "androidx.navigation:navigation-ui-ktx:${Versions.navigation}" }
 
 
+
     //Jetpack Compose
     val composeBom by lazy { "androidx.compose:compose-bom:${Versions.composeBom}" }
     val composeMaterial3 by lazy { "androidx.compose.material3:material3" }
@@ -59,10 +60,13 @@ object Libs {
     val composeLiveData by lazy { "androidx.compose.runtime:runtime-livedata" }
 
 
+
     val composeLifeCycleViewModel by lazy { "androidx" +
             ".lifecycle:lifecycle-viewmodel-compose:${Versions.androidXLifecycle}" }
     val composeLifeCycleRuntime by lazy { "androidx.lifecycle:lifecycle-runtime-compose:${Versions.androidXLifecycle}" }
     val comoseActivity by lazy { "androidx.activity:activity-compose:${Versions.androidXActivity}" }
+    val navigationCompose by lazy { "androidx.navigation:navigation-compose:${Versions
+        .navigation}" }
 
 }
 

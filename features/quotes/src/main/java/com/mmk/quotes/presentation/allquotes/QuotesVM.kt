@@ -13,6 +13,7 @@ import com.mmk.core.model.ErrorEntity
 import com.mmk.quotes.domain.model.Quote
 import com.mmk.quotes.domain.util.PagingException
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class QuotesVM(private val quotesPagingSourceFactory: () -> PagingSource<String, Quote>) :
@@ -37,7 +38,7 @@ class QuotesVM(private val quotesPagingSourceFactory: () -> PagingSource<String,
         get() = pagingData.flow.asLiveData()
 
     val quotesListFlow: Flow<PagingData<Quote>> =
-        pagingData.flow
+        pagingData.flow.onStart { _getQuotesUiState.value = UiState.Loading }
 
     private val _noNetworkConnectionEvent: MutableLiveData<SingleEvent<Unit>> = MutableLiveData()
     val noNetworkConnectionEvent: LiveData<SingleEvent<Unit>> = _noNetworkConnectionEvent

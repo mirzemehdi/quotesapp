@@ -78,6 +78,7 @@ dependencies {
     implementation(Libs.koinCompose)
     implementation(Libs.timber)
     implementation(Libs.navigationUi)
+    implementation(Libs.navigationCompose)
     implementation(Libs.navigationFragment)
     implementJetpackComposeUi()
 

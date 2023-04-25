@@ -54,11 +54,13 @@ dependencies {
     implementation(project(Modules.profile))
     implementation(project(Modules.quotes))
     implementation(project(Modules.core))
+    implementation(project(Modules.commonUi))
 
     implementation(Libs.constraintLayout)
     implementation(Libs.androidxAppcompat)
     implementation(Libs.material)
     implementation(Libs.navigationUi)
+    implementation(Libs.navigationCompose)
     implementation(Libs.navigationFragment)
     implementation(Libs.koinAndroid)
     implementation(Libs.timber)
