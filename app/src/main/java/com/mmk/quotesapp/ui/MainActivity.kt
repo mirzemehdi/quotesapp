@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyApplicationTheme {
+            MyApplicationTheme(darkTheme = false) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -24,27 +24,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-//    private fun initView() {
-//        // setupBottomNavigation
-//        val navHostFragment =
-//            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-//        navController = navHostFragment.navController
-//        with(binding) {
-//            bottomNavigation.setupWithNavController(navController)
-//            bottomNavigation.menu.findItem(R.id.nav_graph_add_quote_xml).isCheckable = false
-//        }
-//    }
-
-//    private fun onDestinationChanged() {
-//
-//        binding.addQuoteButton.setOnClickListener {
-//            binding.bottomNavigation.selectedItemId = R.id.nav_graph_add_quote_xml
-//        }
-//        navController.addOnDestinationChangedListener { _, destination, _ ->
-//            binding.bottomNavigation.isVisible =
-//                destination.id in arrayOf(R.id.quotesFragment, R.id.profileFragment)
-//            binding.addQuoteButton.isVisible = binding.bottomNavigation.isVisible
-//        }
-//    }
 }

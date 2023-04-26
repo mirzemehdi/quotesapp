@@ -55,30 +55,29 @@ fun QuotesScreen(viewModel: QuotesVM = koinViewModel()) {
 
 @Composable
 private fun QuotesScreen(uiState: UiState, quotes: LazyPagingItems<Quote>) {
-    MyApplicationTheme {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = stringResource(id = R.string.title_quotes),
-                style = MaterialTheme.typography.headlineLarge,
-                color = MyApplicationTheme.colors.onBackground,
-                modifier = Modifier.padding(top = 16.dp)
-            )
 
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                when (uiState) {
-                    UiState.HasData -> QuotesDataList(
-                        quotes = quotes,
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(top = 16.dp)
-                    )
-                    UiState.Loading -> MyCircularProgressBar()
-                    UiState.NoData -> EmptyQuotesView()
-                    else -> Unit
-                }
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = stringResource(id = R.string.title_quotes),
+            style = MaterialTheme.typography.headlineLarge,
+            color = MyApplicationTheme.colors.onBackground,
+            modifier = Modifier.padding(top = 16.dp)
+        )
+
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            when (uiState) {
+                UiState.HasData -> QuotesDataList(
+                    quotes = quotes,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(top = 16.dp)
+                )
+                UiState.Loading -> MyCircularProgressBar()
+                UiState.NoData -> EmptyQuotesView()
+                else -> Unit
             }
         }
     }

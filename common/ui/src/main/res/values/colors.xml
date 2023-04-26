@@ -1,17 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-
-    <color name="colorOrangeLight">#F8F3E3</color>
-    <color name="colorOrangeDark">#FBE79E</color>
-    <color name="colorOrange">#FF7C53</color>
-
     <color name="black">#3d3d3d</color>
-    <color name="gold">#CBA135</color>
-    <color name="ecruWhite">#F3EFE0</color>
-    <color name="white">#FFFFFF</color>
-    <color name="darkBlack">#262626</color>
-    <color name="silver">#909090</color>
-
-
 </resources>

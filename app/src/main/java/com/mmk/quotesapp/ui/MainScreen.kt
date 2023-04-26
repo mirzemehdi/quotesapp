@@ -61,42 +61,40 @@ private fun MainScreen(
         .collectAsStateWithLifecycle(navHostController.currentBackStackEntry)
     val isBottomNavVisible = currentRoute?.destination?.route != addNewQuoteRoute
 
-    MyApplicationTheme {
-        Box(modifier = Modifier.fillMaxSize()) {
-            Column(modifier = Modifier.fillMaxSize()) {
-                Box(
-                    modifier = Modifier.weight(1f)
-                ) {
-                    MainNavigation(navController = navHostController)
-                }
-                AnimatedVisibility(isBottomNavVisible, modifier = Modifier.fillMaxWidth()) {
-                    BottomNavigationView(modifier = Modifier.fillMaxWidth()) {
-                        onSelectedTopLevelDestination(it)
-                    }
+    Box(modifier = Modifier.fillMaxSize()) {
+        Column(modifier = Modifier.fillMaxSize()) {
+            Box(
+                modifier = Modifier.weight(1f)
+            ) {
+                MainNavigation(navController = navHostController)
+            }
+            AnimatedVisibility(isBottomNavVisible, modifier = Modifier.fillMaxWidth()) {
+                BottomNavigationView(modifier = Modifier.fillMaxWidth()) {
+                    onSelectedTopLevelDestination(it)
                 }
             }
-            val addButtonSize = 74.dp
-            AnimatedVisibility(
-                isBottomNavVisible,
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .size(addButtonSize)
-                    .offset(y = (addButtonSize / 2 - 56.dp))
-                    .zIndex(2f)
+        }
+        val addButtonSize = 74.dp
+        AnimatedVisibility(
+            isBottomNavVisible,
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .size(addButtonSize)
+                .offset(y = (addButtonSize / 2 - 56.dp))
+                .zIndex(2f)
+        ) {
+            FloatingActionButton(
+                containerColor = MyApplicationTheme.colors.secondary,
+                contentColor = MyApplicationTheme.colors.onSecondary,
+                elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 8.dp),
+                shape = CircleShape,
+                onClick = { onSelectedTopLevelDestination(TopLevelDestination.ADD_QUOTE) },
             ) {
-                FloatingActionButton(
-                    containerColor = MyApplicationTheme.colors.secondary,
-                    contentColor = MyApplicationTheme.colors.onSecondary,
-                    elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 8.dp),
-                    shape = CircleShape,
-                    onClick = { onSelectedTopLevelDestination(TopLevelDestination.ADD_QUOTE) },
-                ) {
-                    Icon(
-                        painter = painterResource(id = R.drawable.ic_add),
-                        contentDescription = null,
-                        modifier = Modifier.size(36.dp)
-                    )
-                }
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_add),
+                    contentDescription = null,
+                    modifier = Modifier.size(36.dp)
+                )
             }
         }
     }

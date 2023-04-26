@@ -57,69 +57,67 @@ private fun AddNewQuoteScreen(
     quoteAuthorTextFieldState: TextFieldState,
     onClickAdd: () -> Unit
 ) {
-    MyApplicationTheme {
 
-        Column(
-            Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-                .background(MyApplicationTheme.colors.background)
-                .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+    Column(
+        Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .background(MyApplicationTheme.colors.background)
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = stringResource(id = R.string.title_add_quote),
+            style = MaterialTheme.typography.headlineLarge,
+            color = MyApplicationTheme.colors.onBackground
+        )
+        MyOutlinedTextField(
+            textFieldState = newQuoteTextFieldState,
+            label = stringResource(id = R.string.hint_write_your_quote),
+            maxLines = 5,
+            modifier = Modifier
+                .padding(top = 24.dp)
+                .fillMaxWidth()
+        )
+
+        MyOutlinedTextField(
+            textFieldState = quoteAuthorTextFieldState,
+            label = stringResource(id = R.string.hint_new_quote_author),
+            maxLines = 2,
+            modifier = Modifier
+                .padding(top = 16.dp)
+                .fillMaxWidth()
+        )
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp, vertical = 24.dp),
+            contentAlignment = Alignment.Center
         ) {
-            Text(
-                text = stringResource(id = R.string.title_add_quote),
-                style = MaterialTheme.typography.headlineLarge,
-                color = MyApplicationTheme.colors.onBackground
-            )
-            MyOutlinedTextField(
-                textFieldState = newQuoteTextFieldState,
-                label = stringResource(id = R.string.hint_write_your_quote),
-                maxLines = 5,
-                modifier = Modifier
-                    .padding(top = 24.dp)
-                    .fillMaxWidth()
-            )
 
-            MyOutlinedTextField(
-                textFieldState = quoteAuthorTextFieldState,
-                label = stringResource(id = R.string.hint_new_quote_author),
-                maxLines = 2,
-                modifier = Modifier
-                    .padding(top = 16.dp)
-                    .fillMaxWidth()
-            )
-
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 8.dp, vertical = 24.dp),
-                contentAlignment = Alignment.Center
-            ) {
-
-                androidx.compose.animation.AnimatedVisibility(isLoading.not()) {
-                    Button(
-                        onClick = { onClickAdd() },
-                        colors = ButtonDefaults.buttonColors(
-                            backgroundColor =
-                            MyApplicationTheme.colors.secondary,
-                            contentColor =
-                            MyApplicationTheme.colors.onSecondary
-                        ),
-                        contentPadding = PaddingValues(16.dp),
-                        shape = RoundedCornerShape(4.dp),
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text(
-                            text = stringResource(id = R.string.text_add_new_quote_btn),
-                            style = MaterialTheme.typography.bodyMedium
-                        )
-                    }
+            androidx.compose.animation.AnimatedVisibility(isLoading.not()) {
+                Button(
+                    onClick = { onClickAdd() },
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor =
+                        MyApplicationTheme.colors.secondary,
+                        contentColor =
+                        MyApplicationTheme.colors.onSecondary
+                    ),
+                    contentPadding = PaddingValues(16.dp),
+                    shape = RoundedCornerShape(4.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.text_add_new_quote_btn),
+                        style = MaterialTheme.typography.bodyMedium
+                    )
                 }
+            }
 
-                androidx.compose.animation.AnimatedVisibility(visible = isLoading) {
-                    MyCircularProgressBar()
-                }
+            androidx.compose.animation.AnimatedVisibility(visible = isLoading) {
+                MyCircularProgressBar()
             }
         }
     }

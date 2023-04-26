@@ -3,7 +3,6 @@ package com.mmk.quotes.presentation.allquotes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
 import com.mmk.common.ui.ErrorMessage
@@ -16,7 +15,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
-class QuotesVM(private val quotesPagingSourceFactory: () -> PagingSource<String, Quote>) :
+class QuotesVM(quotesPagingSourceFactory: () -> PagingSource<String, Quote>) :
     ViewModel() {
 
     private val config =
@@ -33,9 +32,6 @@ class QuotesVM(private val quotesPagingSourceFactory: () -> PagingSource<String,
 
     private val _getQuotesUiState: MutableLiveData<UiState> = MutableLiveData(UiState.Loading)
     val getQuotesUiState: LiveData<UiState> = _getQuotesUiState
-
-    val quotesList: LiveData<PagingData<Quote>>
-        get() = pagingData.flow.asLiveData()
 
     val quotesListFlow: Flow<PagingData<Quote>> =
         pagingData.flow.onStart { _getQuotesUiState.value = UiState.Loading }

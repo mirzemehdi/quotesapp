@@ -46,6 +46,5 @@ val Typography = Typography(
         fontFamily = tthovesFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 12.sp
-    ),
-
+    )
 )

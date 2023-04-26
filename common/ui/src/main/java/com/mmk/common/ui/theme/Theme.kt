@@ -23,19 +23,21 @@ private val LightColorPalette = MyAppColors(
     isDark = false
 )
 
-private val DarkColorPalette = MyAppColors(
-    primary = Black,
-    primaryDark = Black,
-    onPrimary = White,
-    secondary = Gold,
-    onSecondary = White,
-    surface = EcruWhite,
-    onSurface = DarkBlack,
-    background = White,
-    onBackground = DarkBlack,
-    inActive = Silver,
-    isDark = false
-)
+// Night mode colors can be applied here
+private val DarkColorPalette =
+    MyAppColors(
+        primary = Black,
+        primaryDark = Black,
+        onPrimary = White,
+        secondary = Gold,
+        onSecondary = White,
+        surface = EcruWhite,
+        onSurface = DarkBlack,
+        background = White,
+        onBackground = DarkBlack,
+        inActive = Silver,
+        isDark = true
+    )
 
 @Composable
 fun MyApplicationTheme(
