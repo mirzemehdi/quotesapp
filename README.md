@@ -6,7 +6,15 @@
 
 This app shows quotes and is developed using **App Modularization**, **Clean Architecture** and **Jetpack Components**. 
 Project is developed in **TDD (Test Driven Development) style** by writing Unit and UI tests.  
-Medium article of this project: https://medium.com/p/ef6cdcb409a
+
+This Github project contains 4 main branches:  
+
+   _**main**_ -> Latest version of the project using Jetpack Compose   
+     _**mvvm**_ -> Initial version written in mvvm pattern  
+    _**clean-architecture-layered**_ -> Second refactoring from mvvm to clean architecture (creating UseCases, and separate modules (domain, data, presentation).    
+    _**multi_modular**_ -> Third refactoring using modularization (separating domain, data presentation layers as a package inside each feature module)  
+  
+Medium article of refactoring of architecture of this project: https://medium.com/p/ef6cdcb409a
 
 ## Overview of Architecture
 
