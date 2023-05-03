@@ -10,7 +10,6 @@ import com.mmk.quotes.presentation.allquotes.navigation.allQuotesScreen
 
 @Composable
 fun MainNavigation(navController: NavHostController) {
-
     NavHost(navController = navController, startDestination = allQuotesRoute) {
         allQuotesScreen()
         addNewQuoteScreen(onBackClick = navController::popBackStack)

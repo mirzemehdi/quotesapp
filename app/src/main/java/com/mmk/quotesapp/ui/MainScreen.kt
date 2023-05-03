@@ -23,8 +23,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.mmk.common.ui.theme.MyApplicationTheme
 import com.mmk.profile.presentation.navigation.navigateToProfile
+import com.mmk.profile.presentation.navigation.profileRoute
 import com.mmk.quotes.presentation.addnewquote.navigation.addNewQuoteRoute
 import com.mmk.quotes.presentation.addnewquote.navigation.navigateToAddNewQuote
+import com.mmk.quotes.presentation.allquotes.navigation.allQuotesRoute
 import com.mmk.quotes.presentation.allquotes.navigation.navigateToAllQuotes
 import com.mmk.quotesapp.R
 import com.mmk.quotesapp.navigation.MainNavigation
@@ -60,6 +62,12 @@ private fun MainScreen(
     val currentRoute by navHostController.currentBackStackEntryFlow
         .collectAsStateWithLifecycle(navHostController.currentBackStackEntry)
     val isBottomNavVisible = currentRoute?.destination?.route != addNewQuoteRoute
+    val selectedBottomNavItem = when (currentRoute?.destination?.route) {
+        addNewQuoteRoute -> TopLevelDestination.ADD_QUOTE
+        allQuotesRoute -> TopLevelDestination.QUOTES
+        profileRoute -> TopLevelDestination.PROFILE
+        else -> TopLevelDestination.QUOTES
+    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
@@ -69,7 +77,7 @@ private fun MainScreen(
                 MainNavigation(navController = navHostController)
             }
             AnimatedVisibility(isBottomNavVisible, modifier = Modifier.fillMaxWidth()) {
-                BottomNavigationView(modifier = Modifier.fillMaxWidth()) {
+                BottomNavigationView(modifier = Modifier.fillMaxWidth(), selectedDestination = selectedBottomNavItem) {
                     onSelectedTopLevelDestination(it)
                 }
             }
@@ -103,6 +111,7 @@ private fun MainScreen(
 @Composable
 private fun BottomNavigationView(
     modifier: Modifier = Modifier,
+    selectedDestination: TopLevelDestination = TopLevelDestination.QUOTES,
     onSelectedTopLevelDestination: (TopLevelDestination) -> Unit
 ) {
     BottomNavigation(
@@ -110,7 +119,6 @@ private fun BottomNavigationView(
         modifier = modifier
     ) {
 
-        var selectedDestination by remember { mutableStateOf(TopLevelDestination.QUOTES) }
         val disabledItems = listOf(TopLevelDestination.ADD_QUOTE)
 
         TopLevelDestination.values().forEachIndexed { index, destination ->
@@ -120,7 +128,6 @@ private fun BottomNavigationView(
                 selected = selectedDestination == destination,
                 enabled = destination !in disabledItems
             ) {
-                selectedDestination = destination
                 onSelectedTopLevelDestination(destination)
             }
         }
