@@ -1,8 +1,12 @@
 package common
 
+import TestingLibs
+import implementJetpackComposeUi
+
 plugins {
     id("com.android.library")
-    kotlin("android")
+    id("kotlin-android")
+
     id("de.mannodermaus.android-junit5")
     id("plugins.jacoco-android")
     id("plugins.ktlint")
@@ -60,17 +64,24 @@ android {
 
     buildFeatures {
         viewBinding = true
+        compose = true
     }
-
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.4"
+    }
 
 }
 
 dependencies {
     detekt(project(Modules.customDetektRules))
     implementation(Libs.koinAndroid)
+    implementation(Libs.koinCompose)
     implementation(Libs.timber)
     implementation(Libs.navigationUi)
+    implementation(Libs.navigationCompose)
     implementation(Libs.navigationFragment)
+    implementJetpackComposeUi()
+
 
     testImplementation(project(Modules.testUtils))
     testImplementation(TestingLibs.junit4)
@@ -96,7 +107,7 @@ dependencies {
     androidTestImplementation(TestingLibs.androidXJunitKtx)
     androidTestImplementation(TestingLibs.truth)
     androidTestImplementation(TestingLibs.espresso)
-    add("debugImplementation", TestingLibs.fragmentTesting)
+    debugImplementation(TestingLibs.fragmentTesting)
 
 
 

@@ -1,15 +1,23 @@
-import gradle.kotlin.dsl.accessors._1a0c13a14d2120203e3455a82d50f656.testImplementation
-import gradle.kotlin.dsl.accessors._1a0c13a14d2120203e3455a82d50f656.testRuntimeOnly
 import org.gradle.api.artifacts.dsl.DependencyHandler
-
+import org.gradle.kotlin.dsl.DependencyHandlerScope
 
 private fun DependencyHandler.implement(dependency: Any) {
     add("implementation", dependency)
+}
+private fun DependencyHandler.debugImplementation(dependency: Any) {
+    add("debugImplementation", dependency)
 }
 
 private fun DependencyHandler.testImplement(dependency: Any) {
     add("testImplementation", dependency)
 }
+private fun DependencyHandler.testRuntime(dependency: Any) {
+    add("testRuntimeOnly", dependency)
+}
+private fun DependencyHandler.api(dependency: Any) {
+    add("api", dependency)
+}
+
 
 fun DependencyHandler.implementNetworkingLibraries() {
     implement(Libs.moshi)
@@ -29,7 +37,22 @@ fun DependencyHandler.implementFirebase() {
 }
 
 fun DependencyHandler.testImplementJunit5() {
-    testImplementation(TestingLibs.junit5JupiterApi)
-    testRuntimeOnly(TestingLibs.junit5JupiterEngine)
-    testRuntimeOnly(TestingLibs.junit5VintageEngine)
+    testImplement(TestingLibs.junit5JupiterApi)
+    testRuntime(TestingLibs.junit5JupiterEngine)
+    testRuntime(TestingLibs.junit5VintageEngine)
+}
+
+fun DependencyHandlerScope.implementJetpackComposeUi() {
+
+    implement(platform(Libs.composeBom))
+    implement(Libs.composeMaterial3)
+    implement(Libs.composeMaterial2)
+    implement(Libs.composeFoundation)
+    implement(Libs.composeUi)
+    implement(Libs.composeToolingPreview)
+    debugImplementation(Libs.composeUiTooling)
+    implement(Libs.composeLiveData)
+    implement(Libs.composeLifeCycleRuntime)
+    implement(Libs.composeLifeCycleViewModel)
+
 }

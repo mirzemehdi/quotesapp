@@ -40,8 +40,13 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.4"
     }
 }
 
@@ -49,13 +54,16 @@ dependencies {
     implementation(project(Modules.profile))
     implementation(project(Modules.quotes))
     implementation(project(Modules.core))
+    implementation(project(Modules.commonUi))
 
     implementation(Libs.constraintLayout)
     implementation(Libs.androidxAppcompat)
     implementation(Libs.material)
     implementation(Libs.navigationUi)
+    implementation(Libs.navigationCompose)
     implementation(Libs.navigationFragment)
     implementation(Libs.koinAndroid)
     implementation(Libs.timber)
     implementFirebase()
+    implementJetpackComposeUi()
 }

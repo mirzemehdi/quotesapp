@@ -31,13 +31,13 @@ class QuotesFragmentTest {
 
     private lateinit var application: KoinTestApplication
     private lateinit var quotesPagingSource: PagingSource<String, Quote>
-    private lateinit var quotesViewModel: QuotesViewModel
+    private lateinit var quotesViewModel: QuotesVM
 
     @Before
     fun setUp() {
         application = ApplicationProvider.getApplicationContext()
         quotesPagingSource = mockk()
-        quotesViewModel = spyk(QuotesViewModel { quotesPagingSource })
+        quotesViewModel = spyk(QuotesVM { quotesPagingSource })
         application.injectModule(module { viewModel { quotesViewModel } })
     }
 

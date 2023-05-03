@@ -7,7 +7,6 @@ dependencies {
     implementation(project(Modules.commonUi))
 
     implementFirebase()
-    implementation(Libs.paging)
     implementation(Libs.circleImageView)
 }
 

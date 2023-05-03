@@ -113,6 +113,7 @@ complexity:
     active: true
     threshold: 600
   LongMethod:
+    ignoreAnnotated: [ 'Composable' ]
     active: true
     threshold: 60
   LongParameterList:
@@ -121,6 +122,7 @@ complexity:
     constructorThreshold: 7
     ignoreDefaultParameters: false
     ignoreDataClasses: true
+    ignoreAnnotated: [ 'Stable' ]
     ignoreAnnotatedParameter: [ ]
   MethodOverloading:
     active: false
@@ -445,6 +447,7 @@ naming:
     minimumFunctionNameLength: 3
   FunctionNaming:
     active: true
+    ignoreAnnotated: ['Composable']
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
     functionPattern: '([a-z][a-zA-Z0-9]*)|(`.*`)'
     excludeClassPattern: '$^'
@@ -484,7 +487,7 @@ naming:
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
     packagePattern: '[a-z]+(\.[a-z][A-Za-z0-9]*)*'
   TopLevelPropertyNaming:
-    active: true
+    active: false
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/jsTest/**', '**/iosTest/**' ]
     constantPattern: '[A-Z][_A-Z0-9]*'
     propertyPattern: '[A-Za-z][_A-Za-z0-9]*'
@@ -769,6 +772,7 @@ style:
     active: true
   UnusedPrivateMember:
     active: true
+    ignoreAnnotated: ['Composable']
     allowedNames: '(_|ignored|expected|serialVersionUID)'
   UseAnyOrNoneInsteadOfFind:
     active: false

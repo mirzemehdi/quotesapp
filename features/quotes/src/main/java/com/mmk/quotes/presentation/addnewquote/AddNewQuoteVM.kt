@@ -16,8 +16,11 @@ import kotlinx.coroutines.launch
 
 class AddNewQuoteVM constructor(private val addNewQuoteUseCase: AddNewQuote) : ViewModel() {
 
-    val quoteAuthor = MutableLiveData("")
-    val quoteText = MutableLiveData("")
+    private val _quoteAuthor = MutableLiveData<String>("")
+    val quoteAuthor: LiveData<String> = _quoteAuthor
+
+    private val _quoteText = MutableLiveData<String>("")
+    val quoteText: LiveData<String> = _quoteText
 
     private val _uiState: MutableLiveData<UiState> = MutableLiveData(UiState.HasData)
     val uiState: LiveData<UiState> = _uiState
@@ -38,6 +41,14 @@ class AddNewQuoteVM constructor(private val addNewQuoteUseCase: AddNewQuote) : V
             .onError {
                 onErrorOccurred(it)
             }
+    }
+
+    fun onAuthorTextChanged(newValue: String) {
+        _quoteAuthor.value = newValue
+    }
+
+    fun onQuoteTextChanged(newValue: String) {
+        _quoteText.value = newValue
     }
 
     private fun onErrorOccurred(errorEntity: ErrorEntity?) {
