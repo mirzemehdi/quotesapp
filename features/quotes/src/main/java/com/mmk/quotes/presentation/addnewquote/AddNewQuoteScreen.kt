@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mmk.common.ui.components.MyCircularProgressBar
 import com.mmk.common.ui.components.MyOutlinedTextField
+import com.mmk.common.ui.components.UiMessageHandlerComponent
 import com.mmk.common.ui.theme.MyApplicationTheme
 import com.mmk.common.ui.util.TextFieldState
 import com.mmk.quotes.R
@@ -27,27 +28,28 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun AddNewQuoteScreen(viewModel: AddNewQuoteVM = koinViewModel(), onBackPress: () -> Unit) {
+    UiMessageHandlerComponent(uiMessageHandler = viewModel) {
+        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+        LaunchedEffect(key1 = uiState.newAddedQuote) {
+            if (uiState.newAddedQuote != null) onBackPress()
+        }
 
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    LaunchedEffect(key1 = uiState.newAddedQuote) {
-        if (uiState.newAddedQuote != null) onBackPress()
+        val newQuoteText by viewModel.quoteText.collectAsStateWithLifecycle()
+        val quoteAuthor by viewModel.quoteAuthor.collectAsStateWithLifecycle()
+
+        AddNewQuoteScreen(
+            isLoading = uiState.isLoading,
+            newQuoteTextFieldState = TextFieldState(
+                value = newQuoteText,
+                viewModel::onQuoteTextChanged
+            ),
+            quoteAuthorTextFieldState = TextFieldState(
+                value = quoteAuthor,
+                viewModel::onAuthorTextChanged
+            ),
+            onClickAdd = viewModel::addQuote
+        )
     }
-
-    val newQuoteText by viewModel.quoteText.collectAsStateWithLifecycle()
-    val quoteAuthor by viewModel.quoteAuthor.collectAsStateWithLifecycle()
-
-    AddNewQuoteScreen(
-        isLoading = uiState.isLoading,
-        newQuoteTextFieldState = TextFieldState(
-            value = newQuoteText,
-            viewModel::onQuoteTextChanged
-        ),
-        quoteAuthorTextFieldState = TextFieldState(
-            value = quoteAuthor,
-            viewModel::onAuthorTextChanged
-        ),
-        onClickAdd = viewModel::addQuote
-    )
 }
 
 @Composable

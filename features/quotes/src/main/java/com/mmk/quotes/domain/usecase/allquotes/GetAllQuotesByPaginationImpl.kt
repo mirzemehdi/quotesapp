@@ -4,7 +4,6 @@ import com.mmk.core.model.ErrorEntity
 import com.mmk.core.model.Result
 import com.mmk.quotes.domain.model.Quote
 import com.mmk.quotes.domain.repository.QuotesRepository
-import java.lang.IllegalArgumentException
 
 class GetAllQuotesByPaginationImpl(private val quotesRepository: QuotesRepository) :
     GetAllQuotesByPagination {

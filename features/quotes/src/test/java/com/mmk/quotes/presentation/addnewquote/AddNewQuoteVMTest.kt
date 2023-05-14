@@ -1,7 +1,7 @@
 package com.mmk.quotes.presentation.addnewquote
 
 import com.google.common.truth.Truth
-import com.mmk.common.ui.ErrorMessage
+import com.mmk.common.ui.util.UiMessage
 import com.mmk.core.model.Result
 import com.mmk.quotes.domain.model.Quote
 import com.mmk.quotes.domain.usecase.addquote.AddNewQuote
@@ -80,9 +80,9 @@ internal class AddNewQuoteVMTest {
     @Test
     fun `addQuote UiState has Error message when addNewQuote result is failed`() = runTest {
         coEvery { addNewQuoteUseCase.invoke(any()) } returns Result.Error()
-        var errorMessage: ErrorMessage? = null
+        var errorMessage: UiMessage? = null
         val job = launch {
-            errorMessage = viewModel.errorMessage.first()
+            errorMessage = viewModel.uiMessage.first()
         }
         viewModel.addQuote()
         advanceUntilIdle()

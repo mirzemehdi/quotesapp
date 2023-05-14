@@ -4,8 +4,7 @@ import com.google.common.truth.Truth.assertThat
 import com.mmk.quotes.domain.model.Quote
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import java.util.Date
-import java.util.UUID
+import java.util.*
 
 internal class QuoteResponseMappingTest {
     private val id = UUID.randomUUID().toString()

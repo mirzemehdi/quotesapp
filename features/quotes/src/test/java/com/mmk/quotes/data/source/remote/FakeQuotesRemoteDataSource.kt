@@ -6,7 +6,7 @@ import com.mmk.core.model.Result
 import com.mmk.core.util.NetworkHandler
 import com.mmk.quotes.data.source.remote.model.request.NewQuoteRequest
 import com.mmk.quotes.data.source.remote.model.response.QuoteResponse
-import java.util.Date
+import java.util.*
 import kotlin.math.min
 
 class FakeQuotesRemoteDataSource(private val networkHandler: NetworkHandler) :
