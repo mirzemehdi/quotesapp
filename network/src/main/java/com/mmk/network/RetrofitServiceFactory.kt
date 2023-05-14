@@ -16,7 +16,7 @@ object RetrofitServiceFactory {
     fun getInstance(
         baseUrl: String,
         readWriteTimeOutInSeconds: Long = 10L,
-        isLoggingEnabled: Boolean = BuildConfig.DEBUG
+        isLoggingEnabled: Boolean = true
     ): Retrofit = synchronized(this) {
         retrofits[baseUrl] ?: Retrofit.Builder()
             .client(

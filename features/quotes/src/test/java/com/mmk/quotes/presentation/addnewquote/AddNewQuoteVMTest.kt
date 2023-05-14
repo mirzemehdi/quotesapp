@@ -1,18 +1,18 @@
 package com.mmk.quotes.presentation.addnewquote
 
 import com.google.common.truth.Truth
-import com.mmk.common.ui.SingleEvent
-import com.mmk.common.ui.UiState
-import com.mmk.core.model.ErrorEntity
+import com.mmk.common.ui.ErrorMessage
 import com.mmk.core.model.Result
+import com.mmk.quotes.domain.model.Quote
 import com.mmk.quotes.domain.usecase.addquote.AddNewQuote
 import com.mmk.testutils.coroutine.CoroutinesTestExtension
 import com.mmk.testutils.lifecycle.InstantTaskExecutorExtension
-import com.mmk.testutils.lifecycle.getOrAwaitValue
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
@@ -34,9 +34,9 @@ internal class AddNewQuoteVMTest {
     }
 
     @Test
-    fun `addQuote UiState is in HasData state when viewModel is created`() = runTest {
-        val uiState = viewModel.uiState.getOrAwaitValue()
-        Truth.assertThat(uiState).isEqualTo(UiState.HasData)
+    fun `addQuote ui state is not in loading when viewModel is created`() = runTest {
+        val uiState = viewModel.uiState.first()
+        Truth.assertThat(uiState.isLoading).isEqualTo(false)
     }
 
     @Test
@@ -47,45 +47,46 @@ internal class AddNewQuoteVMTest {
         }
         viewModel.addQuote()
         advanceTimeBy(1000)
-        val uiState = viewModel.uiState.getOrAwaitValue()
-        Truth.assertThat(uiState).isEqualTo(UiState.Loading)
+        val uiState = viewModel.uiState.first()
+        Truth.assertThat(uiState.isLoading).isEqualTo(true)
     }
 
+    //
     @Test
-    fun `addQuote UiState is in HasData when addNewQuote result is returned successfully`() = runTest {
+    fun `addQuote UiState is not loading when addNewQuote result is returned successfully`() =
+        runTest {
+            coEvery { addNewQuoteUseCase.invoke(any()) } returns Result.EMPTY
+            viewModel.addQuote()
+            advanceUntilIdle()
+            val uiState = viewModel.uiState.first()
+            Truth.assertThat(uiState.isLoading).isEqualTo(false)
+        }
+
+    //
+    @Test
+    fun `quote result is not null when addNewQuote result is returned successfully`() = runTest {
+        val author = "testAuthor"
+        val text = "testText"
+        val quote = Quote(author = author, text = text)
         coEvery { addNewQuoteUseCase.invoke(any()) } returns Result.EMPTY
+        viewModel.onAuthorTextChanged(author)
+        viewModel.onQuoteTextChanged(text)
         viewModel.addQuote()
         advanceUntilIdle()
-        val uiState = viewModel.uiState.getOrAwaitValue()
-        Truth.assertThat(uiState).isEqualTo(UiState.HasData)
+        val newAddedQuote = viewModel.uiState.first().newAddedQuote
+        Truth.assertThat(newAddedQuote).isEqualTo(quote.copy(id = newAddedQuote?.id ?: ""))
     }
 
     @Test
-    fun `onAddQuote event is fired when addNewQuote result is returned successfully`() = runTest {
-        coEvery { addNewQuoteUseCase.invoke(any()) } returns Result.EMPTY
-        viewModel.addQuote()
-        advanceUntilIdle()
-        val onAddQuote = viewModel.onQuoteAdded.getOrAwaitValue()
-        Truth.assertThat(onAddQuote).isEqualTo(SingleEvent(Unit))
-    }
-
-    @Test
-    fun `addQuote UiState is in Error state when addNewQuote result is failed`() = runTest {
+    fun `addQuote UiState has Error message when addNewQuote result is failed`() = runTest {
         coEvery { addNewQuoteUseCase.invoke(any()) } returns Result.Error()
+        var errorMessage: ErrorMessage? = null
+        val job = launch {
+            errorMessage = viewModel.errorMessage.first()
+        }
         viewModel.addQuote()
         advanceUntilIdle()
-        val uiState = viewModel.uiState.getOrAwaitValue()
-        Truth.assertThat(uiState).isInstanceOf(UiState.Error::class.java)
-    }
-    @Test
-    fun `noNetworkConnection event is fired when addNewQuote result is failed because of network connection`() = runTest {
-        coEvery { addNewQuoteUseCase.invoke(any()) } returns Result.Error(ErrorEntity.networkConnection())
-        viewModel.addQuote()
-        advanceUntilIdle()
-
-        val uiState = viewModel.uiState.getOrAwaitValue()
-        Truth.assertThat(uiState).isInstanceOf(UiState.Error::class.java)
-        val noNetworkConnection = viewModel.noNetworkConnectionEvent.getOrAwaitValue()
-        Truth.assertThat(noNetworkConnection).isEqualTo(SingleEvent(Unit))
+        Truth.assertThat(errorMessage).isNotNull()
+        job.cancel()
     }
 }

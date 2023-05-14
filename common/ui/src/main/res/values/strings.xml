@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="msg_unknown_error_occurred">Unknown error occurred</string>
+    <string name="msg_no_network_connection">You don\'t have an internet connection</string>
 </resources>
