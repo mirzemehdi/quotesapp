@@ -15,7 +15,7 @@ repositories {
 object PluginsVersions {
     const val gradlePlugin = "7.1.0"
     const val kotlin = "1.8.10"
-    const val jUnit5GradlePlugin = "1.8.2.0"
+    const val jUnit5GradlePlugin = "1.8.2.1"
     const val jacoco = "0.8.7" // Testing Coverage report
     const val ktlint = "10.2.1" // Ktlint - Static Code analyzer
     const val detekt = "1.19.0" // Detekt - Static Code analyzer
