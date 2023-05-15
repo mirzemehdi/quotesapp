@@ -12,7 +12,6 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
-import com.mmk.common.ui.UiState
 import com.mmk.quotes.R
 import com.mmk.quotes.domain.model.Quote
 import com.mmk.testutils.koin.KoinTestApplication

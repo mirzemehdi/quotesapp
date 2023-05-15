@@ -12,7 +12,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -20,14 +19,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
-import com.mmk.common.ui.UiState
 import com.mmk.common.ui.components.MyCircularProgressBar
-import com.mmk.common.ui.observeEvent
+import com.mmk.common.ui.components.UiMessageHandlerComponent
 import com.mmk.common.ui.theme.MyApplicationTheme
 import com.mmk.quotes.R
 import com.mmk.quotes.domain.model.Quote
@@ -37,25 +36,23 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun QuotesScreen(viewModel: QuotesVM = koinViewModel()) {
-    val context = LocalContext.current
-    val lazyPagingQuoteItems = viewModel.quotesListFlow.collectAsLazyPagingItems()
-    val uiState by viewModel.getQuotesUiState.observeAsState()
-    viewModel.noNetworkConnectionEvent.observeEvent {
-        Toast.makeText(context, "No internet connection", Toast.LENGTH_SHORT).show()
+    UiMessageHandlerComponent(uiMessageHandler = viewModel) {
+        val lazyPagingQuoteItems = viewModel.quotesListFlow.collectAsLazyPagingItems()
+        val uiState by viewModel.getQuotesUiState.collectAsStateWithLifecycle()
+
+        val loadState = lazyPagingQuoteItems.loadState
+        LaunchedEffect(key1 = loadState.refresh) {
+            viewModel.onPageAdapterLoadingStateChanged(
+                loadState = loadState.refresh,
+                lazyPagingQuoteItems.itemCount
+            )
+        }
+        QuotesScreen(uiState = uiState, quotes = lazyPagingQuoteItems)
     }
-    val loadState = lazyPagingQuoteItems.loadState
-    LaunchedEffect(key1 = loadState.refresh) {
-        viewModel.onPageAdapterLoadingStateChanged(
-            loadState = loadState.refresh,
-            lazyPagingQuoteItems.itemCount
-        )
-    }
-    QuotesScreen(uiState = uiState ?: UiState.NoData, quotes = lazyPagingQuoteItems)
 }
 
 @Composable
-private fun QuotesScreen(uiState: UiState, quotes: LazyPagingItems<Quote>) {
-
+private fun QuotesScreen(uiState: QuotesUiState, quotes: LazyPagingItems<Quote>) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -69,15 +66,14 @@ private fun QuotesScreen(uiState: UiState, quotes: LazyPagingItems<Quote>) {
 
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             when (uiState) {
-                UiState.HasData -> QuotesDataList(
+                QuotesUiState.HasData -> QuotesDataList(
                     quotes = quotes,
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(top = 16.dp)
                 )
-                UiState.Loading -> MyCircularProgressBar()
-                UiState.NoData -> EmptyQuotesView()
-                else -> Unit
+                QuotesUiState.Loading -> MyCircularProgressBar()
+                QuotesUiState.Empty -> EmptyQuotesView()
             }
         }
     }
@@ -168,7 +164,7 @@ private fun RetryButtonPreview() {
 private fun QuotesScreenPreview() {
     MyApplicationTheme {
         QuotesScreen(
-            uiState = UiState.HasData,
+            uiState = QuotesUiState.HasData,
             quotes = getTestQuotes().collectAsLazyPagingItems()
         )
     }
@@ -179,7 +175,7 @@ private fun QuotesScreenPreview() {
 private fun EmptyQuotesPreview() {
     MyApplicationTheme {
         QuotesScreen(
-            uiState = UiState.NoData,
+            uiState = QuotesUiState.Empty,
             quotes = getTestQuotes().collectAsLazyPagingItems()
         )
     }
@@ -190,7 +186,7 @@ private fun EmptyQuotesPreview() {
 private fun LoadingQuotesPreview() {
     MyApplicationTheme {
         QuotesScreen(
-            uiState = UiState.Loading,
+            uiState = QuotesUiState.Loading,
             quotes = getTestQuotes().collectAsLazyPagingItems()
         )
     }

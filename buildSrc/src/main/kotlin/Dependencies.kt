@@ -59,12 +59,9 @@ object Libs {
     val composeUiTooling by lazy { "androidx.compose.ui:ui-tooling" }
     val composeLiveData by lazy { "androidx.compose.runtime:runtime-livedata" }
 
-
-
     val composeLifeCycleViewModel by lazy { "androidx" +
             ".lifecycle:lifecycle-viewmodel-compose:${Versions.androidXLifecycle}" }
     val composeLifeCycleRuntime by lazy { "androidx.lifecycle:lifecycle-runtime-compose:${Versions.androidXLifecycle}" }
-    val comoseActivity by lazy { "androidx.activity:activity-compose:${Versions.androidXActivity}" }
     val navigationCompose by lazy { "androidx.navigation:navigation-compose:${Versions
         .navigation}" }
 

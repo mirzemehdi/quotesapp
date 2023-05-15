@@ -10,17 +10,17 @@ import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.mmk.common.ui.UiState
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mmk.common.ui.components.MyCircularProgressBar
 import com.mmk.common.ui.components.MyOutlinedTextField
-import com.mmk.common.ui.observeEvent
+import com.mmk.common.ui.components.UiMessageHandlerComponent
 import com.mmk.common.ui.theme.MyApplicationTheme
 import com.mmk.common.ui.util.TextFieldState
 import com.mmk.quotes.R
@@ -28,26 +28,28 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun AddNewQuoteScreen(viewModel: AddNewQuoteVM = koinViewModel(), onBackPress: () -> Unit) {
-    val uiState by viewModel.uiState.observeAsState()
-    val isLoading = uiState is UiState.Loading
-    viewModel.onQuoteAdded.observeEvent {
-        onBackPress()
-    }
-    val newQuoteText = viewModel.quoteText.observeAsState().value ?: ""
-    val quoteAuthor = viewModel.quoteAuthor.observeAsState().value ?: ""
+    UiMessageHandlerComponent(uiMessageHandler = viewModel) {
+        val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+        LaunchedEffect(key1 = uiState.newAddedQuote) {
+            if (uiState.newAddedQuote != null) onBackPress()
+        }
 
-    AddNewQuoteScreen(
-        isLoading = isLoading,
-        newQuoteTextFieldState = TextFieldState(
-            value = newQuoteText,
-            viewModel::onQuoteTextChanged
-        ),
-        quoteAuthorTextFieldState = TextFieldState(
-            value = quoteAuthor,
-            viewModel::onAuthorTextChanged
-        ),
-        onClickAdd = viewModel::addQuote
-    )
+        val newQuoteText by viewModel.quoteText.collectAsStateWithLifecycle()
+        val quoteAuthor by viewModel.quoteAuthor.collectAsStateWithLifecycle()
+
+        AddNewQuoteScreen(
+            isLoading = uiState.isLoading,
+            newQuoteTextFieldState = TextFieldState(
+                value = newQuoteText,
+                viewModel::onQuoteTextChanged
+            ),
+            quoteAuthorTextFieldState = TextFieldState(
+                value = quoteAuthor,
+                viewModel::onAuthorTextChanged
+            ),
+            onClickAdd = viewModel::addQuote
+        )
+    }
 }
 
 @Composable

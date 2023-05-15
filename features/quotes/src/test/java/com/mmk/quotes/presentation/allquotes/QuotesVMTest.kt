@@ -2,17 +2,18 @@ package com.mmk.quotes.presentation.allquotes
 
 import androidx.paging.LoadState
 import com.google.common.truth.Truth
-import com.mmk.common.ui.ErrorMessage
-import com.mmk.common.ui.UiState
+import com.mmk.common.ui.util.UiMessage
 import com.mmk.core.model.ErrorEntity
 import com.mmk.quotes.data.repository.QuotesPagingSource
 import com.mmk.quotes.domain.usecase.allquotes.GetAllQuotesByPagination
 import com.mmk.quotes.domain.util.PagingException
 import com.mmk.testutils.coroutine.CoroutinesTestExtension
 import com.mmk.testutils.lifecycle.InstantTaskExecutorExtension
-import com.mmk.testutils.lifecycle.getOrAwaitValue
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.BeforeEach
@@ -36,9 +37,9 @@ internal class QuotesVMTest {
     }
 
     @Test
-    fun `getQuotes UI state is Loading when first time viewModel is created`() {
-        val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
-        Truth.assertThat(uiState).isEqualTo(UiState.Loading)
+    fun `getQuotes UI state is Loading when first time viewModel is created`() = runTest {
+        val uiState = quotesViewModel.getQuotesUiState.first()
+        Truth.assertThat(uiState).isEqualTo(QuotesUiState.Loading)
     }
 
     @Test
@@ -48,80 +49,72 @@ internal class QuotesVMTest {
         )
         advanceUntilIdle()
 
-        val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
-        Truth.assertThat(uiState).isEqualTo(UiState.HasData)
+        val uiState = quotesViewModel.getQuotesUiState.first()
+        Truth.assertThat(uiState).isEqualTo(QuotesUiState.HasData)
     }
 
+    //
     @Test
     fun `getQuotes uiState is NoData when there are no quotes`() = runTest {
         quotesViewModel.onPageAdapterLoadingStateChanged(LoadState.NotLoading(false), 0)
         advanceUntilIdle()
-        val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
-        Truth.assertThat(uiState).isEqualTo(UiState.NoData)
+        val uiState = quotesViewModel.getQuotesUiState.first()
+        Truth.assertThat(uiState).isEqualTo(QuotesUiState.Empty)
     }
 
+    //
     @Nested
     internal inner class GivenErrorOnPageAdapterLoadingStateChanged {
         @Test
-        fun `uiState is Error`() = runTest {
-            quotesViewModel.onPageAdapterLoadingStateChanged(
-                LoadState.Error(PagingException(ErrorEntity.networkConnection()))
-            )
-            advanceUntilIdle()
+        fun `errorMessage is not null`() = runTest {
+            val errorMessage = getErrorMessageValueAfterAction {
+                quotesViewModel.onPageAdapterLoadingStateChanged(
+                    LoadState.Error(PagingException(ErrorEntity.networkConnection()))
+                )
+                advanceUntilIdle()
+            }
 
-            val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
-            Truth.assertThat(uiState).isInstanceOf(UiState.Error::class.java)
+            Truth.assertThat(errorMessage).isNotNull()
         }
 
         @Test
-        fun `errorMessage is not empty if errorType is not NoNetworkConnection`() =
+        fun ` then error message is Unexpected if not PagingException`() =
             runTest {
-                quotesViewModel.onPageAdapterLoadingStateChanged(
-                    LoadState.Error(PagingException(ErrorEntity.apiError()))
-                )
-                advanceUntilIdle()
 
-                val errorMessage =
-                    ErrorMessage.ResourceId(com.mmk.common.ui.R.string.msg_unknown_error_occurred)
-                val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
-                Truth.assertThat(uiState).isInstanceOf(UiState.Error::class.java)
-                Truth.assertThat((uiState as UiState.Error).errorMessage).isEqualTo(errorMessage)
+                val errorMessage = getErrorMessageValueAfterAction {
+                    quotesViewModel.onPageAdapterLoadingStateChanged(
+                        LoadState.Error(Exception("Some error occurred, and not covered with PagingException"))
+                    )
+                    advanceUntilIdle()
+                }
+                val expectedErrorMessage =
+                    UiMessage.ResourceId(com.mmk.common.ui.R.string.msg_unknown_error_occurred)
+                Truth.assertThat(errorMessage).isEqualTo(expectedErrorMessage)
             }
 
         @Test
-        fun ` then error type is Unexpected if not PagingException`() =
-            runTest {
+        fun `given no network then then is noNetworkConnection message`() = runTest {
+            val errorMessage = getErrorMessageValueAfterAction {
                 quotesViewModel.onPageAdapterLoadingStateChanged(
-                    LoadState.Error(Exception("Some error occurred, and not covered with PagingException"))
+                    LoadState.Error(PagingException(ErrorEntity.networkConnection()))
                 )
                 advanceUntilIdle()
-
-                val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
-                Truth.assertThat(uiState).isInstanceOf(UiState.Error::class.java)
             }
 
-        @Test
-        fun `given no network then noNetworkConnection is true`() = runTest {
-            quotesViewModel.onPageAdapterLoadingStateChanged(
-                LoadState.Error(PagingException(ErrorEntity.networkConnection()))
-            )
-            advanceUntilIdle()
-
-            val noNetworkConnectionEvent = quotesViewModel.noNetworkConnectionEvent.getOrAwaitValue()
-
-            Truth.assertThat(noNetworkConnectionEvent).isNotNull()
+            Truth.assertThat(errorMessage).isNotNull()
+            val expectedErrorMessage =
+                UiMessage.ResourceId(com.mmk.common.ui.R.string.msg_no_network_connection)
+            Truth.assertThat(errorMessage).isEqualTo(expectedErrorMessage)
         }
 
-        @Test
-        fun `given no network then errorMessage is null`() = runTest {
-            quotesViewModel.onPageAdapterLoadingStateChanged(
-                LoadState.Error(PagingException(ErrorEntity.networkConnection()))
-            )
-            advanceUntilIdle()
-
-            val uiState = quotesViewModel.getQuotesUiState.getOrAwaitValue()
-            Truth.assertThat(uiState).isInstanceOf(UiState.Error::class.java)
-            Truth.assertThat((uiState as UiState.Error).errorMessage).isNull()
+        private fun TestScope.getErrorMessageValueAfterAction(block: () -> Unit): UiMessage? {
+            var errorMessage: UiMessage? = null
+            val job = launch {
+                errorMessage = quotesViewModel.uiMessage.first()
+            }
+            block()
+            job.cancel()
+            return errorMessage
         }
     }
 }

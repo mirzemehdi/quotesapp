@@ -1,22 +1,19 @@
 package com.mmk.quotes.presentation.allquotes
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
-import com.mmk.common.ui.ErrorMessage
-import com.mmk.common.ui.SingleEvent
-import com.mmk.common.ui.UiState
+import com.mmk.common.ui.util.UiMessage
+import com.mmk.common.ui.util.errorhandling.UiMessageHandler
+import com.mmk.common.ui.util.errorhandling.UiMessageHandlerImpl
 import com.mmk.core.model.ErrorEntity
 import com.mmk.quotes.domain.model.Quote
 import com.mmk.quotes.domain.util.PagingException
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class QuotesVM(quotesPagingSourceFactory: () -> PagingSource<String, Quote>) :
-    ViewModel() {
+    ViewModel(), UiMessageHandler by UiMessageHandlerImpl() {
 
     private val config =
         PagingConfig(
@@ -30,21 +27,19 @@ class QuotesVM(quotesPagingSourceFactory: () -> PagingSource<String, Quote>) :
         pagingSourceFactory = quotesPagingSourceFactory
     )
 
-    private val _getQuotesUiState: MutableLiveData<UiState> = MutableLiveData(UiState.Loading)
-    val getQuotesUiState: LiveData<UiState> = _getQuotesUiState
+    private val _getQuotesUiState: MutableStateFlow<QuotesUiState> =
+        MutableStateFlow(QuotesUiState.Loading)
+    val getQuotesUiState: StateFlow<QuotesUiState> = _getQuotesUiState.asStateFlow()
 
     val quotesListFlow: Flow<PagingData<Quote>> =
-        pagingData.flow.onStart { _getQuotesUiState.value = UiState.Loading }
-
-    private val _noNetworkConnectionEvent: MutableLiveData<SingleEvent<Unit>> = MutableLiveData()
-    val noNetworkConnectionEvent: LiveData<SingleEvent<Unit>> = _noNetworkConnectionEvent
+        pagingData.flow.onStart { _getQuotesUiState.value = QuotesUiState.Loading }
 
     fun onPageAdapterLoadingStateChanged(loadState: LoadState, totalItemCount: Int = 0) =
         viewModelScope.launch {
             when (loadState) {
                 is LoadState.NotLoading ->
                     _getQuotesUiState.value =
-                        if (totalItemCount < 1) UiState.NoData else UiState.HasData
+                        if (totalItemCount < 1) QuotesUiState.Empty else QuotesUiState.HasData
                 LoadState.Loading -> Unit
 
                 is LoadState.Error -> {
@@ -56,20 +51,19 @@ class QuotesVM(quotesPagingSourceFactory: () -> PagingSource<String, Quote>) :
             }
         }
 
-    private fun onErrorOccurred(errorEntity: ErrorEntity?) {
-        val errorMessage: ErrorMessage?
-        when (errorEntity) {
-            ErrorEntity.NetworkConnection -> {
-                _noNetworkConnectionEvent.value = SingleEvent(Unit)
-                errorMessage = null
+    private fun onErrorOccurred(errorEntity: ErrorEntity?) = viewModelScope.launch {
+        sendMessage(
+            when (errorEntity) {
+                ErrorEntity.NetworkConnection -> {
+
+                    UiMessage.ResourceId(com.mmk.common.ui.R.string.msg_no_network_connection)
+                }
+                is ErrorEntity.ApiError,
+                is ErrorEntity.FeatureError,
+                is ErrorEntity.Unexpected,
+                null
+                -> UiMessage.ResourceId(com.mmk.common.ui.R.string.msg_unknown_error_occurred)
             }
-            is ErrorEntity.ApiError,
-            is ErrorEntity.FeatureError,
-            is ErrorEntity.Unexpected,
-            null
-            -> errorMessage =
-                ErrorMessage.ResourceId(com.mmk.common.ui.R.string.msg_unknown_error_occurred)
-        }
-        _getQuotesUiState.value = UiState.Error(errorMessage)
+        )
     }
 }
