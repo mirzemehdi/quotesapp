@@ -17,3 +17,4 @@ include ':common:core'
 include ':features:profile'
 include ':features:quotes'
 
+include ':shared'
