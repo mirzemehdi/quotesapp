@@ -8,6 +8,7 @@ import implementJetpackComposeUi
 
 plugins {
     id("com.android.library")
+    kotlin("android")
     id("de.mannodermaus.android-junit5")
     id("plugins.jacoco-android")
     id("plugins.ktlint")
@@ -62,6 +63,9 @@ android {
 
     })
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 
     buildFeatures {
         viewBinding = true

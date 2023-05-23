@@ -1,8 +1,10 @@
 
 
 plugins {
+//    id(Plugins.commonAndroidLibrary)
     kotlin("multiplatform")
-    id(Plugins.commonAndroidLibrary)
+    id("com.android.library")
+
 }
 
 kotlin {
