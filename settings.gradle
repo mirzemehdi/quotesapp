@@ -14,7 +14,6 @@ include ':network'
 include ':customdetektrules'
 include ':test-utils'
 include ':common:ui'
-include ':common:core'
 include ':features:profile'
 include ':features:quotes'
 
