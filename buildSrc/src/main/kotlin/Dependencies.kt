@@ -8,6 +8,7 @@ object Libs {
     val okHttpLogger by lazy { "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpLogging}" }
 
     //Koin - Dependency Injection
+    val koinCore by lazy { "io.insert-koin:koin-core:${Versions.koin}" }
     val koinAndroid by lazy { "io.insert-koin:koin-android:${Versions.koin}" }
     val koinCompose by lazy { "io.insert-koin:koin-androidx-compose:${Versions.koinCompose}" }
 
@@ -33,6 +34,8 @@ object Libs {
 
     //For logging
     val timber by lazy { "com.jakewharton.timber:timber:${Versions.timber}" }
+    val napier by lazy { "io.github.aakira:napier:${Versions.napier}" }
+
 
     //Pagination
     val paging by lazy { "androidx.paging:paging-runtime:${Versions.paging}" }

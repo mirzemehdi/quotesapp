@@ -6,6 +6,7 @@ object Versions {
     const val koinCompose="3.4.2"
     const val firebase="30.2.0"
     const val timber="5.0.1"
+    const val napier="2.6.1"
     const val paging="3.1.1"
     const val pagingCompose="1.0.0-alpha18"
     const val material="1.6.1"
@@ -19,7 +20,7 @@ object Versions {
     const val jUnit5="5.9.3"
     const val truth="1.1.3"
     const val mockk="1.12.0"
-    const val coroutine="1.6.3"
+    const val coroutine="1.7.1"
     const val robolectric="4.10"
 
     const val detekt = "1.19.0" // Detekt - Static Code analyzer

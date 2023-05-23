@@ -4,6 +4,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter()
+        gradlePluginPortal()
     }
 }
 
@@ -18,3 +19,5 @@ include ':features:profile'
 include ':features:quotes'
 
 include ':shared'
+include ':shared:common'
+include ':shared:common:core'
