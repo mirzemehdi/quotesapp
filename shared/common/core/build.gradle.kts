@@ -1,9 +1,7 @@
-
-
 plugins {
 //    id(Plugins.commonAndroidLibrary)
-    kotlin("multiplatform")
     id("com.android.library")
+    kotlin("multiplatform")
 
 }
 
@@ -54,8 +52,22 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting
-        val androidUnitTest by getting
+        val androidMain by getting{
+            dependencies {
+                implementation(Libs.androidXCore)
+            }
+        }
+        val androidUnitTest by getting {
+            dependencies {
+                implementation(TestingLibs.junit4)
+                implementation(TestingLibs.truth)
+                implementation(TestingLibs.mockk)
+                implementation(TestingLibs.robolectric)
+                implementation(TestingLibs.androidXCoreKtx)
+                implementation(TestingLibs.androidXJunitKtx)
+
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting

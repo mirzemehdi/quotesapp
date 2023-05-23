@@ -55,6 +55,7 @@ dependencies {
     implementation(project(Modules.quotes))
     implementation(project(Modules.core))
     implementation(project(Modules.commonUi))
+//    implementation(project(Modules.sharedCore))
 
     implementation(Libs.constraintLayout)
     implementation(Libs.androidxAppcompat)

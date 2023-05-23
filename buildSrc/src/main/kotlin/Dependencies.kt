@@ -1,5 +1,9 @@
 object Libs {
 
+    //AndroidX
+    val androidXCore by lazy { "androidx.core:core-ktx:${Versions.androidXCore}" }
+
+
     //Retrofit and Moshi convertor - Networking libraries
     val moshi by lazy { "com.squareup.moshi:moshi:${Versions.moshi}" }
     val moshiKotlin by lazy { "com.squareup.moshi:moshi-kotlin:${Versions.moshi}" }
@@ -94,9 +98,9 @@ object TestingLibs {
 
 
     // Instrumented test libraries androidTestImplementation(...)
-    val androidXCore by lazy { "androidx.test:core:${Versions.androidXCore}" }
-    val androidXCoreKtx by lazy { "androidx.test:core-ktx:${Versions.androidXCore}" }
-    val androidXRunner by lazy { "androidx.test:runner:${Versions.androidXCore}" }
+    val androidXCore by lazy { "androidx.test:core:${Versions.androidXTestCore}" }
+    val androidXCoreKtx by lazy { "androidx.test:core-ktx:${Versions.androidXTestCore}" }
+    val androidXRunner by lazy { "androidx.test:runner:${Versions.androidXTestCore}" }
     val androidXJunit by lazy { "androidx.test.ext:junit:${Versions.androidXJunit}" }
     val androidXJunitKtx by lazy { "androidx.test.ext:junit-ktx:${Versions.androidXJunit}" }
     val mockkAndroid by lazy { "io.mockk:mockk-android:${Versions.mockk}" }

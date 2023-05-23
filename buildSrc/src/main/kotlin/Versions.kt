@@ -26,7 +26,8 @@ object Versions {
     const val detekt = "1.19.0" // Detekt - Static Code analyzer
     const val assertj="3.15.0" //Needed for testing detekt custom rules
 
-    const val androidXCore="1.4.0"
+    const val androidXCore="1.10.1"
+    const val androidXTestCore="1.4.0"
     const val androidXJunit="1.1.3"
     const val fragmentTesting="1.5.4"
     const val espresso="3.3.0"

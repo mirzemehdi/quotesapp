@@ -1,0 +1,15 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.mmk.quotesapp" >
+4
+5    <uses-sdk
+6        android:minSdkVersion="21"
+6-->/Users/mirzemehdi/StudioProjects/QuotesApp/shared/common/core/src/androidMain/AndroidManifest.xml
+7        android:targetSdkVersion="21" />
+7-->/Users/mirzemehdi/StudioProjects/QuotesApp/shared/common/core/src/androidMain/AndroidManifest.xml
+8
+9    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+9-->/Users/mirzemehdi/StudioProjects/QuotesApp/shared/common/core/src/androidMain/AndroidManifest.xml:3:5-79
+9-->/Users/mirzemehdi/StudioProjects/QuotesApp/shared/common/core/src/androidMain/AndroidManifest.xml:3:22-76
+10
+11</manifest>
