@@ -5,10 +5,10 @@ import com.mmk.common.ui.util.errorhandling.UiMessageHandler
 import com.mmk.common.ui.util.extensions.showAsToastMessage
 
 @Composable
-fun UiMessageHandlerComponent(
-    uiMessageHandler: UiMessageHandler,
+fun UiMessageHolderComponent(
+    uiMessageHolder: UiMessageHandler,
     content: @Composable () -> Unit
 ) {
-    uiMessageHandler.uiMessage.showAsToastMessage()
+    uiMessageHolder.uiMessage.showAsToastMessage()
     content()
 }

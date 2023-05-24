@@ -77,6 +77,7 @@ object Libs {
 
 object Plugins {
     val commonAndroidLibrary by lazy { "common.android-library" }
+    val multiPlatformComposePlugin by lazy { "common.multiplatform-compose" }
     val googleServices by lazy { "com.google.gms.google-services" }
     val firebaseCrashlytics by lazy { "com.google.firebase.crashlytics" }
 }

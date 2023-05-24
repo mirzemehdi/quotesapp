@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mmk.common.ui.components.MyCircularProgressBar
 import com.mmk.common.ui.components.MyOutlinedTextField
-import com.mmk.common.ui.components.UiMessageHandlerComponent
+import com.mmk.common.ui.components.UiMessageHolderComponent
 import com.mmk.common.ui.theme.MyApplicationTheme
 import com.mmk.common.ui.util.TextFieldState
 import com.mmk.quotes.R
@@ -28,7 +28,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun AddNewQuoteScreen(viewModel: AddNewQuoteVM = koinViewModel(), onBackPress: () -> Unit) {
-    UiMessageHandlerComponent(uiMessageHandler = viewModel) {
+    UiMessageHolderComponent(uiMessageHolder = viewModel) {
         val uiState by viewModel.uiState.collectAsStateWithLifecycle()
         LaunchedEffect(key1 = uiState.newAddedQuote) {
             if (uiState.newAddedQuote != null) onBackPress()
