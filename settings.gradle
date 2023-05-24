@@ -19,3 +19,4 @@ include ':features:quotes'
 
 
 include ':shared:common:core'
+include ':shared:features:profile'
