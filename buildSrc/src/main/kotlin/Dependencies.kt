@@ -58,6 +58,7 @@ object Libs {
 
     //Jetpack Compose
     val composeBom by lazy { "androidx.compose:compose-bom:${Versions.composeBom}" }
+    val composeRuntime by lazy { "androidx.compose.runtime:runtime:1.4.0" }
     val composeMaterial3 by lazy { "androidx.compose.material3:material3" }
     val composeMaterial2 by lazy { "androidx.compose.material:material" }
     val composeFoundation by lazy { "androidx.compose.foundation:foundation" }

@@ -3,12 +3,15 @@ package common
 import ConfigData
 import Libs
 import TestingLibs
-
+import implementJetpackComposeUi
+import org.jetbrains.compose.compose
 
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
+    id("org.jetbrains.compose")
 }
+
 
 kotlin {
     android {
@@ -46,6 +49,11 @@ kotlin {
                 implementation(Libs.coroutineCore)
                 implementation(Libs.koinCore)
                 implementation(Libs.napier)
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material)
+                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+                implementation(compose.components.resources)
             }
         }
         val commonTest by getting {

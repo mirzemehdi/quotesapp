@@ -1,5 +1,6 @@
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.DependencyHandlerScope
+import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 private fun DependencyHandler.implement(dependency: Any) {
     add("implementation", dependency)
