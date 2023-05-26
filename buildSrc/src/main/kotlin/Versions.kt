@@ -37,6 +37,8 @@ object Versions {
     const val androidXLifecycle = "2.6.0-alpha05"
     const val androidXActivity = "1.6.1"
 
+    const val mokoResources = "0.22.3"
+
 
 
 

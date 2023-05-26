@@ -38,8 +38,6 @@ object Libs {
 
     //For logging
     val timber by lazy { "com.jakewharton.timber:timber:${Versions.timber}" }
-    val napier by lazy { "io.github.aakira:napier:${Versions.napier}" }
-
 
     //Pagination
     val paging by lazy { "androidx.paging:paging-runtime:${Versions.paging}" }
@@ -73,14 +71,24 @@ object Libs {
     val navigationCompose by lazy { "androidx.navigation:navigation-compose:${Versions
         .navigation}" }
 
+    //KMM
+    //Resource sharing
+    val mokoResources by lazy { "dev.icerock.moko:resources:${Versions.mokoResources}" }
+    val mokoResourcesCompose by lazy { "dev.icerock.moko:resources-compose:${Versions.mokoResources}" }
+
+    //Logging
+    val napier by lazy { "io.github.aakira:napier:${Versions.napier}" }
+
 }
 
 
 object Plugins {
     val commonAndroidLibrary by lazy { "common.android-library" }
-    val multiPlatformComposePlugin by lazy { "common.multiplatform-compose" }
     val googleServices by lazy { "com.google.gms.google-services" }
     val firebaseCrashlytics by lazy { "com.google.firebase.crashlytics" }
+
+    val multiPlatformComposePlugin by lazy { "common.multiplatform-compose" }
+    val multiPlatformResources by lazy { "dev.icerock.mobile.multiplatform-resources" }
 }
 
 object TestingLibs {

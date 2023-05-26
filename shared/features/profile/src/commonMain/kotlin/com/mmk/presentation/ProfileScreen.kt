@@ -14,6 +14,10 @@ import androidx.compose.ui.graphics.Color.Companion.Yellow
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.mmk.features.profile.MR
+import dev.icerock.moko.resources.compose.stringResource
+import dev.icerock.moko.resources.desc.Resource
+import dev.icerock.moko.resources.desc.StringDesc
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
@@ -33,9 +37,8 @@ fun ProfileScreen() {
             contentDescription = null,
             modifier = Modifier.size(100.dp)
         )
-
         Text(
-            text = "stringResource(id = R.string.profile_name)",
+            text = stringResource(MR.strings.profile_name),
             style = MaterialTheme.typography.titleLarge.copy(fontSize = 20.sp),
             modifier = Modifier.padding(top = 16.dp),
         )
@@ -54,7 +57,7 @@ fun ProfileScreen() {
                 .fillMaxWidth()
         ) {
             Text(
-                text = "stringResource(id = R.string.profile_bio)",
+                text = stringResource(MR.strings.profile_bio),
                 fontStyle = FontStyle.Italic,
                 style = MaterialTheme.typography.titleMedium.copy(fontSize = 16.sp),
             )

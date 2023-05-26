@@ -1,5 +1,6 @@
 plugins {
     id(Plugins.multiPlatformComposePlugin)
+    id(Plugins.multiPlatformResources)
 }
 
 kotlin {
@@ -11,4 +12,14 @@ kotlin {
         }
     }
 
+}
+
+dependencies {
+    commonMainApi(Libs.mokoResources)
+    commonMainApi(Libs.mokoResourcesCompose) // for compose multiplatform
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "com.mmk.features.profile" // required
+    multiplatformResourcesVisibility = dev.icerock.gradle.MRVisibility.Internal // optional, default Public
 }
