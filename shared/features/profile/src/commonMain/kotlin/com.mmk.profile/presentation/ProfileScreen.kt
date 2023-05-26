@@ -1,4 +1,4 @@
-package com.mmk.presentation
+package com.mmk.profile.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -15,6 +15,8 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mmk.features.profile.MR
+import com.mmk.ui.theme.OrangeDark
+import com.mmk.ui.theme.OrangeLight
 import dev.icerock.moko.resources.compose.stringResource
 import dev.icerock.moko.resources.desc.Resource
 import dev.icerock.moko.resources.desc.StringDesc
@@ -24,8 +26,6 @@ import org.jetbrains.compose.resources.painterResource
 @OptIn(ExperimentalResourceApi::class)
 @Composable
 fun ProfileScreen() {
-    val OrangeDark=Yellow //TODO temporary added
-    val OrangeLight=Yellow //TODO temporary added
     Column(
         modifier = Modifier
             .fillMaxSize()
