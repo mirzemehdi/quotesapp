@@ -27,7 +27,6 @@ include(
     ":customdetektrules",
     ":test-utils",
     ":common:ui",
-    ":features:profile",
     ":features:quotes",
     ":shared:common:core",
     ":shared:features:profile",

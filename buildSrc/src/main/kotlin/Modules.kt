@@ -1,7 +1,7 @@
 object Modules {
     //Features
     const val quotes=":features:quotes"
-    const val profile=":features:profile"
+    const val profile=":shared:features:profile"
 
     const val customDetektRules = ":customdetektrules"
     const val core = ":shared:common:core"

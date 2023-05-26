@@ -1,3 +1,4 @@
+
 plugins {
     id(Plugins.multiPlatformComposePlugin)
     id(Plugins.multiPlatformResources)
@@ -9,6 +10,12 @@ kotlin {
             dependencies {
                 implementation(project(Modules.core))
                 implementation(project(Modules.sharedCommonUi))
+            }
+        }
+
+        val androidMain by getting{
+            dependencies{
+                implementation(Libs.navigationCompose)
             }
         }
     }
