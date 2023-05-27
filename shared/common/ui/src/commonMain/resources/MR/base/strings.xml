@@ -2,4 +2,6 @@
 <resources>
     <string name="msg_unknown_error_occurred">Unknown error occurred</string>
     <string name="msg_no_network_connection">You don\'t have an internet connection</string>
+    <string name="profile_name">Mirzamehdi Karimov</string>
+    <string name="profile_bio">Android Developer</string>
 </resources>

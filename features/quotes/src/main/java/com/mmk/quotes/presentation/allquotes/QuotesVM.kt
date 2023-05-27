@@ -3,6 +3,7 @@ package com.mmk.quotes.presentation.allquotes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.*
+import com.mmk.common.ui.MR
 import com.mmk.common.ui.util.UiMessage
 import com.mmk.common.ui.util.errorhandling.UiMessageHandler
 import com.mmk.common.ui.util.errorhandling.UiMessageHandlerImpl
@@ -52,17 +53,17 @@ class QuotesVM(quotesPagingSourceFactory: () -> PagingSource<String, Quote>) :
         }
 
     private fun onErrorOccurred(errorEntity: ErrorEntity?) = viewModelScope.launch {
-        sendMessage(
+        emitMessage(
             when (errorEntity) {
                 ErrorEntity.NetworkConnection -> {
 
-                    UiMessage.ResourceId(com.mmk.common.ui.R.string.msg_no_network_connection)
+                    UiMessage.Resource(MR.strings.msg_no_network_connection)
                 }
                 is ErrorEntity.ApiError,
                 is ErrorEntity.FeatureError,
                 is ErrorEntity.Unexpected,
                 null
-                -> UiMessage.ResourceId(com.mmk.common.ui.R.string.msg_unknown_error_occurred)
+                -> UiMessage.Resource(MR.strings.msg_unknown_error_occurred)
             }
         )
     }

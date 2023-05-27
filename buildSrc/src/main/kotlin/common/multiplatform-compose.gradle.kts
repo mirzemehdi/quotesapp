@@ -64,6 +64,8 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(Libs.androidXCore)
+                implementation(Libs.androidxAppcompat)
+                api(Libs.pagingCompose)
             }
         }
         val androidUnitTest by getting {
@@ -122,6 +124,7 @@ android {
             add("META-INF/ASL2.0")
             add("META-INF/AL2.0")
             add("META-INF/*.kotlin_module")
+            add("MR/base/strings.xml")
         }
     })
 //

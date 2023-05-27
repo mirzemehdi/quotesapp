@@ -26,7 +26,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.mmk.common.ui.components.MyCircularProgressBar
-import com.mmk.common.ui.components.UiMessageHolderComponent
+import com.mmk.common.ui.components.UiMessageOwnerComponent
 import com.mmk.common.ui.theme.MyApplicationTheme
 import com.mmk.quotes.R
 import com.mmk.quotes.domain.model.Quote
@@ -36,7 +36,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun QuotesScreen(viewModel: QuotesVM = koinViewModel()) {
-    UiMessageHolderComponent(uiMessageHolder = viewModel) {
+    UiMessageOwnerComponent(uiMessageOwner = viewModel) {
         val lazyPagingQuoteItems = viewModel.quotesListFlow.collectAsLazyPagingItems()
         val uiState by viewModel.getQuotesUiState.collectAsStateWithLifecycle()
 

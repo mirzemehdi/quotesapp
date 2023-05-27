@@ -10,5 +10,5 @@ dependencies {
 
 multiplatformResources {
     multiplatformResourcesPackage = "com.mmk.common.ui"
-    multiplatformResourcesVisibility = dev.icerock.gradle.MRVisibility.Internal // optional, default Public
+//    multiplatformResourcesVisibility = dev.icerock.gradle.MRVisibility.Internal // optional, default Public
 }

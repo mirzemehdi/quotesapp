@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.SharedFlow
 
 @SuppressLint("ComposableNaming")
 @Composable
-fun SharedFlow<UiMessage?>.showAsToastMessage() {
+actual fun SharedFlow<UiMessage?>.showAsToastMessage() {
     val context = LocalContext.current
     LaunchedEffect(key1 = Unit) {
         this@showAsToastMessage.collect { uiMessage ->
@@ -17,9 +17,3 @@ fun SharedFlow<UiMessage?>.showAsToastMessage() {
         }
     }
 }
-
-
-
-
-
-

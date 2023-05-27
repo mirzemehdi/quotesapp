@@ -1,10 +1,9 @@
-package com.mmk.ui.theme
+package com.mmk.common.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
-import com.mmk.common.ui.MR
 
 private val LightColorPalette = MyAppColors(
     primary = Black,

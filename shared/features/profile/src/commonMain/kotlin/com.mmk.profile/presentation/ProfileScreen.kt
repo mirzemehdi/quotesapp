@@ -10,16 +10,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color.Companion.Yellow
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.mmk.features.profile.MR
-import com.mmk.ui.theme.OrangeDark
-import com.mmk.ui.theme.OrangeLight
+import com.mmk.common.ui.MR
+import com.mmk.common.ui.theme.OrangeDark
+import com.mmk.common.ui.theme.OrangeLight
 import dev.icerock.moko.resources.compose.stringResource
-import dev.icerock.moko.resources.desc.Resource
-import dev.icerock.moko.resources.desc.StringDesc
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 

@@ -1,4 +1,4 @@
-package com.mmk.ui.theme
+package com.mmk.common.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

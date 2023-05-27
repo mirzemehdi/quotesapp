@@ -1,7 +1,9 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="AppTheme.Base">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:navigationBarColor">#3d3d3d</item>
+        <item name="android:statusBarColor">#3d3d3d</item>
     </style>
 
 </resources>
