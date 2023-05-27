@@ -26,7 +26,6 @@ include(
     ":network",
     ":customdetektrules",
     ":test-utils",
-//    ":common:ui",
     ":features:quotes",
     ":shared:common:core",
     ":shared:features:profile",

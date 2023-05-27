@@ -7,7 +7,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(Modules.core))
-                implementation(project(Modules.sharedCommonUi))
+                implementation(project(Modules.commonUi))
             }
         }
 
