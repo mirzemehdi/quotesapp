@@ -38,6 +38,7 @@ object Versions {
     const val androidXActivity = "1.6.1"
 
     const val mokoResources = "0.22.3"
+    const val dateTime = "0.4.0"
 
 
 

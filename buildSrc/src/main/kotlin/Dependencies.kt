@@ -78,6 +78,8 @@ object Libs {
 
     //Logging
     val napier by lazy { "io.github.aakira:napier:${Versions.napier}" }
+    //Date
+    val dateTime by lazy { "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.dateTime}" }
 
 }
 

@@ -88,7 +88,7 @@ internal class QuotesVMTest {
                     advanceUntilIdle()
                 }
                 val expectedErrorMessage =
-                    UiMessage.ResourceId(com.mmk.common.ui.R.string.msg_unknown_error_occurred)
+                    UiMessage.Resource(MR.strings.msg_unknown_error_occurred)
                 Truth.assertThat(errorMessage).isEqualTo(expectedErrorMessage)
             }
 
@@ -103,7 +103,7 @@ internal class QuotesVMTest {
 
             Truth.assertThat(errorMessage).isNotNull()
             val expectedErrorMessage =
-                UiMessage.ResourceId(com.mmk.common.ui.R.string.msg_no_network_connection)
+                UiMessage.Resource(MR.strings.msg_no_network_connection)
             Truth.assertThat(errorMessage).isEqualTo(expectedErrorMessage)
         }
 

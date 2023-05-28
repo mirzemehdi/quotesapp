@@ -42,8 +42,7 @@ class FakeQuotesRemoteDataSource(private val networkHandler: NetworkHandler) :
             quotesList[newQuoteRequest.id] = QuoteResponse(
                 newQuoteRequest.id,
                 newQuoteRequest.author,
-                newQuoteRequest.text,
-                Date()
+                newQuoteRequest.text
             )
             Result.EMPTY
         }

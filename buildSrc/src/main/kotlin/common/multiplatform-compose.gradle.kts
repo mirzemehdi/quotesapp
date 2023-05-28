@@ -49,6 +49,8 @@ kotlin {
                 implementation(Libs.coroutineCore)
                 implementation(Libs.koinCore)
                 implementation(Libs.napier)
+                implementation(Libs.dateTime)
+
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material3)

@@ -21,33 +21,12 @@ internal class QuoteResponseMappingTest {
 
     @Test
     @DisplayName("When there is a date, response mapped to domain object correctly")
-    fun whenThereIsADate_responseMappedToDomainObject() {
+    fun verify_responseMappedToDomainObject() {
 
         val quoteResponse = QuoteResponse(
             id = id,
             author = author,
             text = text,
-            createdDate = Date()
-        )
-
-        val expectedDomainQuote = Quote(
-            id = id,
-            author = author,
-            text = text,
-            isLiked = false
-        )
-
-        assertThat(quoteResponse.mapToDomainModel()).isEqualTo(expectedDomainQuote)
-    }
-
-    @Test
-    @DisplayName("When there is no date, response mapped to domain object correctly")
-    fun whenThereIsNoDate_responseMappedToDomainObject() {
-        val quoteResponse = QuoteResponse(
-            id = id,
-            author = author,
-            text = text,
-            createdDate = null
         )
 
         val expectedDomainQuote = Quote(

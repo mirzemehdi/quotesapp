@@ -7,8 +7,7 @@ import java.util.*
 data class QuoteResponse(
     var id: String = "",
     var author: String = "",
-    var text: String = "",
-    var createdDate: Date? = null
+    var text: String = ""
 ) : DomainMapper<Quote> {
 
     override fun mapToDomainModel() = Quote(id = id, author = author, text = text)
