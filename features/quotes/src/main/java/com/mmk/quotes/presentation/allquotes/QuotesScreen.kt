@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.material3.Button
@@ -68,14 +69,15 @@ fun QuotesDataList(
     onLoadNextPage: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    LazyColumn(modifier = modifier, contentPadding = PaddingValues(0.dp)) {
+    val scrollState = rememberLazyListState()
+    LazyColumn(modifier = modifier, contentPadding = PaddingValues(0.dp), state = scrollState) {
 
         items(quotesHasDataUiState.quotesList.size) { index ->
             val quoteItem = quotesHasDataUiState.quotesList[index]
-            if (hasScrolledToEnd(index, quotesHasDataUiState)) {
+            val hasScrollingReachedToEnd = index >= quotesHasDataUiState.quotesList.size - 1
+            if (hasScrollingReachedToEnd && quotesHasDataUiState.hasPaginationError.not()) {
                 onLoadNextPage()
             }
-
             val context = LocalContext.current
             QuoteItem(
                 quote = quoteItem,
@@ -115,13 +117,6 @@ fun QuotesDataList(
         }
     }
 }
-
-@Composable
-private fun hasScrolledToEnd(index: Int, quotesHasDataUiState: QuotesUiState.HasData) =
-    index >= quotesHasDataUiState.quotesList.size - 1 &&
-        quotesHasDataUiState.hasReachedEnd.not() &&
-        quotesHasDataUiState.isPaginationLoading.not() &&
-        quotesHasDataUiState.hasPaginationError.not()
 
 @Composable
 private fun EmptyQuotesView() {
