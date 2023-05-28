@@ -4,6 +4,7 @@ import com.mmk.core.model.ErrorEntity
 import com.mmk.core.model.Result
 import com.mmk.quotes.domain.model.Quote
 import com.mmk.quotes.domain.repository.QuotesRepository
+import kotlinx.coroutines.delay
 
 class GetAllQuotesByPaginationImpl(private val quotesRepository: QuotesRepository) :
     GetAllQuotesByPagination {
