@@ -67,7 +67,6 @@ kotlin {
             dependencies {
                 implementation(Libs.androidXCore)
                 implementation(Libs.androidxAppcompat)
-                api(Libs.pagingCompose)
             }
         }
         val androidUnitTest by getting {

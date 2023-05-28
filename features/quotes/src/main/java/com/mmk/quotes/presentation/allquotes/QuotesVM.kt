@@ -2,68 +2,102 @@ package com.mmk.quotes.presentation.allquotes
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.*
 import com.mmk.common.ui.MR
 import com.mmk.common.ui.util.UiMessage
 import com.mmk.common.ui.util.errorhandling.UiMessageHandler
 import com.mmk.common.ui.util.errorhandling.UiMessageHandlerImpl
 import com.mmk.core.model.ErrorEntity
+import com.mmk.core.model.onError
+import com.mmk.core.model.onSuccess
 import com.mmk.quotes.domain.model.Quote
-import com.mmk.quotes.domain.util.PagingException
-import kotlinx.coroutines.flow.*
+import com.mmk.quotes.domain.usecase.allquotes.GetAllQuotesByPagination
+import com.mmk.quotes.presentation.allquotes.Constants.INITIAL_QUOTES_PAGE_INDEX
+import com.mmk.quotes.presentation.allquotes.Constants.NB_INITIAL_QUOTES_SIZE
+import com.mmk.quotes.presentation.allquotes.Constants.NB_QUOTES_LIMIT_PER_PAGE
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class QuotesVM(quotesPagingSourceFactory: () -> PagingSource<String, Quote>) :
-    ViewModel(), UiMessageHandler by UiMessageHandlerImpl() {
-
-    private val config =
-        PagingConfig(
-            pageSize = Constants.NB_QUOTES_LIMIT_PER_PAGE,
-            initialLoadSize = Constants.NB_INITIAL_QUOTES_SIZE,
-            enablePlaceholders = false
-        )
-
-    private val pagingData = Pager(
-        config = config,
-        pagingSourceFactory = quotesPagingSourceFactory
-    )
+class QuotesVM(private val getAllQuotesByPagination: GetAllQuotesByPagination) :
+    ViewModel(),
+    UiMessageHandler by UiMessageHandlerImpl() {
 
     private val _getQuotesUiState: MutableStateFlow<QuotesUiState> =
         MutableStateFlow(QuotesUiState.Loading)
     val getQuotesUiState: StateFlow<QuotesUiState> = _getQuotesUiState.asStateFlow()
 
-    val quotesListFlow: Flow<PagingData<Quote>> =
-        pagingData.flow.onStart { _getQuotesUiState.value = QuotesUiState.Loading }
+    init {
+        loadQuotes()
+    }
 
-    fun onPageAdapterLoadingStateChanged(loadState: LoadState, totalItemCount: Int = 0) =
-        viewModelScope.launch {
-            when (loadState) {
-                is LoadState.NotLoading ->
-                    _getQuotesUiState.value =
-                        if (totalItemCount < 1) QuotesUiState.Empty else QuotesUiState.HasData
-                LoadState.Loading -> Unit
-
-                is LoadState.Error -> {
-                    if (loadState.error is PagingException)
-                        onErrorOccurred((loadState.error as PagingException).errorEntity)
-                    else
-                        onErrorOccurred(ErrorEntity.unexpected(loadState.error))
+    fun loadQuotes() = viewModelScope.launch {
+        if (canLoadNextItems().not()) return@launch
+        onLoading()
+        val (pageIndex, pageLimit) = getPageParams()
+        getAllQuotesByPagination(pageIndex = pageIndex, pageLimit = pageLimit)
+            .onSuccess { newQuoteList -> onSuccess(newQuoteList) }
+            .onError {
+                _getQuotesUiState.update { uiState ->
+                    when (uiState) {
+                        is QuotesUiState.HasData ->
+                            uiState.copy(hasPaginationError = true, isPaginationLoading = false)
+                        else -> QuotesUiState.Empty
+                    }
                 }
+                onErrorOccurred(it)
+            }
+    }
+
+    private fun canLoadNextItems() = _getQuotesUiState.value.let {
+        when (it) {
+            is QuotesUiState.HasData -> !(it.hasReachedEnd || it.isPaginationLoading)
+            else -> true
+        }
+    }
+
+    private fun onSuccess(newQuoteList: List<Quote>) {
+        val nextPage = if (newQuoteList.isEmpty()) null else newQuoteList.last().id
+        _getQuotesUiState.update {
+            val updatedUiStateWithList = when (it) {
+                is QuotesUiState.HasData -> it.copy(quotesList = it.quotesList + newQuoteList)
+                else -> QuotesUiState.HasData(quotesList = newQuoteList)
+            }
+            updatedUiStateWithList.copy(
+                hasReachedEnd = newQuoteList.isEmpty(),
+                isPaginationLoading = false,
+                currentPage = nextPage,
+                hasPaginationError = false
+            )
+        }
+    }
+
+    private fun onLoading() {
+        _getQuotesUiState.update {
+            when (it) {
+                is QuotesUiState.HasData ->
+                    it.copy(isPaginationLoading = true, hasPaginationError = false)
+                else -> QuotesUiState.Loading
             }
         }
+    }
+
+    // Returns current page index and page limit respectively
+    private fun getPageParams(): Pair<String?, Int> {
+        val quotesHasDataUiState = _getQuotesUiState.value as? QuotesUiState.HasData
+        val pageLimit =
+            quotesHasDataUiState?.let { NB_QUOTES_LIMIT_PER_PAGE } ?: NB_INITIAL_QUOTES_SIZE
+        val pageIndex = quotesHasDataUiState?.currentPage ?: INITIAL_QUOTES_PAGE_INDEX
+        return Pair(pageIndex, pageLimit)
+    }
 
     private fun onErrorOccurred(errorEntity: ErrorEntity?) = viewModelScope.launch {
         emitMessage(
             when (errorEntity) {
-                ErrorEntity.NetworkConnection -> {
-
-                    UiMessage.Resource(MR.strings.msg_no_network_connection)
-                }
-                is ErrorEntity.ApiError,
-                is ErrorEntity.FeatureError,
-                is ErrorEntity.Unexpected,
-                null
-                -> UiMessage.Resource(MR.strings.msg_unknown_error_occurred)
+                ErrorEntity.NetworkConnection -> UiMessage.Resource(MR.strings.msg_no_network_connection)
+                is ErrorEntity.ApiError, is ErrorEntity.FeatureError, is ErrorEntity.Unexpected, null ->
+                    UiMessage.Resource(MR.strings.msg_unknown_error_occurred)
             }
         )
     }
