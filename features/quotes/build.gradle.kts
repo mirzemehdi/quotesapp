@@ -8,7 +8,6 @@ dependencies {
     implementation(project(Modules.sharedQuotes))
 
     implementFirebase()
-    implementation(Libs.circleImageView)
 }
 
 android {
