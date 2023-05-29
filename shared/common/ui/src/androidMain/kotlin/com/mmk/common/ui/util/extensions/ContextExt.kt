@@ -9,10 +9,3 @@ fun Context.showToast(text: CharSequence, duration: Int = Toast.LENGTH_SHORT) {
         Toast.makeText(this, text, duration).show()
 }
 
-fun Context.showToast(uiMessage: UiMessage, duration: Int = Toast.LENGTH_SHORT) {
-    val text = when(uiMessage){
-        is UiMessage.Message -> uiMessage.message?:""
-        is UiMessage.Resource -> getString(uiMessage.id.resourceId)
-    }
-    showToast(text = text, duration = duration)
-}

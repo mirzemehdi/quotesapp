@@ -68,6 +68,8 @@ kotlin {
                 implementation(Libs.androidXCore)
                 implementation(Libs.androidxAppcompat)
                 implementation(Libs.viewModelLifecycle)
+                implementation(Libs.composeLifeCycleRuntime)
+                implementation(Libs.koinCompose)
             }
         }
         val androidUnitTest by getting {
