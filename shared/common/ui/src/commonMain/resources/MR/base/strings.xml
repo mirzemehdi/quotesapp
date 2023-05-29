@@ -4,4 +4,13 @@
     <string name="msg_no_network_connection">You don\'t have an internet connection</string>
     <string name="profile_name">Mirzamehdi Karimov</string>
     <string name="profile_bio">Android Developer</string>
+
+    <string name="btn_quotes_loading_retry">Retry</string>
+    <string name="sample_quote">We spend so much of our lives not saying the things we wanna say, the things we should say.</string>
+    <string name="sample_author">Michael Schofield</string>
+    <string name="title_quotes">Quotes</string>
+    <string name="title_add_quote">Add New Quote</string>
+    <string name="hint_write_your_quote">New quote</string>
+    <string name="hint_new_quote_author">Author</string>
+    <string name="text_add_new_quote_btn">Add</string>
 </resources>

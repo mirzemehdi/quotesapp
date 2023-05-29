@@ -4,30 +4,24 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.IconButton
-import androidx.compose.material.LocalContentColor
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Share
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.mmk.common.ui.MR
 import com.mmk.common.ui.theme.MyApplicationTheme
-import com.mmk.quotes.R
 import com.mmk.quotes.domain.model.Quote
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.painterResource
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun QuoteItem(
     quote: Quote,
@@ -53,7 +47,7 @@ fun QuoteItem(
                 .padding(20.dp)
         ) {
             Icon(
-                painter = painterResource(id = R.drawable.ic_quote),
+                painter = painterResource("drawable/ic_quote.xml"),
                 contentDescription = null,
                 modifier = Modifier.size(36.dp)
             )
@@ -106,16 +100,17 @@ fun QuoteItem(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-private fun QuoteItemPreview() {
-    MyApplicationTheme {
-        val quote = Quote(
-            author = stringResource(id = R.string.sample_author),
-            text = stringResource(id = R.string.sample_quote),
-            isLiked = false
-        )
-
-        QuoteItem(quote = quote, modifier = Modifier.padding(10.dp))
-    }
-}
+//TODO search how to do preview
+//@Preview(showBackground = true)
+//@Composable
+//private fun QuoteItemPreview() {
+//    MyApplicationTheme {
+//        val quote = Quote(
+//            author = stringResource(MR.strings.sample_author),
+//            text = stringResource(MR.strings.sample_quote),
+//            isLiked = false
+//        )
+//
+//        QuoteItem(quote = quote, modifier = Modifier.padding(10.dp))
+//    }
+//}

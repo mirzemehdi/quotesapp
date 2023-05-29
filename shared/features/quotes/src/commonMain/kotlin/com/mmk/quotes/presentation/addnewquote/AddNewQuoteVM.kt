@@ -1,7 +1,6 @@
 package com.mmk.quotes.presentation.addnewquote
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+
 import com.mmk.common.ui.MR
 import com.mmk.common.ui.util.UiMessage
 import com.mmk.common.ui.util.errorhandling.UiMessageHandler
@@ -9,6 +8,7 @@ import com.mmk.common.ui.util.errorhandling.UiMessageHandlerImpl
 import com.mmk.core.model.ErrorEntity
 import com.mmk.core.model.onError
 import com.mmk.core.model.onSuccess
+import com.mmk.core.model.viewmodel.ViewModel
 import com.mmk.quotes.domain.model.Quote
 import com.mmk.quotes.domain.usecase.addquote.AddNewQuote
 import kotlinx.coroutines.flow.MutableStateFlow

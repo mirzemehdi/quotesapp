@@ -2,8 +2,6 @@ package com.mmk.quotes.presentation.allquotes
 
 import com.mmk.quotes.domain.model.Quote
 
-// data class QuotesUiState(val quotesPagingData: PagingData<Quote>, val isLoading: Boolean)
-
 sealed interface QuotesUiState {
     data class HasData(
         val quotesList: List<Quote> = emptyList(),

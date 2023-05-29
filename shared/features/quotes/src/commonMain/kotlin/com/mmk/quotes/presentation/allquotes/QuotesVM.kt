@@ -1,7 +1,5 @@
 package com.mmk.quotes.presentation.allquotes
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.mmk.common.ui.MR
 import com.mmk.common.ui.util.UiMessage
 import com.mmk.common.ui.util.errorhandling.UiMessageHandler
@@ -9,11 +7,9 @@ import com.mmk.common.ui.util.errorhandling.UiMessageHandlerImpl
 import com.mmk.core.model.ErrorEntity
 import com.mmk.core.model.onError
 import com.mmk.core.model.onSuccess
+import com.mmk.core.model.viewmodel.ViewModel
 import com.mmk.quotes.domain.model.Quote
 import com.mmk.quotes.domain.usecase.allquotes.GetAllQuotesByPagination
-import com.mmk.quotes.presentation.allquotes.Constants.INITIAL_QUOTES_PAGE_INDEX
-import com.mmk.quotes.presentation.allquotes.Constants.NB_INITIAL_QUOTES_SIZE
-import com.mmk.quotes.presentation.allquotes.Constants.NB_QUOTES_LIMIT_PER_PAGE
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,6 +19,12 @@ import kotlinx.coroutines.launch
 class QuotesVM(private val getAllQuotesByPagination: GetAllQuotesByPagination) :
     ViewModel(),
     UiMessageHandler by UiMessageHandlerImpl() {
+
+    private companion object Constants {
+        const val NB_QUOTES_LIMIT_PER_PAGE = 10
+        const val NB_INITIAL_QUOTES_SIZE = 15
+        val INITIAL_QUOTES_PAGE_INDEX: String? = null
+    }
 
     private val _getQuotesUiState: MutableStateFlow<QuotesUiState> =
         MutableStateFlow(QuotesUiState.Loading)
