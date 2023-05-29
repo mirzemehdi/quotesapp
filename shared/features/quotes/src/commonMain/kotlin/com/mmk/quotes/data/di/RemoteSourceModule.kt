@@ -5,11 +5,11 @@ import com.mmk.quotes.data.source.remote.QuotesRemoteDataSourceImpl
 import com.mmk.quotes.data.source.remote.apiservice.Constants.QUOTES_COLLECTION_NAME
 import com.mmk.quotes.data.source.remote.apiservice.QuotesApiService
 import com.mmk.quotes.data.source.remote.apiservice.QuotesApiServiceImpl
-import org.koin.core.qualifier.named
-import org.koin.dsl.module
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.firestore.FirebaseFirestore
 import dev.gitlive.firebase.firestore.firestore
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
 val remoteSourceModule = module {
 

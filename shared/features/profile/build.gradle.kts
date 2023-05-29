@@ -11,11 +11,10 @@ kotlin {
             }
         }
 
-        val androidMain by getting{
-            dependencies{
+        val androidMain by getting {
+            dependencies {
                 implementation(Libs.navigationCompose)
             }
         }
     }
-
 }

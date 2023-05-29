@@ -144,34 +144,34 @@ private fun RetryButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
     }
 }
 
-//@Preview(showBackground = true)
-//@Composable
-//private fun RetryButtonPreview() {
+// @Preview(showBackground = true)
+// @Composable
+// private fun RetryButtonPreview() {
 //    MyApplicationTheme {
 //        RetryButton {}
 //    }
-//}
+// }
 //
-//@Preview(showBackground = true)
-//@Composable
-//private fun QuotesScreenPreview() {
+// @Preview(showBackground = true)
+// @Composable
+// private fun QuotesScreenPreview() {
 //    MyApplicationTheme {
 //        QuotesScreen(uiState = QuotesUiState.HasData(), {})
 //    }
-//}
+// }
 //
-//@Preview(showBackground = true)
-//@Composable
-//private fun EmptyQuotesPreview() {
+// @Preview(showBackground = true)
+// @Composable
+// private fun EmptyQuotesPreview() {
 //    MyApplicationTheme {
 //        QuotesScreen(uiState = QuotesUiState.Empty, {})
 //    }
-//}
+// }
 //
-//@Preview(showBackground = true)
-//@Composable
-//private fun LoadingQuotesPreview() {
+// @Preview(showBackground = true)
+// @Composable
+// private fun LoadingQuotesPreview() {
 //    MyApplicationTheme {
 //        QuotesScreen(uiState = QuotesUiState.Loading, {})
 //    }
-//}
+// }

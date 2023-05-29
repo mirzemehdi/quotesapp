@@ -1,6 +1,4 @@
 import org.gradle.api.initialization.resolve.RepositoriesMode
-
-
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -31,5 +29,6 @@ include(
     ":shared:common:core",
     ":shared:features:profile",
     ":shared:common:ui",
-    ":shared:features:quotes"
+    ":shared:features:quotes",
+    ":shared:root"
 )

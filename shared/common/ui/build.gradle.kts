@@ -1,7 +1,6 @@
 plugins {
     id(Plugins.multiPlatformComposePlugin)
     id(Plugins.multiPlatformResources)
-
 }
 
 dependencies {

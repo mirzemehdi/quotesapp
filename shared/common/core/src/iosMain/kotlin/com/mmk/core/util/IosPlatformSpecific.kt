@@ -18,7 +18,8 @@ actual fun randomUUIDString(): String = NSUUID.UUID().UUIDString
 actual fun <T> StateFlow<T>.asState(): State<T> = collectAsState()
 
 actual inline fun <reified T : ViewModel> Module.multiPlatformViewModel(
-    qualifier: Qualifier?, noinline definition: Definition<T>
+    qualifier: Qualifier?,
+    noinline definition: Definition<T>
 ): KoinDefinition<T> = single(qualifier = qualifier, definition = definition)
 
 actual object ViewModelProvider : KoinComponent {

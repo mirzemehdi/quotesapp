@@ -123,9 +123,9 @@ private fun AddNewQuoteScreen(
     }
 }
 
-//@Preview(showBackground = true)
-//@Composable
-//private fun AddNewQuote() {
+// @Preview(showBackground = true)
+// @Composable
+// private fun AddNewQuote() {
 //    MyApplicationTheme {
 //        AddNewQuoteScreen(
 //            isLoading = false,
@@ -134,4 +134,4 @@ private fun AddNewQuoteScreen(
 //            onClickAdd = {}
 //        )
 //    }
-//}
+// }

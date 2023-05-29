@@ -20,11 +20,11 @@ actual fun randomUUIDString(): String = UUID.randomUUID().toString()
 actual fun <T> StateFlow<T>.asState(): State<T> = collectAsStateWithLifecycle()
 
 actual inline fun <reified T : ViewModel> Module.multiPlatformViewModel(
-    qualifier: Qualifier?, noinline definition: Definition<T>
+    qualifier: Qualifier?,
+    noinline definition: Definition<T>
 ): KoinDefinition<T> = viewModel(qualifier = qualifier, definition = definition)
 
 actual object ViewModelProvider : KoinComponent {
     @Composable
     actual inline fun <reified T : ViewModel> get(): T = koinViewModel()
 }
-

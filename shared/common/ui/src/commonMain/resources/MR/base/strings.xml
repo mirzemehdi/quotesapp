@@ -13,4 +13,8 @@
     <string name="hint_write_your_quote">New quote</string>
     <string name="hint_new_quote_author">Author</string>
     <string name="text_add_new_quote_btn">Add</string>
+
+    <string name="menu_title_quotes">Quotes</string>
+    <string name="menu_title_empty"> </string>
+    <string name="menu_title_profile">Profile</string>
 </resources>

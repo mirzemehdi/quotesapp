@@ -15,7 +15,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.mmk.common.ui.MR
 import com.mmk.common.ui.theme.MyApplicationTheme
 import com.mmk.quotes.domain.model.Quote
 import org.jetbrains.compose.resources.ExperimentalResourceApi
@@ -100,10 +99,10 @@ fun QuoteItem(
     }
 }
 
-//TODO search how to do preview
-//@Preview(showBackground = true)
-//@Composable
-//private fun QuoteItemPreview() {
+// TODO search how to do preview
+// @Preview(showBackground = true)
+// @Composable
+// private fun QuoteItemPreview() {
 //    MyApplicationTheme {
 //        val quote = Quote(
 //            author = stringResource(MR.strings.sample_author),
@@ -113,4 +112,4 @@ fun QuoteItem(
 //
 //        QuoteItem(quote = quote, modifier = Modifier.padding(10.dp))
 //    }
-//}
+// }

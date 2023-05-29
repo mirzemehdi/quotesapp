@@ -45,8 +45,6 @@ fun MyApplicationTheme(
         else -> LightColorPalette
     }
 
-
-
     ProvideMyAppColors(colors = colorPalette) {
         MaterialTheme(
             typography = Typography,

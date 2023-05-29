@@ -43,9 +43,11 @@ fun ProfileScreen() {
             contentAlignment = Alignment.Center,
             modifier = Modifier
                 .padding(top = 8.dp)
-                .border(1.dp,
+                .border(
+                    1.dp,
                     OrangeDark,
-                    RoundedCornerShape(8.dp))
+                    RoundedCornerShape(8.dp)
+                )
                 .background(
                     color = OrangeLight,
                     shape = RoundedCornerShape(8.dp)

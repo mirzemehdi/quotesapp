@@ -1,6 +1,5 @@
 package com.mmk.quotes.presentation.addnewquote
 
-
 import com.mmk.common.ui.MR
 import com.mmk.common.ui.util.UiMessage
 import com.mmk.common.ui.util.errorhandling.UiMessageHandler

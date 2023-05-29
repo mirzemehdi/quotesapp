@@ -10,6 +10,9 @@ plugins {
     id("com.android.library")
     kotlin("multiplatform")
     id("org.jetbrains.compose")
+    id("plugins.ktlint")
+    id("plugins.detekt")
+
 }
 
 
@@ -54,6 +57,7 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material3)
+                implementation(compose.material) //TODO remove this after fixing bottom nav
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
             }

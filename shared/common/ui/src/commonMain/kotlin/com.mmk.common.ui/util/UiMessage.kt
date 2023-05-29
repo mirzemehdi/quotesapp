@@ -1,6 +1,5 @@
 package com.mmk.common.ui.util
 
-
 import androidx.compose.runtime.Composable
 import dev.icerock.moko.resources.StringResource
 import dev.icerock.moko.resources.compose.stringResource
@@ -17,5 +16,4 @@ sealed interface UiMessage {
             is Resource -> stringResource(this.id)
         }
     }
-
 }

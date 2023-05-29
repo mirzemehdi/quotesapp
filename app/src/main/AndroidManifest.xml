@@ -6,11 +6,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name=".ui.base.BaseApplication"
+        android:name=".ui.BaseApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_quote"
+        android:icon="@drawable/icon_quotes"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_quote"
+        android:roundIcon="@drawable/icon_quotes"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.MainActivity" android:exported="true">
