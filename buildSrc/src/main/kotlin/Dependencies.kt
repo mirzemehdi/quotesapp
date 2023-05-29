@@ -3,6 +3,8 @@ object Libs {
     //AndroidX
     val androidXCore by lazy { "androidx.core:core-ktx:${Versions.androidXCore}" }
 
+    val viewModelLifecycle by lazy { "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewModelLifecyle}" }
+
 
     //Retrofit and Moshi convertor - Networking libraries
     val moshi by lazy { "com.squareup.moshi:moshi:${Versions.moshi}" }
@@ -70,6 +72,8 @@ object Libs {
     val composeLifeCycleRuntime by lazy { "androidx.lifecycle:lifecycle-runtime-compose:${Versions.androidXLifecycle}" }
     val navigationCompose by lazy { "androidx.navigation:navigation-compose:${Versions
         .navigation}" }
+
+
 
     //KMM
     //Resource sharing

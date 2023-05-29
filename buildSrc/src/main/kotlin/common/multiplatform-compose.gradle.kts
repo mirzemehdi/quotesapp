@@ -67,6 +67,7 @@ kotlin {
             dependencies {
                 implementation(Libs.androidXCore)
                 implementation(Libs.androidxAppcompat)
+                implementation(Libs.viewModelLifecycle)
             }
         }
         val androidUnitTest by getting {
