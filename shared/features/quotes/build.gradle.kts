@@ -1,5 +1,6 @@
 plugins {
     id(Plugins.multiPlatformComposePlugin)
+    kotlin(Plugins.kotlinSerialization) version "1.8.21"
 }
 
 kotlin {
@@ -8,6 +9,8 @@ kotlin {
             dependencies {
                 implementation(project(Modules.core))
                 implementation(project(Modules.commonUi))
+                implementation(Libs.firebaseFireStoreMultiPlatform)
+                implementation(Libs.kotlinSerializer)
             }
         }
 

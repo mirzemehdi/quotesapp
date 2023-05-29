@@ -4,6 +4,7 @@ import com.mmk.core.mapper.DomainMapper
 import com.mmk.quotes.domain.model.Quote
 import java.util.*
 
+@kotlinx.serialization.Serializable
 data class QuoteResponse(
     var id: String = "",
     var author: String = "",

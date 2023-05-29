@@ -9,6 +9,7 @@ import com.mmk.common.ui.MR
 import dev.icerock.moko.resources.compose.fontFamilyResource
 
 
+//TODO Fix  problems with font resources
 
 val Typography
     @Composable

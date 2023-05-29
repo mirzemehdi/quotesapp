@@ -1,8 +1,5 @@
 package com.mmk.quotes.data.di
 
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import com.mmk.quotes.data.source.remote.QuotesRemoteDataSource
 import com.mmk.quotes.data.source.remote.QuotesRemoteDataSourceImpl
 import com.mmk.quotes.data.source.remote.apiservice.Constants.QUOTES_COLLECTION_NAME
@@ -10,8 +7,11 @@ import com.mmk.quotes.data.source.remote.apiservice.QuotesApiService
 import com.mmk.quotes.data.source.remote.apiservice.QuotesApiServiceImpl
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
+import dev.gitlive.firebase.Firebase
+import dev.gitlive.firebase.firestore.FirebaseFirestore
+import dev.gitlive.firebase.firestore.firestore
 
-internal val remoteSourceModule = module {
+val remoteSourceModule = module {
 
     single { Firebase.firestore }
 

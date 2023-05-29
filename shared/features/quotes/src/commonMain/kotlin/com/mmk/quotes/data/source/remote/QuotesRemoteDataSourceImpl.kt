@@ -1,11 +1,11 @@
 package com.mmk.quotes.data.source.remote
 
-import com.google.firebase.firestore.FirebaseFirestoreException
 import com.mmk.core.model.ErrorEntity
 import com.mmk.core.model.Result
 import com.mmk.core.util.NetworkHandler
 import com.mmk.quotes.data.source.remote.apiservice.QuotesApiService
 import com.mmk.quotes.data.source.remote.model.request.NewQuoteRequest
+import dev.gitlive.firebase.firestore.FirebaseFirestoreException
 
 class QuotesRemoteDataSourceImpl(
     private val networkHandler: NetworkHandler,

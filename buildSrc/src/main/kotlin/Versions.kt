@@ -39,6 +39,9 @@ object Versions {
 
     const val mokoResources = "0.22.3"
     const val dateTime = "0.4.0"
+    const val firebaseMultiPlatform="1.8.0"
+    const val kotlinSerializer="1.5.1"
+
 
 
 

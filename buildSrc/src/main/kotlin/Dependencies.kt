@@ -81,6 +81,12 @@ object Libs {
     //Date
     val dateTime by lazy { "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.dateTime}" }
 
+    //Firebase
+    val firebaseFireStoreMultiPlatform by lazy { "dev.gitlive:firebase-firestore:${Versions.firebaseMultiPlatform}" }
+
+    //Kotlin serializer
+    val kotlinSerializer by lazy { "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinSerializer}" }
+
 }
 
 
@@ -91,6 +97,7 @@ object Plugins {
 
     val multiPlatformComposePlugin by lazy { "common.multiplatform-compose" }
     val multiPlatformResources by lazy { "dev.icerock.mobile.multiplatform-resources" }
+    val kotlinSerialization by lazy { "plugin.serialization" }
 }
 
 object TestingLibs {
