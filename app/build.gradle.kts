@@ -55,8 +55,6 @@ dependencies {
 
     implementation(Libs.androidxAppcompat)
     implementation(Libs.material)
-    implementation(Libs.navigationCompose)
     implementation(Libs.koinAndroid)
-
     implementJetpackComposeUi()
 }

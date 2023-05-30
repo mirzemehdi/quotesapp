@@ -51,6 +51,7 @@ fun DependencyHandlerScope.implementJetpackComposeUi() {
     implement(Libs.composeFoundation)
     implement(Libs.composeUi)
     implement(Libs.composeToolingPreview)
+    implement(Libs.composeActivity)
     debugImplementation(Libs.composeUiTooling)
     implement(Libs.composeLiveData)
     implement(Libs.composeLifeCycleRuntime)
