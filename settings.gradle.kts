@@ -24,7 +24,6 @@ dependencyResolutionManagement {
 rootProject.name="Quotes App"
 include(
     ":app",
-    ":network",
     ":customdetektrules",
     ":test-utils",
     ":features:quotes",
