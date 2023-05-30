@@ -42,6 +42,7 @@ object Versions {
     const val firebaseMultiPlatform="1.8.0"
     const val kotlinSerializer="1.5.1"
     const val viewModelLifecyle="2.4.0"
+    const val decompose="2.0.0-beta-01"
 
 
 

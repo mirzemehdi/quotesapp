@@ -1,25 +1,25 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest7112604812371719688.xml:2:13-83
-INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest7112604812371719688.xml:2:13-83
-INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest7112604812371719688.xml:2:13-83
+ADDED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2038378706330826520.xml:2:13-83
+INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2038378706330826520.xml:2:13-83
+INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2038378706330826520.xml:2:13-83
 	package
-		INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest7112604812371719688.xml
-		ADDED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest7112604812371719688.xml:2:13-83
-		INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest7112604812371719688.xml
+		INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2038378706330826520.xml
+		ADDED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2038378706330826520.xml:2:13-83
+		INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2038378706330826520.xml
 	xmlns:android
-		ADDED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest7112604812371719688.xml:2:23-81
+		ADDED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2038378706330826520.xml:2:23-81
 uses-sdk
-INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest7112604812371719688.xml reason: use-sdk injection requested
-INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest7112604812371719688.xml
-INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest7112604812371719688.xml
-INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest7112604812371719688.xml
-INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest7112604812371719688.xml
+INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2038378706330826520.xml reason: use-sdk injection requested
+INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2038378706330826520.xml
+INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2038378706330826520.xml
+INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2038378706330826520.xml
+INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2038378706330826520.xml
 	android:targetSdkVersion
-		INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest7112604812371719688.xml
-		ADDED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest7112604812371719688.xml
-		INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest7112604812371719688.xml
+		INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2038378706330826520.xml
+		ADDED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2038378706330826520.xml
+		INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2038378706330826520.xml
 	android:minSdkVersion
-		INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest7112604812371719688.xml
-		ADDED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest7112604812371719688.xml
-		INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest7112604812371719688.xml
+		INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2038378706330826520.xml
+		ADDED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2038378706330826520.xml
+		INJECTED from /Users/mirzemehdi/StudioProjects/QuotesApp/shared/root/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest2038378706330826520.xml

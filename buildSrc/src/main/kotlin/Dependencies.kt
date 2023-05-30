@@ -90,6 +90,10 @@ object Libs {
 
     //Kotlin serializer
     val kotlinSerializer by lazy { "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinSerializer}" }
+    //Navigation
+    val decompose by lazy { "com.arkivanov.decompose:decompose:${Versions.decompose}" }
+
+
 
 }
 
