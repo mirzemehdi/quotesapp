@@ -6,10 +6,11 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                api(Libs.navigationMultiPlatform)
                 api(project(Modules.core))
-                api(project(Modules.commonUi))
-                api(project(Modules.profile))
-                api(project(Modules.quotes))
+                implementation(project(Modules.commonUi))
+                implementation(project(Modules.profile))
+                implementation(project(Modules.quotes))
             }
         }
     }

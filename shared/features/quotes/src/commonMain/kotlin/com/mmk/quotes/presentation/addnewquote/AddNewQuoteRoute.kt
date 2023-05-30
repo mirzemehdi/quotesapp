@@ -30,7 +30,10 @@ fun AddNewQuoteRoute(viewModel: AddNewQuoteVM = ViewModelProvider.get(), onBackP
     UiMessageOwnerComponent(uiMessageOwner = viewModel) {
         val uiState by viewModel.uiState.asState()
         LaunchedEffect(key1 = uiState.newAddedQuote) {
-            if (uiState.newAddedQuote != null) onBackPress()
+            if (uiState.newAddedQuote != null) {
+                onBackPress()
+                viewModel.reset()
+            }
         }
 
         val newQuoteText by viewModel.quoteText.asState()

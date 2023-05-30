@@ -15,6 +15,8 @@ dependencyResolutionManagement {
         mavenCentral()
         jcenter()
         gradlePluginPortal()
+        maven("https://repo.repsy.io/mvn/chrynan/public")
+
     }
 }
 

@@ -49,6 +49,12 @@ class AddNewQuoteVM constructor(private val addNewQuoteUseCase: AddNewQuote) :
         _quoteText.value = newValue
     }
 
+    fun reset() {
+        _uiState.update { AddNewQuoteUiState() }
+        _quoteAuthor.update { "" }
+        _quoteText.update { "" }
+    }
+
     private suspend fun onErrorOccurred(errorEntity: ErrorEntity?) {
         val errorMessage: UiMessage = when (errorEntity) {
             ErrorEntity.NetworkConnection -> {
