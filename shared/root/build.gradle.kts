@@ -29,12 +29,5 @@ kotlin {
                 implementation(project(Modules.quotes))
             }
         }
-
-        val androidMain by getting {
-            dependencies {
-                api(Libs.navigationMultiPlatform)
-                api(project(Modules.core))
-            }
-        }
     }
 }
