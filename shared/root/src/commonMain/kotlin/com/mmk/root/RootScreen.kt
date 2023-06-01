@@ -7,14 +7,14 @@ import com.chrynan.navigation.compose.rememberNavigator
 
 @OptIn(ExperimentalNavigationApi::class)
 @Composable
-fun RootScreen(darkTheme: Boolean = false) {
+internal fun RootScreen(darkTheme: Boolean = false) {
     val navigator = rememberNavigator(initialDestination = TopLevelDestination.QUOTES)
     RootScreen(darkTheme = darkTheme, navigator = navigator)
 }
 
 @OptIn(ExperimentalNavigationApi::class)
 @Composable
-fun RootScreen(
+internal fun RootScreen(
     darkTheme: Boolean = false,
     navigator: Navigator<TopLevelDestination, SingleNavigationContext<TopLevelDestination>>
 ) {

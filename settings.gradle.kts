@@ -1,4 +1,6 @@
 import org.gradle.api.initialization.resolve.RepositoriesMode
+
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -16,17 +18,18 @@ dependencyResolutionManagement {
         jcenter()
         gradlePluginPortal()
         maven("https://repo.repsy.io/mvn/chrynan/public")
+        maven("https://plugins.gradle.org/m2/")
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev/")
 
     }
 }
 
 
-rootProject.name="Quotes App"
+rootProject.name="QuotesApp"
 include(
     ":app",
     ":customdetektrules",
     ":test-utils",
-    ":features:quotes",
     ":shared:common:core",
     ":shared:features:profile",
     ":shared:common:ui",
