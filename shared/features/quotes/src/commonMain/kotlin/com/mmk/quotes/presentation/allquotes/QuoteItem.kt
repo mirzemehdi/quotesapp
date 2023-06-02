@@ -15,12 +15,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.mmk.common.ui.theme.MyApplicationTheme
+import com.mmk.common.ui.MR
+import com.mmk.common.ui.theme.getColors
 import com.mmk.quotes.domain.model.Quote
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
+import dev.icerock.moko.resources.compose.painterResource
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun QuoteItem(
     quote: Quote,
@@ -35,25 +34,25 @@ fun QuoteItem(
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 10.dp),
         colors = CardDefaults.elevatedCardColors(
-            containerColor = MyApplicationTheme.colors.surface,
-            contentColor = MyApplicationTheme.colors.onSurface
+            containerColor = getColors().surface,
+            contentColor = getColors().onSurface
         )
     ) {
         Column(
             modifier = Modifier
-                .background(MyApplicationTheme.colors.surface, RoundedCornerShape(10.dp))
+                .background(getColors().surface, RoundedCornerShape(10.dp))
                 .clickable { onClickItem() }
                 .padding(20.dp)
         ) {
             Icon(
-                painter = painterResource("drawable/ic_quote.xml"),
+                painter = painterResource(MR.images.ic_quote),
                 contentDescription = null,
                 modifier = Modifier.size(36.dp)
             )
             Text(
                 text = quote.text,
                 modifier = Modifier.padding(start = 44.dp, top = 24.dp, end = 4.dp),
-                color = MyApplicationTheme.colors.onSurface,
+                color = getColors().onSurface,
                 style = MaterialTheme.typography.bodyMedium.copy(fontSize = 20.sp)
             )
             Row(
@@ -64,14 +63,14 @@ fun QuoteItem(
                     modifier = Modifier
                         .width(16.dp)
                         .height(1.dp)
-                        .background(MyApplicationTheme.colors.onSurface)
+                        .background(getColors().onSurface)
                 )
                 Text(
                     text = quote.author,
                     modifier = Modifier
                         .weight(1f)
                         .padding(start = 8.dp),
-                    color = MyApplicationTheme.colors.inActive,
+                    color = getColors().inActive,
                     style = MaterialTheme.typography.bodySmall.copy(fontSize = 16.sp)
                 )
                 val likeIconColor = if (quote.isLiked) Color.Red else LocalContentColor.current

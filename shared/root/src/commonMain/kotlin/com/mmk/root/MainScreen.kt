@@ -13,10 +13,11 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import com.mmk.common.ui.MR
 import com.mmk.common.ui.theme.MyApplicationTheme
+import com.mmk.common.ui.theme.getColors
+import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
 
 @Composable
 internal fun MainScreen(
@@ -28,7 +29,7 @@ internal fun MainScreen(
     MyApplicationTheme(darkTheme) {
         Surface(
             modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
+            color = getColors().background
         ) {
             MainScreen(
                 currentRoute = currentRoute,
@@ -71,7 +72,6 @@ private fun MainScreen(
     }
 }
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 private fun AddQuoteButton(
     modifier: Modifier = Modifier,
@@ -87,14 +87,14 @@ private fun AddQuoteButton(
             .zIndex(2f)
     ) {
         FloatingActionButton(
-            containerColor = MyApplicationTheme.colors.secondary,
-            contentColor = MyApplicationTheme.colors.onSecondary,
+            containerColor = getColors().secondary,
+            contentColor = getColors().onSecondary,
             elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 8.dp),
             shape = CircleShape,
             onClick = onClick,
         ) {
             Icon(
-                painter = painterResource("drawable/ic_add.xml"),
+                painter = painterResource(MR.images.ic_add),
                 contentDescription = null,
                 modifier = Modifier.size(36.dp)
             )
@@ -102,7 +102,6 @@ private fun AddQuoteButton(
     }
 }
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 private fun BottomNavigationView(
     modifier: Modifier = Modifier,
@@ -110,7 +109,7 @@ private fun BottomNavigationView(
     onSelectedTopLevelDestination: (TopLevelDestination) -> Unit
 ) {
     BottomNavigation(
-        backgroundColor = MyApplicationTheme.colors.primary,
+        backgroundColor = getColors().primary,
         modifier = modifier
     ) {
 
@@ -119,7 +118,7 @@ private fun BottomNavigationView(
         TopLevelDestination.values().forEachIndexed { index, destination ->
             BottomNavigationItem(
                 label = stringResource(destination.labelStringResource),
-                icon = destination.iconResPath?.let { painterResource(it) },
+                icon = destination.iconRes?.let { painterResource(it) },
                 selected = selectedDestination == destination,
                 enabled = destination !in disabledItems
             ) {
@@ -146,7 +145,7 @@ private fun RowScope.BottomNavigationItem(
                 Icon(
                     painter = icon,
                     contentDescription = label,
-                    tint = if (selected) MyApplicationTheme.colors.onPrimary else MyApplicationTheme.colors.inActive,
+                    tint = if (selected) getColors().onPrimary else getColors().inActive,
                     modifier = Modifier
                         .padding(bottom = 4.dp)
                         .size(24.dp)
@@ -157,13 +156,12 @@ private fun RowScope.BottomNavigationItem(
             Text(
                 text = label,
                 style = MaterialTheme.typography.bodySmall.copy(fontSize = 14.sp),
-                color = if (selected) MyApplicationTheme.colors.onPrimary else MyApplicationTheme
-                    .colors.inActive,
+                color = if (selected) getColors().onPrimary else getColors().inActive,
                 modifier = Modifier.padding(8.dp)
             )
         },
-        selectedContentColor = MyApplicationTheme.colors.onPrimary,
-        unselectedContentColor = MyApplicationTheme.colors.inActive
+        selectedContentColor = getColors().onPrimary,
+        unselectedContentColor = getColors().inActive
 
     )
 }

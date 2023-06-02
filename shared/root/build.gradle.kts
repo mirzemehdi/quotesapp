@@ -1,5 +1,6 @@
 plugins {
     id(Plugins.multiPlatformComposePlugin)
+    id(Plugins.multiPlatformResources) // it is important to add this where cocoapods is added
     kotlin("native.cocoapods")
 }
 
@@ -13,10 +14,16 @@ kotlin {
         framework {
             baseName = "shared"
             isStatic = true
-            // export(project(Modules.core))
         }
-        extraSpecAttributes["resources"] =
-            "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
+//        extraSpecAttributes["resources"] =
+//            "[" +
+//                    "'build/cocoapods/framework/shared.framework/*.bundle', " +
+//                    "'src/commonMain/resources/**', " +
+//                    "'src/iosMain/resources/**', " +
+//                    "'../features/quotes/src/commonMain/resources/**', " +
+//                    "'../features/quotes/src/iosMain/resources/**', " +
+//                    "]"
+        extraSpecAttributes["resource"] = "'build/cocoapods/framework/shared.framework/*.bundle'"
     }
 
     sourceSets {
@@ -24,7 +31,7 @@ kotlin {
             dependencies {
                 implementation(Libs.navigationMultiPlatform)
                 implementation(project(Modules.core))
-                implementation(project(Modules.commonUi))
+                api(project(Modules.commonUi))
                 implementation(project(Modules.profile))
                 implementation(project(Modules.quotes))
             }

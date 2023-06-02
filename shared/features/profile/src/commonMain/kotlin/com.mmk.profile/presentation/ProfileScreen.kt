@@ -16,11 +16,9 @@ import androidx.compose.ui.unit.sp
 import com.mmk.common.ui.MR
 import com.mmk.common.ui.theme.OrangeDark
 import com.mmk.common.ui.theme.OrangeLight
+import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun ProfileScreen() {
     Column(
@@ -29,8 +27,9 @@ fun ProfileScreen() {
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
         Image(
-            painter = painterResource("drawable/ic_person.xml"),
+            painter = painterResource(MR.images.ic_person),
             contentDescription = null,
             modifier = Modifier.size(100.dp)
         )
