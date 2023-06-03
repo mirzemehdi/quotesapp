@@ -1,5 +1,6 @@
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.DependencyHandlerScope
+import org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler
 
 private fun DependencyHandler.implement(dependency: Any) {
     add("implementation", dependency)
@@ -50,6 +51,7 @@ fun DependencyHandlerScope.implementJetpackComposeUi() {
     implement(Libs.composeFoundation)
     implement(Libs.composeUi)
     implement(Libs.composeToolingPreview)
+    implement(Libs.composeActivity)
     debugImplementation(Libs.composeUiTooling)
     implement(Libs.composeLiveData)
     implement(Libs.composeLifeCycleRuntime)

@@ -1,19 +1,28 @@
 import org.apache.tools.ant.taskdefs.condition.Os
 
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+plugins {
+    `kotlin-dsl`
+}
+
 buildscript {
     repositories {
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
     dependencies {
         classpath("com.google.gms:google-services:4.3.3")
         classpath("com.google.firebase:firebase-crashlytics-gradle:2.5.2")
+        classpath ("dev.icerock.moko:resources-generator:0.22.3")
     }
 }
 
+
+
 tasks.register<Copy>("installGitHook") {
-    var suffix="linux"
+    var suffix = "linux"
     if (Os.isFamily(Os.FAMILY_WINDOWS))
         suffix = "windows"
 
@@ -24,7 +33,3 @@ tasks.register<Copy>("installGitHook") {
 }
 
 tasks.getByPath(":app:preBuild").dependsOn(tasks.named("installGitHook"))
-
-tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
-}
