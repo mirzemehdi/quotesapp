@@ -29,7 +29,8 @@ import dev.icerock.moko.resources.compose.stringResource
 fun QuotesRoute(viewModel: QuotesVM = ViewModelProvider.get()) {
     UiMessageOwnerComponent(uiMessageOwner = viewModel) {
         val uiState by viewModel.getQuotesUiState.asState()
-        QuotesScreen(uiState = uiState, onLoadNextPage = viewModel::loadQuotes)
+
+        QuotesScreen(uiState = uiState, onLoadNextPage = viewModel::loadNextQuotes)
     }
 }
 

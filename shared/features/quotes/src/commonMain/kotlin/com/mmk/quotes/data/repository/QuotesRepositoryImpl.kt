@@ -7,6 +7,9 @@ import com.mmk.quotes.data.mappers.QuoteMapper
 import com.mmk.quotes.data.source.remote.QuotesRemoteDataSource
 import com.mmk.quotes.domain.model.Quote
 import com.mmk.quotes.domain.repository.QuotesRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 
 class QuotesRepositoryImpl(
     private val quotesRemoteDataSource: QuotesRemoteDataSource,
@@ -22,6 +25,17 @@ class QuotesRepositoryImpl(
         result.mapDataOnSuccess { quoteResponseList ->
             quoteResponseList.map { it.mapToDomainModel() }
         }
+    }
+
+    override fun listenForDataChange(pageLimit: Int): Flow<Result<List<Quote>>> {
+        return quotesRemoteDataSource
+            .observeFirstPageQuotes(pageLimit)
+            .map { result ->
+                result.mapDataOnSuccess { quoteResponseList ->
+                    quoteResponseList.map { it.mapToDomainModel() }
+                }
+            }
+            .flowOn(backgroundExecutor.dispatcher)
     }
 
     override suspend fun addNewQuote(quote: Quote): Result<Unit> = backgroundExecutor.execute {

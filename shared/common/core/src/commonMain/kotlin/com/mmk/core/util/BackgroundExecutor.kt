@@ -5,7 +5,7 @@ import com.mmk.core.model.Result
 import com.mmk.core.util.logger.AppLogger
 import kotlinx.coroutines.*
 
-class BackgroundExecutor(private val dispatcher: CoroutineDispatcher = Dispatchers.IO) {
+class BackgroundExecutor(val dispatcher: CoroutineDispatcher = Dispatchers.IO) {
 
     companion object {
         val IO by lazy { BackgroundExecutor(Dispatchers.IO) }

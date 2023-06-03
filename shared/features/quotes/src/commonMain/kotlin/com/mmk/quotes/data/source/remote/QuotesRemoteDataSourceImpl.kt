@@ -5,7 +5,11 @@ import com.mmk.core.model.Result
 import com.mmk.core.util.NetworkHandler
 import com.mmk.quotes.data.source.remote.apiservice.QuotesApiService
 import com.mmk.quotes.data.source.remote.model.request.NewQuoteRequest
+import com.mmk.quotes.data.source.remote.model.response.QuoteResponse
 import dev.gitlive.firebase.firestore.FirebaseFirestoreException
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.map
 
 class QuotesRemoteDataSourceImpl(
     private val networkHandler: NetworkHandler,
@@ -19,6 +23,13 @@ class QuotesRemoteDataSourceImpl(
     ) = sendRequestIfHasNetworkConnection {
         val quotesResponse = quotesApiService.getQuotesByPagination(pageIndex, pageLimit)
         Result.success(quotesResponse)
+    }
+
+    override fun observeFirstPageQuotes(pageLimit: Int): Flow<Result<List<QuoteResponse>>> {
+        return quotesApiService
+            .observeFirstPageQuotes(pageLimit)
+            .map { Result.success(it) }
+            .catch { Result.error(ErrorEntity.apiError(exception = Exception(it))) }
     }
 
     override suspend fun addNewQuote(newQuoteRequest: NewQuoteRequest) =

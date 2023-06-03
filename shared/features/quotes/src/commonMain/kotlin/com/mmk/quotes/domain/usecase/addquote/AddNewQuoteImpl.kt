@@ -6,7 +6,6 @@ import com.mmk.quotes.domain.repository.QuotesRepository
 
 class AddNewQuoteImpl(private val quotesRepository: QuotesRepository) : AddNewQuote {
     override suspend fun invoke(quote: Quote): Result<Unit> {
-
         return quotesRepository.addNewQuote(quote)
     }
 }

@@ -5,15 +5,14 @@ import com.mmk.common.ui.util.UiMessage
 import com.mmk.common.ui.util.errorhandling.UiMessageHandler
 import com.mmk.common.ui.util.errorhandling.UiMessageHandlerImpl
 import com.mmk.core.model.ErrorEntity
+import com.mmk.core.model.Result
 import com.mmk.core.model.onError
 import com.mmk.core.model.onSuccess
 import com.mmk.core.model.viewmodel.ViewModel
+import com.mmk.core.util.logger.AppLogger
 import com.mmk.quotes.domain.model.Quote
 import com.mmk.quotes.domain.usecase.allquotes.GetAllQuotesByPagination
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 class QuotesVM(private val getAllQuotesByPagination: GetAllQuotesByPagination) :
@@ -31,15 +30,28 @@ class QuotesVM(private val getAllQuotesByPagination: GetAllQuotesByPagination) :
     val getQuotesUiState: StateFlow<QuotesUiState> = _getQuotesUiState.asStateFlow()
 
     init {
-        loadQuotes()
+        observeForFirstPageDataChange()
     }
 
-    fun loadQuotes() = viewModelScope.launch {
+    private fun observeForFirstPageDataChange() = viewModelScope.launch {
+        getAllQuotesByPagination.observeFirstPageQuotes(NB_INITIAL_QUOTES_SIZE)
+            .collectLatest { result ->
+                AppLogger.d("Data is updated")
+                onResult(result, true)
+            }
+    }
+
+    fun loadNextQuotes() = viewModelScope.launch {
         if (canLoadNextItems().not()) return@launch
         onLoading()
         val (pageIndex, pageLimit) = getPageParams()
-        getAllQuotesByPagination(pageIndex = pageIndex, pageLimit = pageLimit)
-            .onSuccess { newQuoteList -> onSuccess(newQuoteList) }
+        val result = getAllQuotesByPagination(pageIndex = pageIndex, pageLimit = pageLimit)
+        onResult(result, false)
+    }
+
+    private fun onResult(result: Result<List<Quote>>, isInitialLoading: Boolean) {
+        result
+            .onSuccess { newQuoteList -> onSuccess(newQuoteList, isInitialLoading) }
             .onError {
                 _getQuotesUiState.update { uiState ->
                     when (uiState) {
@@ -59,21 +71,27 @@ class QuotesVM(private val getAllQuotesByPagination: GetAllQuotesByPagination) :
         }
     }
 
-    private fun onSuccess(newQuoteList: List<Quote>) {
-        val nextPage = if (newQuoteList.isEmpty()) null else newQuoteList.last().id
+    private fun onSuccess(newQuoteList: List<Quote>, isInitialPage: Boolean) {
+        val nextPage = if (newQuoteList.isEmpty()) null else newQuoteList.last().timeStamp.toString()
+        AppLogger.d("NextPage: $nextPage")
         _getQuotesUiState.update {
-            val updatedUiStateWithList = when (it) {
-                is QuotesUiState.HasData -> it.copy(quotesList = it.quotesList + newQuoteList)
-                else -> QuotesUiState.HasData(quotesList = newQuoteList)
-            }
-            if (updatedUiStateWithList.quotesList.isEmpty()) QuotesUiState.Empty
-            else
-                updatedUiStateWithList.copy(
-                    hasReachedEnd = newQuoteList.isEmpty(),
+            if (isInitialPage) {
+                if (newQuoteList.isEmpty()) QuotesUiState.Empty
+                else QuotesUiState.HasData(
+                    quotesList = newQuoteList,
+                    currentPage = nextPage,
+                    hasReachedEnd = newQuoteList.size < NB_INITIAL_QUOTES_SIZE
+                )
+            } else {
+                it as QuotesUiState.HasData
+                it.copy(
+                    quotesList = it.quotesList + newQuoteList,
+                    hasReachedEnd = newQuoteList.size < NB_QUOTES_LIMIT_PER_PAGE,
                     isPaginationLoading = false,
                     currentPage = nextPage,
                     hasPaginationError = false
                 )
+            }
         }
     }
 
