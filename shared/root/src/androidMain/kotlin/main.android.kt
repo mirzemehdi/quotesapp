@@ -8,8 +8,11 @@ import com.mmk.root.components.RootScreen
 
 @OptIn(ExperimentalNavigationApi::class)
 @Composable
-fun MainView(darkTheme: Boolean = false) {
+fun MainView(darkTheme: Boolean = false, onFinish: () -> Unit) {
     val navigator = rememberNavigator(initialDestination = TopLevelDestination.QUOTES)
-    BackHandler { navigator.goBack() }
+    BackHandler {
+        if (navigator.canGoBack()) navigator.goBack()
+        else onFinish()
+    }
     RootScreen(darkTheme, navigator)
 }
