@@ -1,15 +1,15 @@
-# QuotesApp - MultiModular Android APP
+# QuotesApp - MultiPlatform MultiModular Android and Ios APP
 
 [![Build Debug apk](https://github.com/mirzemehdi/quotesapp/actions/workflows/build_debug.yml/badge.svg)](https://github.com/mirzemehdi/quotesapp/actions/workflows/build_debug.yml)
 [![Static Code Analyzing](https://github.com/mirzemehdi/quotesapp/actions/workflows/static_code_analyze.yml/badge.svg)](https://github.com/mirzemehdi/quotesapp/actions/workflows/static_code_analyze.yml)
 [![Testing](https://github.com/mirzemehdi/quotesapp/actions/workflows/unit_testing.yml/badge.svg)](https://github.com/mirzemehdi/quotesapp/actions/workflows/unit_testing.yml)
 
-This app shows quotes and is developed using **App Modularization**, **Clean Architecture** and **Jetpack Components**. 
-Project is developed in **TDD (Test Driven Development) style** by writing Unit and UI tests.  
+This quotes app targets both Android and iOS platforms, and is developed using **Kotlin Multiplatform**, **JetBrains Compose Multiplatform**, **App Modularization**, **Clean Architecture** and **other Jetpack Components and multiplatform libraries**. 
+Project is developed in **TDD (Test Driven Development) style** by writing Unit and UI tests. (For now tests are failing in multiplatform side, but it is in progress...) 
 
-This Github project contains 4 main branches:  
+This Github project contains 5 main branches:  
 
-   _**main**_ -> Latest version of the project using Jetpack Compose Multiplatform and Kotlin MultiPlatform targetting ios and android platforms   
+   _**main**_ -> Latest version of the project using _**Kotlin MultiPlatform**_ targetting ios and android platforms. UI side of the project is implemented using _**JetBrains Compose Multiplatform**._    
    _**compose_ui_android**_ -> Android version of the project using Jetpack Compose UI
      _**mvvm**_ -> Initial version written in mvvm pattern  
     _**clean-architecture-layered**_ -> Second refactoring from mvvm to clean architecture (creating UseCases, and separate modules (domain, data, presentation).    
@@ -24,50 +24,54 @@ Medium article of migrating to Jetpack Compose: https://medium.com/p/b7f57504df2
 
 <hr>
 
-#### App module
-All feature modules are included in app module. Main responsibility of app module is 
-providing dependencies using **_Koin Dependency Injection_** and navigation between modules.
+#### Used kotlin multiplatform libraries
+_**JetBrains Compose Multiplatform**_ - For providing shared UI for android and ios   
+_**Koin**_ - For dependency injection  
+_**Napier**_ - Logging library  
+**_Navigation_** - https://github.com/chRyNaN/navigation  
+_**Kotlinx Datetime**_ - A multiplatform Kotlin library for working with date and time  
+
+<hr>
+
+#### Root module
+All feature modules are included in shared multiplatform root module. Main responsibility of root module is 
+providing dependencies using **_Koin Dependency Injection_**, navigation between modules, and providing MainView for android and ios platforms.  
+
 
 <hr>
 
 #### Feature modules
-**_:feature:quotes_:**  This module is for listing and adding new quotes.  
-**_:feature:profile_:**  This module is for viewing profile.
+**_:shared:feature:quotes_:**  This module is for listing and adding new quotes.  
+**_:shared: feature:profile_:**  This module is for viewing profile.
 
-Each feature module is developed using Clean Architecture, and inside 
+Each feature module is multiplatform module that is developed using Clean Architecture, and inside 
 each module there are 3 packages (_domain, data, presentation_) for separating 
 layers. Because in kotlin there is no package visibility modifier, custom **_Clean Architecture_**
 **_detekt_** rule is created in **_:customdetektrules_** module, and this module is implemented
 in each feature module in order not to breaking clean architecture rules. Beside that each 
-feature module includes **_:common:core_** and **_:common:ui_** modules. For testing purposes
-**_:test-utils_** is also included in feature modules using _testImplementation_ 
-and _androidTestImplementation_.
+feature module includes **_:shared:common:core_** and **_:shared:common:ui_** modules. For testing purposes
+**_:shared:test-utils_** is also included in feature modules.   
+
 
 <hr>
 
 
 #### Common Modules
-**_:common:core_:**  This module contains core objects that can be used 
-in every android library module, like _Result_ or _ErrorEntity_ classes.
+**_:shared:common:core_:**  This module contains core objects that can be used 
+in every multiplatform library module, like _Result_ or _ErrorEntity_ classes.
 
-**_:common:ui_:**  This module contains main styling, coloring, theming of the project. 
-It also includes some UI helper classes.
-
-_*When project grows :common:strings module can also be created for common string resources_
-
-<hr>
+**_:shared:common:ui_:**  This module contains main styling, coloring, theming of the project. 
+It also includes some UI helper classes.  
 
 
-#### Network module
-This module is responsible for initializing **_Retrofit_** and providing API services.
-Because as remote service **_Firebase_** is used in the project, this module is not included in any module.
 
 <hr>
+
 
 
 #### Test module
 Contains helper classes for making testing easier. It is included in each module 
-using _testImplementation_ and _androidTestImplementation_ for both **_Unit_** and **_Instrumentation Tests_**.
+for both **_Unit_** and **_Instrumentation Tests_**. This module is still in progress!  
 
 <hr>
 
@@ -82,9 +86,9 @@ Code style can be checked by running this gradle command: **./gradlew detekt**
 
 
 #### Kotlin DSL
-The project uses the _**Kotlin DSL**_ to make it easy to include new dependencies and versions of Android libraries and modules.
+The project uses the _**Kotlin DSL**_ to make it easy to include new dependencies and versions of libraries and modules.
 These are included inside **_buildSrc_** module. Inside buildSrc module 
-common android library gradle script is also created for making gradle files of modules more readable.
+common multiplatform library gradle script is also created for making gradle files of modules more readable.
 
 ## Gradle Scripts
 `./gradlew ktlintFormat` - Checks kotlin code styles and format it if possible. <br>  
