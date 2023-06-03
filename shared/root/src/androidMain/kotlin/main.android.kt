@@ -3,8 +3,8 @@ import androidx.compose.runtime.Composable
 import com.chrynan.navigation.ExperimentalNavigationApi
 import com.chrynan.navigation.compose.rememberNavigator
 import com.chrynan.navigation.goBack
-import com.mmk.root.RootScreen
 import com.mmk.root.TopLevelDestination
+import com.mmk.root.components.RootScreen
 
 @OptIn(ExperimentalNavigationApi::class)
 @Composable

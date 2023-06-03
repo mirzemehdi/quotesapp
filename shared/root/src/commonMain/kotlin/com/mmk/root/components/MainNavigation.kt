@@ -1,4 +1,4 @@
-package com.mmk.root
+package com.mmk.root.components
 
 import androidx.compose.runtime.Composable
 import com.chrynan.navigation.*
@@ -6,6 +6,7 @@ import com.chrynan.navigation.compose.NavigationContainer
 import com.mmk.profile.presentation.ProfileScreen
 import com.mmk.quotes.presentation.addnewquote.AddNewQuoteRoute
 import com.mmk.quotes.presentation.allquotes.QuotesRoute
+import com.mmk.root.TopLevelDestination
 
 @OptIn(ExperimentalNavigationApi::class)
 @Composable
