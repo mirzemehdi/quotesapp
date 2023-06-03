@@ -2,7 +2,7 @@
 
 plugins {
     id("com.android.application")
-    id("kotlin-android")
+    kotlin("android")
     id(Plugins.googleServices)
     id(Plugins.firebaseCrashlytics)
     id("plugins.jacoco-android")
@@ -51,19 +51,10 @@ android {
 }
 
 dependencies {
-    implementation(project(Modules.profile))
-    implementation(project(Modules.quotes))
-    implementation(project(Modules.core))
-    implementation(project(Modules.commonUi))
+    implementation(project(Modules.root))
 
-    implementation(Libs.constraintLayout)
     implementation(Libs.androidxAppcompat)
     implementation(Libs.material)
-    implementation(Libs.navigationUi)
-    implementation(Libs.navigationCompose)
-    implementation(Libs.navigationFragment)
     implementation(Libs.koinAndroid)
-    implementation(Libs.timber)
-    implementFirebase()
     implementJetpackComposeUi()
 }
