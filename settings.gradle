@@ -1,0 +1,19 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+    }
+}
+
+rootProject.name='Quotes App'
+include ':app'
+include ':network'
+include ':customdetektrules'
+include ':test-utils'
+include ':common:ui'
+include ':common:core'
+include ':features:profile'
+include ':features:quotes'
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="btn_quotes_loading_retry">Retry</string>
+    <string name="sample_quote">We spend so much of our lives not saying the things we wanna say, the things we should say.</string>
+    <string name="sample_author">Michael Schofield</string>
+    <string name="title_quotes">Quotes</string>
+    <string name="title_add_quote">Add New Quote</string>
+    <string name="hint_write_your_quote">New quote</string>
+    <string name="hint_new_quote_author">Author</string>
+    <string name="text_add_new_quote_btn">Add</string>
+</resources>

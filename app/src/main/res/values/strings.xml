@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Quotes App</string>
-
+    <string name="menu_title_quotes">Quotes</string>
+    <string name="menu_title_empty"> </string>
+    <string name="menu_title_profile">Profile</string>
 
 </resources>
