@@ -10,8 +10,8 @@ Project is developed in **TDD (Test Driven Development) style** by writing Unit 
 This Github project contains 5 main branches:  
 
    _**main**_ -> Latest version of the project using _**Kotlin MultiPlatform**_ targetting ios and android platforms. UI side of the project is implemented using _**JetBrains Compose Multiplatform**._    
-   _**compose_ui_android**_ -> Android version of the project using Jetpack Compose UI
-     _**mvvm**_ -> Initial version written in mvvm pattern  
+   _**compose_ui_android**_ -> Android version of the project using Jetpack Compose UI  
+     _**mvvm**_ -> Initial version written in mvvm pattern    
     _**clean-architecture-layered**_ -> Second refactoring from mvvm to clean architecture (creating UseCases, and separate modules (domain, data, presentation).    
     _**multi_modular**_ -> Third refactoring using modularization (separating domain, data presentation layers as a package inside each feature module)  
   
@@ -31,6 +31,7 @@ _**Napier**_ - Logging library
 **_Navigation_** - https://github.com/chRyNaN/navigation  
 _**Kotlinx Datetime**_ - A multiplatform Kotlin library for working with date and time  
 _**Firebase Multiplatform**_ - https://github.com/GitLiveApp/firebase-kotlin-sdk  
+_**Moko Resources**_ - A multiplatform Kotlin library for sharing resources  
 
 <hr>
 
