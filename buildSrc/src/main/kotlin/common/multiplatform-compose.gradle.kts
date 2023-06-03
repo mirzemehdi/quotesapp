@@ -3,6 +3,7 @@ package common
 import ConfigData
 import Libs
 import TestingLibs
+import gradle.kotlin.dsl.accessors._30f0b46cfa1edf34e3010b6937fd004c.testImplementation
 import implementJetpackComposeUi
 import org.jetbrains.compose.compose
 
@@ -12,6 +13,7 @@ plugins {
     id("org.jetbrains.compose")
     id("plugins.ktlint")
     id("plugins.detekt")
+    id("de.mannodermaus.android-junit5")
 
 }
 
@@ -62,11 +64,19 @@ kotlin {
         }
         val androidUnitTest by getting {
             dependencies {
+                implementation(project(Modules.testUtils))
                 implementation(TestingLibs.junit4)
                 implementation(TestingLibs.truth)
+                implementation(TestingLibs.junit5JupiterApi)
+                runtimeOnly(TestingLibs.junit5JupiterEngine)
+                runtimeOnly(TestingLibs.junit5VintageEngine)
                 implementation(TestingLibs.mockk)
+                implementation(TestingLibs.coroutine)
                 implementation(TestingLibs.robolectric)
+                implementation(TestingLibs.androidXCore)
                 implementation(TestingLibs.androidXCoreKtx)
+                implementation(TestingLibs.androidXRunner)
+                implementation(TestingLibs.androidXJunit)
                 implementation(TestingLibs.androidXJunitKtx)
 
             }

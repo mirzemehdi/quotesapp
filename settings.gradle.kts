@@ -1,6 +1,5 @@
 import org.gradle.api.initialization.resolve.RepositoriesMode
 
-
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -29,7 +28,7 @@ rootProject.name="QuotesApp"
 include(
     ":app",
     ":customdetektrules",
-    ":test-utils",
+    ":shared:test-utils",
     ":shared:common:core",
     ":shared:features:profile",
     ":shared:common:ui",
