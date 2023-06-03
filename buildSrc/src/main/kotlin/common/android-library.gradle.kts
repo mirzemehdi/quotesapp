@@ -8,14 +8,13 @@ import implementJetpackComposeUi
 
 plugins {
     id("com.android.library")
-    kotlin("android")
+    id("kotlin-android")
+
     id("de.mannodermaus.android-junit5")
     id("plugins.jacoco-android")
     id("plugins.ktlint")
     id("plugins.detekt")
 }
-
-
 
 android {
     compileSdk = ConfigData.compileSdkVersion
@@ -62,9 +61,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
 
     })
-
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     buildFeatures {

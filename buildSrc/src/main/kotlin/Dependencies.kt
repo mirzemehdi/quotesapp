@@ -1,11 +1,5 @@
 object Libs {
 
-    //AndroidX
-    val androidXCore by lazy { "androidx.core:core-ktx:${Versions.androidXCore}" }
-
-    val viewModelLifecycle by lazy { "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewModelLifecyle}" }
-
-
     //Retrofit and Moshi convertor - Networking libraries
     val moshi by lazy { "com.squareup.moshi:moshi:${Versions.moshi}" }
     val moshiKotlin by lazy { "com.squareup.moshi:moshi-kotlin:${Versions.moshi}" }
@@ -14,7 +8,6 @@ object Libs {
     val okHttpLogger by lazy { "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpLogging}" }
 
     //Koin - Dependency Injection
-    val koinCore by lazy { "io.insert-koin:koin-core:${Versions.koin}" }
     val koinAndroid by lazy { "io.insert-koin:koin-android:${Versions.koin}" }
     val koinCompose by lazy { "io.insert-koin:koin-androidx-compose:${Versions.koinCompose}" }
 
@@ -58,7 +51,6 @@ object Libs {
 
     //Jetpack Compose
     val composeBom by lazy { "androidx.compose:compose-bom:${Versions.composeBom}" }
-    val composeRuntime by lazy { "androidx.compose.runtime:runtime:1.4.0" }
     val composeMaterial3 by lazy { "androidx.compose.material3:material3" }
     val composeMaterial2 by lazy { "androidx.compose.material:material" }
     val composeFoundation by lazy { "androidx.compose.foundation:foundation" }
@@ -66,35 +58,12 @@ object Libs {
     val composeToolingPreview by lazy { "androidx.compose.ui:ui-tooling-preview" }
     val composeUiTooling by lazy { "androidx.compose.ui:ui-tooling" }
     val composeLiveData by lazy { "androidx.compose.runtime:runtime-livedata" }
-    val composeActivity by lazy { "androidx.activity:activity-compose:${Versions.androidXActivity}" }
 
     val composeLifeCycleViewModel by lazy { "androidx" +
             ".lifecycle:lifecycle-viewmodel-compose:${Versions.androidXLifecycle}" }
     val composeLifeCycleRuntime by lazy { "androidx.lifecycle:lifecycle-runtime-compose:${Versions.androidXLifecycle}" }
     val navigationCompose by lazy { "androidx.navigation:navigation-compose:${Versions
         .navigation}" }
-
-
-
-    //KMM
-    //Resource sharing
-    val mokoResources by lazy { "dev.icerock.moko:resources:${Versions.mokoResources}" }
-    val mokoResourcesCompose by lazy { "dev.icerock.moko:resources-compose:${Versions.mokoResources}" }
-
-    //Logging
-    val napier by lazy { "io.github.aakira:napier:${Versions.napier}" }
-    //Date
-    val dateTime by lazy { "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.dateTime}" }
-
-    //Firebase
-    val firebaseFireStoreMultiPlatform by lazy { "dev.gitlive:firebase-firestore:${Versions.firebaseMultiPlatform}" }
-
-    //Kotlin serializer
-    val kotlinSerializer by lazy { "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinSerializer}" }
-    //Navigation
-    val navigationMultiPlatform by lazy { "com.chrynan.navigation:navigation-compose:${Versions.navigationMultiPlatform}" }
-
-
 
 }
 
@@ -103,10 +72,6 @@ object Plugins {
     val commonAndroidLibrary by lazy { "common.android-library" }
     val googleServices by lazy { "com.google.gms.google-services" }
     val firebaseCrashlytics by lazy { "com.google.firebase.crashlytics" }
-
-    val multiPlatformComposePlugin by lazy { "common.multiplatform-compose" }
-    val multiPlatformResources by lazy { "dev.icerock.mobile.multiplatform-resources" }
-    val kotlinSerialization by lazy { "plugin.serialization" }
 }
 
 object TestingLibs {
@@ -126,9 +91,9 @@ object TestingLibs {
 
 
     // Instrumented test libraries androidTestImplementation(...)
-    val androidXCore by lazy { "androidx.test:core:${Versions.androidXTestCore}" }
-    val androidXCoreKtx by lazy { "androidx.test:core-ktx:${Versions.androidXTestCore}" }
-    val androidXRunner by lazy { "androidx.test:runner:${Versions.androidXTestCore}" }
+    val androidXCore by lazy { "androidx.test:core:${Versions.androidXCore}" }
+    val androidXCoreKtx by lazy { "androidx.test:core-ktx:${Versions.androidXCore}" }
+    val androidXRunner by lazy { "androidx.test:runner:${Versions.androidXCore}" }
     val androidXJunit by lazy { "androidx.test.ext:junit:${Versions.androidXJunit}" }
     val androidXJunitKtx by lazy { "androidx.test.ext:junit-ktx:${Versions.androidXJunit}" }
     val mockkAndroid by lazy { "io.mockk:mockk-android:${Versions.mockk}" }
