@@ -5,6 +5,7 @@ plugins {
 
 dependencies {
     commonMainApi(Libs.mokoResourcesCompose) // for compose multiplatform
+    commonMainApi(Libs.mokoResources)
 }
 
 multiplatformResources {

@@ -33,7 +33,7 @@ object Versions {
     const val espresso="3.3.0"
     const val androidXMonitor="1.4.0"
 
-    const val composeBom="2023.03.00"
+    const val composeBom="2023.04.01"
     const val androidXLifecycle = "2.6.0-alpha05"
     const val androidXActivity = "1.6.1"
 

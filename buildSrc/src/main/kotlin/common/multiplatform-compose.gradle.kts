@@ -28,23 +28,7 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
-
-    // Create root moduel include all shared modules and add this code
-//    https://youtrack.jetbrains.com/issue/KT-42247
-//    targets.filterIsInstance<KotlinNativeTarget>()
-//        .filter { it.konanTarget.family == Family.IOS }
-//        .forEach { target ->
-//            target.binaries {
-//                framework {
-//                    baseName = "quotesShared"
-//                }
-//            }
-//        }
-    listOf(iosX64(), iosArm64(), iosSimulatorArm64()).forEach {
-        it.binaries.framework {
-            baseName = "QuotesAppBaseFramework"
-        }
-    }
+    
 
     sourceSets {
         val commonMain by getting {

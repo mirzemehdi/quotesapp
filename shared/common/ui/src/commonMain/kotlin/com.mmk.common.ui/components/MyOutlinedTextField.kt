@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
-import com.mmk.common.ui.theme.MyApplicationTheme
+import com.mmk.common.ui.theme.getColors
 import com.mmk.common.ui.util.TextFieldState
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -21,8 +21,8 @@ fun MyOutlinedTextField(
 ) {
 
     val customTextSelectionColors = TextSelectionColors(
-        handleColor = MyApplicationTheme.colors.secondary,
-        backgroundColor = MyApplicationTheme.colors.secondary.copy(alpha = 0.4f)
+        handleColor = getColors().secondary,
+        backgroundColor = getColors().secondary.copy(alpha = 0.4f)
     )
 
     CompositionLocalProvider(LocalTextSelectionColors provides customTextSelectionColors) {
@@ -30,10 +30,10 @@ fun MyOutlinedTextField(
             value = textFieldState.value,
             textStyle = MaterialTheme.typography.bodySmall.copy(fontSize = 14.sp),
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                textColor = MyApplicationTheme.colors.primary,
-                cursorColor = MyApplicationTheme.colors.secondary,
-                focusedBorderColor = MyApplicationTheme.colors.secondary,
-                focusedLabelColor = MyApplicationTheme.colors.secondary
+                textColor = getColors().primary,
+                cursorColor = getColors().secondary,
+                focusedBorderColor = getColors().secondary,
+                focusedLabelColor = getColors().secondary
             ),
             onValueChange = { textFieldState.onValueChanged(it) },
             singleLine = singleLine,

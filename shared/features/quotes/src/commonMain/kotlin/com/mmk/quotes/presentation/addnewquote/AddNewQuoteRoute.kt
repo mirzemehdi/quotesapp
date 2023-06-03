@@ -1,5 +1,6 @@
 package com.mmk.quotes.presentation.addnewquote
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -19,7 +20,7 @@ import com.mmk.common.ui.MR
 import com.mmk.common.ui.components.MyCircularProgressBar
 import com.mmk.common.ui.components.MyOutlinedTextField
 import com.mmk.common.ui.components.UiMessageOwnerComponent
-import com.mmk.common.ui.theme.MyApplicationTheme
+import com.mmk.common.ui.theme.getColors
 import com.mmk.common.ui.util.TextFieldState
 import com.mmk.core.util.ViewModelProvider
 import com.mmk.core.util.asState
@@ -35,10 +36,10 @@ fun AddNewQuoteRoute(viewModel: AddNewQuoteVM = ViewModelProvider.get(), onBackP
                 viewModel.reset()
             }
         }
-
+//
         val newQuoteText by viewModel.quoteText.asState()
         val quoteAuthor by viewModel.quoteAuthor.asState()
-
+//
         AddNewQuoteScreen(
             isLoading = uiState.isLoading,
             newQuoteTextFieldState = TextFieldState(
@@ -66,14 +67,15 @@ private fun AddNewQuoteScreen(
         Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
-            .background(MyApplicationTheme.colors.background)
+            .background(getColors().background)
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = stringResource(MR.strings.title_add_quote),
+
             style = MaterialTheme.typography.headlineLarge,
-            color = MyApplicationTheme.colors.onBackground
+            color = getColors().onBackground
         )
         MyOutlinedTextField(
             textFieldState = newQuoteTextFieldState,
@@ -83,7 +85,7 @@ private fun AddNewQuoteScreen(
                 .padding(top = 24.dp)
                 .fillMaxWidth()
         )
-
+//
         MyOutlinedTextField(
             textFieldState = quoteAuthorTextFieldState,
             label = stringResource(MR.strings.hint_new_quote_author),
@@ -104,8 +106,8 @@ private fun AddNewQuoteScreen(
                 Button(
                     onClick = { onClickAdd() },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = MyApplicationTheme.colors.secondary,
-                        contentColor = MyApplicationTheme.colors.onSecondary
+                        containerColor = getColors().secondary,
+                        contentColor = getColors().onSecondary
                     ),
                     contentPadding = PaddingValues(16.dp),
                     shape = RoundedCornerShape(4.dp),
@@ -113,7 +115,7 @@ private fun AddNewQuoteScreen(
                 ) {
                     Text(
                         text = stringResource(MR.strings.text_add_new_quote_btn),
-                        color = MyApplicationTheme.colors.onSecondary,
+                        color = getColors().onSecondary,
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }

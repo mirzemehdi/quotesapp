@@ -9,7 +9,7 @@ import com.mmk.quotes.presentation.allquotes.QuotesRoute
 
 @OptIn(ExperimentalNavigationApi::class)
 @Composable
-fun MainNavigation(navigator: Navigator<TopLevelDestination, SingleNavigationContext<TopLevelDestination>>) {
+internal fun MainNavigation(navigator: Navigator<TopLevelDestination, SingleNavigationContext<TopLevelDestination>>) {
     NavigationContainer(navigator = navigator) { destination ->
         when (destination) {
             TopLevelDestination.QUOTES -> QuotesRoute()
@@ -22,7 +22,7 @@ fun MainNavigation(navigator: Navigator<TopLevelDestination, SingleNavigationCon
 }
 
 @OptIn(ExperimentalNavigationApi::class)
-fun Navigator<TopLevelDestination, SingleNavigationContext<TopLevelDestination>>.goToSingleTop(
+internal fun Navigator<TopLevelDestination, SingleNavigationContext<TopLevelDestination>>.goToSingleTop(
     destination: TopLevelDestination
 ) {
     reset()

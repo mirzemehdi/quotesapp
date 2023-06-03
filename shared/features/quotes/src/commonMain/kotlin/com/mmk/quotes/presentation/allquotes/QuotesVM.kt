@@ -66,12 +66,14 @@ class QuotesVM(private val getAllQuotesByPagination: GetAllQuotesByPagination) :
                 is QuotesUiState.HasData -> it.copy(quotesList = it.quotesList + newQuoteList)
                 else -> QuotesUiState.HasData(quotesList = newQuoteList)
             }
-            updatedUiStateWithList.copy(
-                hasReachedEnd = newQuoteList.isEmpty(),
-                isPaginationLoading = false,
-                currentPage = nextPage,
-                hasPaginationError = false
-            )
+            if (updatedUiStateWithList.quotesList.isEmpty()) QuotesUiState.Empty
+            else
+                updatedUiStateWithList.copy(
+                    hasReachedEnd = newQuoteList.isEmpty(),
+                    isPaginationLoading = false,
+                    currentPage = nextPage,
+                    hasPaginationError = false
+                )
         }
     }
 

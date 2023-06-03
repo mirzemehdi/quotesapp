@@ -2,7 +2,6 @@ package com.mmk.quotes.data.source.remote.model.response
 
 import com.mmk.core.mapper.DomainMapper
 import com.mmk.quotes.domain.model.Quote
-import java.util.*
 
 @kotlinx.serialization.Serializable
 data class QuoteResponse(

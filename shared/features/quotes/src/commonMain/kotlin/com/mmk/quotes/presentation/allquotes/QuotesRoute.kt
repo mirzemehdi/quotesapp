@@ -1,4 +1,3 @@
-@file:OptIn(ExperimentalResourceApi::class)
 
 package com.mmk.quotes.presentation.allquotes
 
@@ -19,13 +18,12 @@ import androidx.compose.ui.unit.dp
 import com.mmk.common.ui.MR
 import com.mmk.common.ui.components.MyCircularProgressBar
 import com.mmk.common.ui.components.UiMessageOwnerComponent
-import com.mmk.common.ui.theme.MyApplicationTheme
+import com.mmk.common.ui.theme.getColors
 import com.mmk.common.ui.util.toast.ToastMaker
 import com.mmk.core.util.ViewModelProvider
 import com.mmk.core.util.asState
+import dev.icerock.moko.resources.compose.painterResource
 import dev.icerock.moko.resources.compose.stringResource
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun QuotesRoute(viewModel: QuotesVM = ViewModelProvider.get()) {
@@ -44,7 +42,7 @@ private fun QuotesScreen(uiState: QuotesUiState, onLoadNextPage: () -> Unit) {
         Text(
             text = stringResource(MR.strings.title_quotes),
             style = MaterialTheme.typography.headlineLarge,
-            color = MyApplicationTheme.colors.onBackground,
+            color = getColors().onBackground,
             modifier = Modifier.padding(top = 16.dp)
         )
 
@@ -116,11 +114,10 @@ fun QuotesDataList(
     }
 }
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 private fun EmptyQuotesView() {
     Image(
-        painter = painterResource("drawable/ic_empty_quotes.xml"),
+        painter = painterResource(MR.images.ic_empty_quotes),
         contentDescription = null,
         modifier = Modifier.size(300.dp)
     )
@@ -132,14 +129,14 @@ private fun RetryButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
         modifier = modifier,
         onClick = { onClick() },
         shape = RoundedCornerShape(0.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = MyApplicationTheme.colors.secondary)
+        colors = ButtonDefaults.buttonColors(containerColor = getColors().secondary)
     ) {
 
         Text(
 
             text = stringResource(MR.strings.btn_quotes_loading_retry),
             style = MaterialTheme.typography.bodySmall,
-            color = MyApplicationTheme.colors.onSecondary
+            color = getColors().onSecondary
         )
     }
 }

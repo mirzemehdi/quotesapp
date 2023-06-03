@@ -47,7 +47,7 @@ fun MyApplicationTheme(
 
     ProvideMyAppColors(colors = colorPalette) {
         MaterialTheme(
-            typography = Typography,
+            typography = getTypography(),
             content = content
         )
     }
@@ -55,11 +55,14 @@ fun MyApplicationTheme(
 
 object MyApplicationTheme {
 
-    val colors: MyAppColors
-        @Composable
-        @ReadOnlyComposable
-        get() = LocalColors.current
+//    val colors: MyAppColors
+//        @Composable
+//        @ReadOnlyComposable
+//        get() = LocalColors.current
 }
+
+@Composable
+fun getColors() = LocalColors.current
 
 @Stable
 class MyAppColors(
