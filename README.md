@@ -30,6 +30,7 @@ _**Koin**_ - For dependency injection
 _**Napier**_ - Logging library  
 **_Navigation_** - https://github.com/chRyNaN/navigation  
 _**Kotlinx Datetime**_ - A multiplatform Kotlin library for working with date and time  
+_**Firebase Multiplatform**_ - https://github.com/GitLiveApp/firebase-kotlin-sdk  
 
 <hr>
 
