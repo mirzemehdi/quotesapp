@@ -100,6 +100,9 @@ common multiplatform library gradle script is also created for making gradle fil
 style problem before committing it to Github. This can be skipped using **git commit --no-verify**, 
 but it will run again in CI using Github actions._
 
-## App Demo
+## App Demo 
+
 You can [download the apk](outputs/quotes.apk), and can add your own quote :). <br>  
-<img src="outputs/screenrecorder.gif" width="250">
+
+https://github.com/mirzemehdi/quotesapp/assets/32781662/510d8c92-f136-4193-bff1-47394470305b  
+
