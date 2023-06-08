@@ -3,10 +3,10 @@ package com.mmk.quotes.data.source.remote
 import com.mmk.core.model.ErrorEntity
 import com.mmk.core.model.Result
 import com.mmk.core.util.NetworkHandler
+import com.mmk.quotes.data.source.remote.apiservice.ApiServiceException
 import com.mmk.quotes.data.source.remote.apiservice.QuotesApiService
 import com.mmk.quotes.data.source.remote.model.request.NewQuoteRequest
 import com.mmk.quotes.data.source.remote.model.response.QuoteResponse
-import dev.gitlive.firebase.firestore.FirebaseFirestoreException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
@@ -45,8 +45,8 @@ class QuotesRemoteDataSourceImpl(
             return Result.error(ErrorEntity.networkConnection())
         return try {
             onHasNetworkConnection()
-        } catch (e: FirebaseFirestoreException) {
-            Result.error(ErrorEntity.apiError(exception = e))
+        } catch (apiServiceException: ApiServiceException) {
+            Result.error(ErrorEntity.apiError(exception = apiServiceException.e))
         }
     }
 }

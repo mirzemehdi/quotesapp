@@ -119,6 +119,7 @@ object TestingLibs {
     val coroutine by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutine}" }
     val detekt by lazy { "io.gitlab.arturbosch.detekt:detekt-test:${Versions.detekt}" }
     val robolectric by lazy { "org.robolectric:robolectric:${Versions.robolectric}" }
+    val turbine by lazy { "app.cash.turbine:turbine:${Versions.turbine}" } //Flow testing
 
 
     //Needed for testing detekt custom rules

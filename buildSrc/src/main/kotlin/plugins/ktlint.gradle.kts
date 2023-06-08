@@ -24,7 +24,9 @@ ktlint {
         include(fileTree("scripts/"))
     }
     filter {
-        exclude("**/generated/**")
+        exclude { entry ->
+            entry.file.toString().contains("generated")
+        }
         include("**/kotlin/**")
     }
 }

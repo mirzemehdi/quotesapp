@@ -11,10 +11,10 @@ class QuotesApiServiceImpl(private val quotesCollection: CollectionReference) : 
     //    @Throws(FirebaseFirestoreException::class)
     override suspend fun getQuotesByPagination(
         pageIndex: String?,
-        pageLimit: Int
-    ): List<QuoteResponse> {
+        pageLimit: Int,
+    ): List<QuoteResponse> = firebaseApiCall {
         val response = getQuery(pageIndex, pageLimit).get()
-        return response.documents.map { it.data() }
+        response.documents.map { it.data() }
     }
 
     override fun observeFirstPageQuotes(pageLimit: Int): Flow<List<QuoteResponse>> {
@@ -23,7 +23,7 @@ class QuotesApiServiceImpl(private val quotesCollection: CollectionReference) : 
     }
 
     //    @Throws(FirebaseFirestoreException::class)
-    override suspend fun addNewQuote(quote: NewQuoteRequest) {
+    override suspend fun addNewQuote(quote: NewQuoteRequest) = firebaseApiCall {
         val referenceId = quotesCollection.document.id
         quote.id = referenceId
         quotesCollection.document(referenceId).set(quote)
@@ -32,7 +32,16 @@ class QuotesApiServiceImpl(private val quotesCollection: CollectionReference) : 
     private fun getQuery(pageIndex: String?, pageLimit: Int): Query {
         val orderedCollection =
             quotesCollection.orderBy(FieldPath("timeStamp"), Direction.DESCENDING)
-        val query = pageIndex?.let { orderedCollection.startAfter(it.toLong()) } ?: orderedCollection
+        val query =
+            pageIndex?.let { orderedCollection.startAfter(it.toLong()) } ?: orderedCollection
         return query.limit(pageLimit.toLong())
+    }
+
+    private suspend fun <T> firebaseApiCall(block: suspend () -> T): T {
+        return try {
+            block()
+        } catch (e: FirebaseFirestoreException) {
+            throw ApiServiceException(e)
+        }
     }
 }

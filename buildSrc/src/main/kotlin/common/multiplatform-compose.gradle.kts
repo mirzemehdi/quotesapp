@@ -4,6 +4,7 @@ import ConfigData
 import Libs
 import TestingLibs
 import gradle.kotlin.dsl.accessors._30f0b46cfa1edf34e3010b6937fd004c.testImplementation
+import gradle.kotlin.dsl.accessors._30f0b46cfa1edf34e3010b6937fd004c.testRuntimeOnly
 import implementJetpackComposeUi
 import org.jetbrains.compose.compose
 
@@ -51,6 +52,8 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(TestingLibs.coroutine)
+                implementation(TestingLibs.turbine)
             }
         }
         val androidMain by getting {
