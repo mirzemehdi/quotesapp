@@ -22,6 +22,7 @@ object Versions {
     const val mockk="1.12.0"
     const val coroutine="1.7.1"
     const val robolectric="4.10"
+    const val turbine="0.13.0"
 
     const val detekt = "1.19.0" // Detekt - Static Code analyzer
     const val assertj="3.15.0" //Needed for testing detekt custom rules

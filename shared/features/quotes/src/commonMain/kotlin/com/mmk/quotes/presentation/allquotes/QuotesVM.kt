@@ -19,7 +19,7 @@ class QuotesVM(private val getAllQuotesByPagination: GetAllQuotesByPagination) :
     ViewModel(),
     UiMessageHandler by UiMessageHandlerImpl() {
 
-    private companion object Constants {
+    companion object Constants {
         const val NB_QUOTES_LIMIT_PER_PAGE = 10
         const val NB_INITIAL_QUOTES_SIZE = 15
         val INITIAL_QUOTES_PAGE_INDEX: String? = null
@@ -72,7 +72,8 @@ class QuotesVM(private val getAllQuotesByPagination: GetAllQuotesByPagination) :
     }
 
     private fun onSuccess(newQuoteList: List<Quote>, isInitialPage: Boolean) {
-        val nextPage = if (newQuoteList.isEmpty()) null else newQuoteList.last().timeStamp.toString()
+        val nextPage =
+            if (newQuoteList.isEmpty()) null else newQuoteList.last().timeStamp.toString()
         AppLogger.d("NextPage: $nextPage")
         _getQuotesUiState.update {
             if (isInitialPage) {
