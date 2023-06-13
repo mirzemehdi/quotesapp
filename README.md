@@ -14,9 +14,11 @@ This Github project contains 5 main branches:
      _**mvvm**_ -> Initial version written in mvvm pattern    
     _**clean-architecture-layered**_ -> Second refactoring from mvvm to clean architecture (creating UseCases, and separate modules (domain, data, presentation).    
     _**multi_modular**_ -> Third refactoring using modularization (separating domain, data presentation layers as a package inside each feature module)  
-  
-Medium article of refactoring of architecture of this project: https://medium.com/p/ef6cdcb409a  
-Medium article of migrating to Jetpack Compose: https://medium.com/p/b7f57504df2b
+
+**_Related Blog Posts_**  
+Achieving iOS Compatibility(KMM+Compose Multiplatform) : https://medium.com/p/edd364854a0d  
+Migrating to Jetpack Compose: https://medium.com/p/b7f57504df2b    
+Refactoring of architecture of this project: https://medium.com/p/ef6cdcb409a    
 
 ## Overview of Architecture
 
