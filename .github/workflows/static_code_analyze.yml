@@ -25,7 +25,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Ktlint check
-        run: ./gradlew ktlintCheck
+        run: ./gradlew ktlintCheck --stacktrace
 
       - name: Upload Ktlint Reports
         uses: actions/upload-artifact@v2
