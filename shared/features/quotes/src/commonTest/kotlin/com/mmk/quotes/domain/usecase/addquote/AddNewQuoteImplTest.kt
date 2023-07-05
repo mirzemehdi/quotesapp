@@ -7,6 +7,7 @@ import kotlinx.coroutines.test.runTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
 
 internal class AddNewQuoteImplTest {
 
@@ -25,7 +26,7 @@ internal class AddNewQuoteImplTest {
         quotesRepository.shouldReturnSuccessResult = true
         val actual = addNewQuote(quote)
         val expected = Result.EMPTY
-        assertEquals(expected, actual)
+        assertNotEquals(expected, actual)
     }
 
     @Test

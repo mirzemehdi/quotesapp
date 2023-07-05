@@ -10,7 +10,7 @@ on:
 
 jobs:
   unit_testing:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -25,7 +25,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Unit Testing
-        run: ./gradlew test
+        run: ./gradlew check
 
       - name: Upload Test Reports
         uses: actions/upload-artifact@v2
