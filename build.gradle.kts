@@ -11,6 +11,8 @@ buildscript {
         google()
         mavenCentral()
         gradlePluginPortal()
+        maven("https://plugins.gradle.org/m2/")
+
     }
     dependencies {
         classpath("com.google.gms:google-services:4.3.3")
