@@ -19,7 +19,6 @@ jobs:
         with:
           java-version: 11
           distribution: corretto
-          cache: gradle
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew

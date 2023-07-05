@@ -1,6 +1,6 @@
 plugins {
     id(Plugins.multiPlatformComposePlugin)
-    kotlin(Plugins.kotlinSerialization) version "1.8.21"
+    kotlin(Plugins.kotlinSerialization) version "1.8.10"
 }
 
 kotlin {
