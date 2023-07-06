@@ -29,14 +29,8 @@ jobs:
         run: ./gradlew assembleDebug
 
       - name: Build iOS Debug app
-        uses: sersoft-gmbh/xcodebuild-action@v1
-        with:
-          workspace: iosApp/iosApp.xcworkspace
-          scheme: iosApp
-          destination: name=iPhone 8
-          sdk: iphoneos
-          configuration: Debug
-          action: build
+        run: |
+          xcodebuild -workspace iosApp/iosApp.xcworkspace -configuration Debug -scheme iosApp -sdk iphonesimulator -arch arm64
 
       - name: Upload APK
         uses: actions/upload-artifact@v2
