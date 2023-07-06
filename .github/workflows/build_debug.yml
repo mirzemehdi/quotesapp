@@ -31,7 +31,7 @@ jobs:
       - name: Build iOS Debug app
         run: |
           brew install node yarn cocoapods fastlane
-          ls && cd .. && yarn && pod install
+          ls && cd iosApp && yarn && pod install && cd ..
           xcodebuild -workspace iosApp/iosApp.xcworkspace -configuration Debug -scheme iosApp -sdk iphonesimulator -arch arm64
 
       - name: Upload APK
