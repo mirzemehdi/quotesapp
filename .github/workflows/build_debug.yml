@@ -25,8 +25,11 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build Debug app with Gradle
+      - name: Build Android Debug app
         run: ./gradlew assembleDebug
+
+      - name: Build iOS Debug app
+        run: xcodebuild -project iosApp/iosApp.xcodeproj -configuration Debug -scheme iosApp -sdk iphoneos -destination name='iPhone 8' build
 
       - name: Upload APK
         uses: actions/upload-artifact@v2
