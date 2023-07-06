@@ -19,12 +19,13 @@ jobs:
         with:
           java-version: 11
           distribution: corretto
+          cache: gradle
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
       - name: Unit Testing
-        run: ./gradlew check
+        run: ./gradlew test
 
       - name: Upload Test Reports
         uses: actions/upload-artifact@v2
