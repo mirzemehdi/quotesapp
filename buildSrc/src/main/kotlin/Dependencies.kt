@@ -120,6 +120,8 @@ object TestingLibs {
     val detekt by lazy { "io.gitlab.arturbosch.detekt:detekt-test:${Versions.detekt}" }
     val robolectric by lazy { "org.robolectric:robolectric:${Versions.robolectric}" }
     val turbine by lazy { "app.cash.turbine:turbine:${Versions.turbine}" } //Flow testing
+    val composeUiJunit4 by lazy { "androidx.compose.ui:ui-test-junit4" }
+    val composeUiManifest by lazy { "androidx.compose.ui:ui-test-manifest" }
 
 
     //Needed for testing detekt custom rules
