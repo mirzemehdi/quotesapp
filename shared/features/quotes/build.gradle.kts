@@ -21,8 +21,3 @@ kotlin {
         }
     }
 }
-android {
-    defaultConfig {
-        testInstrumentationRunner = "com.mmk.testutils.koin.KoinTestRunner"
-    }
-}

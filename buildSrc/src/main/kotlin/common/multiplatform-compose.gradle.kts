@@ -47,6 +47,8 @@ kotlin {
                 implementation(compose.components.resources)
             }
         }
+
+
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
@@ -84,9 +86,11 @@ kotlin {
         }
 
         val androidInstrumentedTest by getting {
+//            dependsOn(commonTest)
             dependencies {
                 implementation(platform(Libs.composeBom))
                 implementation(TestingLibs.composeUiJunit4)
+                implementation(TestingLibs.mockkAndroid)
 
             }
         }
