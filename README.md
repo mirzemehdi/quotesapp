@@ -5,7 +5,8 @@
 [![Testing](https://github.com/mirzemehdi/quotesapp/actions/workflows/unit_testing.yml/badge.svg)](https://github.com/mirzemehdi/quotesapp/actions/workflows/unit_testing.yml)
 
 This quotes app targets both Android and iOS platforms, and is developed using **Kotlin Multiplatform**, **JetBrains Compose Multiplatform**, **App Modularization**, **Clean Architecture** and **other Jetpack Components and multiplatform libraries**. 
-Project is developed in **TDD (Test Driven Development) style** by writing Unit and UI tests. (For now tests are failing in multiplatform side, but it is in progress...) 
+Project is developed in **TDD (Test Driven Development) style** by writing Unit and UI tests.  
+
 
 This Github project contains 5 main branches:  
 
@@ -75,7 +76,7 @@ It also includes some UI helper classes.
 
 #### Test module
 Contains helper classes for making testing easier. It is included in each module 
-for both **_Unit_** and **_Instrumentation Tests_**. This module is still in progress!  
+for both **_Unit_** and **_Instrumentation Tests_**.     
 
 <hr>
 

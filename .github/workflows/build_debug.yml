@@ -29,7 +29,7 @@ jobs:
         run: ./gradlew assembleDebug
 
       - name: Build iOS Debug app
-        run: xcodebuild -workspace iosApp/iosApp.xcworkspace -configuration Debug -scheme iosApp -sdk iphonesimulator
+        run: cd iosApp ; pod install ; cd .. ; xcodebuild -workspace iosApp/iosApp.xcworkspace -configuration Debug -scheme iosApp -sdk iphonesimulator
 
       - name: Upload APK
         uses: actions/upload-artifact@v2
