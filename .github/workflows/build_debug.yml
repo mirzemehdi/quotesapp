@@ -28,12 +28,6 @@ jobs:
       - name: Build Android Debug app
         run: ./gradlew assembleDebug
 
-      - name: Build iOS Debug app
-        run: |
-          brew install node yarn cocoapods fastlane
-          ls && cd iosApp && yarn && pod install && cd ..
-          xcodebuild -workspace iosApp/iosApp.xcworkspace -configuration Debug -scheme iosApp -sdk iphonesimulator -arch arm64
-
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
