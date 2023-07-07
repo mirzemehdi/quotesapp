@@ -1,6 +1,5 @@
 package com.mmk.quotes.presentation.addnewquote
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -15,6 +14,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.mmk.common.ui.MR
 import com.mmk.common.ui.components.MyCircularProgressBar
@@ -60,7 +60,7 @@ private fun AddNewQuoteScreen(
     isLoading: Boolean,
     newQuoteTextFieldState: TextFieldState,
     quoteAuthorTextFieldState: TextFieldState,
-    onClickAdd: () -> Unit
+    onClickAdd: () -> Unit,
 ) {
 
     Column(
@@ -84,6 +84,7 @@ private fun AddNewQuoteScreen(
             modifier = Modifier
                 .padding(top = 24.dp)
                 .fillMaxWidth()
+                .testTag("addQuoteText")
         )
 //
         MyOutlinedTextField(
@@ -93,6 +94,7 @@ private fun AddNewQuoteScreen(
             modifier = Modifier
                 .padding(top = 16.dp)
                 .fillMaxWidth()
+                .testTag("addQuoteAuthor")
         )
 
         Box(
@@ -111,7 +113,9 @@ private fun AddNewQuoteScreen(
                     ),
                     contentPadding = PaddingValues(16.dp),
                     shape = RoundedCornerShape(4.dp),
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("addNewQuoteButton")
                 ) {
                     Text(
                         text = stringResource(MR.strings.text_add_new_quote_btn),
@@ -122,7 +126,10 @@ private fun AddNewQuoteScreen(
             }
 
             androidx.compose.animation.AnimatedVisibility(visible = isLoading) {
-                MyCircularProgressBar()
+                MyCircularProgressBar(
+                    modifier = Modifier
+                        .testTag("addNewQuoteProgress")
+                )
             }
         }
     }

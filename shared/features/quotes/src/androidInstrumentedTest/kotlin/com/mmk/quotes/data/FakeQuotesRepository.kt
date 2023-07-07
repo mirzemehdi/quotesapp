@@ -1,4 +1,4 @@
-package com.mmk.quotes.presentation.allquotes
+package com.mmk.quotes.data
 
 import com.mmk.core.model.Result
 import com.mmk.quotes.domain.model.Quote

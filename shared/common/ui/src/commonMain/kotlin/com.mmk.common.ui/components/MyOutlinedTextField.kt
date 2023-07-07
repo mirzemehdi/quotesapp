@@ -17,7 +17,7 @@ fun MyOutlinedTextField(
     modifier: Modifier = Modifier,
     label: String = "",
     singleLine: Boolean = false,
-    maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE
+    maxLines: Int = if (singleLine) 1 else Int.MAX_VALUE,
 ) {
 
     val customTextSelectionColors = TextSelectionColors(

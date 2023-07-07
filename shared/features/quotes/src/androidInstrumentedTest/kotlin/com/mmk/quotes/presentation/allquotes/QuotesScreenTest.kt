@@ -2,6 +2,7 @@ package com.mmk.quotes.presentation.allquotes
 
 import androidx.compose.ui.test.junit4.createComposeRule
 import com.mmk.common.ui.theme.MyApplicationTheme
+import com.mmk.quotes.data.FakeQuotesRepository
 import com.mmk.quotes.domain.repository.QuotesRepository
 import com.mmk.quotes.domain.usecase.allquotes.GetAllQuotesByPagination
 import com.mmk.quotes.domain.usecase.allquotes.GetAllQuotesByPaginationImpl
