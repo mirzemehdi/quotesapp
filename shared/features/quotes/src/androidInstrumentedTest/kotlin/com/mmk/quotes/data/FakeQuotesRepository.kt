@@ -17,6 +17,19 @@ class FakeQuotesRepository : QuotesRepository {
     val quoteList = mutableListOf<Quote>()
     private val newQuoteAdded = MutableSharedFlow<Quote>()
 
+    suspend fun fillList(nb: Int = 10) {
+        (1..nb).forEach {
+            quoteList.add(
+                Quote(
+                    id = "Id#$it",
+                    text = "Text#$it",
+                    author = "Author#$it",
+                )
+            )
+        }
+        newQuoteAdded.emit(Quote())
+    }
+
     override suspend fun getQuotesByPagination(
         pageIndex: String?,
         pageLimit: Int,

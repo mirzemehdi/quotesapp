@@ -1,4 +1,3 @@
-
 package com.mmk.quotes.presentation.allquotes
 
 import androidx.compose.foundation.Image
@@ -14,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import com.mmk.common.ui.MR
 import com.mmk.common.ui.components.MyCircularProgressBar
@@ -56,7 +56,7 @@ private fun QuotesScreen(uiState: QuotesUiState, onLoadNextPage: () -> Unit) {
                         .fillMaxSize()
                         .padding(top = 16.dp)
                 )
-                QuotesUiState.Loading -> MyCircularProgressBar()
+                QuotesUiState.Loading -> MyCircularProgressBar(modifier = Modifier.testTag("quotesProgress"))
                 QuotesUiState.Empty -> EmptyQuotesView()
             }
         }
@@ -67,10 +67,14 @@ private fun QuotesScreen(uiState: QuotesUiState, onLoadNextPage: () -> Unit) {
 fun QuotesDataList(
     quotesHasDataUiState: QuotesUiState.HasData,
     onLoadNextPage: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val scrollState = rememberLazyListState()
-    LazyColumn(modifier = modifier, contentPadding = PaddingValues(0.dp), state = scrollState) {
+    LazyColumn(
+        modifier = modifier.testTag("quotesList"),
+        contentPadding = PaddingValues(0.dp),
+        state = scrollState
+    ) {
 
         items(quotesHasDataUiState.quotesList.size) { index ->
             val quoteItem = quotesHasDataUiState.quotesList[index]
@@ -101,10 +105,12 @@ fun QuotesDataList(
             ) {
                 if (quotesHasDataUiState.isPaginationLoading) {
                     MyCircularProgressBar(
-                        modifier = Modifier.padding(
-                            top = 8.dp,
-                            bottom = 50.dp
-                        )
+                        modifier = Modifier
+                            .padding(
+                                top = 8.dp,
+                                bottom = 50.dp
+                            )
+                            .testTag("quotesListPaginationProgress")
                     )
                 }
                 if (quotesHasDataUiState.hasPaginationError) {
@@ -120,7 +126,7 @@ private fun EmptyQuotesView() {
     Image(
         painter = painterResource(MR.images.ic_empty_quotes),
         contentDescription = null,
-        modifier = Modifier.size(300.dp)
+        modifier = Modifier.size(300.dp).testTag("emptyView")
     )
 }
 
