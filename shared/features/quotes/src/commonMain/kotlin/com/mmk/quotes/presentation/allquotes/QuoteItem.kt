@@ -98,7 +98,6 @@ fun QuoteItem(
     }
 }
 
-// TODO search how to do preview
 // @Preview(showBackground = true)
 // @Composable
 // private fun QuoteItemPreview() {

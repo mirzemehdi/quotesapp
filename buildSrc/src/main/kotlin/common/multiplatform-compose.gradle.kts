@@ -2,9 +2,8 @@ package common
 
 import ConfigData
 import Libs
+import Modules
 import TestingLibs
-import implementJetpackComposeUi
-import org.jetbrains.compose.compose
 
 plugins {
     id("com.android.library")
@@ -30,7 +29,7 @@ kotlin {
 //    iosArm64()
     ios()
     iosSimulatorArm64()
-    
+
 
     sourceSets {
         val commonMain by getting {
@@ -48,6 +47,8 @@ kotlin {
                 implementation(compose.components.resources)
             }
         }
+
+
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
@@ -83,6 +84,17 @@ kotlin {
 
             }
         }
+
+        val androidInstrumentedTest by getting {
+//            dependsOn(commonTest)
+            dependencies {
+                implementation(platform(Libs.composeBom))
+                implementation(TestingLibs.composeUiJunit4)
+                implementation(TestingLibs.mockkAndroid)
+
+            }
+        }
+
         val iosMain by getting
         val iosSimulatorArm64Main by getting {
             dependsOn(iosMain)
@@ -146,14 +158,17 @@ android {
         unitTests.isIncludeAndroidResources = true
         unitTests.isReturnDefaultValues = true
     })
-//
-    //TODO for some reason jacoco plugin has some problems when enable testCoverage
-//    buildTypes({
-//        getByName("debug") {
-//            isTestCoverageEnabled = true
-//        }
-//    })
-//
+
+    buildTypes {
+        val debug by getting {
+            //TODO for some reason jacoco plugin has some problems when enable testCoverage
+            //isTestCoverageEnabled = true
+
+            dependencies {
+                implementation(TestingLibs.composeUiManifest)
+            }
+        }
+    }
     compileOptions({
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
