@@ -28,6 +28,7 @@ dependencyResolutionManagement {
 rootProject.name="QuotesApp"
 include(
     ":app",
+    ":desktopApp",
     ":customdetektrules",
     ":shared:test-utils",
     ":shared:common:core",

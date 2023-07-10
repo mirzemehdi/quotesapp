@@ -9,8 +9,8 @@ kotlin {
             dependencies {
                 implementation(project(Modules.core))
                 implementation(project(Modules.commonUi))
-                implementation(Libs.firebaseFireStoreMultiPlatform)
                 implementation(Libs.kotlinSerializer)
+                implementation(Libs.firebaseFireStoreMultiPlatform)
             }
         }
 
