@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - '**'
+    paths-ignore:
+      - 'backend-server/**'
   pull_request:
     branches:
       - '**'
+    paths-ignore:
+      - 'backend-server/**'
 
 jobs:
   static_code_analyze:
