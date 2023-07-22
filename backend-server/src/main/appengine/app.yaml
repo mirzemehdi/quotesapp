@@ -1,4 +1,2 @@
 runtime: java11
 entrypoint: 'java -jar quotesappserver-all.jar'
-env_variables:
-  sfsf
