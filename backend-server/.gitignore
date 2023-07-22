@@ -34,4 +34,4 @@ out/
 
 ### VS Code ###
 .vscode/
-src/main/appengine
+src/main/appengine/app.yaml
