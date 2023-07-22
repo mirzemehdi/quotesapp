@@ -1,4 +1,4 @@
 runtime: java11
 entrypoint: 'java -jar quotesappserver-all.jar'
 env_variables:
-  MONGODB_CONNECTION_STRING: "mooongodb+srv://Cluster81482:fWR7WF17anl2@cluster0.hzwcch9.mongodb.net/"
+  MONGODB_CONNECTION_STRING: "mongodb+srv://Cluster81482:fWR7WF17anl2@cluster0.hzwcch9.mongodb.net/"
