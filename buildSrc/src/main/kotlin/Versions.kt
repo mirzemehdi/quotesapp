@@ -41,10 +41,11 @@ object Versions {
     const val mokoResources = "0.22.3"
     const val dateTime = "0.4.0"
     const val firebaseMultiPlatform="1.8.0"
-    const val kotlinSerializer="1.3.3"
+    const val kotlinSerializer="1.5.1"
     const val viewModelLifecyle="2.4.0"
     const val navigationMultiPlatform="0.8.0"
     const val essenty="1.1.0"
+    const val ktor="2.3.2"
 
 
 

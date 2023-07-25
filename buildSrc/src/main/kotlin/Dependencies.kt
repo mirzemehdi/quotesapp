@@ -94,6 +94,14 @@ object Libs {
     //Navigation
     val navigationMultiPlatform by lazy { "com.chrynan.navigation:navigation-compose:${Versions.navigationMultiPlatform}" }
 
+    //Ktor
+    val ktorCore by lazy { "io.ktor:ktor-client-core:${Versions.ktor}" }
+    val ktorCioEngine by lazy { "io.ktor:ktor-client-cio:${Versions.ktor}" }
+    val ktorLogging by lazy { "io.ktor:ktor-client-logging:${Versions.ktor}" }
+    val ktorSerialization by lazy { "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}" }
+    val ktorContentNegotiation by lazy { "io.ktor:ktor-client-content-negotiation:${Versions.ktor}" }
+    val ktorResources by lazy { "io.ktor:ktor-client-resources:${Versions.ktor}" }
+//    val logbackClassic by lazy { "ch.qos.logback:logback-classic:1.4.8" }
 
 
 }

@@ -20,12 +20,15 @@ private fun DependencyHandler.api(dependency: Any) {
 }
 
 
-fun DependencyHandler.implementNetworkingLibraries() {
-    implement(Libs.moshi)
-    implement(Libs.moshiKotlin)
-    implement(Libs.retrofit2)
-    implement(Libs.okHttpLogger)
-    implement(Libs.retrofit2Converter)
+fun KotlinDependencyHandler.implementNetworkingLibraries() {
+
+    implementation(Libs.ktorCore)
+    implementation(Libs.ktorCioEngine)
+    implementation(Libs.ktorResources)
+    implementation(Libs.ktorLogging)
+    implementation(Libs.ktorSerialization)
+    implementation(Libs.ktorContentNegotiation)
+
 }
 
 fun DependencyHandler.implementFirebase() {

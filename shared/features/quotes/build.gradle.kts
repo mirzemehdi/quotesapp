@@ -11,6 +11,7 @@ kotlin {
                 implementation(project(Modules.commonUi))
                 implementation(Libs.firebaseFireStoreMultiPlatform)
                 implementation(Libs.kotlinSerializer)
+                implementNetworkingLibraries()
             }
         }
 

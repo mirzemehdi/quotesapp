@@ -32,6 +32,7 @@ android {
         with(resources.excludes) {
             add("META-INF/DEPENDENCIES")
             add("META-INF/LICENSE")
+            add("META-INF/INDEX.LIST")
             add("META-INF/LICENSE.txt")
             add("META-INF/license.txt")
             add("META-INF/NOTICE")

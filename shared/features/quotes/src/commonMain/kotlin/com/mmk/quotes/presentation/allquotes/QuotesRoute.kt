@@ -1,7 +1,13 @@
 package com.mmk.quotes.presentation.allquotes
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -56,6 +62,7 @@ private fun QuotesScreen(uiState: QuotesUiState, onLoadNextPage: () -> Unit) {
                         .fillMaxSize()
                         .padding(top = 16.dp)
                 )
+
                 QuotesUiState.Loading -> MyCircularProgressBar(modifier = Modifier.testTag("quotesProgress"))
                 QuotesUiState.Empty -> EmptyQuotesView()
             }
@@ -76,7 +83,9 @@ fun QuotesDataList(
         state = scrollState
     ) {
 
-        items(quotesHasDataUiState.quotesList.size) { index ->
+        items(quotesHasDataUiState.quotesList.size, key = { index ->
+            quotesHasDataUiState.quotesList[index].id
+        }) { index ->
             val quoteItem = quotesHasDataUiState.quotesList[index]
             val hasScrollingReachedToEnd = index >= quotesHasDataUiState.quotesList.size - 1
             if (hasScrollingReachedToEnd && quotesHasDataUiState.hasPaginationError.not()) {
