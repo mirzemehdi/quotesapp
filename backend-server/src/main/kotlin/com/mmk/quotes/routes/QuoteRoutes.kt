@@ -6,11 +6,49 @@ import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.resources.*
+import io.ktor.server.resources.get
 import io.ktor.server.resources.post
 import io.ktor.server.response.*
 import io.ktor.server.routing.Route
+import io.ktor.server.websocket.*
+import io.ktor.websocket.*
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import java.util.*
+import java.util.Collections.synchronizedSet
+import java.util.concurrent.CopyOnWriteArrayList
+import kotlin.collections.LinkedHashSet
 
 fun Route.configureQuotesRoutes(quotesDataSource: QuotesDataSource) {
+    webSocket("/quotes-socket") {
+        var job: Job? = null
+        try {
+            for (frame in incoming) {
+                frame as? Frame.Text ?: continue
+                try {
+                    val pageLimit = Integer.valueOf(frame.readText())
+                    job?.cancel()
+                    job = launch {
+                        val quotesFlow = quotesDataSource.listenForFirstPageDataChanges(pageLimit = pageLimit)
+                        quotesFlow.collectLatest {
+                            sendSerialized(it)
+                        }
+                    }
+                } catch (e: NumberFormatException) {
+                    send(Frame.Text("Page limit should be number"))
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            job?.cancel()
+            this.close()
+        }
+    }
+
     get<QuoteResources> {
         call.respond(
             HttpStatusCode.OK,
@@ -23,7 +61,7 @@ fun Route.configureQuotesRoutes(quotesDataSource: QuotesDataSource) {
 
     post<QuoteResources> {
         // Add New Quote.
-        val quote=call.receive<Quote>()
+        val quote = call.receive<Quote>()
         quotesDataSource.insertQuote(quote)
         call.respond(HttpStatusCode.Created)
     }

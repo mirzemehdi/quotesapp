@@ -45,7 +45,7 @@ dependencies {
 
 
     implementation("io.ktor:ktor-server-core:$ktor_version")
-    implementation("io.ktor:ktor-websockets:$ktor_version")
+    implementation("io.ktor:ktor-server-websockets:$ktor_version")
     implementation("io.ktor:ktor-serialization:$ktor_version")
     implementation("io.ktor:ktor-server-sessions:$ktor_version")
     implementation("io.ktor:ktor-server-netty:$ktor_version")
@@ -56,7 +56,7 @@ dependencies {
     implementation("org.litote.kmongo:kmongo:$kmongo_version")
     implementation("org.litote.kmongo:kmongo-coroutine:$kmongo_version")
 
-    // Koin core features
+    // Koin
     implementation("io.insert-koin:koin-core:$koin_version")
     implementation("io.insert-koin:koin-ktor:$koin_version")
     implementation("io.insert-koin:koin-logger-slf4j:$koin_version")

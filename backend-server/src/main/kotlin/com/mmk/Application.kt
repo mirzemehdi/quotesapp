@@ -16,6 +16,7 @@ fun Application.module() {
         modules(appModule)
     }
     install(Resources)
+    configureSockets()
     configureSerialization()
     configureMonitoring()
     configureRouting()
