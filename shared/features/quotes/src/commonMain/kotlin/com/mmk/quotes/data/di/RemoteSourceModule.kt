@@ -6,7 +6,6 @@ import com.mmk.quotes.data.source.remote.apiservice.Constants.BASE_URL
 import com.mmk.quotes.data.source.remote.apiservice.QuotesApiService
 import com.mmk.quotes.data.source.remote.apiservice.QuotesApiServiceImpl
 import io.ktor.client.HttpClient
-import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.client.plugins.logging.LogLevel
@@ -22,7 +21,7 @@ import org.koin.dsl.module
 
 val remoteSourceModule = module {
     single {
-        HttpClient(CIO) {
+        HttpClient() {
             install(Resources)
             defaultRequest {
                 url(BASE_URL)

@@ -65,6 +65,7 @@ class QuotesApiServiceImpl(private val httpClient: HttpClient) : QuotesApiServic
                 Json.decodeFromString<List<QuoteResponse>>(json)
             }
             .catch {
+                AppLogger.e(it.message)
                 emit(getQuotesByPagination(null, pageLimit))
             }
             .onCompletion {

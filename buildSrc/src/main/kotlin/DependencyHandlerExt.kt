@@ -23,7 +23,6 @@ private fun DependencyHandler.api(dependency: Any) {
 fun KotlinDependencyHandler.implementNetworkingLibraries() {
 
     implementation(Libs.ktorCore)
-    implementation(Libs.ktorCioEngine)
     implementation(Libs.ktorResources)
     implementation(Libs.ktorLogging)
     implementation(Libs.ktorSerialization)

@@ -99,6 +99,7 @@ object Libs {
     val ktorContentNegotiation by lazy { "io.ktor:ktor-client-content-negotiation:${Versions.ktor}" }
     val ktorResources by lazy { "io.ktor:ktor-client-resources:${Versions.ktor}" }
     val ktorWebSocket by lazy { "io.ktor:ktor-client-websockets:${Versions.ktor}" }
+    val ktorDarwinEngine by lazy { "io.ktor:ktor-client-darwin:${Versions.ktor}" }
     val logbackClassic by lazy { "ch.qos.logback:logback-classic:1.2.11" }
 
 
