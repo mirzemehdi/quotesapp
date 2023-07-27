@@ -86,9 +86,6 @@ object Libs {
     //Date
     val dateTime by lazy { "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.dateTime}" }
 
-    //Firebase
-    val firebaseFireStoreMultiPlatform by lazy { "dev.gitlive:firebase-firestore:${Versions.firebaseMultiPlatform}" }
-
     //Kotlin serializer
     val kotlinSerializer by lazy { "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinSerializer}" }
     //Navigation
@@ -101,7 +98,8 @@ object Libs {
     val ktorSerialization by lazy { "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}" }
     val ktorContentNegotiation by lazy { "io.ktor:ktor-client-content-negotiation:${Versions.ktor}" }
     val ktorResources by lazy { "io.ktor:ktor-client-resources:${Versions.ktor}" }
-//    val logbackClassic by lazy { "ch.qos.logback:logback-classic:1.4.8" }
+    val ktorWebSocket by lazy { "io.ktor:ktor-client-websockets:${Versions.ktor}" }
+    val logbackClassic by lazy { "ch.qos.logback:logback-classic:1.2.11" }
 
 
 }

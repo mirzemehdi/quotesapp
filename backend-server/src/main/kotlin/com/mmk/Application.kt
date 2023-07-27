@@ -2,7 +2,6 @@ package com.mmk
 
 import com.mmk.di.appModule
 import io.ktor.server.application.*
-import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import com.mmk.plugins.*
 import io.ktor.server.resources.*

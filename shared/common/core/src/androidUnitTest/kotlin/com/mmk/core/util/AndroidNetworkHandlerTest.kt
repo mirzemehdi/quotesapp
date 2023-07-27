@@ -56,7 +56,7 @@ internal class AndroidNetworkHandlerTest {
     }
 
     @Test
-    @Config(sdk = [23])
+    @Config(sdk = [24])
     fun givenNoWifiAndNoCellularConnection_hasNetworkConnection_returnsFalse() {
         connectivityManager?.let {
             shadowOf(connectivityManager).setNetworkCapabilities(
@@ -68,7 +68,7 @@ internal class AndroidNetworkHandlerTest {
     }
 
     @Test
-    @Config(sdk = [23])
+    @Config(sdk = [24])
     fun givenHasWifiAndNoCellularConnection_hasNetworkConnection_returnsTrue() {
         connectivityManager?.let {
             shadowOf(networkCapabilities).addTransportType(NetworkCapabilities.TRANSPORT_WIFI)
@@ -81,7 +81,7 @@ internal class AndroidNetworkHandlerTest {
     }
 
     @Test
-    @Config(sdk = [23])
+    @Config(sdk = [24])
     fun givenNoWifiAndHasCellularConnection_hasNetworkConnection_returnsTrue() {
         connectivityManager?.let {
             shadowOf(networkCapabilities).addTransportType(NetworkCapabilities.TRANSPORT_CELLULAR)
@@ -94,7 +94,7 @@ internal class AndroidNetworkHandlerTest {
     }
 
     @Test
-    @Config(sdk = [23])
+    @Config(sdk = [24])
     fun givenEthernetConnection_hasNetworkConnection_returnsTrue() {
         connectivityManager?.let {
             shadowOf(networkCapabilities).addTransportType(NetworkCapabilities.TRANSPORT_ETHERNET)
@@ -103,34 +103,6 @@ internal class AndroidNetworkHandlerTest {
                 networkCapabilities
             )
             Truth.assertThat(networkHandler.hasNetworkConnection()).isTrue()
-        }
-    }
-
-    @Test
-    @Config(sdk = [21])
-    fun verifyNoActiveNetworkSdkVersionBelow23_hasNetworkConnection_returnsFalse() {
-        connectivityManager?.let {
-            shadowOf(connectivityManager).setActiveNetworkInfo(null)
-            Truth.assertThat(networkHandler.hasNetworkConnection()).isFalse()
-        }
-    }
-
-    @Test
-    @Config(sdk = [21])
-    fun verifyGivenConnectedNetworkSdkVersionBelow23_hasNetworkConnection_returnsTrue() {
-        connectivityManager?.let {
-            every { networkInfo.isConnected } returns true
-            shadowOf(connectivityManager).setActiveNetworkInfo(networkInfo)
-            Truth.assertThat(networkHandler.hasNetworkConnection()).isTrue()
-        }
-    }
-    @Test
-    @Config(sdk = [21])
-    fun verifyNoConnectedNetworkSdkVersionBelow23_hasNetworkConnection_returnsFalse() {
-        connectivityManager?.let {
-            every { networkInfo.isConnected } returns false
-            shadowOf(connectivityManager).setActiveNetworkInfo(networkInfo)
-            Truth.assertThat(networkHandler.hasNetworkConnection()).isFalse()
         }
     }
 }

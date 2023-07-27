@@ -28,17 +28,11 @@ fun KotlinDependencyHandler.implementNetworkingLibraries() {
     implementation(Libs.ktorLogging)
     implementation(Libs.ktorSerialization)
     implementation(Libs.ktorContentNegotiation)
+    implementation(Libs.ktorWebSocket)
+    implementation(Libs.logbackClassic)
 
 }
 
-fun DependencyHandler.implementFirebase() {
-    implement(platform(Libs.firebasePlatform))
-    implement(Libs.firebaseFireStore)
-    implement(Libs.firebaseFireStoreKtx)
-    implement(Libs.firebaseCoroutineSupport)
-    implement(Libs.firebaseAnalytics)
-    implement(Libs.firebaseCrashlytics)
-}
 
 fun DependencyHandler.testImplementJunit5() {
     testImplement(TestingLibs.junit5JupiterApi)

@@ -34,7 +34,7 @@ fun Route.configureQuotesRoutes(quotesDataSource: QuotesDataSource) {
                     job = launch {
                         val quotesFlow = quotesDataSource.listenForFirstPageDataChanges(pageLimit = pageLimit)
                         quotesFlow.collectLatest {
-                            sendSerialized(it)
+                            send(Frame.Text(Json.encodeToString(it)))
                         }
                     }
                 } catch (e: NumberFormatException) {
