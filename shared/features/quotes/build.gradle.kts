@@ -9,14 +9,21 @@ kotlin {
             dependencies {
                 implementation(project(Modules.core))
                 implementation(project(Modules.commonUi))
-                implementation(Libs.firebaseFireStoreMultiPlatform)
                 implementation(Libs.kotlinSerializer)
+                implementNetworkingLibraries()
             }
         }
 
         val androidMain by getting {
             dependencies {
                 implementation(Libs.navigationCompose)
+                implementation(Libs.ktorCioEngine)
+            }
+        }
+
+        val iosMain by getting {
+            dependencies {
+                implementation(Libs.ktorDarwinEngine)
             }
         }
     }

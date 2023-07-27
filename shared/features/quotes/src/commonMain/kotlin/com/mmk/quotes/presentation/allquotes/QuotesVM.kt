@@ -73,7 +73,7 @@ class QuotesVM(private val getAllQuotesByPagination: GetAllQuotesByPagination) :
 
     private fun onSuccess(newQuoteList: List<Quote>, isInitialPage: Boolean) {
         val nextPage =
-            if (newQuoteList.isEmpty()) null else newQuoteList.last().timeStamp.toString()
+            if (newQuoteList.isEmpty()) null else newQuoteList.last().id
         AppLogger.d("NextPage: $nextPage")
         _getQuotesUiState.update {
             if (isInitialPage) {
