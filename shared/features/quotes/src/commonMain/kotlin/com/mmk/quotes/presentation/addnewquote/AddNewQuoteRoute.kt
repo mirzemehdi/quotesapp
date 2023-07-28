@@ -27,7 +27,7 @@ import com.mmk.core.util.asState
 import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
-fun AddNewQuoteRoute(viewModel: AddNewQuoteVM = ViewModelProvider.get(), onBackPress: () -> Unit) {
+fun AddNewQuoteRoute(viewModel: AddNewQuoteVM = ViewModelProvider.get(), onBackPress: () -> Unit = {}) {
     UiMessageOwnerComponent(uiMessageOwner = viewModel) {
         val uiState by viewModel.uiState.asState()
         LaunchedEffect(key1 = uiState.newAddedQuote) {

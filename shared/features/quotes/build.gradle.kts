@@ -26,5 +26,11 @@ kotlin {
                 implementation(Libs.ktorDarwinEngine)
             }
         }
+
+        val desktopMain by getting {
+            dependencies {
+                implementation(Libs.ktorCioEngine)
+            }
+        }
     }
 }
