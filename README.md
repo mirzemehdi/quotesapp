@@ -1,4 +1,4 @@
-# QuotesApp - MultiPlatform MultiModular Android, Ios and Desktop APP
+# QuotesApp - MultiPlatform MultiModular Android, iOS and Desktop APP
 
 [![Build Debug apk](https://github.com/mirzemehdi/quotesapp/actions/workflows/build_debug.yml/badge.svg)](https://github.com/mirzemehdi/quotesapp/actions/workflows/build_debug.yml)
 [![Static Code Analyzing](https://github.com/mirzemehdi/quotesapp/actions/workflows/static_code_analyze.yml/badge.svg)](https://github.com/mirzemehdi/quotesapp/actions/workflows/static_code_analyze.yml)
