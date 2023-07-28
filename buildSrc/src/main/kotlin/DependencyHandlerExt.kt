@@ -20,22 +20,18 @@ private fun DependencyHandler.api(dependency: Any) {
 }
 
 
-fun DependencyHandler.implementNetworkingLibraries() {
-    implement(Libs.moshi)
-    implement(Libs.moshiKotlin)
-    implement(Libs.retrofit2)
-    implement(Libs.okHttpLogger)
-    implement(Libs.retrofit2Converter)
+fun KotlinDependencyHandler.implementNetworkingLibraries() {
+
+    implementation(Libs.ktorCore)
+    implementation(Libs.ktorResources)
+    implementation(Libs.ktorLogging)
+    implementation(Libs.ktorSerialization)
+    implementation(Libs.ktorContentNegotiation)
+    implementation(Libs.ktorWebSocket)
+    implementation(Libs.logbackClassic)
+
 }
 
-fun DependencyHandler.implementFirebase() {
-    implement(platform(Libs.firebasePlatform))
-    implement(Libs.firebaseFireStore)
-    implement(Libs.firebaseFireStoreKtx)
-    implement(Libs.firebaseCoroutineSupport)
-    implement(Libs.firebaseAnalytics)
-    implement(Libs.firebaseCrashlytics)
-}
 
 fun DependencyHandler.testImplementJunit5() {
     testImplement(TestingLibs.junit5JupiterApi)
