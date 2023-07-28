@@ -12,6 +12,7 @@ import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
+import io.ktor.http.isSuccess
 import io.ktor.utils.io.CancellationException
 import io.ktor.websocket.DefaultWebSocketSession
 import io.ktor.websocket.Frame
@@ -65,7 +66,7 @@ class QuotesApiServiceImpl(private val httpClient: HttpClient) : QuotesApiServic
                 Json.decodeFromString<List<QuoteResponse>>(json)
             }
             .catch {
-                AppLogger.e(it.message)
+                AppLogger.e("Error while observing ${it.message}")
                 emit(getQuotesByPagination(null, pageLimit))
             }
             .onCompletion {
@@ -76,11 +77,12 @@ class QuotesApiServiceImpl(private val httpClient: HttpClient) : QuotesApiServic
     }
 
     override suspend fun addNewQuote(quote: NewQuoteRequest) = networkApiCall {
-        httpClient.post("/quotes") {
+        val response = httpClient.post("/quotes") {
             contentType(ContentType.Application.Json)
             setBody(quote)
         }
-        Unit
+        if (response.status.isSuccess()) Unit
+        else throw ApiServiceException(Exception("Unknown error occurred while adding quote"))
     }
 
     private suspend fun initSocketConnection() {

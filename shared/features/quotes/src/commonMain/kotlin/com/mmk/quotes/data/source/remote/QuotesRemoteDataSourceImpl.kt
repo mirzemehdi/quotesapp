@@ -29,7 +29,9 @@ class QuotesRemoteDataSourceImpl(
         return quotesApiService
             .observeFirstPageQuotes(pageLimit)
             .map { Result.success(it) }
-            .catch { Result.error(ErrorEntity.apiError(exception = Exception(it))) }
+            .catch {
+                emit(Result.error(ErrorEntity.apiError(exception = Exception(it))))
+            }
     }
 
     override suspend fun addNewQuote(newQuoteRequest: NewQuoteRequest) =

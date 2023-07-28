@@ -26,7 +26,7 @@ kotlin {
     }
 
 
-//    jvm("desktop")
+    jvm("desktop")
     ios()
     iosSimulatorArm64()
 
@@ -104,12 +104,15 @@ kotlin {
         val iosSimulatorArm64Test by getting {
             dependsOn(iosTest)
         }
+        
+        val desktopMain by getting {
+            dependencies {
+                implementation(compose.desktop.common)
+                implementation(Libs.coroutineCore)
 
-//        val desktopMain by getting  {
-//            dependencies {
-//                implementation(compose.desktop.currentOs)
-//            }
-//        }
+            }
+        }
+
 
 
     }
