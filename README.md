@@ -1,10 +1,10 @@
-# QuotesApp - MultiPlatform MultiModular Android and Ios APP
+# QuotesApp - MultiPlatform MultiModular Android, Ios and Desktop APP
 
 [![Build Debug apk](https://github.com/mirzemehdi/quotesapp/actions/workflows/build_debug.yml/badge.svg)](https://github.com/mirzemehdi/quotesapp/actions/workflows/build_debug.yml)
 [![Static Code Analyzing](https://github.com/mirzemehdi/quotesapp/actions/workflows/static_code_analyze.yml/badge.svg)](https://github.com/mirzemehdi/quotesapp/actions/workflows/static_code_analyze.yml)
 [![Testing](https://github.com/mirzemehdi/quotesapp/actions/workflows/unit_testing.yml/badge.svg)](https://github.com/mirzemehdi/quotesapp/actions/workflows/unit_testing.yml)
 
-This quotes app targets both Android and iOS platforms, and is developed using **Kotlin Multiplatform**, **JetBrains Compose Multiplatform**, **App Modularization**, **Clean Architecture** and **other Jetpack Components and multiplatform libraries**. 
+This quotes app targets Android, iOS and Desktop platforms, and is developed using **Kotlin Multiplatform**, **JetBrains Compose Multiplatform**, **App Modularization**, **Clean Architecture** and **other Jetpack Components and multiplatform libraries**. 
 Project is developed in **TDD (Test Driven Development) style** by writing Unit and UI tests.  
 
 
@@ -40,7 +40,7 @@ _**Moko Resources**_ - A multiplatform Kotlin library for sharing resources
 
 #### Root module
 All feature modules are included in shared multiplatform root module. Main responsibility of root module is 
-providing dependencies using **_Koin Dependency Injection_**, navigation between modules, and providing MainView for android and ios platforms.  
+providing dependencies using **_Koin Dependency Injection_**, navigation between modules, and providing MainView for android, ios and desktop platforms.  
 
 
 <hr>
